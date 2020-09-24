@@ -233,7 +233,7 @@ export default {
             }];
         },
         logo() {
-            return (this.layoutColorMode === 'dark') ? "assets/layout/images/logo-white.svg" : "assets/layout/images/logo.svg";
+            return (this.layoutColorMode === 'dark') ? "assets/layout/images/output-onlinepngtools.png" : "assets/layout/images/logo.svg";
         }
     },
     beforeUpdate() {

@@ -5,7 +5,7 @@
 				<h4>Row Expand</h4>
 
 				<Toast />
-				<DataTable :value="products" :expandedRows.sync="expandedRows" class="p-datatable-customers" dataKey="id" @row-expand="onRowExpand" @row-collapse="onRowCollapse">
+				<DataTable :value="reports" :expandedRows.sync="expandedRows" class="p-datatable-customers" dataKey="id" @row-expand="onRowExpand" @row-collapse="onRowCollapse">
 					<template #header>
 						<div class="table-header-container">
 							<Button icon="pi pi-plus" label="Expand All" @click="expandAll" class="p-mr-2" />
@@ -13,50 +13,54 @@
 						</div>
 					</template>
 					<Column :expander="true" headerStyle="width: 3rem" />
-					<Column field="name" header="Name" sortable></Column>
-					<Column header="Image">
+					<Column field="Bulan" header="Bulan" sortable></Column>
+					<Column field="Value_Target" header="Value Target" sortable>
 						<template #body="slotProps">
-							<img :src="'assets/layout/images/product/' + slotProps.data.image" :alt="slotProps.data.image" class="product-image" />
+							{{formatCurrency(slotProps.data.Value_Target)}}
 						</template>
 					</Column>
-					<Column field="price" header="Price" sortable>
+					<Column field="QTY_ONOIWA" header="QTY ONOIWA" sortable></Column>
+					<Column field="QTY_ONOIWA_PLUS" header="QTY ONOIWA PLUS" sortable></Column>
+					<Column field="QTY_ONOIWA_MX" header="QTY ONOIWA MX" sortable></Column>
+					<Column field="QTY_ONOGATE" header="QTY ONOGATE" sortable></Column>
+                    <Column field="QTY_ONOAKE" header="QTY ONOAKE" sortable></Column>
+                    <Column field="QTY_RAFA_KHOMSAH" header="QTY RAFA KHOMSAH" sortable></Column>
+                    <Column field="Qty_Sales" header="Qty Sales" sortable></Column>
+                    <Column field="Value_Sales" header="Value Sales" sortable>
 						<template #body="slotProps">
-							{{formatCurrency(slotProps.data.price)}}
+							{{formatCurrency(slotProps.data.Value_Sales)}}
 						</template>
 					</Column>
-					<Column field="category" header="Category" sortable></Column>
-					<Column field="rating" header="Reviews" sortable>
-						<template #body="slotProps">
-							<Rating :value="slotProps.data.rating" :readonly="true" :cancel="false" />
-						</template>
-					</Column>
-					<Column field="inventoryStatus" header="Status" sortable>
-						<template #body="slotProps">
-							<span :class="'product-badge status-' + slotProps.data.inventoryStatus.toLowerCase()">{{slotProps.data.inventoryStatus}}</span>
-						</template>
-					</Column>
+                    <Column field="Achievement" header="Achievement" sortable></Column>
 					<template #expansion="slotProps">
 						<div class="orders-subtable">
-							<h5>Orders for {{slotProps.data.name}}</h5>
-							<DataTable :value="slotProps.data.orders">
-								<Column field="id" header="Id" sortable></Column>
-								<Column field="customer" header="Customer" sortable></Column>
-								<Column field="date" header="Date" sortable></Column>
-								<Column field="amount" header="Amount" sortable>
+							<h5>Rincian Bulan {{slotProps.data.Bulan}}</h5>
+							<DataTable :value="slotProps.data.Data">
+								<Column field="NO" header="No" sortable></Column>
+								<Column field="PERIOD" header="PERIOD" sortable></Column>
+								<Column field="NAME" header="NAME" sortable></Column>
+								<Column field="POSITION" header="POSITION" sortable></Column>
+								<Column field="REGION" header="REGION" sortable></Column>
+								<Column field="AREA" header="AREA" sortable></Column>
+								<Column field="AREA" header="AREA" sortable></Column>
+								<Column field="Value_Target" header="Value_Target" sortable>
 									<template #body="slotProps" sortable>
-										{{formatCurrency(slotProps.data.amount)}}
+										{{formatCurrency(slotProps.data.Value_Target)}}
 									</template>
 								</Column>
-								<Column field="status" header="Status" sortable>
-									<template #body="slotProps">
-										<span :class="'order-badge order-' + slotProps.data.status.toLowerCase()">{{slotProps.data.status}}</span>
-									</template>
-								</Column>
-								<Column headerStyle="width:4rem">
-									<template #body>
-										<Button icon="pi pi-search" />
-									</template>
-								</Column>
+								<Column field="QTY_ONOIWA" header="QTY ONOIWA" sortable></Column>
+                                <Column field="QTY_ONOIWA_PLUS" header="QTY ONOIWA PLUS" sortable></Column>
+                                <Column field="QTY_ONOIWA_MX" header="QTY ONOIWA MX" sortable></Column>
+                                <Column field="QTY_ONOGATE" header="QTY ONOGATE" sortable></Column>
+                                <Column field="QTY_ONOAKE" header="QTY ONOAKE" sortable></Column>
+                                <Column field="QTY_RAFA_KHOMSAH" header="QTY RAFA KHOMSAH" sortable></Column>
+                                <Column field="Qty_Sales" header="Qty Sales" sortable></Column>
+                                <Column field="Value_Sales" header="Value Sales" sortable>
+                                    <template #body="slotProps">
+                                        {{formatCurrency(slotProps.data.Value_Sales)}}
+                                    </template>
+                                </Column>
+                                <Column field="Achievement" header="Achievement" sortable></Column>
 							</DataTable>
 						</div>
 					</template>
@@ -67,6 +71,7 @@
 </template>
 
 <script>
+	import ReportService from "../service/ReportService";
 	import CustomerService from "../service/CustomerService";
 	import ProductService from '../service/ProductService';
 
@@ -82,18 +87,22 @@
 				filters2: {},
 				loading1: true,
 				loading2: true,
-				products: null,
+                products: null,
+                reports: null,
 				expandedRows: []
 			}
 		},
 		customerService: null,
-		productService: null,
+        productService: null,
+        reportService: null,
 		created() {
 			this.customerService = new CustomerService();
-			this.productService = new ProductService();
+            this.productService = new ProductService();
+            this.reportService = new ReportService();
 		},
 		mounted() {
-			this.productService.getProductsWithOrdersSmall().then(data => this.products = data);
+            this.productService.getProductsWithOrdersSmall().then(data => this.products = data);
+            this.reportService.getReport().then(data=> this.reports = data);
 			this.customerService.getCustomersMedium().then(data => this.customer1 = data);
 			this.customerService.getCustomersLarge().then(data => this.customer2 = data);
 			this.customerService.getCustomersMedium().then(data => this.customer3 = data);
@@ -108,7 +117,7 @@
 				this.$toast.add({severity: 'success', summary: 'Product Collapsed', detail: event.data.name, life: 3000});
 			},
 			expandAll() {
-				this.expandedRows = this.products.filter(p => p.id);
+				this.expandedRows = this.reports.filter(p => p.id);
 				this.$toast.add({severity: 'success', summary: 'All Rows Expanded', life: 3000});
 			},
 			collapseAll() {
