@@ -12,6 +12,16 @@ export default new Router({
 			component: Dashboard
 		},
 		{
+			path: '/masterdata',
+			name: 'masterdata',
+			component: () => import('./components/MasterData.vue')
+		},
+		{
+			path: '/report',
+			name: 'report',
+			component: () => import('./components/Report.vue')
+		},
+		{
 			path: '/formlayout',
 			name: 'formlayout',
 			component: () => import('./components/FormLayoutDemo.vue')
