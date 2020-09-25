@@ -42,10 +42,16 @@ export default {
             mobileMenuActive: false,
             menu : [
                 {label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/'},
-                {label: 'Master Data', icon: 'pi pi-fw pi-chart-bar', command: () => {window.location = "#/masterdata"}},
+                {label: 'Master', icon: 'pi pi-fw pi-clone',
+					items: [
+                        {label: 'Product', icon: 'pi pi-fw pi-table', to: '/Crud'},
+                        {label: 'Sales', icon: 'pi pi-fw pi-user-edit', to: '/Table'},
+							]
+				},
+                {label: 'Report', icon: 'pi pi-fw pi-chart-bar', command: () => {window.location = "#/masterdata"}},
                 {label: 'Report', icon: 'pi pi-fw pi-pencil', command: () => {window.location = "#/report"}},
-				{
-                    label: 'UI Kit', icon: 'pi pi-fw pi-sitemap',
+		
+                {label: 'UI Kit', icon: 'pi pi-fw pi-sitemap',
 					items: [
 						{label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout'},
 						{label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input'},

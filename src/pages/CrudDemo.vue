@@ -97,7 +97,7 @@
 					<div class="p-formgrid p-grid">
 						<div class="p-field p-col">
 							<label for="price">Price</label>
-							<InputNumber id="price" v-model="product.price" mode="currency" currency="USD" locale="en-US" />
+							<InputNumber id="price" v-model="product.price" mode="currency" currency="IDR" locale="en-US" />
 						</div>
 						<div class="p-field p-col">
 							<label for="quantity">Quantity</label>

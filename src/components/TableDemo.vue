@@ -2,13 +2,13 @@
 	<div class="p-grid">
 		<div class="p-col-12">
 			<div class="card">
-				<h4>Default</h4>
-				<p>Pagination, sorting, filtering and checkbox selection.</p>
+				<h4>Sales</h4>
+				<p></p>
 				<DataTable :value="customer1" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers1"
                         :filters="filters1" :loading="loading1">
 					<template #header>
 						<div class="table-header">
-							List of Customers
+							Sales table
 							<span class="p-input-icon-left">
                                 <i class="pi pi-search" />
                                 <InputText v-model="filters1['global']" placeholder="Global Search" />

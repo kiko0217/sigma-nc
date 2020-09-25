@@ -187,8 +187,8 @@ data() {
 }
 </CodeHighlight>
 
-                <h4>Saga Theme</h4>
-                <p>Sigma uses the free Saga-Blue which is a free theme distributed within PrimeVue, however it can be used with any PrimeVue theme as well.</p>
+                <h4>iPro</h4>
+                <p>iPro uses Bandung Sigma which is a free theme distributed within iPro, however it can be used with any iPro theme as well.</p>
 
                 <h4>SASS Variables</h4>
                 <p>In case you'd like to customize the layout variables, open <i>_variables.scss</i> file under src/layout folder. Saving the changes

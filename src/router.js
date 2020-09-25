@@ -19,7 +19,7 @@ export default new Router({
 		{
 			path: '/report',
 			name: 'report',
-			component: () => import('./components/Report.vue')
+			component: () => import('./components/Report01.vue')
 		},
 		{
 			path: '/formlayout',

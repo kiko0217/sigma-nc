@@ -26,7 +26,7 @@
 									<i class="pi pi-tag product-category-icon"></i><span class="product-category">{{slotProps.data.category}}</span>
 								</div>
 								<div class="product-list-action">
-									<span class="product-price">${{slotProps.data.price}}</span>
+									<span class="product-price">IDR{{slotProps.data.price}}</span>
 									<Button icon="pi pi-shopping-cart" label="Add to Cart" :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"></Button>
 									<span :class="'product-badge status-'+slotProps.data.inventoryStatus.toLowerCase()">{{slotProps.data.inventoryStatus}}</span>
 								</div>

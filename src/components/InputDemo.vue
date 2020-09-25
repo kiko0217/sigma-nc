@@ -180,7 +180,7 @@
 							<span class="p-inputgroup-addon"><i class="pi pi-shopping-cart"></i></span>
 							<span class="p-inputgroup-addon"><i class="pi pi-globe"></i></span>
 							<InputText placeholder="Price"/>
-							<span class="p-inputgroup-addon">$</span>
+							<span class="p-inputgroup-addon">IDR</span>
 							<span class="p-inputgroup-addon">.00</span>
 						</div>
 					</div>

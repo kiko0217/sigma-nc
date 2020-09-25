@@ -3,7 +3,7 @@
     {
       "id": 1000,
       "name": "James Butt",
-      "country": {
+      "City": {
         "name": "Algeria",
         "code": "dz"
       },
@@ -19,7 +19,7 @@
     {
       "id": 1001,
       "name": "Josephine Darakjy",
-      "country": {
+      "City": {
         "name": "Egypt",
         "code": "eg"
       },
@@ -35,7 +35,7 @@
     {
       "id": 1002,
       "name": "Art Venere",
-      "country": {
+      "City": {
         "name": "Panama",
         "code": "pa"
       },
@@ -51,7 +51,7 @@
     {
       "id": 1003,
       "name": "Lenna Paprocki",
-      "country": {
+      "City": {
         "name": "Slovenia",
         "code": "si"
       },
@@ -67,7 +67,7 @@
     {
       "id": 1004,
       "name": "Donette Foller",
-      "country": {
+      "City": {
         "name": "South Africa",
         "code": "za"
       },
@@ -83,7 +83,7 @@
     {
       "id": 1005,
       "name": "Simona Morasca",
-      "country": {
+      "City": {
         "name": "Egypt",
         "code": "eg"
       },
@@ -99,7 +99,7 @@
     {
       "id": 1006,
       "name": "Mitsue Tollner",
-      "country": {
+      "City": {
         "name": "Paraguay",
         "code": "py"
       },
@@ -115,7 +115,7 @@
     {
       "id": 1007,
       "name": "Leota Dilliard",
-      "country": {
+      "City": {
         "name": "Serbia",
         "code": "rs"
       },
@@ -131,7 +131,7 @@
     {
       "id": 1008,
       "name": "Sage Wieser",
-      "country": {
+      "City": {
         "name": "Egypt",
         "code": "eg"
       },
@@ -147,7 +147,7 @@
     {
       "id": 1009,
       "name": "Kris Marrier",
-      "country": {
+      "City": {
         "name": "Mexico",
         "code": "mx"
       },
