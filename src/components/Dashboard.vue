@@ -63,7 +63,7 @@
 		</div>
 	</div>
 
-	<div class="p-col-12 p-lg-6">
+	<div class="p-col-12 p-lg-8">
 		<div class="card">
 			<Chart type="line" :data="lineData" />
 		</div>
@@ -100,10 +100,31 @@
 						<span class="email">tony@nucleus.com</span>
 					</button>
 				</li>
+				<li>
+					<button class="p-link">
+						<img src="assets/layout/images/avatar_2.png" width="35" alt="avatar4"/>
+						<span class="name">Rendi Jaka</span>
+						<span class="email">renJaka@nucleus.com</span>
+					</button>
+				</li>
+				<li>
+					<button class="p-link">
+						<img src="assets/layout/images/avatar_1.png" width="35" alt="avatar4"/>
+						<span class="name">Clarosia Cindi</span>
+						<span class="email">cCindi@nucleus.com</span>
+					</button>
+				</li>
+				<li>
+					<button class="p-link">
+						<img src="assets/layout/images/avatar_4.png" width="35" alt="avatar4"/>
+						<span class="name">Samuel Iskandar</span>
+						<span class="email">iskandar@nucleus.com</span>
+					</button>
+				</li>
 			</ul>
 		</Panel>
 	</div>
-<div class="p-col-12 p-lg-4">
+	<div class="p-col-12 p-lg-6">
 		<Panel header="Activity" style="height: 100%">
 			<div class="activity-header">
 				<div class="p-grid">

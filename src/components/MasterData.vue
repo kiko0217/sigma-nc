@@ -126,7 +126,7 @@
 				this.$toast.add({severity: 'success', summary: 'All Rows Collapsed', life: 3000});
 			},
 			formatCurrency(value) {
-				return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+				return value;
 			},
 			calculateCustomerTotal(name) {
 				let total = 0;
