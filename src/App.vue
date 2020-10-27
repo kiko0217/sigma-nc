@@ -44,11 +44,126 @@ export default {
                 {label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/'},
                 {label: 'Master', icon: 'pi pi-fw pi-clone',
 					items: [
-                        {label: 'Product', icon: 'pi pi-fw pi-table', to: '/product'},
-                        {label: 'Sales', icon: 'pi pi-fw pi-user-edit', to: '/seles'},
-							]
+                        {
+                            label: 'Region',
+                            icon: 'pi pi-fw pi-map-marker', 
+                            to: { name: "region" }
+                        },
+                        {
+                            label:'Area',
+                            icon: 'pi pi-fw pi-refresh',
+                            to: { name: 'area' }
+                        },
+                        {
+                            label:'Distributor',
+                            icon: 'pi pi-fw pi-shopping-cart',
+                            to: { name: 'distributor' }
+                        },
+                        {
+                            label:'Detailer',
+                            icon: 'pi pi-fw pi-sort-alpha-down',
+                            to: { name: 'detailer' }
+                        },
+                        {
+                            label:'Outlet',
+                            icon: 'pi pi-fw pi-eject',
+                            to: { name: 'outlet' }
+                        },
+                        {
+                            label:'Customer',
+                            icon: 'pi pi-fw pi-users',
+                            to: { name: 'customer' }
+                        },
+                        {
+                            label:'Product',
+                            icon: 'pi pi-fw pi-thumbs-up',
+                            to: { name: 'product' }
+                        },
+                        {
+                            label:'Pemeliharaan',
+                            icon: 'pi pi-fw pi-heart',
+                            to: { name: 'pemeliharaan' }
+                        },
+                    ]
+                },
+                {label: 'Transaksi', icon: 'pi pi-fw pi-clone',
+					items: [
+                        {
+                            label: 'Target',
+                            icon: 'pi pi-fw pi-map-marker', 
+                            to: { name: "target" }
+                        },
+                        {
+                            label:'Breakdown Sales',
+                            icon: 'pi pi-fw pi-refresh',
+                            to: { name: 'breakdownSales' }
+                        },
+                        {
+                            label:'KSO',
+                            icon: 'pi pi-fw pi-shopping-cart',
+                            to: { name: 'kerjasamaOperasi' }
+                        },
+                        {
+                            label:'Expense',
+                            icon: 'pi pi-fw pi-sort-alpha-down',
+                            to: { name: 'expense' }
+                        },
+                        {
+                            label:'Selling In',
+                            icon: 'pi pi-fw pi-eject',
+                            to: { name: 'sellingIn' }
+                        },
+                        {
+                            label:'Incentive Calc',
+                            icon: 'pi pi-fw pi-users',
+                            to: { name: 'incentiveCalc' }
+                        },
+                        {
+                            label:'Discount Submission',
+                            icon: 'pi pi-fw pi-thumbs-up',
+                            to: { name: 'discountSubmission' }
+                        },
+                    ]
 				},
-                {label: 'Report', icon: 'pi pi-fw pi-pencil', command: () => {window.location = "#/report"}},
+                {label: 'Laporan', icon: 'pi pi-fw pi-clone',
+					items: [
+                        {
+                            label: 'Target',
+                            icon: 'pi pi-fw pi-map-marker', 
+                            to: { name: "target" }
+                        },
+                        {
+                            label:'Breakdown Sales',
+                            icon: 'pi pi-fw pi-refresh',
+                            to: { name: 'breakdownSales' }
+                        },
+                        {
+                            label:'KSO',
+                            icon: 'pi pi-fw pi-shopping-cart',
+                            to: { name: 'kerjasamaOperasi' }
+                        },
+                        {
+                            label:'Expense',
+                            icon: 'pi pi-fw pi-sort-alpha-down',
+                            to: { name: 'expense' }
+                        },
+                        {
+                            label:'Selling In',
+                            icon: 'pi pi-fw pi-eject',
+                            to: { name: 'sellingIn' }
+                        },
+                        {
+                            label:'Incentive Calc',
+                            icon: 'pi pi-fw pi-users',
+                            to: { name: 'incentiveCalc' }
+                        },
+                        {
+                            label:'Discount Submission',
+                            icon: 'pi pi-fw pi-thumbs-up',
+                            to: { name: 'discountSubmission' }
+                        },
+                    ]
+				},
 		
             ]
         }

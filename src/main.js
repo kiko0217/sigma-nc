@@ -148,6 +148,11 @@ Vue.component('Tree', Tree);
 Vue.component('TreeTable', TreeTable);
 Vue.component('TriStateCheckbox', TriStateCheckbox);
 
+// router.beforeEach((to, from, next) => {
+// })
+// router.afterEach((to, from) => {
+	
+// })
 new Vue({
 	router,
 	render: h => h(App)
