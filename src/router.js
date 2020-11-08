@@ -42,11 +42,6 @@ export default new Router({
 			component: () => import('./master/Distributor.vue')
 		},
 		{
-			name: 'pemeliharaanHarga',
-			path: '/master/pemeliharaan-harga',
-			component: () => import('./master/PemeliharaanHarga.vue')
-		},
-		{
 			name: 'detailer',
 			path: '/master/detailer',
 			component: () => import('./master/Detailer.vue')
@@ -57,28 +52,68 @@ export default new Router({
 			component: () => import('./master/Outlet.vue')
 		},
 		{
+			name: 'outletDistributor',
+			path: '/master/outlet-distributor',
+			component: () => import('./master/OutletDistributor.vue')
+		},
+		{
+			name: 'customer',
+			path: '/master/customer',
+			component: () => import('./master/Customer.vue')
+		},
+		{
+			name: 'selesCover',
+			path: '/master/seles-cover',
+			component: () => import('./master/SelesCover.vue')
+		},
+		{
 			name: 'product',
 			path: '/master/product',
 			component: () => import('./master/Product.vue')
+		},
+		{
+			name: 'productMapping',
+			path: '/master/product-mapping',
+			component: () => import('./master/ProductMapping.vue')
+		},
+		{
+			name: 'pemeliharaanHarga',
+			path: '/master/pemeliharaan-harga',
+			component: () => import('./master/PemeliharaanHarga.vue')
+		},
+		{
+			name: 'skemaDiscount',
+			path: '/master/skema-discount',
+			component: () => import('./master/SkemaDiscount.vue')
 		},
 		{
 			path: 'transaksi',
 			redirect: { name: 'target' },
 		},
 		{
-			name: 'target',
-			path: '/transaksi/target',
-			component: () => import('./transaksi/Target.vue')
+			name: 'targetSeles',
+			path: '/transaksi/target-seles',
+			component: () => import('./transaksi/TargetSeles.vue')
 		},
 		{
-			name: 'breakdownSeles',
-			path: '/transaksi/breakdown-seles',
-			component: () => import('./transaksi/BreakdownSeles.vue')
+			name: 'revisiTargetSeles',
+			path: '/transaksi/revisi-target-seles',
+			component: () => import('./transaksi/RevisiTargetSeles.vue')
 		},
 		{
-			name: 'kerjasamaOperasi',
-			path: '/transaksi/kerjasama-operasi',
-			component: () => import('./transaksi/KerjasamaOperasi.vue')
+			name: 'targetCall',
+			path: '/transaksi/target-call',
+			component: () => import('./transaksi/TargetCall.vue')
+		},
+		{
+			name: 'breakdownSales',
+			path: '/transaksi/breakdown-sales',
+			component: () => import('./transaksi/BreakdownSales.vue')
+		},
+		{
+			name: 'salesVisit',
+			path: '/transaksi/sales-visit',
+			component: () => import('./transaksi/SalesVisit.vue')
 		},
 		{
 			name: 'expense',
@@ -89,6 +124,11 @@ export default new Router({
 			name: 'sellingIn',
 			path: '/transaksi/selling-in',
 			component: () => import('./transaksi/SellingIn.vue')
+		},
+		{
+			name: 'kerjasamaOperasi',
+			path: '/transaksi/kerjasama-operasi',
+			component: () => import('./transaksi/KerjasamaOperasi.vue')
 		},
 		{
 			name: 'incentiveCalc',
@@ -110,14 +150,14 @@ export default new Router({
 			component: () => import('./laporan/DetailSales.vue')
 		},
 		{
-			name: 'achevementbyProduct',
-			path: '/laporan/achevement-by-product',
-			component: () => import('./laporan/AchevementbyProduct.vue')
+			name: 'achievementbyProduct',
+			path: '/laporan/achievement-by-product',
+			component: () => import('./laporan/AchievementbyProduct.vue')
 		},
 		{
-			name: 'achevementbyArea',
-			path: '/laporan/achevement-by-area',
-			component: () => import('./laporan/AchevementbyArea.vue')
+			name: 'achievementbyArea',
+			path: '/laporan/achievement-by-area',
+			component: () => import('./laporan/AchievementbyArea.vue')
 		},
 		{
 			name: 'salesbyDistributor',
@@ -140,9 +180,9 @@ export default new Router({
 			component: () => import('./laporan/LaporanDonasi.vue')
 		},
 		{
-			name: 'laporanIncentiveCalc',
+			name: 'laporanIncentive',
 			path: '/laporan/incentive-calc',
-			component: () => import('./laporan/IncentiveCalc.vue')
+			component: () => import('./laporan/Incentive.vue')
 		},
 		{
 			name: 'keyLoyaltyManagement)',
@@ -150,9 +190,48 @@ export default new Router({
 			component: () => import('./laporan/KeyLoyaltyManagement.vue')
 		},
 		{
-			name: 'detailStockInfo)',
+			name: 'detailStockInfo',
 			path: '/laporan/detail-stock-info',
 			component: () => import('./laporan/DetailStockInfo.vue')
+		},
+		{
+			name: 'wpr',
+			path: '/laporan/wpr',
+			component: () => import('./laporan/WPR.vue')
+		},
+		{
+			name: 'monthlyCallPlan',
+			path: '/laporan/monthly-call-plan',
+			component: () => import('./laporan/MothlyCallPlan.vue')
+		},
+		{
+			name: 'promoTrial',
+			path: '/laporan/promo-trial',
+			component: () => import('./laporan/PromoTrial.vue')
+		},
+		{
+			path: 'admin',
+			redirect: { name: 'adminUser' },
+		},
+		{
+			name: 'adminUser',
+			path: '/admin/user',
+			component: () => import('./admin/User.vue')
+		},
+		{
+			name: 'adminAuthorization',
+			path: '/admin/authorization',
+			component: () => import('./admin/Authorization.vue')
+		},
+		{
+			name: 'adminLogData',
+			path: '/admin/log-data',
+			component: () => import('./admin/LogData.vue')
+		},
+		{
+			name: 'adminLogUser',
+			path: '/admin/log-user',
+			component: () => import('./admin/LogUser.vue')
 		},
 	],
 	scrollBehavior() {

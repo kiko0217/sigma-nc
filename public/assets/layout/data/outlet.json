@@ -1,0 +1,5625 @@
+﻿{
+    "Data": [
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "01",
+            "CodeOutlet": "1100001",
+            "NameOutlet": "PT.MARINDA  CAHYA MEDIKA",
+            "Status": "A",
+            "Createby": "ADMIN",
+            "Createdate": "31-Mar-2020 15:08",
+            "Updateby": "ADMIN",
+            "Updatedate": "31-Mar-2020 15:08"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "01",
+            "CodeOutlet": "1100002",
+            "NameOutlet": "RS.BALIMED DENPASAR",
+            "Status": "A",
+            "Createby": "ADMIN",
+            "Createdate": "01-Jul-2020 13:01",
+            "Updateby": "ADMIN",
+            "Updatedate": "01-Jul-2020 13:01"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "01",
+            "CodeOutlet": "1100003",
+            "NameOutlet": "RSAD UDAYANA",
+            "Status": "A",
+            "Createby": "ADMIN",
+            "Createdate": "31-Mar-2020 15:08",
+            "Updateby": "ADMIN",
+            "Updatedate": "31-Mar-2020 15:08"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "01",
+            "CodeOutlet": "1100004",
+            "NameOutlet": "RS.BALIMED SINGARAJA",
+            "Status": "A",
+            "Createby": "ADMIN",
+            "Createdate": "31-Mar-2020 15:08",
+            "Updateby": "ADMIN",
+            "Updatedate": "31-Mar-2020 15:08"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "01",
+            "CodeOutlet": "1100005",
+            "NameOutlet": "RS.SHANTI GRAHA",
+            "Status": "A",
+            "Createby": "ADMIN",
+            "Createdate": "31-Mar-2020 15:08",
+            "Updateby": "ADMIN",
+            "Updatedate": "31-Mar-2020 15:08"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "01",
+            "CodeOutlet": "1100006",
+            "NameOutlet": "PT.BALIMED PUTRA FARMASIA",
+            "Status": "N",
+            "Createby": "ADMIN",
+            "Createdate": "31-Mar-2020 15:08",
+            "Updateby": "ADMIN",
+            "Updatedate": "31-Mar-2020 15:08"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "01",
+            "CodeOutlet": "1100007",
+            "NameOutlet": "RS.BHAYANGKARA POLDA BALI",
+            "Status": "A",
+            "Createby": "ADMIN",
+            "Createdate": "31-Mar-2020 15:08",
+            "Updateby": "ADMIN",
+            "Updatedate": "31-Mar-2020 15:08"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "02",
+            "CodeOutlet": "1100008",
+            "NameOutlet": "APOTIK CENTRAL",
+            "Status": "A",
+            "Createby": "ADMIN",
+            "Createdate": "31-Mar-2020 15:08",
+            "Updateby": "ADMIN",
+            "Updatedate": "31-Mar-2020 15:08"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "02",
+            "CodeOutlet": "1100009",
+            "NameOutlet": "APOTIK RESTU MEDIKA",
+            "Status": "A",
+            "Createby": "ADMIN",
+            "Createdate": "31-Mar-2020 15:08",
+            "Updateby": "ADMIN",
+            "Updatedate": "31-Mar-2020 15:08"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "02",
+            "CodeOutlet": "1100010",
+            "NameOutlet": "APOTIK SAHABAT",
+            "Status": "A",
+            "Createby": "ADMIN",
+            "Createdate": "31-Mar-2020 15:08",
+            "Updateby": "ADMIN",
+            "Updatedate": "31-Mar-2020 15:08"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "02",
+            "CodeOutlet": "1100011",
+            "NameOutlet": "APOTIK SURYA FARMA",
+            "Status": "A",
+            "Createby": "ADMIN",
+            "Createdate": "31-Mar-2020 15:08",
+            "Updateby": "ADMIN",
+            "Updatedate": "31-Mar-2020 15:08"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "02",
+            "CodeOutlet": "1100012",
+            "NameOutlet": "APOTIK QUANTUM",
+            "Status": "N",
+            "Createby": "ADMIN",
+            "Createdate": "31-Mar-2020 15:08",
+            "Updateby": "ADMIN",
+            "Updatedate": "31-Mar-2020 15:08"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "02",
+            "CodeOutlet": "1100013",
+            "NameOutlet": "APOTIK QITTA",
+            "Status": "A",
+            "Createby": "ADMIN",
+            "Createdate": "31-Mar-2020 15:08",
+            "Updateby": "ADMIN",
+            "Updatedate": "31-Mar-2020 15:08"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "02",
+            "CodeOutlet": "1100014",
+            "NameOutlet": "APOTIK MAWAR"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "02",
+            "CodeOutlet": "1100015",
+            "NameOutlet": "APOTIK INA FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "02",
+            "CodeOutlet": "1100016",
+            "NameOutlet": "APOTIK ADI GUNA"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "02",
+            "CodeOutlet": "1100017",
+            "NameOutlet": "APOTIK ADI GUNA 2"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "02",
+            "CodeOutlet": "1100018",
+            "NameOutlet": "APOTIK DHARMA MEDIKA"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "02",
+            "CodeOutlet": "1100019",
+            "NameOutlet": "APOTIK MEDIKA"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "Type": "02",
+            "CodeOutlet": "1100020",
+            "NameOutlet": "APOTIK WERDHI AYU"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "CodeOutlet": "1100021",
+            "NameOutlet": "RS PARAMA SIDHI"
+        },
+        {
+            "Region": "11",
+            "Area": "004",
+            "Detailer": "D0004",
+            "CodeOutlet": "1100022",
+            "NameOutlet": "KLINIK UTAMA RAWAT INAP SARI DHARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "CodeOutlet": "1100023",
+            "NameOutlet": "RSUD SELE BE SOLU"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "CodeOutlet": "1100024",
+            "NameOutlet": "RSUD SORONG"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "CodeOutlet": "1100025",
+            "NameOutlet": "RS  KASIH HERLINA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "CodeOutlet": "1100026",
+            "NameOutlet": "RS PERTAMINA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "CodeOutlet": "1100027",
+            "NameOutlet": "RS/APOTEK MUTIARA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "CodeOutlet": "1100028",
+            "NameOutlet": "RS/APOTIK MALEO"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "CodeOutlet": "1100029",
+            "NameOutlet": "KLINIK BINTANG TIMUR"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100030",
+            "NameOutlet": "APOTEK TRI ARGA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100031",
+            "NameOutlet": "APOTEK CHANDRA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100032",
+            "NameOutlet": "APOTEK BERLIAN"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100033",
+            "NameOutlet": "APOTEK GADING"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100034",
+            "NameOutlet": "APOTEK APIL"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100035",
+            "NameOutlet": "APOTEK PRIMA MEDICA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100036",
+            "NameOutlet": "PT. KIMIA FARMA APOTEK"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100037",
+            "NameOutlet": "KFA (JUPITER)"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100038",
+            "NameOutlet": "KFA ARFAK"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100039",
+            "NameOutlet": "KFA NO. 205 CENTRAL"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100040",
+            "NameOutlet": "KFA AHMAD YANI"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100041",
+            "NameOutlet": "KFA MALIBELA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100042",
+            "NameOutlet": "APOTEK HEMAT"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100043",
+            "NameOutlet": "APOTEK AN NUR"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100044",
+            "NameOutlet": "APOTEK SURYA SEHAT"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100045",
+            "NameOutlet": "APOTEK ZHIFA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100046",
+            "NameOutlet": "APOTEK FIKRI"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100047",
+            "NameOutlet": "APOTEK CHESPAN"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100048",
+            "NameOutlet": "APOTEK K24"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100049",
+            "NameOutlet": "APOTEK QUEENA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100050",
+            "NameOutlet": "APOTEK AAFIYAH FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100051",
+            "NameOutlet": "APOTEK FELICIA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100052",
+            "NameOutlet": "APOTEK VALENCIA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "CodeOutlet": "1100053",
+            "NameOutlet": "SURYA TIGA PUTRA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100054",
+            "NameOutlet": "APOTEK VIDETA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100055",
+            "NameOutlet": "APOTEK MURAH"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100056",
+            "NameOutlet": "APOTEK SETIA MEDIKA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100057",
+            "NameOutlet": "APOTEK SARERA"
+        },
+        {
+            "Region": "11",
+            "Area": "013",
+            "Detailer": "Anto",
+            "Type": "02",
+            "CodeOutlet": "1100058",
+            "NameOutlet": "APOTEK DANFARMA"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100059",
+            "NameOutlet": "Apotek Gombong"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100060",
+            "NameOutlet": "Apotek Kasih Terjalain"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100061",
+            "NameOutlet": "Apotek Kauman"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100062",
+            "NameOutlet": "Apotik Husada Putra"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100063",
+            "NameOutlet": "Apotek RS N21"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100064",
+            "NameOutlet": "RSKIA Ummi Khasanah"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100065",
+            "NameOutlet": "RSUD  Muntilan"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100066",
+            "NameOutlet": "RSUD Tidar Magelang"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100067",
+            "NameOutlet": "RS Palang Biru "
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100068",
+            "NameOutlet": "RSUD Kebumen"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100069",
+            "NameOutlet": "RS K Bedah Sinduadi"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100070",
+            "NameOutlet": "Prima Sehat Gombong"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100071",
+            "NameOutlet": "Apt Kawatan"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100072",
+            "NameOutlet": "Apt Pendawa Jaya"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100073",
+            "NameOutlet": "Apt Marem"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100074",
+            "NameOutlet": "Apt Mandiri Sleman Jogja"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100075",
+            "NameOutlet": "Apt RSB Bunda Arif"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100076",
+            "NameOutlet": "Apotek Kartini"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100077",
+            "NameOutlet": "RSP AU Jogjakarta"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100078",
+            "NameOutlet": "Apt Waringin Mulya Temanggung"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100079",
+            "NameOutlet": "Klinik Utama Wirawan Kebumen"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100080",
+            "NameOutlet": "Apotek Cahaya Majenang-Cilacap "
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100081",
+            "NameOutlet": "RSUD Kebumen"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100082",
+            "NameOutlet": "RS Emanuel Klampok"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100083",
+            "NameOutlet": "Apotek Harum"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100084",
+            "NameOutlet": "RS DKT Purwokerto ( Rumkit Tk III)"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100085",
+            "NameOutlet": "Apt Keluarga Sehat"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100086",
+            "NameOutlet": "RSUD Majenang"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100087",
+            "NameOutlet": "Bagus Farma"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100088",
+            "NameOutlet": "RS Aghisna Sidareja"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100089",
+            "NameOutlet": "RSKIA Dwi Queen Kebumen"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100090",
+            "NameOutlet": "Klinik Prima Majenang"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100091",
+            "NameOutlet": "PD. APOTEK LUK ULO KEBUMEN"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "CodeOutlet": "1100092",
+            "NameOutlet": "CV. RAYA JANTI MANUNGGAL/K.24 RAYA JANTI"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100093",
+            "NameOutlet": "AP. PHARM 24 JL. KUSUMANEGARA"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100094",
+            "NameOutlet": "AP. PREMBUN"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100095",
+            "NameOutlet": "AP. TRIANA / NY. LINDAWATI"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100096",
+            "NameOutlet": "MERAPI - YOGYA, AP."
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100097",
+            "NameOutlet": "AP. K-24 KUTOARJO"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100098",
+            "NameOutlet": "AP. AZELIA"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100099",
+            "NameOutlet": " KF 70 Adisucipto ZA5"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100100",
+            "NameOutlet": " KF KOTA GEDE ZA30"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100101",
+            "NameOutlet": "K - 24 KUSUMANEGARA - YOGYA, AP."
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100102",
+            "NameOutlet": "KF KUSUMANEGARA (YOGYA)"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100103",
+            "NameOutlet": "AP. P M I"
+        },
+        {
+            "Region": "10",
+            "Area": "010",
+            "Detailer": "D0035",
+            "Type": "02",
+            "CodeOutlet": "1100104",
+            "NameOutlet": "AP. K.24 KEBUMEN"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "CodeOutlet": "1100105",
+            "NameOutlet": "SILOAM HOSPITALS BALIKPAPAN"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100106",
+            "NameOutlet": "APOTEK DIORATU"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100107",
+            "NameOutlet": "APOTEK MEDIKAFARMA BONZA"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100108",
+            "NameOutlet": "APOTEK GITA FARMA"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "CodeOutlet": "1100109",
+            "NameOutlet": "RSUD BALIKPAPAN"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "CodeOutlet": "1100110",
+            "NameOutlet": "RS BALIKPAPAN BARU"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "CodeOutlet": "1100111",
+            "NameOutlet": "RS PANGLIMA SEBAYA"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100112",
+            "NameOutlet": "APOTEK KIMIA FARMA 56"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100113",
+            "NameOutlet": "APOTEK SERUMPUN FARMA"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100114",
+            "NameOutlet": "APOTEK LA TAHZAN"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "CodeOutlet": "1100115",
+            "NameOutlet": "RS RESTU IBU"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100116",
+            "NameOutlet": "APOTEK KANIDA FARMA"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100117",
+            "NameOutlet": "APOTEK BIOS FARMA"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100118",
+            "NameOutlet": "APOTEK PERMATA BUNDA"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100119",
+            "NameOutlet": "APOTEK KF PENAJAM"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100120",
+            "NameOutlet": "APOTEK KF GROGOT"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100121",
+            "NameOutlet": "APOTEK KUSUMA BT KAJANG"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100122",
+            "NameOutlet": "APOTEK RAKHA FARMA"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100123",
+            "NameOutlet": "APOTEK METRO JAYA"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100124",
+            "NameOutlet": "APOTEK KOP AESCOLAP"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100125",
+            "NameOutlet": "APOTEK BIDAN MUS"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "Type": "02",
+            "CodeOutlet": "1100126",
+            "NameOutlet": "APOTEK KLINIK ON SITE PERTAMINA"
+        },
+        {
+            "Region": "10",
+            "Area": "002",
+            "Detailer": "D0017",
+            "CodeOutlet": "1100127",
+            "NameOutlet": "RS LNG BADAK "
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100128",
+            "NameOutlet": "AP. RIZAL"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100129",
+            "NameOutlet": "AP.NURUL FARMA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100130",
+            "NameOutlet": "AP.SURYA GLODOK"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100131",
+            "NameOutlet": "BERKAT(KRAMAT JAYA). AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100132",
+            "NameOutlet": "K-24 ANGGREK CIKARANG BARU, AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100133",
+            "NameOutlet": "KARYA SEHAT. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100134",
+            "NameOutlet": "KHANTI. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100135",
+            "NameOutlet": "KRAMAT JAYA. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100136",
+            "NameOutlet": "LIDO. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "CodeOutlet": "1100137",
+            "NameOutlet": "MITRA KELUARGA BEKASI BARAT, RS."
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "CodeOutlet": "1100138",
+            "NameOutlet": "MITRA KELUARGA BKS TMR, RS"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "CodeOutlet": "1100139",
+            "NameOutlet": "MITRA KELUARGA KLP.GADING, RS"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "CodeOutlet": "1100140",
+            "NameOutlet": "PRISINDO MITRA UTAMA. PT"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "CodeOutlet": "1100141",
+            "NameOutlet": "RS. SATRIA MEDIKA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100142",
+            "NameOutlet": "SEMPER, APOTEK"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100143",
+            "NameOutlet": "SUMBER SEHAT 45, AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100144",
+            "NameOutlet": "SURYA PACIFIC. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100145",
+            "NameOutlet": "TUGU INDAH, APOTEK"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100146",
+            "NameOutlet": "AP.SYIFA MEDICAL CENTER"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100147",
+            "NameOutlet": "BERKAT(KRAMAT JAYA). AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "CodeOutlet": "1100148",
+            "NameOutlet": "KIMIA FARMA NO.49. PT"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "CodeOutlet": "1100149",
+            "NameOutlet": "PELABUHAN JAKARTA. RS"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0012",
+            "Type": "02",
+            "CodeOutlet": "1100150",
+            "NameOutlet": "VILADELVIA , AP"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100151",
+            "NameOutlet": "APT.BUDI SEHAT"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "CodeOutlet": "1100152",
+            "NameOutlet": "RS.MELINDA 1"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "CodeOutlet": "1100153",
+            "NameOutlet": "RS.MELINDA 2"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "CodeOutlet": "1100154",
+            "NameOutlet": "RSCK"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "CodeOutlet": "1100155",
+            "NameOutlet": "KLINIK KALIMASADA"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "CodeOutlet": "1100156",
+            "NameOutlet": "KLINIK.DR UENG"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100157",
+            "NameOutlet": "APT.DANANTI"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100158",
+            "NameOutlet": "Labora Farma"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100159",
+            "NameOutlet": "Fitta Farma"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100160",
+            "NameOutlet": "Palasari Apt"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100161",
+            "NameOutlet": "Cermat Apt"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "CodeOutlet": "1100162",
+            "NameOutlet": "Rajawali RS"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "CodeOutlet": "1100163",
+            "NameOutlet": "RSUD Sumedang"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "CodeOutlet": "1100164",
+            "NameOutlet": "RS Karisma "
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "CodeOutlet": "1100165",
+            "NameOutlet": "Klinik Nabilah"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "CodeOutlet": "1100166",
+            "NameOutlet": "Klinik Yasyfa"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100167",
+            "NameOutlet": "AP Pajaji"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100168",
+            "NameOutlet": "Pamanukan Ap"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100169",
+            "NameOutlet": "Suci Utami"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100170",
+            "NameOutlet": "Suci Farma"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100171",
+            "NameOutlet": "apt 55"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100172",
+            "NameOutlet": "masagus"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "CodeOutlet": "1100173",
+            "NameOutlet": "Klinik Utama Cermat"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100174",
+            "NameOutlet": "AP. JADI SEHAT"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100175",
+            "NameOutlet": "AP. JAYA FARMA/LUKMAN HANDAWIDJAJA"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100176",
+            "NameOutlet": "KIMIA FARMA SULANJANA, AP"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100177",
+            "NameOutlet": "AP. HANA MEDIKA"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100178",
+            "NameOutlet": "AP. PARIS FARMA"
+        },
+        {
+            "Region": "10",
+            "Area": "003",
+            "Detailer": "D0013",
+            "Type": "02",
+            "CodeOutlet": "1100179",
+            "NameOutlet": "AP. KLINIK UTAMA KALIMASADA"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100180",
+            "NameOutlet": "Klinik Jantung Cirebon"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100181",
+            "NameOutlet": "RS Sumber Waras"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100182",
+            "NameOutlet": "RSUD Waled"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100183",
+            "NameOutlet": "RS Pertamina"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100184",
+            "NameOutlet": "RSIA Irhamna Indramayu"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100185",
+            "NameOutlet": "RS Ciremai"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100186",
+            "NameOutlet": "RSIA Khalisah"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100187",
+            "NameOutlet": "RS Sentra Medika"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100188",
+            "NameOutlet": "Klinik Femina"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100189",
+            "NameOutlet": "RS Putra Bahagia"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100190",
+            "NameOutlet": "RS Juanda"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100191",
+            "NameOutlet": "RSUD Pantura Sentot"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100192",
+            "NameOutlet": "Klinik Melati Suci"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100193",
+            "NameOutlet": "RS MM Indramayu"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "Type": "02",
+            "CodeOutlet": "1100194",
+            "NameOutlet": "Apt Pangestu"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100195",
+            "NameOutlet": "BHAYANGKARA INDRAMAYU, RS"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100196",
+            "NameOutlet": "KLINIK KEBAGUSAN"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100197",
+            "NameOutlet": "KIMIA FARMA 141 - CIREBON"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100198",
+            "NameOutlet": "KIMIA FARMA 40 - BM CRB"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100199",
+            "NameOutlet": "KIMIA FARMA 531 PERUM - CIREBON,AP"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100200",
+            "NameOutlet": "RS. MITRA PLUMBON - INDRAMAYU"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100201",
+            "NameOutlet": "SEHAT INSANI,AP"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100202",
+            "NameOutlet": "KIMIA FARMA CILEDUG - CIREBON, AP"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "Type": "02",
+            "CodeOutlet": "1100203",
+            "NameOutlet": "Apt Garuda"
+        },
+        {
+            "Region": "10",
+            "Area": "007",
+            "Detailer": "Dewi",
+            "CodeOutlet": "1100204",
+            "NameOutlet": "RS Pelabuhan"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100205",
+            "NameOutlet": "Apt Multazam"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "CodeOutlet": "1100206",
+            "NameOutlet": "RSU BMC"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100207",
+            "NameOutlet": "Apt Johanas Johan"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100208",
+            "NameOutlet": "Apt Dunia Sehat 1"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100209",
+            "NameOutlet": "Apt Annisa Solok"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "CodeOutlet": "1100210",
+            "NameOutlet": "TO Adek"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100211",
+            "NameOutlet": "Apt Kimia Farma RSUP M Djamil"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100212",
+            "NameOutlet": "Apt Madya 1"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100213",
+            "NameOutlet": "Apt Medika Farma"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100214",
+            "NameOutlet": "Apt Mekar"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100215",
+            "NameOutlet": "Apt Mustaqim Jaya"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100216",
+            "NameOutlet": "Apt Sehati Farma"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100217",
+            "NameOutlet": "Apt WD Farma"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100218",
+            "NameOutlet": "APOTEK DHARMASRAYA"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100219",
+            "NameOutlet": "APOTEK HDN"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100220",
+            "NameOutlet": "APOTEK KIMIA FARMA NO 94 PROKLAMASI"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100221",
+            "NameOutlet": "APOTEK QK FARMA"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100222",
+            "NameOutlet": "APOTIK ASRI DUA"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "CodeOutlet": "1100223",
+            "NameOutlet": "YOS SUDARSO, RS"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100224",
+            "NameOutlet": "BUNDA MEDICA, APOTIK"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100225",
+            "NameOutlet": "RALEX FARMA, APOTIK"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100226",
+            "NameOutlet": "SARI (SP), APOTIK"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100227",
+            "NameOutlet": "RIDHA RAHMA FARMA, AP"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "CodeOutlet": "1100228",
+            "NameOutlet": "CASH-KONTAN"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "CodeOutlet": "1100229",
+            "NameOutlet": "LANI, TO"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "CodeOutlet": "1100230",
+            "NameOutlet": "PT.PUTRIALICIA PHARMASI(PADANG)"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100231",
+            "NameOutlet": "APOTEK KIMIA FARMA LUBEG"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "CodeOutlet": "1100232",
+            "NameOutlet": "SAKINAH, APOTIK (SOLOK)"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "CodeOutlet": "1100233",
+            "NameOutlet": "INST FARM RSIA FADHILLA"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100234",
+            "NameOutlet": "RIEZKA FARMA(SOLOK), AP"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "CodeOutlet": "1100235",
+            "NameOutlet": "INST FARM RSIA FADHILLA"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "Type": "02",
+            "CodeOutlet": "1100236",
+            "NameOutlet": "APT KIMIA FARMA A. YANI"
+        },
+        {
+            "Region": "10",
+            "Area": "012",
+            "Detailer": "Gusrinaldi",
+            "CodeOutlet": "1100237",
+            "NameOutlet": "RSIA SITI HAWA"
+        },
+        {
+            "Region": "10",
+            "Area": "019",
+            "Detailer": "D0019",
+            "Type": "02",
+            "CodeOutlet": "1100238",
+            "NameOutlet": "APOTIK MAHARANI PANDEGLANG"
+        },
+        {
+            "Region": "10",
+            "Area": "019",
+            "Detailer": "D0019",
+            "Type": "02",
+            "CodeOutlet": "1100239",
+            "NameOutlet": "SHIFA APOTIK - PANDEGLANG"
+        },
+        {
+            "Region": "10",
+            "Area": "019",
+            "Detailer": "D0019",
+            "Type": "02",
+            "CodeOutlet": "1100240",
+            "NameOutlet": "RATU FARMA MEDIKA SERANG"
+        },
+        {
+            "Region": "10",
+            "Area": "019",
+            "Detailer": "D0019",
+            "CodeOutlet": "1100241",
+            "NameOutlet": "RSIA MUTIARA BUNDA"
+        },
+        {
+            "Region": "10",
+            "Area": "019",
+            "Detailer": "D0019",
+            "CodeOutlet": "1100242",
+            "NameOutlet": "RS MITRA KELUARGA KALIDERES"
+        },
+        {
+            "Region": "10",
+            "Area": "019",
+            "Detailer": "D0019",
+            "CodeOutlet": "1100243",
+            "NameOutlet": "UTAMA PRATAMA MEDIKA PT"
+        },
+        {
+            "Region": "10",
+            "Area": "019",
+            "Detailer": "D0019",
+            "Type": "02",
+            "CodeOutlet": "1100244",
+            "NameOutlet": "APOTIK AMANAH RANGKASBITUNG"
+        },
+        {
+            "Region": "10",
+            "Area": "019",
+            "Detailer": "D0019",
+            "Type": "02",
+            "CodeOutlet": "1100245",
+            "NameOutlet": "APOTIK GAHARU"
+        },
+        {
+            "Region": "10",
+            "Area": "019",
+            "Detailer": "D0019",
+            "Type": "02",
+            "CodeOutlet": "1100246",
+            "NameOutlet": "APOTIK AJIWARAS"
+        },
+        {
+            "Region": "10",
+            "Area": "019",
+            "Detailer": "D0019",
+            "CodeOutlet": "1100247",
+            "NameOutlet": "RS MAYAPADA JAKSEL"
+        },
+        {
+            "Region": "10",
+            "Area": "016",
+            "Detailer": "Anis",
+            "Type": "02",
+            "CodeOutlet": "1100248",
+            "NameOutlet": "AP. PADMA"
+        },
+        {
+            "Region": "10",
+            "Area": "016",
+            "Detailer": "Anis",
+            "CodeOutlet": "1100249",
+            "NameOutlet": "KF  DELANGGU  ZA23"
+        },
+        {
+            "Region": "10",
+            "Area": "016",
+            "Detailer": "Anis",
+            "Type": "02",
+            "CodeOutlet": "1100250",
+            "NameOutlet": "SUMBER WARAS - KLATEN ' AP"
+        },
+        {
+            "Region": "10",
+            "Area": "016",
+            "Detailer": "Anis",
+            "CodeOutlet": "1100251",
+            "NameOutlet": "RS UMUM DAERAH  - SURAKARTA"
+        },
+        {
+            "Region": "10",
+            "Area": "016",
+            "Detailer": "Anis",
+            "Type": "02",
+            "CodeOutlet": "1100252",
+            "NameOutlet": "AP.GAJAH MUNGKUR"
+        },
+        {
+            "Region": "10",
+            "Area": "016",
+            "Detailer": "Anis",
+            "CodeOutlet": "1100253",
+            "NameOutlet": "RS ISLAM SURAKARTA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100254",
+            "NameOutlet": "APT YAS FARMA 1"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100255",
+            "NameOutlet": "APT SHAN FARMA MERAUKE"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100256",
+            "NameOutlet": "PT ANTAR MITRA PAPUA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100257",
+            "NameOutlet": "APT SEGAR"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100258",
+            "NameOutlet": "RS MARTHEN INDEY"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100259",
+            "NameOutlet": "PT JIVAKA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100260",
+            "NameOutlet": "APT SAKURA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100261",
+            "NameOutlet": "APT 9 JAYA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100262",
+            "NameOutlet": "APT K24 KOTARAJA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100263",
+            "NameOutlet": "APT K24 ABEPURA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100264",
+            "NameOutlet": "APT ABE FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100265",
+            "NameOutlet": "APT BUNDA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100266",
+            "NameOutlet": "PT SASYERI"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100267",
+            "NameOutlet": "APT WAENA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100268",
+            "NameOutlet": "APT K24 WAENA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100269",
+            "NameOutlet": "APT GRATIA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100270",
+            "NameOutlet": "APT K24 SENTANI"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100271",
+            "NameOutlet": "APT MITRA SEHAT"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100272",
+            "NameOutlet": "APT KIMIA FARMA BIAK"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100273",
+            "NameOutlet": "APT DASYAT FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100274",
+            "NameOutlet": "APT PAPUA JAYA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100275",
+            "NameOutlet": "RSUD MANOKWARI"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100276",
+            "NameOutlet": "APT TALENTA LIMA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100277",
+            "NameOutlet": "APT BINTANG TERANG BIAK"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100278",
+            "NameOutlet": "APT BUDI"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100279",
+            "NameOutlet": "PT MAIWA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100280",
+            "NameOutlet": "RS DIAN HARAPAN"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100281",
+            "NameOutlet": "APT K24 MERAUKE"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100282",
+            "NameOutlet": "APT KURNIA FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100283",
+            "NameOutlet": "APT KIMIA FARMA DOK2"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100284",
+            "NameOutlet": "RSUD NABIRE"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100285",
+            "NameOutlet": "APT SUMBER KASIH"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100286",
+            "NameOutlet": "APT SEHAT FARMA SERUI"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100287",
+            "NameOutlet": "APT K24 TANAH HITAM"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100288",
+            "NameOutlet": "APT GALVIN"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100289",
+            "NameOutlet": "APT KIMIA FARMA HEFLORS"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100290",
+            "NameOutlet": "RSUD BOVEN DIGOEL"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100291",
+            "NameOutlet": "APT MURAH FARMA2"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100292",
+            "NameOutlet": "KLINIK SEHAT PLUS"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100293",
+            "NameOutlet": "APT MURAH FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100294",
+            "NameOutlet": "PT BINAPURA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100295",
+            "NameOutlet": "RS MITRA MASYARAKAT"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100296",
+            "NameOutlet": "APT MIRACLE MERAUKE"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100297",
+            "NameOutlet": "APT AGLUSIA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100298",
+            "NameOutlet": "RSUD BIAK"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100299",
+            "NameOutlet": "APT FIRDAUS NABIRE"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100300",
+            "NameOutlet": "CV ANUGERAH KASIH MEDIKA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100301",
+            "NameOutlet": "APT.PARNAMBAI FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100302",
+            "NameOutlet": "RSAL AZHARI AZHAR MANOKWARI"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100303",
+            "NameOutlet": "RSUD YOWARI SENTANI"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100304",
+            "NameOutlet": "APT YOSNAL MANOKWARI"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100305",
+            "NameOutlet": "APT HARAPAN FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100306",
+            "NameOutlet": "APT AGUNG BIAK"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100307",
+            "NameOutlet": "APT.MUTIARA CEMPAKA FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100308",
+            "NameOutlet": "APT.DIVARI MEDICAL CENTER"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100309",
+            "NameOutlet": "RSUD PANIAI"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100310",
+            "NameOutlet": "APT KIMIA FARMA RSU"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100311",
+            "NameOutlet": "CV MEDIKA FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100312",
+            "NameOutlet": "RS PROVITA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100313",
+            "NameOutlet": "RSUD MERAUKE"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100314",
+            "NameOutlet": "APT. VILLY FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100315",
+            "NameOutlet": "PT. PELITA PAPUA LESTARI FARMA - NABIRE"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100316",
+            "NameOutlet": "APT. CHERI F"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100317",
+            "NameOutlet": "APT. DUTA FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100318",
+            "NameOutlet": "APT.RAHMAT"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100319",
+            "NameOutlet": "APT.VETERAN MEDIKA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100320",
+            "NameOutlet": "APT.KIMIA FARMA SENTANI"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100321",
+            "NameOutlet": "KLINIK ATRIA WARIS"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100322",
+            "NameOutlet": "APT.K24 SETIAPURA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100323",
+            "NameOutlet": "APT.WONDAMA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100324",
+            "NameOutlet": "APT.SARERA FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100325",
+            "NameOutlet": "APT. CHERY FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100326",
+            "NameOutlet": "PT. BALIEM MEDIKA PAPUA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100327",
+            "NameOutlet": "APT.SHARON"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100328",
+            "NameOutlet": "ADITYA KIMIA FARMA, PT"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100329",
+            "NameOutlet": "APT. SUMBER SEHAT"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100330",
+            "NameOutlet": "APT. KAMORO - MIMIKA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100331",
+            "NameOutlet": "PT. IRMAN JAYA MARTABE-MANOKWARI"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "CodeOutlet": "1100332",
+            "NameOutlet": "PT. ALFA KARYA MANDIRI- YAPEN SERUI"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100333",
+            "NameOutlet": "APT. RUKHA MEDIKA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100334",
+            "NameOutlet": "APT. NUSANTARA BARU"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100335",
+            "NameOutlet": "APT. SEJAHTERA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100336",
+            "NameOutlet": "APT. SKYLIND FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "006",
+            "Detailer": "D0005",
+            "Type": "02",
+            "CodeOutlet": "1100337",
+            "NameOutlet": "PT. BINTANG TIMUR HUSADA"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100338",
+            "NameOutlet": "APT.AGUNG"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100339",
+            "NameOutlet": "APT.AGUNG SIANTAN"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100340",
+            "NameOutlet": "APT.ANDALAN"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100341",
+            "NameOutlet": "APT.ARWANA"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100342",
+            "NameOutlet": "APT.AYU FARMA(SEMPARUK)"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100343",
+            "NameOutlet": "APT.BERSAMA(PMK)"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100344",
+            "NameOutlet": "Apt.Cahaya"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100345",
+            "NameOutlet": "APT.CIPTA"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100346",
+            "NameOutlet": "APT.EVRATA"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100347",
+            "NameOutlet": "APT.GAJAHMADA"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100348",
+            "NameOutlet": "APT.GRAHA"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100349",
+            "NameOutlet": "APT.KHARITAS"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100350",
+            "NameOutlet": "APT.KIDDY FARMA"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100351",
+            "NameOutlet": "APT.MANDIRI"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100352",
+            "NameOutlet": "APT.MAWAR"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100353",
+            "NameOutlet": "APT.PEMANGKAT"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100354",
+            "NameOutlet": "APT.PEMUDA"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100355",
+            "NameOutlet": "APT.SELARAS"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100356",
+            "NameOutlet": "APT.SENTOSA FARMA"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100357",
+            "NameOutlet": "APT.SINTANG"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100358",
+            "NameOutlet": "APT.SUMBER JAYA(NANGA PINOH)"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "Type": "02",
+            "CodeOutlet": "1100359",
+            "NameOutlet": "APT.YUTEE"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "CodeOutlet": "1100360",
+            "NameOutlet": "DEDE HERMANSYAH"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "CodeOutlet": "1100361",
+            "NameOutlet": "ERMUST KLINIK"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "CodeOutlet": "1100362",
+            "NameOutlet": "RS.ANTONIUS"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "CodeOutlet": "1100363",
+            "NameOutlet": "RS.ANUGERAH BUNDA KHATULISTIWA"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "CodeOutlet": "1100364",
+            "NameOutlet": "RS.BHAYANGKARA"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "CodeOutlet": "1100365",
+            "NameOutlet": "RS.CITRA HUSADA"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "CodeOutlet": "1100366",
+            "NameOutlet": "RS.KHARITAS BHAKTI"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "CodeOutlet": "1100367",
+            "NameOutlet": "RS.MITRA MEDIKA"
+        },
+        {
+            "Region": "10",
+            "Area": "014",
+            "Detailer": "D0006",
+            "CodeOutlet": "1100368",
+            "NameOutlet": "RSUD RUBINI"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100369",
+            "NameOutlet": "APOTEK SIDRA"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100370",
+            "NameOutlet": "APOTEK SETIA 2"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100371",
+            "NameOutlet": "RSU PANCARAN KASIH"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100372",
+            "NameOutlet": "RSU SILOAM MANADO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100373",
+            "NameOutlet": "RSAD TELING MANADO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100374",
+            "NameOutlet": "RSUP PROF KANDOUW MALALAYANG"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100375",
+            "NameOutlet": "RSUD MANEMBO BITUNG"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100376",
+            "NameOutlet": "RSUD BUDI MULIA BITUNG"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100377",
+            "NameOutlet": "APOTEK GIRIAN FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100378",
+            "NameOutlet": "APOTEK SENTOSA FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100379",
+            "NameOutlet": "APOTEK IRRA FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100380",
+            "NameOutlet": "APOTEK SENGKANG FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100381",
+            "NameOutlet": "RSUD MINAHASA UTARA"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100382",
+            "NameOutlet": "RSU AL BITUNG"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100383",
+            "NameOutlet": "RSU GUNUNG MARIA TOMOHON"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100384",
+            "NameOutlet": "RSU BHETESDA TOMOHON"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100385",
+            "NameOutlet": "RSUD TONDANO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100386",
+            "NameOutlet": "RSU TONSEA"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100387",
+            "NameOutlet": "RSU CANSIA LANGOWAN"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100388",
+            "NameOutlet": "APT KF PEL RSUD POBUDAYAN KOTAMOBAGO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100389",
+            "NameOutlet": "APT KF SININDIAN KOTAMOBAGO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100390",
+            "NameOutlet": "APT KF 262 PARIS KOTAMOBAGO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100391",
+            "NameOutlet": "APOTEK SETIA FARMA KOTAMOBAGO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100392",
+            "NameOutlet": "APOTEK LIANZA KOTAMOBAGO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100393",
+            "NameOutlet": "APT KARTIKA KOTAMOBAGO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100394",
+            "NameOutlet": "RSU MONOMPIA KOTAMOBAGO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100395",
+            "NameOutlet": "RSUD LOLAK KOTAMOBAGO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100396",
+            "NameOutlet": "RSUD BOROKO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100397",
+            "NameOutlet": "RSIA KASIH FATIMAH KOTAMOBAGO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100398",
+            "NameOutlet": "RSU KINAPIT KOTAMOBAGO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100399",
+            "NameOutlet": "RSUD AMURANG"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100400",
+            "NameOutlet": "RSUD NOONGAN"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100401",
+            "NameOutlet": "RSUD ALOE SABOE GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100402",
+            "NameOutlet": "RSUD TOTO KABILA GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100403",
+            "NameOutlet": "RSUD OTANAHA GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100404",
+            "NameOutlet": "RSIA SITI KHADIJAH GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100405",
+            "NameOutlet": "RSU BUNDA GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100406",
+            "NameOutlet": "RSU ISLAM GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100407",
+            "NameOutlet": "RSUD AINUN HABIBIE GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100408",
+            "NameOutlet": "RSUD MM DUNDA LIMBOTO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100409",
+            "NameOutlet": "APT MEDISTAR MANADO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100410",
+            "NameOutlet": "RSUD ZAENALUMAR SADIKI GORUT GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100411",
+            "NameOutlet": "RSUD TANI NELAYAN BOALEMO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100412",
+            "NameOutlet": "RSUD POHUWATO GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100413",
+            "NameOutlet": "APOTEK SULAWESI POHUWATO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100414",
+            "NameOutlet": "APT MITRA GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100415",
+            "NameOutlet": "APOTEK RAHMAT GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100416",
+            "NameOutlet": "APOTEK DEWI GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100417",
+            "NameOutlet": "APT KF 272 GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100418",
+            "NameOutlet": "APOTEK MULIA GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100419",
+            "NameOutlet": "APT ANUGERAH GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100420",
+            "NameOutlet": "APT MEDIKA GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100421",
+            "NameOutlet": "APT SEHAT BARU GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "CodeOutlet": "1100422",
+            "NameOutlet": "RSU MULTAZAM GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100423",
+            "NameOutlet": "APOTEK KIDDY 28 GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100424",
+            "NameOutlet": "APT ADI HUSADA GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100425",
+            "NameOutlet": "APT DUA SUSUN GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100426",
+            "NameOutlet": "APT INSYRAH GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100427",
+            "NameOutlet": "APT MARSILV GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100428",
+            "NameOutlet": "APT WAN SETIA GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100429",
+            "NameOutlet": "APT GABY GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100430",
+            "NameOutlet": "APT KLINIKIBNU SINA GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100431",
+            "NameOutlet": "APT KF HB YASIN GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100432",
+            "NameOutlet": "APT PROFIL GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100433",
+            "NameOutlet": "APT KF HB YASIN GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100434",
+            "NameOutlet": "APT MONTILANGO GORONTALO"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100435",
+            "NameOutlet": "APT SETIA"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100436",
+            "NameOutlet": "APT TRIFARMA 2"
+        },
+        {
+            "Region": "11",
+            "Area": "005",
+            "Detailer": "D0007",
+            "Type": "02",
+            "CodeOutlet": "1100437",
+            "NameOutlet": "KF JDS GORONTALO ZR6, AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100438",
+            "NameOutlet": "RS.SENTRA MEDIKA CIBINONG"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100439",
+            "NameOutlet": "APT.MEDI-Z CAWANG"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100440",
+            "NameOutlet": "RS.MARY CILEUNGSI"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100441",
+            "NameOutlet": "APT. HIJAU CILEUNGSI"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100442",
+            "NameOutlet": "RS.MITRA KELUARGA CIBUBUR"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100443",
+            "NameOutlet": "APT.PELENGKAP RSUD CIBINONG"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100444",
+            "NameOutlet": "RS.HARAPAN SEHATI CIBINONG"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100445",
+            "NameOutlet": "APT.TITI MURNI"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100446",
+            "NameOutlet": "APT.RINI RAWAMANGUN"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100447",
+            "NameOutlet": "APT.FAMILI CIBINONG"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100448",
+            "NameOutlet": "APT.DJATINEGARA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100449",
+            "NameOutlet": "APT.CILEUNGSI/limus"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100450",
+            "NameOutlet": "APT.SETIA JAYA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100451",
+            "NameOutlet": "KLINIK NIRWANA CIBINONG"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100452",
+            "NameOutlet": "RS.KENARI GRAHA MEDIKA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100453",
+            "NameOutlet": "APT.SUKAHATI"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100454",
+            "NameOutlet": "APT.PARADISE"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100455",
+            "NameOutlet": "APT.NEGLASARI"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100456",
+            "NameOutlet": "APT.IMPHI"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100457",
+            "NameOutlet": "APT.KF 48"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100458",
+            "NameOutlet": "APT.KAMURANG CITEREUP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100459",
+            "NameOutlet": "APT.PERMATA KASIH CIMANGGIS"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100460",
+            "NameOutlet": "APT.K-24 OTISTA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100461",
+            "NameOutlet": "APT.REGINA OTISTA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100462",
+            "NameOutlet": "APT.ARUMBAI"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100463",
+            "NameOutlet": "APOTIK TANIA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100464",
+            "NameOutlet": "KF BOGOR"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100465",
+            "NameOutlet": "APT.HARRISON KOTWIS"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100466",
+            "NameOutlet": "apt.BOGOR ( combi)"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100467",
+            "NameOutlet": "TOKO KARYAWAN BARANANGSIANG"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100468",
+            "NameOutlet": "APT.DIO FARMA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100469",
+            "NameOutlet": "APT.MARGARET CIBUBUR"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100470",
+            "NameOutlet": "RS.HERMINA JATINEGARA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100471",
+            "NameOutlet": "RSIA YPK"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100472",
+            "NameOutlet": "APT.MOC"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100473",
+            "NameOutlet": "TOKO LERES HERBAL"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100474",
+            "NameOutlet": "APT.BUDHI MANDIRI"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100475",
+            "NameOutlet": "RS.KRAMAT 128"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100476",
+            "NameOutlet": "AP.SEHAT INDAH .GAMBIR"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100477",
+            "NameOutlet": "RS.BINA HUSADA CIBINONG"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100478",
+            "NameOutlet": "apt tasha sehat sentra eropa"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100479",
+            "NameOutlet": "APT.SAN CIBUBUR"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100480",
+            "NameOutlet": "apt.TRIARGA jakpus kp.bali"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100481",
+            "NameOutlet": "APT.Jaya Medika"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100482",
+            "NameOutlet": "K-24 (PT.AMANAT KAWAN SEJATI ). AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100483",
+            "NameOutlet": "AP.PELENGKAP KOP BRSD CIBINONG"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100484",
+            "NameOutlet": "PT.RAGAMSEHAT MULTIFITA/RS.MITRA KELUARGA DEPOK"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100485",
+            "NameOutlet": "APOTIK  PIMISI"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100486",
+            "NameOutlet": "INST.FARM PKM.RSPAD G.SOEBROTO ASK"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100487",
+            "NameOutlet": "AP.DELI PHARMA 3"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100488",
+            "NameOutlet": "AP.FLORA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100489",
+            "NameOutlet": "AP.KIMIA FARMA 110"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100490",
+            "NameOutlet": "APOTEK TOBA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100491",
+            "NameOutlet": "APOTIK  KIMIA FARMA NO.49"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100492",
+            "NameOutlet": "APOTEK OPTIMA 24"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100493",
+            "NameOutlet": "BUDHI MANDIRI. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100494",
+            "NameOutlet": "AP.NAGA JAYA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100495",
+            "NameOutlet": "APOTIK RESTU MULYA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100496",
+            "NameOutlet": "AP. MAYOR OKING CIBINONG (MOC)"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100497",
+            "NameOutlet": "PONDOK GEDE FARMA. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100498",
+            "NameOutlet": "AP.KIMIA FARMA 348 DRAMAGA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100499",
+            "NameOutlet": "VILADELVIA , AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "CodeOutlet": "1100500",
+            "NameOutlet": "MITRA KEMAYORAN, RSU."
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100501",
+            "NameOutlet": "AP. KIMIA FARMA METLAND"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100502",
+            "NameOutlet": "AP. KIMIA FARMA CILEUNGSI"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100503",
+            "NameOutlet": "AP. KIMIA FARMA CIBINONG"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100504",
+            "NameOutlet": "AP. KIMIA FARMA 50 (BOGOR)"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100505",
+            "NameOutlet": "ESTETIKA, AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100506",
+            "NameOutlet": "KPRSC SEHATI, AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100507",
+            "NameOutlet": "AP. KIMIA FARMA 7 (BOGOR)"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100508",
+            "NameOutlet": "AP. KIMIA FARMA SUKAHATI"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100509",
+            "NameOutlet": "KF RSCM"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100510",
+            "NameOutlet": "APT.SUCI CIBUBUR"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100511",
+            "NameOutlet": "K24 RAWAMANGUN"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100512",
+            "NameOutlet": "K24 PONDOK BAMBU"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "D0008",
+            "Type": "02",
+            "CodeOutlet": "1100513",
+            "NameOutlet": "APT,VENESIA CIBUBUR"
+        },
+        {
+            "Region": "10",
+            "Area": "013",
+            "Detailer": "D0036",
+            "CodeOutlet": "1100514",
+            "NameOutlet": "RS Santa Maria "
+        },
+        {
+            "Region": "10",
+            "Area": "013",
+            "Detailer": "D0036",
+            "CodeOutlet": "1100515",
+            "NameOutlet": "RS Awalbros sudirman"
+        },
+        {
+            "Region": "10",
+            "Area": "013",
+            "Detailer": "D0036",
+            "CodeOutlet": "1100516",
+            "NameOutlet": "RS Ibnu Sina"
+        },
+        {
+            "Region": "10",
+            "Area": "013",
+            "Detailer": "D0036",
+            "Type": "02",
+            "CodeOutlet": "1100517",
+            "NameOutlet": "Apt asean"
+        },
+        {
+            "Region": "10",
+            "Area": "013",
+            "Detailer": "D0036",
+            "Type": "02",
+            "CodeOutlet": "1100518",
+            "NameOutlet": "Apt Asean 2"
+        },
+        {
+            "Region": "10",
+            "Area": "013",
+            "Detailer": "D0036",
+            "Type": "02",
+            "CodeOutlet": "1100519",
+            "NameOutlet": "Apt Asean 123"
+        },
+        {
+            "Region": "10",
+            "Area": "013",
+            "Detailer": "D0036",
+            "Type": "02",
+            "CodeOutlet": "1100520",
+            "NameOutlet": "Apt mandiri smart"
+        },
+        {
+            "Region": "10",
+            "Area": "013",
+            "Detailer": "D0036",
+            "Type": "02",
+            "CodeOutlet": "1100521",
+            "NameOutlet": "Apt Dunia Sehat"
+        },
+        {
+            "Region": "10",
+            "Area": "013",
+            "Detailer": "D0036",
+            "CodeOutlet": "1100522",
+            "NameOutlet": "PT.EKAMAS INTERNATIONAL HOSPITAL"
+        },
+        {
+            "Region": "10",
+            "Area": "013",
+            "Detailer": "D0036",
+            "Type": "02",
+            "CodeOutlet": "1100523",
+            "NameOutlet": "AP.KIMIA FARMA 122 A.YANI"
+        },
+        {
+            "Region": "10",
+            "Area": "013",
+            "Detailer": "D0036",
+            "Type": "02",
+            "CodeOutlet": "1100524",
+            "NameOutlet": "AP.KIMIA FARMA 518 NANGKA"
+        },
+        {
+            "Region": "10",
+            "Area": "013",
+            "Detailer": "D0036",
+            "Type": "02",
+            "CodeOutlet": "1100525",
+            "NameOutlet": "AP.CINTA SEHAT - PEKANBARU"
+        },
+        {
+            "Region": "10",
+            "Area": "013",
+            "Detailer": "D0036",
+            "Type": "02",
+            "CodeOutlet": "1100526",
+            "NameOutlet": "KELUARGA (PKB), AP"
+        },
+        {
+            "Region": "10",
+            "Area": "013",
+            "Detailer": "D0036",
+            "Type": "02",
+            "CodeOutlet": "1100527",
+            "NameOutlet": "AP.CEMPAKA - PEKANBARU"
+        },
+        {
+            "Region": "10",
+            "Area": "013",
+            "Detailer": "D0036",
+            "Type": "02",
+            "CodeOutlet": "1100528",
+            "NameOutlet": "AP.KIMIA FARMA 093 SUDIRMAN"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "CodeOutlet": "1100529",
+            "NameOutlet": "RSUD CUT NYAK DHIEN"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100530",
+            "NameOutlet": "AP,PEUNAWA RAHMAT"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100531",
+            "NameOutlet": "AP,ZAYA FARMA"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100532",
+            "NameOutlet": "AP,KIMIA FARMA ULEE KARENG"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100533",
+            "NameOutlet": "AP,CEMPAKA LIMA"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "CodeOutlet": "1100534",
+            "NameOutlet": "RSUD SULTAN ISKANDAR MUDA"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100535",
+            "NameOutlet": "AP,SYAUQIA"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100536",
+            "NameOutlet": "AP,MINA FARMA"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100537",
+            "NameOutlet": "AP,KIMIA FARMA 37"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100538",
+            "NameOutlet": "AP,IBUNDA FARMA"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100539",
+            "NameOutlet": "AP,ZHAFIRA"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "CodeOutlet": "1100540",
+            "NameOutlet": "RSUD ZUBIR MAHMUD"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "CodeOutlet": "1100541",
+            "NameOutlet": "RSU MUFID"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "CodeOutlet": "1100542",
+            "NameOutlet": "RSUD SIMEULU"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "CodeOutlet": "1100543",
+            "NameOutlet": "RSUD YULIDIN AWAY"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100544",
+            "NameOutlet": "AP,KASIH BUNDA"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100545",
+            "NameOutlet": "AP,AFIFAH"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "CodeOutlet": "1100546",
+            "NameOutlet": "RSUD TEUKU UMAR"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "CodeOutlet": "1100547",
+            "NameOutlet": "RSU CITRA HUSADA"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100548",
+            "NameOutlet": "AP,KIMIA FARMA MEULABOH"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100549",
+            "NameOutlet": "AP,SAFIRA"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100550",
+            "NameOutlet": "AP,MAULANA"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100551",
+            "NameOutlet": "AP,SAUDARA KEMBAR"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100552",
+            "NameOutlet": "AP,AGUNG"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100553",
+            "NameOutlet": "AP,MEULABOH"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100554",
+            "NameOutlet": "AP,SEHAT SIGLI"
+        },
+        {
+            "Region": "10",
+            "Area": "001",
+            "Detailer": "D0020",
+            "Type": "02",
+            "CodeOutlet": "1100555",
+            "NameOutlet": "AP,PROTEKSI"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "Type": "02",
+            "CodeOutlet": "1100556",
+            "NameOutlet": "ap pelita"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "Type": "02",
+            "CodeOutlet": "1100557",
+            "NameOutlet": "ap M tree"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "Type": "02",
+            "CodeOutlet": "1100558",
+            "NameOutlet": "Rs hikmah"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "Type": "02",
+            "CodeOutlet": "1100559",
+            "NameOutlet": "ap tongkonan"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "CodeOutlet": "1100560",
+            "NameOutlet": "rs elim"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "CodeOutlet": "1100561",
+            "NameOutlet": "rs mujaisyah"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "Type": "02",
+            "CodeOutlet": "1100562",
+            "NameOutlet": "ap al farma"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "Type": "02",
+            "CodeOutlet": "1100563",
+            "NameOutlet": "ap dafa difa"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "Type": "02",
+            "CodeOutlet": "1100564",
+            "NameOutlet": "ap rs at medika"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "Type": "02",
+            "CodeOutlet": "1100565",
+            "NameOutlet": "ap vivi"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "CodeOutlet": "1100566",
+            "NameOutlet": "rsud massenrempulu"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "CodeOutlet": "1100567",
+            "NameOutlet": "rs lakipadada"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "Type": "02",
+            "CodeOutlet": "1100568",
+            "NameOutlet": "apt prima"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "CodeOutlet": "1100569",
+            "NameOutlet": "HIKMA - MASAMBA, RS"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "CodeOutlet": "1100570",
+            "NameOutlet": "MEGA BUANA, RS"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "Type": "02",
+            "CodeOutlet": "1100571",
+            "NameOutlet": "SYIFA FARMA, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "CodeOutlet": "1100572",
+            "NameOutlet": "UMUM ENREKANG (J), RS"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "Type": "02",
+            "CodeOutlet": "1100573",
+            "NameOutlet": "FIRA FARMA, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "Type": "02",
+            "CodeOutlet": "1100574",
+            "NameOutlet": "RAFA FARMA-TATOR, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "Type": "02",
+            "CodeOutlet": "1100575",
+            "NameOutlet": "RAYNDI FARMA - RANTEPAO, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "CodeOutlet": "1100576",
+            "NameOutlet": "I LAGALIGO (LUWU), RSUD"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "Type": "02",
+            "CodeOutlet": "1100577",
+            "NameOutlet": "29. AP"
+        },
+        {
+            "Region": "11",
+            "Area": "010",
+            "Detailer": "D0034",
+            "Type": "02",
+            "CodeOutlet": "1100578",
+            "NameOutlet": "52, AP"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "CodeOutlet": "1100579",
+            "NameOutlet": "klinik dr ema"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "Type": "02",
+            "CodeOutlet": "1100580",
+            "NameOutlet": "KF 8 SUKABUMI"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "Type": "02",
+            "CodeOutlet": "1100581",
+            "NameOutlet": "apotek indomedika"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "CodeOutlet": "1100582",
+            "NameOutlet": "RSI Assyfa sukabumi"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "CodeOutlet": "1100583",
+            "NameOutlet": "RSUD Syamsuddin"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "CodeOutlet": "1100584",
+            "NameOutlet": "RSUD Sekarwangi Cibadak"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "CodeOutlet": "1100585",
+            "NameOutlet": "klinik Sahabat"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "CodeOutlet": "1100586",
+            "NameOutlet": "Kinik Suryakencana"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "CodeOutlet": "1100587",
+            "NameOutlet": "klinik amra cianjur"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "Type": "02",
+            "CodeOutlet": "1100588",
+            "NameOutlet": "apotek pananjung"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "CodeOutlet": "1100589",
+            "NameOutlet": "RS Bhayangkara"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "Type": "02",
+            "CodeOutlet": "1100590",
+            "NameOutlet": "Apotek Maxi"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "CodeOutlet": "1100591",
+            "NameOutlet": "RS Hermina sukabumi"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "Type": "02",
+            "CodeOutlet": "1100592",
+            "NameOutlet": "apotek waras"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "CodeOutlet": "1100593",
+            "NameOutlet": "Klinik GMC"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "Type": "02",
+            "CodeOutlet": "1100594",
+            "NameOutlet": "AP. ARYA"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "Type": "02",
+            "CodeOutlet": "1100595",
+            "NameOutlet": "AP. KIMIA FARMA UMMI"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "Type": "02",
+            "CodeOutlet": "1100596",
+            "NameOutlet": "AP. KIMIA FARMA 549"
+        },
+        {
+            "Region": "10",
+            "Area": "017",
+            "Detailer": "D0024",
+            "Type": "02",
+            "CodeOutlet": "1100597",
+            "NameOutlet": "AP. KIMIA FARMA PANGLESERAN"
+        },
+        {
+            "Region": "11",
+            "Area": "011",
+            "Detailer": "D0033",
+            "CodeOutlet": "1100598",
+            "NameOutlet": "AMPANA, RSUD"
+        },
+        {
+            "Region": "11",
+            "Area": "011",
+            "Detailer": "D0033",
+            "Type": "02",
+            "CodeOutlet": "1100599",
+            "NameOutlet": "MAKASSAR FARMA, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "011",
+            "Detailer": "D0033",
+            "CodeOutlet": "1100600",
+            "NameOutlet": "WIRABUANA PALU, RS"
+        },
+        {
+            "Region": "11",
+            "Area": "011",
+            "Detailer": "D0033",
+            "Type": "02",
+            "CodeOutlet": "1100601",
+            "NameOutlet": "MAKASSAR FARMA, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "011",
+            "Detailer": "D0033",
+            "Type": "02",
+            "CodeOutlet": "1100602",
+            "NameOutlet": "AP. BUNDA MEDIKA"
+        },
+        {
+            "Region": "11",
+            "Area": "011",
+            "Detailer": "D0033",
+            "Type": "02",
+            "CodeOutlet": "1100603",
+            "NameOutlet": "BELLA PALU, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "011",
+            "Detailer": "D0033",
+            "Type": "02",
+            "CodeOutlet": "1100604",
+            "NameOutlet": "AP.KIMIA FARMA MONGINSIDI"
+        },
+        {
+            "Region": "11",
+            "Area": "011",
+            "Detailer": "D0033",
+            "Type": "02",
+            "CodeOutlet": "1100605",
+            "NameOutlet": "AMALIA FARMA-PARIGI, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "011",
+            "Detailer": "D0033",
+            "CodeOutlet": "1100606",
+            "NameOutlet": "WIRABUANA PALU, RS"
+        },
+        {
+            "Region": "11",
+            "Area": "011",
+            "Detailer": "D0033",
+            "CodeOutlet": "1100607",
+            "NameOutlet": "POSO, RSUD"
+        },
+        {
+            "Region": "11",
+            "Area": "011",
+            "Detailer": "D0033",
+            "Type": "02",
+            "CodeOutlet": "1100608",
+            "NameOutlet": "GISPA, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100609",
+            "NameOutlet": "ANUGRAH HUSADA 1. AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100610",
+            "NameOutlet": "FINARI FARMA, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100611",
+            "NameOutlet": "GRESTELINA FARMA. AP (S)"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100612",
+            "NameOutlet": "JAYA ABADI. AP (P)"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100613",
+            "NameOutlet": "KURNIA - MKS, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100614",
+            "NameOutlet": "PELANGI / 081241136389, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100615",
+            "NameOutlet": "PELITA FARMA, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "CodeOutlet": "1100616",
+            "NameOutlet": "PRIMA HUSADA, RS"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100617",
+            "NameOutlet": "SS-75 FARMA, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100618",
+            "NameOutlet": "ALFA MEDIKA. AP (P)"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100619",
+            "NameOutlet": "BUNGA WANGI FARMA. AP (N)"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "CodeOutlet": "1100620",
+            "NameOutlet": "GATRA BINAKARYA KENCANA, PT"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100621",
+            "NameOutlet": "INI PLUS. AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "CodeOutlet": "1100622",
+            "NameOutlet": "INST FARMASI MITRA HUSADA, RS"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100623",
+            "NameOutlet": "JAYA ABADI. AP (P)"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100624",
+            "NameOutlet": "RSB. BUNDA. AP (N)"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100625",
+            "NameOutlet": "SEJATI FARMA. AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100626",
+            "NameOutlet": "ANUGRAH HUSADA 2. AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100627",
+            "NameOutlet": "AP.SANGIR"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "CodeOutlet": "1100628",
+            "NameOutlet": "GATRA BINAKARYA KENCANA, PT"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100629",
+            "NameOutlet": "LAGOOSI FARMA. AP (N)"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100630",
+            "NameOutlet": "NEW CAHAYA FARMA, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100631",
+            "NameOutlet": "SIPORENNU, PT"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100632",
+            "NameOutlet": "TAMALANREA /5272625, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100633",
+            "NameOutlet": "ALIYYA FARMA, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100634",
+            "NameOutlet": "BERKAT. AP (P)"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100635",
+            "NameOutlet": "BULUSARAUNG. AP (P)"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100636",
+            "NameOutlet": "CAHAYA FARMA. AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100637",
+            "NameOutlet": "CITRA FARMASINDO II. AP (N)"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100638",
+            "NameOutlet": "FINARI FARMA, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "CodeOutlet": "1100639",
+            "NameOutlet": "GATRA BINAKARYA KENCANA, PT"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100640",
+            "NameOutlet": "K-24 BTP. AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100641",
+            "NameOutlet": "MACCINI FARMA.AP (N)"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100642",
+            "NameOutlet": "MARYAM CITRA MEDIKA. AP (N)"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100643",
+            "NameOutlet": "MINA MEDIKA. AP (PT. MINA SARI MEDIKA)"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100644",
+            "NameOutlet": "NAUFAL MEDIKA.AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100645",
+            "NameOutlet": "NENG LIENTJE.AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "CodeOutlet": "1100646",
+            "NameOutlet": "PRIMA HUSADA, RS"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100647",
+            "NameOutlet": "SEJAHTERA BANTAENG. AP (S)"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100648",
+            "NameOutlet": "SURYA MAS FARMA. AP (P)"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100649",
+            "NameOutlet": "WIJAYA KUSUMA. AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100650",
+            "NameOutlet": "AP.ZAMZAM FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100651",
+            "NameOutlet": "GELORA FARMA - 3616052, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100652",
+            "NameOutlet": "K-24 KM 09 / 580282, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100653",
+            "NameOutlet": "KIMIA FARMA  DG.TATA, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100654",
+            "NameOutlet": "MUJARAB FARMA / 512629, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100655",
+            "NameOutlet": "NEW CAHAYA FARMA, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100656",
+            "NameOutlet": "PELANGI / 081241136389, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100657",
+            "NameOutlet": "PERINTIS / 586754, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100658",
+            "NameOutlet": "WAHDAH FARMA / 430678, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "Type": "02",
+            "CodeOutlet": "1100659",
+            "NameOutlet": "WAHDAH FARMA III/8959737, AP"
+        },
+        {
+            "Region": "11",
+            "Area": "007",
+            "Detailer": "D0027",
+            "CodeOutlet": "1100660",
+            "NameOutlet": "RSIA ANANDA-MKS"
+        },
+        {
+            "Region": "11",
+            "Area": "003",
+            "Detailer": "D0026",
+            "CodeOutlet": "1100661",
+            "NameOutlet": "RS SHANTI GRAHA"
+        },
+        {
+            "Region": "11",
+            "Area": "003",
+            "Detailer": "D0026",
+            "CodeOutlet": "1100662",
+            "NameOutlet": "RS KERTHA USADA"
+        },
+        {
+            "Region": "11",
+            "Area": "003",
+            "Detailer": "D0026",
+            "CodeOutlet": "1100663",
+            "NameOutlet": "RS BALIMED"
+        },
+        {
+            "Region": "11",
+            "Area": "003",
+            "Detailer": "D0026",
+            "Type": "02",
+            "CodeOutlet": "1100664",
+            "NameOutlet": "APT INA FARMA"
+        },
+        {
+            "Region": "11",
+            "Area": "003",
+            "Detailer": "D0026",
+            "Type": "02",
+            "CodeOutlet": "1100665",
+            "NameOutlet": "APT MEDIKA"
+        },
+        {
+            "Region": "11",
+            "Area": "003",
+            "Detailer": "D0026",
+            "Type": "02",
+            "CodeOutlet": "1100666",
+            "NameOutlet": "APT MULIA JAYA MEDIKA"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100667",
+            "NameOutlet": "RS Prima Husada I"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100668",
+            "NameOutlet": "RS Persada Hospital"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100669",
+            "NameOutlet": "Kimia Farma Apotek 53"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100670",
+            "NameOutlet": "Apotek Sejati"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100671",
+            "NameOutlet": "Apotek Jaya Sehat"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100672",
+            "NameOutlet": "RS Prima Husada II"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100673",
+            "NameOutlet": "Klinik Rawat Inap Muslimat"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100674",
+            "NameOutlet": "Sehat Apotik Batu"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100675",
+            "NameOutlet": "RS Panti Nirmala"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100676",
+            "NameOutlet": "RS Marsudi waluyo"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100677",
+            "NameOutlet": "RSI Aisyiyah"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100678",
+            "NameOutlet": "Griya Bromo"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100679",
+            "NameOutlet": "Kimia Farma Apotek 36"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100680",
+            "NameOutlet": "Kawi Apotek"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100681",
+            "NameOutlet": "Sentanan Apotek"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100682",
+            "NameOutlet": "Kimia Farma Deltasari Sidoarjo"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100683",
+            "NameOutlet": "KIMIA FARMA LAWANG, APOTEK                                  "
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100684",
+            "NameOutlet": "NS PANJAITAN, APOTEK                                        "
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100685",
+            "NameOutlet": " RS DR. ETTY ASHARTO - BATU"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100686",
+            "NameOutlet": "RS UNIVERSITAS BRAWIJAYA"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100687",
+            "NameOutlet": "AP MATARAM SEGAR"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100688",
+            "NameOutlet": "AP MULTI FARMA - SINGOSARI"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100689",
+            "NameOutlet": "UMM,RS.(INST.FARMASI)         "
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100690",
+            "NameOutlet": "MUJI ERNAWATI"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100691",
+            "NameOutlet": "SETIAWAN ANGTONI"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100692",
+            "NameOutlet": "AP BB-14"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100693",
+            "NameOutlet": "AP BEPIA"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100694",
+            "NameOutlet": "BHAKTI SANTOSA, APT"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "CodeOutlet": "1100695",
+            "NameOutlet": "NUSANTARA SEBELAS MEDIKA, PT (RS Lavallete)"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100696",
+            "NameOutlet": "RAFI FARMA - JOMBANG, AP."
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100697",
+            "NameOutlet": "AP BAROKAH SEJATI"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100698",
+            "NameOutlet": "INTEGRA FARMA, APT"
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100699",
+            "NameOutlet": "PELENGKAP - JOMBANG, AP."
+        },
+        {
+            "Region": "11",
+            "Area": "008",
+            "Detailer": "D0010",
+            "Type": "02",
+            "CodeOutlet": "1100700",
+            "NameOutlet": "MERDEKA - JOMBANG. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100701",
+            "NameOutlet": "AP.K-24 OTISTA RAYA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100702",
+            "NameOutlet": "AP.K-24 PONDOK BAMBU"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100703",
+            "NameOutlet": "AP.REGINA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100704",
+            "NameOutlet": "ARUMBAI. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100705",
+            "NameOutlet": "BUDHI MANDIRI. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100706",
+            "NameOutlet": "DJATINEGARA, AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100707",
+            "NameOutlet": "IMPHI. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "CodeOutlet": "1100708",
+            "NameOutlet": "INST.FARM PKM.RSPAD G.SOEBROTO ASK"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "CodeOutlet": "1100709",
+            "NameOutlet": "INSTALASI FARMASI PKM RSPAD"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100710",
+            "NameOutlet": "JATINEGARA. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100711",
+            "NameOutlet": "K-24 (PT.AMANAT KAWAN SEJATI ). AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100712",
+            "NameOutlet": "K-24 CEMPAKA PUTIH. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100713",
+            "NameOutlet": "K-24 RAWASARI. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100714",
+            "NameOutlet": "LESTARI (YANKESGA), AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100715",
+            "NameOutlet": "MEDI-Z. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "CodeOutlet": "1100716",
+            "NameOutlet": "MITRA KEMAYORAN, RSU."
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100717",
+            "NameOutlet": "PONDOK GEDE FARMA. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "CodeOutlet": "1100718",
+            "NameOutlet": "PT. KREANOVA PHARMARET"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "CodeOutlet": "1100719",
+            "NameOutlet": "PT. MITRA MEDICARE NUSANTARA"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100720",
+            "NameOutlet": "RINI, APOTEK"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100721",
+            "NameOutlet": "SEHAT BERSAMA/CV.ARTHA MULIA. AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100722",
+            "NameOutlet": "SETIA JAYA, AP"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100723",
+            "NameOutlet": "TANIA, APT"
+        },
+        {
+            "Region": "10",
+            "Area": "006",
+            "Detailer": "Yanta",
+            "Type": "02",
+            "CodeOutlet": "1100724",
+            "NameOutlet": "TITI MURNI. AP"
+        }
+    ]
+}

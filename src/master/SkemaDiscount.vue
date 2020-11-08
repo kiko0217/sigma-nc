@@ -15,12 +15,12 @@
 					</template>
 				</Toolbar>
 
-				<DataTable ref="dt" :value="regions" :selection.sync="selectedRegions" dataKey="Initial" :paginator="true" :rows="10" :filters="filters"
+				<DataTable ref="dt" :value="skemaDiscounts" :scrollable="true" scrollHeight="500px" :selection.sync="selectedRegions" dataKey="AMRM" :paginator="true" :rows="10" :filters="filters"
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
 					<template #header>
 						<div class="table-header">
-							<h5 class="p-m-0">Manage Regions</h5>
+							<h5 class="p-m-0">Manage Skema Diskon</h5>
 							<span class="p-input-icon-left">
                                 <i class="pi pi-search" />
                                 <InputText v-model="filters['global']" placeholder="Search..." />
@@ -28,39 +28,57 @@
 						</div>
 					</template>
 
-					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-					<Column field="CodeDept" header="Code Dept" sortable></Column>
-					<Column field="CodeRegion" header="Code Region" sortable></Column>
-					<Column field="RegionName" header="Region Name" sortable></Column>
-					<Column field="Initial" header="Initial" sortable></Column>
-					<Column field="Createby" header="Create by" sortable></Column>
-					<Column field="Createdate" header="Create Date" sortable></Column>
-					<Column field="Updateby" header="Update by" sortable></Column>
-					<Column field="Updatedate" header="Update Date" sortable></Column>
-					<Column>
+					<Column headerStyle="width: 120px">
 						<template #body="slotProps">
 							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editRegion(slotProps.data)" />
 							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteRegion(slotProps.data)" />
 						</template>
 					</Column>
+					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
+					<Column headerStyle="width: 150px" field="CodeOutlet" header="Code Outlet" sortable></Column>
+					<Column headerStyle="width: 150px" field="Outlet" header="Outlet" sortable></Column>
+					<Column headerStyle="width: 150px" field="AMRM" header="AM/RM" sortable></Column>
+					<Column headerStyle="width: 100px" field="NSM" header="NSM" sortable></Column>
+					<Column headerStyle="width: 100px" field="Kota" header="Kota" sortable></Column>
+					<Column headerStyle="width: 150px" field="ONDIST" header="ON DIST" sortable></Column>
+					<Column headerStyle="width: 150px" field="ONNF" header="ON NF" sortable></Column>
+					<Column headerStyle="width: 150px" field="ONTOTAL" header="ON TOTAL" sortable></Column>
+					<Column headerStyle="width: 150px" field="OFFDIST" header="OFF DIST" sortable></Column>
+					<Column headerStyle="width: 150px" field="OFFNF" header="OFF NF" sortable></Column>
+					<Column headerStyle="width: 150px" field="OFFTOTAL" header="OFF TOTAL" sortable></Column>
+					<Column headerStyle="width: 150px" field="TOTALALL" header="TOTAL ALL" sortable></Column>
+					<Column headerStyle="width: 150px" field="TOTALNF" header="TOTAL NF" sortable></Column>
+					<Column headerStyle="width: 200px" field="RINCIANUSER" header="RINCIAN USER" sortable></Column>
+					<Column headerStyle="width: 200px" field="RINCIANKPDM" header="RINCIAN KPDM" sortable></Column>
+					<Column headerStyle="width: 200px" field="RINCIANKPDMNAS" header="RINCIAN KPDM NAS" sortable></Column>
+					<Column headerStyle="width: 200px" field="RINCIANKPDMREG" header="RINCIAN KPDM REG" sortable></Column>
+					<Column headerStyle="width: 220px" field="RINCIANPENGADAAN" header="RINCIAN PENGADAAN" sortable></Column>
+					<Column headerStyle="width: 200px" field="RINCIANOWNER" header="RINCIAN OWNER" sortable></Column>
+					<Column headerStyle="width: 200px" field="RINCIANPURCH" header="RINCIAN PURCH" sortable></Column>
+					<Column headerStyle="width: 200px" field="Keterangan" header="Keterangan" sortable></Column>
+					<Column headerStyle="width: 100px" field="Status" header="Status" sortable></Column>
+					<Column headerStyle="width: 150px" field="Createby" header="Create by" sortable></Column>
+					<Column headerStyle="width: 150px" field="Createdate" header="Create Date" sortable></Column>
+					<Column headerStyle="width: 150px" field="Updateby" header="Update by" sortable></Column>
+					<Column headerStyle="width: 150px" field="Updatedate" header="Update Date" sortable></Column>
 				</DataTable>
 
 				<Dialog :visible.sync="regionDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
 					<!-- ini bisa diisi dengan peta nantinya -->
 					<div class="p-field">
-						<label for="CodeRegion">Code Region</label>
-						<InputText id="CodeRegion" v-model.trim="region.CodeRegion" required="true" autofocus :class="{'p-invalid': submitted && !region.CodeRegion}" />
-						<small class="p-invalid" v-if="submitted && !region.CodeRegion">Code Region is required.</small>
+						<label for="CodeOutlet">Code Outlet</label>
+						<InputText id="CodeOutlet" v-model.trim="region.CodeOutlet" required="true" autofocus :class="{'p-invalid': submitted && !region.CodeOutlet}" />
+						<small class="p-invalid" v-if="submitted && !region.CodeOutlet">Code Outlet is required.</small>
 					</div>
 					<div class="p-field">
-						<label for="RegionName">Region Name</label>
-						<InputText id="RegionName" v-model.trim="region.RegionName" required="true" autofocus :class="{'p-invalid': submitted && !region.RegionName}" />
-						<small class="p-invalid" v-if="submitted && !region.RegionName">Region Name is required.</small>
+						<label for="Outlet">Region Name</label>
+						<InputText id="Outlet" v-model.trim="region.Outlet" required="true" autofocus :class="{'p-invalid': submitted && !region.Outlet}" />
+						<small class="p-invalid" v-if="submitted && !region.Outlet">Region Name is required.</small>
 					</div>
 					<div class="p-field">
-						<label for="Initial">Initial</label>
-						<InputText id="Initial" v-model.trim="region.Initial" required="true" autofocus :class="{'p-invalid': submitted && !region.Initial}" />
-						<small class="p-invalid" v-if="submitted && !region.Initial">Initial Name is required.</small>
+						<label for="AMRM">AMRM</label>
+						<InputText id="AMRM" v-model.trim="region.AMRM" required="true" autofocus :class="{'p-invalid': submitted && !region.AMRM}" />
+						<small class="p-invalid" v-if="submitted && !region.AMRM">AMRM Name is required.</small>
 					</div>
 					<template #footer>
 						<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog"/>
@@ -71,7 +89,7 @@
 				<Dialog :visible.sync="deleteRegionDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
 					<div class="confirmation-content">
 						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-						<span v-if="region">Are you sure you want to delete <b>{{region.RegionName}}</b>?</span>
+						<span v-if="region">Are you sure you want to delete <b>{{region.Outlet}}</b>?</span>
 					</div>
 					<template #footer>
 						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteRegionDialog = false"/>
@@ -96,12 +114,12 @@
 </template>
 
 <script>
-import RegionService from '../service/RegionService';
+import SkemaDiscountService from '../service/SkemaDiscountService';
 
 export default {
 	data() {
 		return {
-			regions: null,
+			skemaDiscounts: null,
 			regionDialog: false,
 			deleteRegionDialog: false,
 			deleteRegionsDialog: false,
@@ -112,12 +130,12 @@ export default {
             createNew: false
 		}
 	},
-	regionService: null,
+	skemaDiscountService: null,
 	created() {
-		this.regionService = new RegionService();
+		this.skemaDiscountService = new SkemaDiscountService();
 	},
 	mounted() {
-		this.regionService.getRegions().then(data => this.regions = data);
+		this.skemaDiscountService.getSkemaDiscounts().then(data => this.skemaDiscounts = data);
 	},
 	methods: {
 		formatCurrency(value) {
@@ -140,8 +158,8 @@ export default {
             }
 			this.submitted = true;
 
-			if (this.region.RegionName.trim() && this.region.CodeRegion.trim() && this.region.Initial.trim()) {
-                this.$set(this.regions, this.findIndexByCode(this.region.CodeRegion), this.region);
+			if (this.region.Outlet.trim() && this.region.CodeOutlet.trim() && this.region.AMRM.trim()) {
+                this.$set(this.regions, this.findIndexByCodeOutlet(this.region.CodeOutlet), this.region);
                 this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Updated', life: 3000});
                 this.regionDialog = false;
                 this.region = {};
@@ -149,7 +167,7 @@ export default {
         },
         createRegion() {
             this.submitted = true;
-            if (this.region.RegionName.trim() && this.region.CodeRegion.trim() && this.region.Initial.trim()) {
+            if (this.region.Outlet.trim() && this.region.CodeOutlet.trim() && this.region.AMRM.trim()) {
                 this.regions.push(this.region);
                 this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Created', life: 3000});
                 this.regionDialog = false;
@@ -166,15 +184,15 @@ export default {
 			this.deleteRegionDialog = true;
 		},
 		deleteRegion() {
-			this.regions = this.regions.filter(val => val.CodeRegion !== this.region.CodeRegion);
+			this.regions = this.regions.filter(val => val.CodeOutlet !== this.region.CodeOutlet);
 			this.deleteRegionDialog = false;
 			this.region = {};
 			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Deleted', life: 3000});
 		},
-		findIndexByCode(code) {
+		findIndexByCodeOutlet(CodeOutlet) {
 			let index = -1;
 			for (let i = 0; i < this.regions.length; i++) {
-				if (this.regions[i].CodeRegion === code) {
+				if (this.regions[i].CodeOutlet === CodeOutlet) {
 					index = i;
 					break;
 				}

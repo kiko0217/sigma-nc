@@ -70,9 +70,19 @@ export default {
                             to: { name: 'outlet' }
                         },
                         {
+                            label:'Outlet Distributor',
+                            icon: 'pi pi-fw pi-eject',
+                            to: { name: 'outletDistributor' }
+                        },
+                        {
                             label:'Customer',
                             icon: 'pi pi-fw pi-users',
                             to: { name: 'customer' }
+                        },
+                        {
+                            label:'Seles Cover',
+                            icon: 'pi pi-fw pi-users',
+                            to: { name: 'selesCover' }
                         },
                         {
                             label:'Product',
@@ -80,18 +90,38 @@ export default {
                             to: { name: 'product' }
                         },
                         {
-                            label:'Pemeliharaan',
+                            label:'Product Mapping',
+                            icon: 'pi pi-fw pi-thumbs-up',
+                            to: { name: 'productMapping' }
+                        },
+                        {
+                            label:'Pemeliharaan Harga',
                             icon: 'pi pi-fw pi-heart',
-                            to: { name: 'pemeliharaan' }
+                            to: { name: 'pemeliharaanHarga' }
+                        },
+                        {
+                            label:'Skema Discount',
+                            icon: 'pi pi-fw pi-heart',
+                            to: { name: 'skemaDiscount' }
                         },
                     ]
                 },
                 {label: 'Transaksi', icon: 'pi pi-fw pi-clone',
 					items: [
                         {
-                            label: 'Target',
+                            label: 'Target Seles',
                             icon: 'pi pi-fw pi-map-marker', 
-                            to: { name: "target" }
+                            to: { name: "targetSeles" }
+                        },
+                        {
+                            label: 'Revisi Target Seles',
+                            icon: 'pi pi-fw pi-map-marker', 
+                            to: { name: "revisiTargetSeles" }
+                        },
+                        {
+                            label: 'Target Call',
+                            icon: 'pi pi-fw pi-map-marker', 
+                            to: { name: "targetCall" }
                         },
                         {
                             label:'Breakdown Sales',
@@ -99,12 +129,12 @@ export default {
                             to: { name: 'breakdownSales' }
                         },
                         {
-                            label:'KSO',
-                            icon: 'pi pi-fw pi-shopping-cart',
-                            to: { name: 'kerjasamaOperasi' }
+                            label: 'Sales Visit',
+                            icon: 'pi pi-fw pi-map-marker', 
+                            to: { name: "salesVisit" }
                         },
                         {
-                            label:'Expense',
+                            label:'Expense/CA',
                             icon: 'pi pi-fw pi-sort-alpha-down',
                             to: { name: 'expense' }
                         },
@@ -114,10 +144,15 @@ export default {
                             to: { name: 'sellingIn' }
                         },
                         {
-                            label:'Incentive Calc',
-                            icon: 'pi pi-fw pi-users',
-                            to: { name: 'incentiveCalc' }
+                            label:'Kerjasama Operasi',
+                            icon: 'pi pi-fw pi-shopping-cart',
+                            to: { name: 'kerjasamaOperasi' }
                         },
+                        // {
+                        //     label:'Incentive Calc',
+                        //     icon: 'pi pi-fw pi-users',
+                        //     to: { name: 'incentiveCalc' }
+                        // },
                         {
                             label:'Discount Submission',
                             icon: 'pi pi-fw pi-thumbs-up',
@@ -128,39 +163,93 @@ export default {
                 {label: 'Laporan', icon: 'pi pi-fw pi-clone',
 					items: [
                         {
-                            label: 'Target',
+                            label: 'Detail Seles Info',
                             icon: 'pi pi-fw pi-map-marker', 
-                            to: { name: "target" }
+                            to: { name: "detailSales" }
                         },
                         {
-                            label:'Breakdown Sales',
+                            label:'Achievement by Product',
                             icon: 'pi pi-fw pi-refresh',
-                            to: { name: 'breakdownSales' }
+                            to: { name: 'achievementbyProduct' }
                         },
                         {
-                            label:'KSO',
+                            label:'Achievement by Area',
                             icon: 'pi pi-fw pi-shopping-cart',
-                            to: { name: 'kerjasamaOperasi' }
+                            to: { name: 'achievementbyArea' }
                         },
                         {
-                            label:'Expense',
+                            label:'Sales by Distributor',
                             icon: 'pi pi-fw pi-sort-alpha-down',
-                            to: { name: 'expense' }
+                            to: { name: 'salesbyDistributor' }
                         },
                         {
-                            label:'Selling In',
+                            label:'Target',
                             icon: 'pi pi-fw pi-eject',
-                            to: { name: 'sellingIn' }
+                            to: { name: 'laporanTarget' }
                         },
                         {
-                            label:'Incentive Calc',
+                            label:'Evaluasi Customer',
                             icon: 'pi pi-fw pi-users',
-                            to: { name: 'incentiveCalc' }
+                            to: { name: 'evaluasiCustomer' }
                         },
                         {
-                            label:'Discount Submission',
+                            label:'Laporan Donasi',
                             icon: 'pi pi-fw pi-thumbs-up',
-                            to: { name: 'discountSubmission' }
+                            to: { name: 'laporanDonasi' }
+                        },
+                        {
+                            label:'Laporan Incentive',
+                            icon: 'pi pi-fw pi-thumbs-up',
+                            to: { name: 'laporanIncentive' }
+                        },
+                        {
+                            label:'Key Loyalty Management',
+                            icon: 'pi pi-fw pi-thumbs-up',
+                            to: { name: 'laporanIncentive' }
+                        },
+                        {
+                            label:'Detail Stock Info',
+                            icon: 'pi pi-fw pi-thumbs-up',
+                            to: { name: 'detailStockInfo' }
+                        },
+                        {
+                            label:'WPR',
+                            icon: 'pi pi-fw pi-thumbs-up',
+                            to: { name: 'wpr' }
+                        },
+                        {
+                            label:'Monthly Call Plan',
+                            icon: 'pi pi-fw pi-thumbs-up',
+                            to: { name: 'monthlyCallPlan' }
+                        },
+                        {
+                            label:'Promo Trial',
+                            icon: 'pi pi-fw pi-thumbs-up',
+                            to: { name: 'promoTrial' }
+                        },
+                    ]
+				},
+                {label: 'Admin', icon: 'pi pi-fw pi-clone',
+					items: [
+                        {
+                            label: 'User',
+                            icon: 'pi pi-fw pi-map-marker', 
+                            to: { name: "adminUser" }
+                        },
+                        {
+                            label:'Level of Authonriztion User',
+                            icon: 'pi pi-fw pi-refresh',
+                            to: { name: 'adminAuthorization' }
+                        },
+                        {
+                            label:'Log Data Import',
+                            icon: 'pi pi-fw pi-shopping-cart',
+                            to: { name: 'adminLogData' }
+                        },
+                        {
+                            label:'Log User',
+                            icon: 'pi pi-fw pi-sort-alpha-down',
+                            to: { name: 'adminLogUser' }
                         },
                     ]
 				},

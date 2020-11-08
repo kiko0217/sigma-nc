@@ -1,0 +1,104 @@
+﻿{
+    "Data": [
+        {
+            "CodeDept": "BRT",
+            "CodeRegion": "10",
+            "RegionName": "Jabodetabek",
+            "Initial": "JKT",
+            "Createby": "ADMIN",
+            "Createdate": "11/5/20 20:36",
+            "Updateby": "ADMIN",
+            "Updatedate": "11/5/20 20:36"
+        },
+        {
+            "CodeDept": "BRT",
+            "CodeRegion": "11",
+            "RegionName": "Bandung (Jawa Barat)",
+            "Initial": "BDG",
+            "Createby": "ADMIN",
+            "Createdate": "11/5/20 20:36",
+            "Updateby": "ADMIN",
+            "Updatedate": "11/5/20 20:36"
+        },
+        {
+            "CodeDept": "BRT",
+            "CodeRegion": "12",
+            "RegionName": "Semarang (Jawa tengah)",
+            "Initial": "JTG",
+            "Createby": "ADMIN",
+            "Createdate": "11/5/20 20:36",
+            "Updateby": "ADMIN",
+            "Updatedate": "11/5/20 20:36"
+        },
+        {
+            "CodeDept": "BRT",
+            "CodeRegion": "13",
+            "RegionName": "Padang (Sumatra)",
+            "Initial": "SMT",
+            "Createby": "ADMIN",
+            "Createdate": "11/5/20 20:36",
+            "Updateby": "ADMIN",
+            "Updatedate": "11/5/20 20:36"
+        },
+        {
+            "CodeDept": "BRT",
+            "CodeRegion": "14",
+            "RegionName": "Kalimantan",
+            "Initial": "KLM",
+            "Createby": "ADMIN",
+            "Createdate": "11/5/20 20:36",
+            "Updateby": "ADMIN",
+            "Updatedate": "11/5/20 20:36"
+        },
+        {
+            "CodeDept": "TMR",
+            "CodeRegion": "10",
+            "RegionName": "Jawa Timur",
+            "Initial": "JTM",
+            "Createby": "ADMIN",
+            "Createdate": "11/5/20 20:36",
+            "Updateby": "ADMIN",
+            "Updatedate": "11/5/20 20:36"
+        },
+        {
+            "CodeDept": "TMR",
+            "CodeRegion": "11",
+            "RegionName": "Bali",
+            "Initial": "BAL",
+            "Createby": "ADMIN",
+            "Createdate": "11/5/20 20:36",
+            "Updateby": "ADMIN",
+            "Updatedate": "11/5/20 20:36"
+        },
+        {
+            "CodeDept": "TMR",
+            "CodeRegion": "12",
+            "RegionName": "Manado",
+            "Initial": "MDO",
+            "Createby": "ADMIN",
+            "Createdate": "11/5/20 20:36",
+            "Updateby": "ADMIN",
+            "Updatedate": "11/5/20 20:36"
+        },
+        {
+            "CodeDept": "TMR",
+            "CodeRegion": "13",
+            "RegionName": "Makassar",
+            "Initial": "MKS",
+            "Createby": "ADMIN",
+            "Createdate": "11/5/20 20:36",
+            "Updateby": "ADMIN",
+            "Updatedate": "11/5/20 20:36"
+        },
+        {
+            "CodeDept": "TMR",
+            "CodeRegion": "14",
+            "RegionName": "Papua",
+            "Initial": "PPA",
+            "Createby": "ADMIN",
+            "Createdate": "11/5/20 20:36",
+            "Updateby": "ADMIN",
+            "Updatedate": "11/5/20 20:36"
+        }
+    ]
+}

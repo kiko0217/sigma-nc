@@ -1,0 +1,40 @@
+﻿{
+    "Data": [
+        {
+            "Distributor": "01",
+            "KodeOutlet": "NF0245",
+            "NamaOutlet": "PT.MARINDA  CAHYA MEDIKA",
+            "KodeOutletNF": "1100001"
+        },
+        {
+            "Distributor": "02",
+            "KodeOutlet": "M5123",
+            "NamaOutlet": "MARINDA  CAHYA MEDIKA, PT",
+            "KodeOutletNF": "1100001"
+        },
+        {
+            "Distributor": "01",
+            "KodeOutlet": "NF0267",
+            "NamaOutlet": "RSAD UDAYANA",
+            "KodeOutletNF": "1100003"
+        },
+        {
+            "Distributor": "02",
+            "KodeOutlet": "NF0268",
+            "NamaOutlet": "RS.BALIMED SINGARAJA",
+            "KodeOutletNF": "1100004"
+        },
+        {
+            "Distributor": "03",
+            "KodeOutlet": "NF0269",
+            "NamaOutlet": "RS.SHANTI GRAHA",
+            "KodeOutletNF": "1100005"
+        },
+        {
+            "Distributor": "04",
+            "KodeOutlet": "NF0270",
+            "NamaOutlet": "PT.BALIMED PUTRA FARMASIA",
+            "KodeOutletNF": "1100006"
+        }
+    ]
+}

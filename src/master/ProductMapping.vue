@@ -15,12 +15,12 @@
 					</template>
 				</Toolbar>
 
-				<DataTable ref="dt" :value="regions" :selection.sync="selectedRegions" dataKey="Initial" :paginator="true" :rows="10" :filters="filters"
+				<DataTable ref="dt" :value="productMappings" :selection.sync="selectedRegions" dataKey="Distributor" :paginator="true" :rows="10" :filters="filters"
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
 					<template #header>
 						<div class="table-header">
-							<h5 class="p-m-0">Manage Regions</h5>
+							<h5 class="p-m-0">Manage Area</h5>
 							<span class="p-input-icon-left">
                                 <i class="pi pi-search" />
                                 <InputText v-model="filters['global']" placeholder="Search..." />
@@ -29,10 +29,10 @@
 					</template>
 
 					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-					<Column field="CodeDept" header="Code Dept" sortable></Column>
-					<Column field="CodeRegion" header="Code Region" sortable></Column>
-					<Column field="RegionName" header="Region Name" sortable></Column>
-					<Column field="Initial" header="Initial" sortable></Column>
+					<Column field="Distributor" header="Distributor" sortable></Column>
+					<Column field="ProductDist" header="Product Dist" sortable></Column>
+					<Column field="ProductCodeNF" header="Product Code NF" sortable></Column>
+					<Column field="ProductDistName" header="Area Name" sortable></Column>
 					<Column field="Createby" header="Create by" sortable></Column>
 					<Column field="Createdate" header="Create Date" sortable></Column>
 					<Column field="Updateby" header="Update by" sortable></Column>
@@ -48,19 +48,19 @@
 				<Dialog :visible.sync="regionDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
 					<!-- ini bisa diisi dengan peta nantinya -->
 					<div class="p-field">
-						<label for="CodeRegion">Code Region</label>
-						<InputText id="CodeRegion" v-model.trim="region.CodeRegion" required="true" autofocus :class="{'p-invalid': submitted && !region.CodeRegion}" />
-						<small class="p-invalid" v-if="submitted && !region.CodeRegion">Code Region is required.</small>
+						<label for="ProductCodeNF">Product Code NF</label>
+						<InputText id="ProductCodeNF" v-model.trim="region.ProductCodeNF" required="true" autofocus :class="{'p-invalid': submitted && !region.ProductCodeNF}" />
+						<small class="p-invalid" v-if="submitted && !region.ProductCodeNF">Product Code NF is required.</small>
 					</div>
 					<div class="p-field">
-						<label for="RegionName">Region Name</label>
-						<InputText id="RegionName" v-model.trim="region.RegionName" required="true" autofocus :class="{'p-invalid': submitted && !region.RegionName}" />
-						<small class="p-invalid" v-if="submitted && !region.RegionName">Region Name is required.</small>
+						<label for="ProductDistName">Product Dist Name</label>
+						<InputText id="ProductDistName" v-model.trim="region.ProductDistName" required="true" autofocus :class="{'p-invalid': submitted && !region.ProductDistName}" />
+						<small class="p-invalid" v-if="submitted && !region.ProductDistName">Product Dist Name is required.</small>
 					</div>
 					<div class="p-field">
-						<label for="Initial">Initial</label>
-						<InputText id="Initial" v-model.trim="region.Initial" required="true" autofocus :class="{'p-invalid': submitted && !region.Initial}" />
-						<small class="p-invalid" v-if="submitted && !region.Initial">Initial Name is required.</small>
+						<label for="Distributor">Distributor</label>
+						<InputText id="Distributor" v-model.trim="region.Distributor" required="true" autofocus :class="{'p-invalid': submitted && !region.Distributor}" />
+						<small class="p-invalid" v-if="submitted && !region.Distributor">Distributor Name is required.</small>
 					</div>
 					<template #footer>
 						<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog"/>
@@ -71,7 +71,7 @@
 				<Dialog :visible.sync="deleteRegionDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
 					<div class="confirmation-content">
 						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-						<span v-if="region">Are you sure you want to delete <b>{{region.RegionName}}</b>?</span>
+						<span v-if="region">Are you sure you want to delete <b>{{region.ProductDistName}}</b>?</span>
 					</div>
 					<template #footer>
 						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteRegionDialog = false"/>
@@ -96,12 +96,12 @@
 </template>
 
 <script>
-import RegionService from '../service/RegionService';
+import ProductMappingService from '../service/ProductMappingService';
 
 export default {
 	data() {
 		return {
-			regions: null,
+			productMappings: null,
 			regionDialog: false,
 			deleteRegionDialog: false,
 			deleteRegionsDialog: false,
@@ -112,12 +112,12 @@ export default {
             createNew: false
 		}
 	},
-	regionService: null,
+	productMappingService: null,
 	created() {
-		this.regionService = new RegionService();
+		this.productMappingService = new ProductMappingService();
 	},
 	mounted() {
-		this.regionService.getRegions().then(data => this.regions = data);
+		this.productMappingService.getProductMappings().then(data => this.productMappings = data);
 	},
 	methods: {
 		formatCurrency(value) {
@@ -140,8 +140,8 @@ export default {
             }
 			this.submitted = true;
 
-			if (this.region.RegionName.trim() && this.region.CodeRegion.trim() && this.region.Initial.trim()) {
-                this.$set(this.regions, this.findIndexByCode(this.region.CodeRegion), this.region);
+			if (this.region.ProductDistName.trim() && this.region.ProductCodeNF.trim() && this.region.Distributor.trim()) {
+                this.$set(this.regions, this.findIndexByProductCodeNF(this.region.ProductCodeNF), this.region);
                 this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Updated', life: 3000});
                 this.regionDialog = false;
                 this.region = {};
@@ -149,7 +149,7 @@ export default {
         },
         createRegion() {
             this.submitted = true;
-            if (this.region.RegionName.trim() && this.region.CodeRegion.trim() && this.region.Initial.trim()) {
+            if (this.region.ProductDistName.trim() && this.region.ProductCodeNF.trim() && this.region.Distributor.trim()) {
                 this.regions.push(this.region);
                 this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Created', life: 3000});
                 this.regionDialog = false;
@@ -166,15 +166,15 @@ export default {
 			this.deleteRegionDialog = true;
 		},
 		deleteRegion() {
-			this.regions = this.regions.filter(val => val.CodeRegion !== this.region.CodeRegion);
+			this.regions = this.regions.filter(val => val.ProductCodeNF !== this.region.ProductCodeNF);
 			this.deleteRegionDialog = false;
 			this.region = {};
 			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Deleted', life: 3000});
 		},
-		findIndexByCode(code) {
+		findIndexByProductCodeNF(ProductCodeNF) {
 			let index = -1;
 			for (let i = 0; i < this.regions.length; i++) {
-				if (this.regions[i].CodeRegion === code) {
+				if (this.regions[i].ProductCodeNF === ProductCodeNF) {
 					index = i;
 					break;
 				}
