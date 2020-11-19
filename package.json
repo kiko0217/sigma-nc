@@ -39,7 +39,5 @@
 		"vue-router": "^3.0.3",
 		"vue-template-compiler": "^2.6.10"
 	},
-	"dependencies": {
-		"fs-web": "^1.0.1"
-	}
+	"dependencies": {}
 }
