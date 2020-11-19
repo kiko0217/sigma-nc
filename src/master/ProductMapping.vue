@@ -20,7 +20,7 @@
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
 					<template #header>
 						<div class="table-header">
-							<h5 class="p-m-0">Manage Area</h5>
+							<h5 class="p-m-0">Manage Product Mapping</h5>
 							<span class="p-input-icon-left">
                                 <i class="pi pi-search" />
                                 <InputText v-model="filters['global']" placeholder="Search..." />
@@ -91,16 +91,52 @@
 				</Dialog>
 			</div>
 		</div>
-	</div>
 
+		<div class="p-col-12">
+			<h1>Data PDU dari Email</h1>
+			<div class="card" v-for="(data, index) of dataPdu" :key="index" >
+				<Toolbar class="p-mb-4">
+					<template slot="left">{{ data.name }}</template>
+					<template slot="right">
+						<FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" />
+						<Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
+					</template>
+				</Toolbar>
+				<DataTable :value="data" :scrollable="true" scrollHeight="500px">
+					<Column v-for="col of culomnPdu" :field="col.field" :header="col.field" :key="col.field" headerStyle="width: 150px"></Column>
+				</DataTable>
+			</div>
+		</div>
+
+		<div class="p-col-12">
+			<h1>Data PT.Combi Putra dari Email</h1>
+			<div class="card" v-for="(data, index) of dataCombiPutra" :key="index" >
+				<Toolbar class="p-mb-4">
+					<template slot="left">{{ data.name }}</template>
+					<template slot="right">
+						<FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" />
+						<Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
+					</template>
+				</Toolbar>
+				<DataTable :value="data" :scrollable="true" scrollHeight="500px">
+					<Column v-for="col of culomnCombiPutra" :field="col.field" :header="col.field" :key="col.field" headerStyle="width: 150px"></Column>
+				</DataTable>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
-import ProductMappingService from '../service/ProductMappingService';
-
+import ProductMappingService from '../service/ProductMappingService'
 export default {
 	data() {
 		return {
+			filePdu : null,
+			culomnPdu: null,
+			dataPdu : [],
+			fileCombiPutra : null,
+			culomnCombiPutra: null,
+			dataCombiPutra : [],
 			productMappings: null,
 			regionDialog: false,
 			deleteRegionDialog: false,
@@ -113,11 +149,72 @@ export default {
 		}
 	},
 	productMappingService: null,
+	// fs: null,
 	created() {
 		this.productMappingService = new ProductMappingService();
+		this.filePdu = [
+			{name: '1605431292552_pduOnogateAkhirBulanOkt20Xls.json'},
+			{name: '1605431292566_pduOnoiwaPlusAkhirBulanOkt20Xls.json'},
+			{name: '1605431292589_pduOnoiwaAkhirBulanOkt2020Xls.json'}
+		]
+		this.fileCombiPutra = [
+			{name: '1605431292044_ptCombiPutraXls.json'},
+		]
+		this.culomnPdu = [
+			{field: 'TANGGAL'},
+            {field: 'NOMOR BUKTI'},
+            {field: 'KODE CUSTOMER'},
+			{field: 'NAMA CUSTOMER'},
+			{field: 'ALAMAT'},
+			{field: 'KOTA'},
+			{field: 'KODE CABANG'},
+			{field: 'KODE SALES'},
+			{field: 'KODE BARANG'},
+			{field: 'NAMA BARANG'},
+			{field: 'SATUAN'},
+			{field: 'QTY'},
+			// {field: 'H.N.A'},
+			// {field: 'DISC.'},
+			// {field: 'NILAI'},
+			// {field: 'DISC. VALUE'},
+			// {field: 'NILAI NETTO'},
+			// {field: 'TOTAL'},
+			
+		]
+		this.culomnCombiPutra = [
+			{field: 'kd barang"'},
+            {field: 'Nama Barang'},
+            {field: 'Kd customer'},
+			{field: 'Nama'},
+			{field: 'Alamat'},
+			{field: 'Kota'},
+			{field: 'Tanggal Faktur'},
+			{field: 'Nomor Faktur'},
+			{field: 'ID Cabang'},
+			{field: 'Nama Cabang'},
+			{field: 'Qty Sales'},
+			{field: 'Satuan'},
+			{field: 'Harga satuan'},
+			
+		]
+		// this.fs = new FS();
 	},
 	mounted() {
-		this.productMappingService.getProductMappings().then(data => this.productMappings = data);
+		this.productMappingService.getProductMappings().then(data => this.productMappings = data)
+		this.filePdu.forEach(element=> {
+			this.productMappingService.getDataFromPdu(element.name).then(data => {
+				data["name"] = element.name
+				this.dataPdu.push(data)
+			});
+			this.$toast.add({severity:'info', summary: 'Data PDU Masuk', detail: '', life: 10000});
+		});
+		this.fileCombiPutra.forEach(element=> {
+			this.productMappingService.getDataFromCombiPutra(element.name).then(data => {
+				data["name"] = element.name
+				this.dataCombiPutra.push(data)
+			});
+			this.$toast.add({severity:'info', summary: 'Data PT Combi Putra Masuk', detail: '', life: 10000});
+		});
 	},
 	methods: {
 		formatCurrency(value) {
@@ -191,7 +288,7 @@ export default {
 			return id;
 		},
 		exportCSV() {
-			this.$refs.dt.exportCSV();
+			this.$rethis.fs.dt.exportCSV();
 		},
 		confirmDeleteSelected() {
 			this.deleteRegionsDialog = true;

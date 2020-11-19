@@ -1,0 +1,29 @@
+{
+	"Sheet1": [
+		{
+			"TANGGAL": "2020-10-31T00:00:00.000Z",
+			"NOMOR BUKTI": "FC -2010-649737",
+			"KODE CUSTOMER": "MLGAN09",
+			"NAMA CUSTOMER": "NS PANJAITAN, APOTEK",
+			"ALAMAT": "JL.MAYJEN PANJAITAN NO. 119B",
+			"KOTA": "MALANG",
+			"KODE CABANG": "MLG",
+			"KODE SALES": "AGS",
+			"NAMA SALES": "AGUS YUDIANTO",
+			"KODE BARANG": "NFO02",
+			"NAMA BARANG": "ONOGATE",
+			"SATUAN": "BOX/30KAPS",
+			"QTY": 1,
+			"H.N.A": 180000,
+			"DISC.": 0,
+			"NILAI": 180000,
+			"DISC. VALUE": 0,
+			"NILAI NETTO": 180000
+		},
+		{
+			"NAMA BARANG": "T O T A L",
+			"QTY": 1,
+			"TOTAL": 180000
+		}
+	]
+}
