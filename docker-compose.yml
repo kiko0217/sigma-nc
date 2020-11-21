@@ -5,8 +5,12 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+            target: 'develop-stage'
         image: web-app
         ports:
-            - "8080:80"
+            # - "8080:80"
+            - '8080:8080'
         volumes:
-            - ./dist:/app/dist
+            # - ./dist:/app/dist
+            - '.:/app'
+        command: /bin/sh -c "npm run serve"
