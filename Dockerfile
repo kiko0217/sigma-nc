@@ -2,10 +2,9 @@ FROM node:lts-alpine as develop-stage
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
-
+COPY . ./
 
 FROM develop-stage as build-stage
-COPY . .
 RUN npm run build
 
 # production stage

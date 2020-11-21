@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 services:
     nucleus:
@@ -13,4 +13,5 @@ services:
         volumes:
             # - ./dist:/app/dist
             - '.:/app'
-        command: /bin/sh -c "npm run serve"
+        # command: /bin/sh -c "npm rebuild node-sass"
+        command: /bin/sh -c "npm i @vue/cli-service && npm rebuild node-sass && npm run serve"
