@@ -93,36 +93,71 @@
 		</div>
 
 		<div class="p-col-12">
-			<h1>Data PDU dari Email</h1>
-			<div class="card" v-for="(data, index) of dataPdu" :key="index" >
+			<div class="card">
 				<Toolbar class="p-mb-4">
-					<template slot="left">{{ data.name }}</template>
+					<template slot="left">Unmapping</template>
 					<template slot="right">
-						<FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" />
-						<Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
+						<!-- <FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" /> -->
+						<!-- <Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  /> -->
 					</template>
 				</Toolbar>
-				<DataTable :value="data" :scrollable="true" scrollHeight="500px">
-					<Column v-for="col of culomnPdu" :field="col.field" :header="col.field" :key="col.field" headerStyle="width: 150px"></Column>
+				<DataTable :value="productUnmapping" :scrollable="true" scrollHeight="500px" dataKey="_id">
+					<Column v-for="col of culomnProductUnmapping" :field="col.field" :header="col.header" :key="col" headerStyle="width: 150px"></Column>
 				</DataTable>
 			</div>
 		</div>
 
 		<div class="p-col-12">
-			<h1>Data PT.Combi Putra dari Email</h1>
-			<div class="card" v-for="(data, index) of dataCombiPutra" :key="index" >
+			<!-- <h1>Data dari Email</h1> -->
+			<div class="card">
 				<Toolbar class="p-mb-4">
-					<template slot="left">{{ data.name }}</template>
+					<template slot="left">Data dari Email</template>
 					<template slot="right">
-						<FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" />
-						<Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
+						<!-- <FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" /> -->
+						<!-- <Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  /> -->
 					</template>
 				</Toolbar>
-				<DataTable :value="data" :scrollable="true" scrollHeight="500px">
-					<Column v-for="col of culomnCombiPutra" :field="col.field" :header="col.field" :key="col.field" headerStyle="width: 150px"></Column>
+				<DataTable :value="dataTemp" :scrollable="true" :expandedRows.sync="expandedRows" scrollHeight="500px" dataKey="_id"
+				@row-expand="onRowExpand" @row-collapse="onRowCollapse">
+					<Column :expander="true" headerStyle="width: 3rem" />
+					<Column v-for="col of culomnTemp" :field="col" :header="col" :key="col" headerStyle="width: 150px"></Column>
+					<template #expansion="slotProps">
+						<Toolbar class="p-mb-4">
+							<template slot="left">{{slotProps.data.subject}}</template>
+							<template slot="right">
+								<!-- <FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" /> -->
+								<Button label="Mapping" icon="pi pi-upload" class="p-button-help" @click="mapping"  />
+							</template>
+						</Toolbar>
+						<DataTable :value="slotProps.data.attachments" :selection.sync="selectedTemp" selectionMode="single" dataKey="name">
+							<Column headerStyle="width:120px" >
+								<template #body="slotProps">
+									<Button icon="pi pi-arrow-down" class="p-button-rounded p-button-success p-mr-2" @click="downloadFile(slotProps.data)" />
+								</template>
+							</Column>
+							<Column v-for="col of culomnAttachment" :field="col" :header="col" :key="col" headerStyle="width: 150px"></Column>
+						</DataTable>
+					</template>
 				</DataTable>
+
+				<Dialog :visible.sync="unmappingDialog" :style="{width: '900px'}" :modal="true" class="p-fluid">
+					<!-- <h1>Test</h1> -->
+					<Toolbar>
+						<template slot="left">
+							{{expandedRows[0].subject}}
+						</template>
+						<template #right>
+							<Button label="Mapping" @click="pushMapping()" class="p-mr-2" />
+							<Button label="Unmapping" class="p-button-danger" />
+						</template>
+					</Toolbar>
+					<DataTable v-for="(data, index) of dataTempJson.data" :key="index" :value="data" :scrollable="true" scrollHeight="500px" dataKey="index">
+						<Column v-for="col of dataTempJson.headers[index]" :field="col" :header="col" :key="col" headerStyle="width: 175px"></Column>
+					</DataTable>
+				</Dialog>
 			</div>
 		</div>
+
 	</div>
 </template>
 
@@ -131,13 +166,25 @@ import ProductMappingService from '../service/ProductMappingService'
 export default {
 	data() {
 		return {
+			productUnmapping: null,
+			culomnProductUnmapping: [
+				{field: 'name', header: 'Product Dist Name'},
+				{field: 'code', header: 'Product Dist Code'},
+			],
+			dataTempJson : {
+				headers : [],
+				data : []
+			},
+			selectedTemp : null,
+			expandedRows : [{
+				subject: null,
+			}],
+			dataTemp : null,
 			filePdu : null,
-			culomnPdu: null,
-			dataPdu : [],
-			fileCombiPutra : null,
-			culomnCombiPutra: null,
-			dataCombiPutra : [],
+			culomnTemp: [],
+			culomnAttachment: ['name' , 'type'],
 			productMappings: null,
+			unmappingDialog: false,
 			regionDialog: false,
 			deleteRegionDialog: false,
 			deleteRegionsDialog: false,
@@ -152,71 +199,50 @@ export default {
 	// fs: null,
 	created() {
 		this.productMappingService = new ProductMappingService();
-		this.filePdu = [
-			{name: '1605431292552_pduOnogateAkhirBulanOkt20Xls.json'},
-			{name: '1605431292566_pduOnoiwaPlusAkhirBulanOkt20Xls.json'},
-			{name: '1605431292589_pduOnoiwaAkhirBulanOkt2020Xls.json'}
-		]
-		this.fileCombiPutra = [
-			{name: '1605431292044_ptCombiPutraXls.json'},
-		]
-		this.culomnPdu = [
-			{field: 'TANGGAL'},
-            {field: 'NOMOR BUKTI'},
-            {field: 'KODE CUSTOMER'},
-			{field: 'NAMA CUSTOMER'},
-			{field: 'ALAMAT'},
-			{field: 'KOTA'},
-			{field: 'KODE CABANG'},
-			{field: 'KODE SALES'},
-			{field: 'KODE BARANG'},
-			{field: 'NAMA BARANG'},
-			{field: 'SATUAN'},
-			{field: 'QTY'},
-			// {field: 'H.N.A'},
-			// {field: 'DISC.'},
-			// {field: 'NILAI'},
-			// {field: 'DISC. VALUE'},
-			// {field: 'NILAI NETTO'},
-			// {field: 'TOTAL'},
-			
-		]
-		this.culomnCombiPutra = [
-			{field: 'kd barang"'},
-            {field: 'Nama Barang'},
-            {field: 'Kd customer'},
-			{field: 'Nama'},
-			{field: 'Alamat'},
-			{field: 'Kota'},
-			{field: 'Tanggal Faktur'},
-			{field: 'Nomor Faktur'},
-			{field: 'ID Cabang'},
-			{field: 'Nama Cabang'},
-			{field: 'Qty Sales'},
-			{field: 'Satuan'},
-			{field: 'Harga satuan'},
-			
-		]
+		this.culomnTemp = ['from', 'subject', 'status', 'createdAt']
 		// this.fs = new FS();
 	},
 	mounted() {
+		this.productMappingService.getUnmapping().then(data => this.productUnmapping = data)
+		this.productMappingService.getDataFromEmail().then(data=> {
+			this.dataTemp = data
+			// for (let k in data[0]) {
+			// 	this.culomnTemp.push(k)
+			// }
+			// console.log(this.culomnTemp)
+		})
 		this.productMappingService.getProductMappings().then(data => this.productMappings = data)
-		this.filePdu.forEach(element=> {
-			this.productMappingService.getDataFromPdu(element.name).then(data => {
-				data["name"] = element.name
-				this.dataPdu.push(data)
-			});
-			this.$toast.add({severity:'info', summary: 'Data PDU Masuk', detail: '', life: 10000});
-		});
-		this.fileCombiPutra.forEach(element=> {
-			this.productMappingService.getDataFromCombiPutra(element.name).then(data => {
-				data["name"] = element.name
-				this.dataCombiPutra.push(data)
-			});
-			this.$toast.add({severity:'info', summary: 'Data PT Combi Putra Masuk', detail: '', life: 10000});
-		});
 	},
 	methods: {
+		pushMapping(){
+			console.log()
+			this.productMappingService.mapping(this.expandedRows[0]._id).then(data => {
+				console.log(data)
+				this.productMappingService.getUnmapping().then(data => this.productUnmapping = data)
+				this.unmappingDialog = false
+			})
+		},
+		mapping() {
+
+			this.productMappingService.getJsonMapping(this.expandedRows[0]._id).then(data => {
+				this.dataTempJson = data
+				console.log(this.dataTempJson)
+			})
+			this.unmappingDialog = true
+		},
+		onRowExpand() {
+			if(this.expandedRows.length > 1)this.expandedRows.shift()
+			// console.log(this.expandedRows)
+		},
+		onRowCollapse() {
+
+		},
+		downloadFile(data) {
+			// console.log(this.expandedRows)
+			// console.log(data)
+			this.productMappingService.downloadFile(data.name, this.expandedRows[0].subject)
+			
+		},
 		formatCurrency(value) {
 			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
 		},

@@ -15,3 +15,8 @@ services:
             - '.:/app'
         # command: /bin/sh -c "npm rebuild node-sass"
         command: /bin/sh -c "npm i @vue/cli-service && npm rebuild node-sass && npm run serve"
+        networks:
+            - app-network
+networks:
+    app-network:
+        external: true
