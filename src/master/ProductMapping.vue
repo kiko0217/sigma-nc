@@ -4,43 +4,36 @@
 			<div class="card">
 				<Toast/>
 				<Toolbar class="p-mb-4">
-					<template slot="left">
-						<Button label="New" icon="pi pi-plus" class="p-button-success p-mr-2" @click="openNew" />
-						<Button label="Delete" icon="pi pi-trash" class="p-button-danger" @click="confirmDeleteSelected" :disabled="!selectedRegions || !selectedRegions.length" />
-					</template>
-
+					<template slot="left">Mapping</template>
 					<template slot="right">
-						<FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" />
 						<Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
 					</template>
-				</Toolbar>
 
-				<DataTable ref="dt" :value="productMappings" :selection.sync="selectedRegions" dataKey="Distributor" :paginator="true" :rows="10" :filters="filters"
-                            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
-                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
+				</Toolbar>
+				<DataTable ref="mapping" :value="productUnmapping" :scrollable="true" scrollHeight="500px" dataKey="_id" editMode="cell" class="editable-cells-table" :filters="filters">
 					<template #header>
 						<div class="table-header">
-							<h5 class="p-m-0">Manage Product Mapping</h5>
 							<span class="p-input-icon-left">
                                 <i class="pi pi-search" />
                                 <InputText v-model="filters['global']" placeholder="Search..." />
                             </span>
 						</div>
 					</template>
-
-					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-					<Column field="Distributor" header="Distributor" sortable></Column>
-					<Column field="ProductDist" header="Product Dist" sortable></Column>
-					<Column field="ProductCodeNF" header="Product Code NF" sortable></Column>
-					<Column field="ProductDistName" header="Area Name" sortable></Column>
-					<Column field="Createby" header="Create by" sortable></Column>
-					<Column field="Createdate" header="Create Date" sortable></Column>
-					<Column field="Updateby" header="Update by" sortable></Column>
-					<Column field="Updatedate" header="Update Date" sortable></Column>
-					<Column>
+					<Column headerStyle="width: 100px">
 						<template #body="slotProps">
-							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editRegion(slotProps.data)" />
+							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editProductMapping(slotProps.data)" />
 							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteRegion(slotProps.data)" />
+						</template>
+					</Column>
+					<Column v-for="(col, index) of culomnProductUnmapping" :field="col.field" :header="col.header" :key="index" headerStyle="width: 150px"></Column>
+					<Column field="nfCode" header="Code Prod Nucleus" headerStyle="width: 150px" :sortable="true">
+						<template #editor="slotProps">
+							<InputText v-model="slotProps.data['nfCode']" />
+						</template>
+					</Column>
+					<Column field="createdAt" header="Created" headerStyle="width: 150px">
+						<template #body="slotProps">
+							<span>{{formatDate(slotProps.data.createdAt)}}</span>
 						</template>
 					</Column>
 				</DataTable>
@@ -92,72 +85,6 @@
 			</div>
 		</div>
 
-		<div class="p-col-12">
-			<div class="card">
-				<Toolbar class="p-mb-4">
-					<template slot="left">Unmapping</template>
-					<template slot="right">
-						<!-- <FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" /> -->
-						<!-- <Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  /> -->
-					</template>
-				</Toolbar>
-				<DataTable :value="productUnmapping" :scrollable="true" scrollHeight="500px" dataKey="_id">
-					<Column v-for="col of culomnProductUnmapping" :field="col.field" :header="col.header" :key="col" headerStyle="width: 150px"></Column>
-				</DataTable>
-			</div>
-		</div>
-
-		<div class="p-col-12">
-			<!-- <h1>Data dari Email</h1> -->
-			<div class="card">
-				<Toolbar class="p-mb-4">
-					<template slot="left">Data dari Email</template>
-					<template slot="right">
-						<!-- <FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" /> -->
-						<!-- <Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  /> -->
-					</template>
-				</Toolbar>
-				<DataTable :value="dataTemp" :scrollable="true" :expandedRows.sync="expandedRows" scrollHeight="500px" dataKey="_id"
-				@row-expand="onRowExpand" @row-collapse="onRowCollapse">
-					<Column :expander="true" headerStyle="width: 3rem" />
-					<Column v-for="col of culomnTemp" :field="col" :header="col" :key="col" headerStyle="width: 150px"></Column>
-					<template #expansion="slotProps">
-						<Toolbar class="p-mb-4">
-							<template slot="left">{{slotProps.data.subject}}</template>
-							<template slot="right">
-								<!-- <FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" /> -->
-								<Button label="Mapping" icon="pi pi-upload" class="p-button-help" @click="mapping"  />
-							</template>
-						</Toolbar>
-						<DataTable :value="slotProps.data.attachments" :selection.sync="selectedTemp" selectionMode="single" dataKey="name">
-							<Column headerStyle="width:120px" >
-								<template #body="slotProps">
-									<Button icon="pi pi-arrow-down" class="p-button-rounded p-button-success p-mr-2" @click="downloadFile(slotProps.data)" />
-								</template>
-							</Column>
-							<Column v-for="col of culomnAttachment" :field="col" :header="col" :key="col" headerStyle="width: 150px"></Column>
-						</DataTable>
-					</template>
-				</DataTable>
-
-				<Dialog :visible.sync="unmappingDialog" :style="{width: '900px'}" :modal="true" class="p-fluid">
-					<!-- <h1>Test</h1> -->
-					<Toolbar>
-						<template slot="left">
-							{{expandedRows[0].subject}}
-						</template>
-						<template #right>
-							<Button label="Mapping" @click="pushMapping()" class="p-mr-2" />
-							<Button label="Unmapping" class="p-button-danger" />
-						</template>
-					</Toolbar>
-					<DataTable v-for="(data, index) of dataTempJson.data" :key="index" :value="data" :scrollable="true" scrollHeight="500px" dataKey="index">
-						<Column v-for="col of dataTempJson.headers[index]" :field="col" :header="col" :key="col" headerStyle="width: 175px"></Column>
-					</DataTable>
-				</Dialog>
-			</div>
-		</div>
-
 	</div>
 </template>
 
@@ -168,8 +95,10 @@ export default {
 		return {
 			productUnmapping: null,
 			culomnProductUnmapping: [
-				{field: 'name', header: 'Product Dist Name'},
+				{field: 'distributor.nfCode', header: 'Distributor'},
 				{field: 'code', header: 'Product Dist Code'},
+				{field: 'name', header: 'Product Dist Name'},
+				// {field: 'nfCode', header: 'Code Prod Nucleus'},
 			],
 			dataTempJson : {
 				headers : [],
@@ -214,6 +143,14 @@ export default {
 		this.productMappingService.getProductMappings().then(data => this.productMappings = data)
 	},
 	methods: {
+		editProductMapping(data){
+			// console.log(data)
+			this.productMappingService.postEdit(data)
+			.then(() => {
+				// this.productMappingService.getProductMappings(data).then.then(data3 => this.productMappings = data3)
+				this.$toast.add({severity:'success', summary: 'Successful', detail: 'Edit Success', life: 3000});
+			})
+		},
 		pushMapping(){
 			console.log()
 			this.productMappingService.mapping(this.expandedRows[0]._id).then(data => {
@@ -223,7 +160,6 @@ export default {
 			})
 		},
 		mapping() {
-
 			this.productMappingService.getJsonMapping(this.expandedRows[0]._id).then(data => {
 				this.dataTempJson = data
 				console.log(this.dataTempJson)
@@ -232,7 +168,7 @@ export default {
 		},
 		onRowExpand() {
 			if(this.expandedRows.length > 1)this.expandedRows.shift()
-			// console.log(this.expandedRows)
+			console.log(this.expandedRows)
 		},
 		onRowCollapse() {
 
@@ -314,7 +250,7 @@ export default {
 			return id;
 		},
 		exportCSV() {
-			this.$rethis.fs.dt.exportCSV();
+			this.$refs.mapping.exportCSV();
 		},
 		confirmDeleteSelected() {
 			this.deleteRegionsDialog = true;
@@ -324,7 +260,23 @@ export default {
 			this.deleteRegionsDialog = false;
 			this.selectedRegions = null;
 			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Regions Deleted', life: 3000});
-		}
+		},
+		formatDate(dat) {
+			let date = new Date(dat)
+			// console.log(date)
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+
+            if (month < 10) {
+                month = '0' + month;
+            }
+
+            if (day < 10) {
+                day = '0' + day;
+            }
+
+            return day + '-' + month + '-' + date.getFullYear();
+        }
 	}
 }
 </script>

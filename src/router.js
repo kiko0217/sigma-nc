@@ -52,6 +52,11 @@ export default new Router({
 			component: () => import('./master/Outlet.vue')
 		},
 		{
+			name: 'outletMapping',
+			path: '/master/outlet-map',
+			component: () => import('./master/OutletMapping.vue')
+		},
+		{
 			name: 'outletDistributor',
 			path: '/master/outlet-distributor',
 			component: () => import('./master/OutletDistributor.vue')

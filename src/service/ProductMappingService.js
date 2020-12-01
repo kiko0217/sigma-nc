@@ -36,4 +36,8 @@ export default class ProductMappingService {
     mapping(tempId){
         return axios.get('http://34.66.31.229:3000/api/product-map/manual/'+tempId).then(res => res.data.message)
     }
+    postEdit(productMap){
+        // console.log(productMap)
+        return axios.post('http://34.66.31.229:3000/api/product-map/edit/'+productMap._id, productMap).then(res => res.data.message)
+    }
 }

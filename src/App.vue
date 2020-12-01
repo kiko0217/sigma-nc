@@ -70,17 +70,22 @@ export default {
                             to: { name: 'outlet' }
                         },
                         {
-                            label:'Outlet Distributor',
+                            label:'Outlet Mapping',
                             icon: 'pi pi-fw pi-eject',
-                            to: { name: 'outletDistributor' }
+                            to: { name: 'outletMapping' }
                         },
+                        // {
+                        //     label:'Outlet Distributor',
+                        //     icon: 'pi pi-fw pi-eject',
+                        //     to: { name: 'outletDistributor' }
+                        // },
                         {
                             label:'Customer',
                             icon: 'pi pi-fw pi-users',
                             to: { name: 'customer' }
                         },
                         {
-                            label:'Seles Cover',
+                            label:'Sales Cover',
                             icon: 'pi pi-fw pi-users',
                             to: { name: 'selesCover' }
                         },
@@ -109,12 +114,12 @@ export default {
                 {label: 'Transaksi', icon: 'pi pi-fw pi-clone',
 					items: [
                         {
-                            label: 'Target Seles',
+                            label: 'Target Sales',
                             icon: 'pi pi-fw pi-map-marker', 
                             to: { name: "targetSeles" }
                         },
                         {
-                            label: 'Revisi Target Seles',
+                            label: 'Revisi Target Sales',
                             icon: 'pi pi-fw pi-map-marker', 
                             to: { name: "revisiTargetSeles" }
                         },
@@ -163,7 +168,7 @@ export default {
                 {label: 'Laporan', icon: 'pi pi-fw pi-clone',
 					items: [
                         {
-                            label: 'Detail Seles Info',
+                            label: 'Detail Sales Info',
                             icon: 'pi pi-fw pi-map-marker', 
                             to: { name: "detailSales" }
                         },
