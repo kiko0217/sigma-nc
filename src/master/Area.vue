@@ -29,15 +29,22 @@
 					</template>
 
 					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-					<Column field="DEPTCode" header="Dept Code" sortable></Column>
-					<Column field="RegionCode" header="Region Code" sortable></Column>
-					<Column field="Code" header="Code" sortable></Column>
-					<Column field="AreaName" header="Area Name" sortable></Column>
-					<Column field="Initial" header="Initial" sortable></Column>
-					<Column field="Createby" header="Create by" sortable></Column>
-					<Column field="Createdate" header="Create Date" sortable></Column>
-					<Column field="Updateby" header="Update by" sortable></Column>
-					<Column field="Updatedate" header="Update Date" sortable></Column>
+					<Column field="codeDept" header="Dept Code" sortable></Column>
+					<Column field="region.code" header="Region Code" sortable></Column>
+					<Column field="code" header="Code" sortable></Column>
+					<Column field="name" header="Area Name" sortable></Column>
+					<Column field="short" header="Initial" sortable></Column>
+					<Column field="createdAt" header="Create Date" sortable>
+						<template #body="slotProps">
+							<span>{{formatDate(slotProps.data.createdAt)}}</span>
+						</template>
+					</Column>
+					<Column field="updatedAt" header="Update Date" sortable>
+						<template #body="slotProps">
+							<span>{{formatDate(slotProps.data.updatedAt)}}</span>
+						</template>
+					</Column>
+					<Column field="updatedBy" header="Update by" sortable></Column>
 					<Column>
 						<template #body="slotProps">
 							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editRegion(slotProps.data)" />
@@ -121,6 +128,22 @@ export default {
 		this.areaService.getAreas().then(data => this.areas = data);
 	},
 	methods: {
+		formatDate(dat) {
+			let date = new Date(dat)
+			// console.log(date)
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+
+            if (month < 10) {
+                month = '0' + month;
+            }
+
+            if (day < 10) {
+                day = '0' + day;
+            }
+
+            return day + '-' + month + '-' + date.getFullYear();
+        },
 		formatCurrency(value) {
 			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
 		},

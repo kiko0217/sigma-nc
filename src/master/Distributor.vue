@@ -35,11 +35,11 @@
 						</template>
 					</Column>
 					<Column selectionMode="multiple" headerStyle="width: 3rem" :frozen="true"></Column>
-					<Column field="Code" header="Code" :frozen="true" headerStyle="width: 100px" sortable></Column>
-					<Column field="DistributorName" header="Distributor Name" :frozen="true" headerStyle="width: 150px" sortable></Column>
-					<Column field="Address" header="Address" headerStyle="width: 300px" :frozen="true" sortable></Column>
-					<Column field="Initial" header="Initial" headerStyle="width: 100px" sortable></Column>
-					<Column field="ContactPerson" header="Contact Person" headerStyle="width: 200px" sortable></Column>
+					<Column field="code" header="Code" :frozen="true" headerStyle="width: 100px" sortable></Column>
+					<Column field="distName" header="Distributor Name" :frozen="true" headerStyle="width: 150px" sortable></Column>
+					<Column field="address" header="Address" headerStyle="width: 300px" :frozen="true" sortable></Column>
+					<Column field="short" header="Initial" headerStyle="width: 100px" sortable></Column>
+					<Column field="contPerson" header="Contact Person" headerStyle="width: 200px" sortable></Column>
 					<Column field="Status" header="Status" headerStyle="width: 100px" sortable></Column>
 					<Column field="Type" header="Type" headerStyle="width: 100px" sortable></Column>
 					<Column field="RegionCode" header="Region Code" headerStyle="width: 200px" sortable></Column>

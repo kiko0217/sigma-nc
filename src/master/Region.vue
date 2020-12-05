@@ -29,14 +29,21 @@
 					</template>
 
 					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-					<Column field="CodeDept" header="Code Dept" sortable></Column>
-					<Column field="CodeRegion" header="Code Region" sortable></Column>
-					<Column field="RegionName" header="Region Name" sortable></Column>
-					<Column field="Initial" header="Initial" sortable></Column>
-					<Column field="Createby" header="Create by" sortable></Column>
-					<Column field="Createdate" header="Create Date" sortable></Column>
-					<Column field="Updateby" header="Update by" sortable></Column>
-					<Column field="Updatedate" header="Update Date" sortable></Column>
+					<Column field="codeDept" header="Code Dept" sortable></Column>
+					<Column field="code" header="Code Region" sortable></Column>
+					<Column field="name" header="Region Name" sortable></Column>
+					<Column field="short" header="Initial" sortable></Column>
+					<Column field="createdAt" header="Create Date" sortable>
+						<template #body="slotProps">
+							<span>{{formatDate(slotProps.data.createdAt)}}</span>
+						</template>
+					</Column>
+					<Column field="updatedAt" header="Update Date" sortable>
+						<template #body="slotProps">
+							<span>{{formatDate(slotProps.data.updatedAt)}}</span>
+						</template>
+					</Column>
+					<Column field="updatedBy" header="Update by" sortable></Column>
 					<Column>
 						<template #body="slotProps">
 							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editRegion(slotProps.data)" />
@@ -120,6 +127,22 @@ export default {
 		this.regionService.getRegions().then(data => this.regions = data);
 	},
 	methods: {
+		formatDate(dat) {
+			let date = new Date(dat)
+			// console.log(date)
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+
+            if (month < 10) {
+                month = '0' + month;
+            }
+
+            if (day < 10) {
+                day = '0' + day;
+            }
+
+            return day + '-' + month + '-' + date.getFullYear();
+        },
 		formatCurrency(value) {
 			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
 		},

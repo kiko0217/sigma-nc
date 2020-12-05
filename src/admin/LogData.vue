@@ -97,7 +97,6 @@ export default {
 		// this.fs = new FS();
 	},
 	mounted() {
-		this.productMappingService.getUnmapping().then(data => this.productUnmapping = data)
 		this.productMappingService.getDataFromEmail().then(data=> {
 			this.dataTemp = data
 			// for (let k in data[0]) {

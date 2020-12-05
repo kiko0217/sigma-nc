@@ -35,25 +35,39 @@
 						</template>
 					</Column>
 					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-					<Column field="Code" header="Code" headerStyle="width: 100px" sortable></Column>
-					<Column field="Barcode" header="Barcode" headerStyle="width: 150px" sortable></Column>
-					<Column field="BatchNo" header="BatchNo" headerStyle="width: 150px" sortable></Column>
-					<Column field="Name" header="Name" headerStyle="width: 200px" sortable></Column>
-					<Column field="Short" header="Short" headerStyle="width: 200px" ortable></Column>
-					<Column field="Type" header="Type" headerStyle="width: 100px" sortable></Column>
-					<Column field="PPN" header="PPN" headerStyle="width: 100px" sortable></Column>
-					<Column field="Disc" header="Disc" headerStyle="width: 100px" sortable></Column>
-					<Column field="UnitofMeasure" header="Unit of Measure" headerStyle="width: 200px" sortable></Column>
-					<Column field="Conversion" header="Conversion" headerStyle="width: 150px" sortable></Column>
-					<Column field="Weight" header="Weight" headerStyle="width: 100px" sortable></Column>
-					<Column field="Volume" header="Volume" headerStyle="width: 120px" sortable></Column>
-					<Column field="Price" header="Price" headerStyle="width: 100px" sortable></Column>
-					<Column field="HNA" header="HNA" headerStyle="width: 100px" sortable></Column>
-					<Column field="Status" header="Status" headerStyle="width: 100px" sortable></Column>
-					<Column field="Createby" header="Create by" headerStyle="width: 150px" sortable></Column>
-					<Column field="Createdate" header="Create Date" headerStyle="width: 150px" sortable></Column>
-					<Column field="Updateby" header="Update by" headerStyle="width: 150px" sortable></Column>
-					<Column field="Updatedate" header="Update Date" headerStyle="width: 150px" sortable></Column>
+					<Column field="code" header="Code" headerStyle="width: 100px" sortable></Column>
+					<Column field="barcode" header="Barcode" headerStyle="width: 150px" sortable></Column>
+					<Column field="name" header="Name" headerStyle="width: 200px" sortable></Column>
+					<Column field="short" header="Short" headerStyle="width: 200px" ortable></Column>
+					<Column field="type" header="Type" headerStyle="width: 100px" sortable></Column>
+					<Column field="ppn" header="PPN" headerStyle="width: 100px" sortable></Column>
+					<Column field="disc" header="Disc" headerStyle="width: 100px" sortable></Column>
+					<Column field="UoM" header="Unit of Measure" headerStyle="width: 200px" sortable></Column>
+					<Column field="conversion" header="Conversion" headerStyle="width: 150px" sortable></Column>
+					<Column field="weight" header="Weight" headerStyle="width: 100px" sortable></Column>
+					<Column field="volume" header="Volume" headerStyle="width: 120px" sortable></Column>
+					<Column field="price" header="Price" headerStyle="width: 150px" sortable>
+						<template #body="slotProps">
+							<span>{{formatCurrency(slotProps.data.price)}}</span>
+						</template>
+					</Column>
+					<Column field="HNA" header="HNA" headerStyle="width: 150px" sortable>
+						<template #body="slotProps">
+							<span>{{formatCurrency(slotProps.data.HNA)}}</span>
+						</template>
+					</Column>
+					<Column field="status" header="Status" headerStyle="width: 100px" sortable></Column>
+					<Column field="createdAt" header="Create Date" headerStyle="width: 150px" sortable>
+						<template #body="slotProps">
+							<span>{{formatDate(slotProps.data.createdAt)}}</span>
+						</template>
+					</Column>
+					<Column field="updatedAt" header="Update Date" headerStyle="width: 150px" sortable>
+						<template #body="slotProps">
+							<span>{{formatDate(slotProps.data.updatedAt)}}</span>
+						</template>
+					</Column>
+					<Column field="updateBy" header="Update by" headerStyle="width: 150px" sortable></Column>
 				</DataTable>
 
 				<Dialog :visible.sync="regionDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
@@ -107,7 +121,7 @@
 </template>
 
 <script>
-import ProductService from '../service/Product1Service';
+import ProductService from '../service/ProductService';
 
 export default {
 	data() {
@@ -131,8 +145,24 @@ export default {
 		this.productService.getProducts().then(data => this.products = data);
 	},
 	methods: {
+		formatDate(dat) {
+			let date = new Date(dat)
+			// console.log(date)
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+
+            if (month < 10) {
+                month = '0' + month;
+            }
+
+            if (day < 10) {
+                day = '0' + day;
+            }
+
+            return day + '-' + month + '-' + date.getFullYear();
+        },
 		formatCurrency(value) {
-			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+			return value.toLocaleString('id-ID', {style: 'currency', currency: 'IDR'});
 		},
 		openNew() {
 			this.region = {};
