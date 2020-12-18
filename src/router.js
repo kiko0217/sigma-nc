@@ -97,13 +97,33 @@ export default new Router({
 		},
 		{
 			name: 'targetSeles',
-			path: '/transaksi/target-seles',
+			path: '/transaksi/target-sales',
 			component: () => import('./transaksi/TargetSeles.vue')
 		},
 		{
 			name: 'revisiTargetSeles',
-			path: '/transaksi/revisi-target-seles',
+			path: '/transaksi/revisi-target-sales',
 			component: () => import('./transaksi/RevisiTargetSeles.vue')
+		},
+		{
+			name: 'salesDisplacement',
+			path: '/transaksi/sales-displacement',
+			component: () => import('./transaksi/SalesDisplacement.vue')
+		},
+		{
+			name: 'salesVisit',
+			path: '/transaksi/sales-visit',
+			component: () => import('./transaksi/SalesVisit.vue')
+		},
+		{
+			name: 'journeyPlan',
+			path: '/transaksi/journey-plan',
+			component: () => import('./transaksi/JourneyPlan.vue')
+		},
+		{
+			name: 'donasi',
+			path: '/transaksi/donasi',
+			component: () => import('./transaksi/Donasi.vue')
 		},
 		{
 			name: 'targetCall',
@@ -114,11 +134,6 @@ export default new Router({
 			name: 'breakdownSales',
 			path: '/transaksi/breakdown-sales',
 			component: () => import('./transaksi/BreakdownSales.vue')
-		},
-		{
-			name: 'salesVisit',
-			path: '/transaksi/sales-visit',
-			component: () => import('./transaksi/SalesVisit.vue')
 		},
 		{
 			name: 'expense',

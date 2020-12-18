@@ -53,7 +53,7 @@
 					</Column>
 				</DataTable>
 
-				<Dialog :visible.sync="regionDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
+				<Dialog :visible.sync="areaDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
 					<!-- ini bisa diisi dengan peta nantinya -->
 					<div class="p-field">
 						<label for="Code">Code</label>
@@ -61,7 +61,7 @@
 						<small class="p-invalid" v-if="submitted && !region.Code">Code is required.</small>
 					</div>
 					<div class="p-field">
-						<label for="AreaName">Region Name</label>
+						<label for="AreaName">Area Name</label>
 						<InputText id="AreaName" v-model.trim="region.AreaName" required="true" autofocus :class="{'p-invalid': submitted && !region.AreaName}" />
 						<small class="p-invalid" v-if="submitted && !region.AreaName">Region Name is required.</small>
 					</div>
@@ -110,7 +110,7 @@ export default {
 	data() {
 		return {
 			areas: null,
-			regionDialog: false,
+			areaDialog: false,
 			deleteRegionDialog: false,
 			deleteRegionsDialog: false,
 			region: {},
@@ -150,11 +150,11 @@ export default {
 		openNew() {
 			this.region = {};
 			this.submitted = false;
-            this.regionDialog = true;
+            this.areaDialog = true;
             this.createNew = true;
 		},
 		hideDialog() {
-			this.regionDialog = false;
+			this.areaDialog = false;
 			this.submitted = false;
 		},
 		saveRegion() {
@@ -167,7 +167,7 @@ export default {
 			if (this.region.AreaName.trim() && this.region.Code.trim() && this.region.Initial.trim()) {
                 this.$set(this.regions, this.findIndexByCode(this.region.Code), this.region);
                 this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Updated', life: 3000});
-                this.regionDialog = false;
+                this.areaDialog = false;
                 this.region = {};
 			}
         },
@@ -176,14 +176,14 @@ export default {
             if (this.region.AreaName.trim() && this.region.Code.trim() && this.region.Initial.trim()) {
                 this.regions.push(this.region);
                 this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Created', life: 3000});
-                this.regionDialog = false;
+                this.areaDialog = false;
                 this.region = {};
                 this.createNew = false;
             }
         },
 		editRegion(region) {
 			this.region = {...region};
-			this.regionDialog = true;
+			this.areaDialog = true;
 		},
 		confirmDeleteRegion(region) {
 			this.region = region;

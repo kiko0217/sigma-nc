@@ -35,25 +35,34 @@
 						</template>
 					</Column>
 					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-					<Column field="Code" header="Code" headerStyle="width: 100px" sortable></Column>
-					<Column field="DetailerName" header="Detailer Name" headerStyle="width: 200px" sortable></Column>
-					<Column field="Short" header="Short" headerStyle="width: 100px" sortable></Column>
-					<Column field="Level" header="Level" headerStyle="width: 100px" sortable></Column>
-					<Column field="Upper" header="Upper" headerStyle="width: 100px" sortable></Column>
-					<Column field="Status" header="Status" headerStyle="width: 100px" sortable></Column>
-					<Column field="Sex" header="Sex" headerStyle="width: 100px" sortable></Column>
-					<Column field="JoinDate" header="Join Date" headerStyle="width: 200px" sortable></Column>
-					<Column field="Address" header="Address" headerStyle="width: 300px" sortable></Column>
-					<Column field="Phone" header="Phone" headerStyle="width: 100px" sortable></Column>
-					<Column field="Email" header="Email" headerStyle="width: 100px" sortable></Column>
-					<Column field="AccNumber" header="Acc Number" headerStyle="width: 100px" sortable></Column>
-					<Column field="AccDesc" header="Acc Desc" headerStyle="width: 100px" sortable></Column>
-					<Column field="BankName" header="BankName" headerStyle="width: 100px" sortable></Column>
-					<Column field="NomerKTP" header="Nomer KTP" headerStyle="width: 200px" sortable></Column>
-					<Column field="Createby" header="Create by" headerStyle="width: 100px" sortable></Column>
-					<Column field="Createdate" header="Create Date" headerStyle="width: 100px" sortable></Column>
-					<Column field="Updateby" header="Update by" headerStyle="width: 100px" sortable></Column>
-					<Column field="Updatedate" header="Update Date" sortable></Column>
+					<Column field="code" header="Code" headerStyle="width: 100px" sortable></Column>
+					<Column field="name" header="Detailer Name" headerStyle="width: 200px" sortable></Column>
+					<Column field="short" header="Short" headerStyle="width: 100px" sortable></Column>
+					<Column field="level" header="Level" headerStyle="width: 100px" sortable></Column>
+					<Column field="upper" header="Upper" headerStyle="width: 100px" sortable></Column>
+					<Column field="status" header="Status" headerStyle="width: 100px" sortable></Column>
+					<Column field="sex" header="Sex" headerStyle="width: 100px" sortable></Column>
+					<Column field="joinDate" header="Join Date" headerStyle="width: 200px" sortable>
+						<template #body="slotProps">
+							<span>{{formatDate(slotProps.data.joinDate)}}</span>
+						</template>
+					</Column>
+					<Column field="address" header="Address" headerStyle="width: 300px" sortable></Column>
+					<Column field="phone" header="Phone" headerStyle="width: 150px" sortable></Column>
+					<Column field="email" header="Email" headerStyle="width: 250px" sortable></Column>
+					<Column field="budgetExpense" header="Budget Expense" headerStyle="width: 100px" sortable></Column>
+					<Column field="balance" header="Balance" headerStyle="width: 100px" sortable></Column>>
+					<Column field="createdAt" header="Create Date" sortable headerStyle="width: 150px">
+						<template #body="slotProps">
+							<span>{{formatDate(slotProps.data.createdAt)}}</span>
+						</template>
+					</Column>
+					<Column field="updatedAt" header="Update Date" sortable headerStyle="width: 150px">
+						<template #body="slotProps">
+							<span>{{formatDate(slotProps.data.updatedAt)}}</span>
+						</template>
+					</Column>
+					<Column field="updatedBy" header="Update by" sortable headerStyle="width: 150px"></Column>
 				</DataTable>
 
 				<Dialog :visible.sync="regionDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
@@ -136,6 +145,22 @@ export default {
         });
 	},
 	methods: {
+		formatDate(dat) {
+			let date = new Date(dat)
+			// console.log(date)
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+
+            if (month < 10) {
+                month = '0' + month;
+            }
+
+            if (day < 10) {
+                day = '0' + day;
+            }
+
+            return day + '-' + month + '-' + date.getFullYear();
+        },
 		formatCurrency(value) {
 			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
 		},

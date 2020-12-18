@@ -35,13 +35,13 @@
 						</template>
 					</Column>
 					<Column selectionMode="multiple" headerStyle="width: 3rem" :frozen="true"></Column>
-					<Column field="code" header="Code" :frozen="true" headerStyle="width: 100px" sortable></Column>
+					<Column field="nfCode" header="Code" :frozen="true" headerStyle="width: 100px" sortable></Column>
 					<Column field="distName" header="Distributor Name" :frozen="true" headerStyle="width: 150px" sortable></Column>
 					<Column field="address" header="Address" headerStyle="width: 300px" :frozen="true" sortable></Column>
 					<Column field="short" header="Initial" headerStyle="width: 100px" sortable></Column>
 					<Column field="contPerson" header="Contact Person" headerStyle="width: 200px" sortable></Column>
-					<Column field="Status" header="Status" headerStyle="width: 100px" sortable></Column>
-					<Column field="Type" header="Type" headerStyle="width: 100px" sortable></Column>
+					<Column field="status" header="Status" headerStyle="width: 100px" sortable></Column>
+					<Column field="type" header="Type" headerStyle="width: 100px" sortable></Column>
 					<Column field="RegionCode" header="Region Code" headerStyle="width: 200px" sortable></Column>
 					<Column field="Createby" header="Create by" headerStyle="width: 200px" sortable></Column>
 					<Column field="Createdate" header="Create Date" headerStyle="width: 100px" sortable></Column>

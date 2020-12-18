@@ -15,7 +15,7 @@
 					</template>
 				</Toolbar>
 
-				<DataTable ref="dt" :value="regions" :selection.sync="selectedRegions" dataKey="Initial" :paginator="true" :rows="10" :filters="filters"
+				<DataTable ref="dt" :value="regions" :selection.sync="selectedRegions" dataKey="_id" :paginator="true" :rows="10" :filters="filters"
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
 					<template #header>
@@ -29,45 +29,36 @@
 					</template>
 
 					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-					<Column field="codeDept" header="Code Dept" sortable></Column>
-					<Column field="code" header="Code Region" sortable></Column>
-					<Column field="name" header="Region Name" sortable></Column>
-					<Column field="short" header="Initial" sortable></Column>
-					<Column field="createdAt" header="Create Date" sortable>
-						<template #body="slotProps">
-							<span>{{formatDate(slotProps.data.createdAt)}}</span>
-						</template>
-					</Column>
-					<Column field="updatedAt" header="Update Date" sortable>
-						<template #body="slotProps">
-							<span>{{formatDate(slotProps.data.updatedAt)}}</span>
-						</template>
-					</Column>
-					<Column field="updatedBy" header="Update by" sortable></Column>
-					<Column>
+					<Column headerStyle="width: 150px">
 						<template #body="slotProps">
 							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editRegion(slotProps.data)" />
 							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteRegion(slotProps.data)" />
 						</template>
 					</Column>
+					<Column v-for="(col, index) of columnRegion" :field="col.field" :header="col.header" :key="index" headerStyle="width: 150px"></Column>
 				</DataTable>
 
 				<Dialog :visible.sync="regionDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
 					<!-- ini bisa diisi dengan peta nantinya -->
 					<div class="p-field">
-						<label for="CodeRegion">Code Region</label>
-						<InputText id="CodeRegion" v-model.trim="region.CodeRegion" required="true" autofocus :class="{'p-invalid': submitted && !region.CodeRegion}" />
-						<small class="p-invalid" v-if="submitted && !region.CodeRegion">Code Region is required.</small>
+						<label for="codeDept">Code Dept</label>
+						<InputText id="codeDept" v-model.trim="region.codeDept" required="true" autofocus :class="{'p-invalid': submitted && !region.codeDept}" />
+						<small class="p-invalid" v-if="submitted && !region.codeDept">Code Region is required.</small>
 					</div>
 					<div class="p-field">
-						<label for="RegionName">Region Name</label>
-						<InputText id="RegionName" v-model.trim="region.RegionName" required="true" autofocus :class="{'p-invalid': submitted && !region.RegionName}" />
-						<small class="p-invalid" v-if="submitted && !region.RegionName">Region Name is required.</small>
+						<label for="codeRegion">Code Region</label>
+						<InputText id="codeRegion" v-model.trim="region.code" required="true" autofocus :class="{'p-invalid': submitted && !region.code}" />
+						<small class="p-invalid" v-if="submitted && !region.code">Code Region is required.</small>
+					</div>
+					<div class="p-field">
+						<label for="regionName">Region Name</label>
+						<InputText id="regionName" v-model.trim="region.name" required="true" autofocus :class="{'p-invalid': submitted && !region.name}" />
+						<small class="p-invalid" v-if="submitted && !region.name">Region Name is required.</small>
 					</div>
 					<div class="p-field">
 						<label for="Initial">Initial</label>
-						<InputText id="Initial" v-model.trim="region.Initial" required="true" autofocus :class="{'p-invalid': submitted && !region.Initial}" />
-						<small class="p-invalid" v-if="submitted && !region.Initial">Initial Name is required.</small>
+						<InputText id="Initial" v-model.trim="region.short" required="true" autofocus :class="{'p-invalid': submitted && !region.short}" />
+						<small class="p-invalid" v-if="submitted && !region.short">Initial Name is required.</small>
 					</div>
 					<template #footer>
 						<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog"/>
@@ -108,6 +99,7 @@ import RegionService from '../service/RegionService';
 export default {
 	data() {
 		return {
+			columnRegion:[],
 			regions: null,
 			regionDialog: false,
 			deleteRegionDialog: false,
@@ -121,6 +113,24 @@ export default {
 	},
 	regionService: null,
 	created() {
+		this.columnRegion = [
+			{
+				field : 'codeDept',
+				header : 'Code Dept'
+			},
+			{
+				field : 'code',
+				header : 'Code Region'
+			},
+			{
+				field : 'name',
+				header : 'Region Name'
+			},
+			{
+				field : 'short',
+				header : 'Initial'
+			},
+		]
 		this.regionService = new RegionService();
 	},
 	mounted() {
@@ -163,12 +173,12 @@ export default {
             }
 			this.submitted = true;
 
-			if (this.region.RegionName.trim() && this.region.CodeRegion.trim() && this.region.Initial.trim()) {
-                this.$set(this.regions, this.findIndexByCode(this.region.CodeRegion), this.region);
-                this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Updated', life: 3000});
-                this.regionDialog = false;
-                this.region = {};
-			}
+			// if (this.region.RegionName.trim() && this.region.CodeRegion.trim() && this.region.Initial.trim()) {
+            //     this.$set(this.regions, this.findIndexByCode(this.region._id), this.region);
+            //     this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Updated', life: 3000});
+            //     this.regionDialog = false;
+            //     this.region = {};
+			// }
         },
         createRegion() {
             this.submitted = true;
@@ -197,7 +207,7 @@ export default {
 		findIndexByCode(code) {
 			let index = -1;
 			for (let i = 0; i < this.regions.length; i++) {
-				if (this.regions[i].CodeRegion === code) {
+				if (this.regions[i]._id === code) {
 					index = i;
 					break;
 				}

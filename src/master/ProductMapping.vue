@@ -10,7 +10,9 @@
 					</template>
 
 				</Toolbar>
-				<DataTable ref="mapping" :value="productMappings" :scrollable="true" scrollHeight="500px" dataKey="_id" editMode="cell" class="editable-cells-table" :filters="filters">
+				<DataTable ref="mapping" :value="productMappings" :scrollable="true" :loading="loading" :paginator="true" :rows="10" scrollHeight="500px" dataKey="_id" editMode="cell" class="editable-cells-table" :filters="filters"
+					paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
+					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} product mapping">
 					<template #header>
 						<div class="table-header">
 							<span class="p-input-icon-left">
@@ -22,7 +24,7 @@
 					<Column headerStyle="width: 100px">
 						<template #body="slotProps">
 							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editProductMapping(slotProps.data)" />
-							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteSelected()" />
+							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteProductMapping(slotProps)" />
 						</template>
 					</Column>
 					<Column v-for="(col, index) of culomnProductUnmapping" :field="col.field" :header="col.header" :key="index" headerStyle="width: 150px"></Column>
@@ -31,10 +33,10 @@
 							<InputText v-model="slotProps.data['nfCode']" />
 						</template> -->
 						<template #editor="slotProps">
-							<Dropdown v-model="slotProps.data['nfCode']" :options="products" optionLabel="code" optionValue="code" placeholder="Select Product Code" scrollHeight="100px">
-								<template #option="slotProps">
-									<span :class="'product-badge status-' + slotProps.option.code.toLowerCase()">{{slotProps.option.code}}</span>
-								</template>
+							<Dropdown v-model="slotProps.data['nfCode']" :options="products" optionLabel="short" :filter="true" optionValue="code" placeholder="Select Product" scrollHeight="100px">
+								<!-- <template #option="slotProps">
+									<span :class="'product-badge'">{{slotProps.option.code}}</span>
+								</template> -->
 							</Dropdown>
 						</template>
 					</Column>
@@ -50,8 +52,8 @@
 						<span>Are you sure you want to delete the selected product Mapping?</span>
 					</div>
 					<template #footer>
-						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteRegionsDialog = false"/>
-						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteSelectedRegions" />
+						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteDialog = false"/>
+						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteProductMapping" />
 					</template>
 				</Dialog>
 			</div>
@@ -66,6 +68,7 @@ import ProductService from '../service/ProductService'
 export default {
 	data() {
 		return {
+			loading: false,
 			products: null,
 			selectProductMapping: null,
 			culomnProductUnmapping: [
@@ -87,22 +90,56 @@ export default {
 		this.culomnTemp = ['from', 'subject', 'status', 'createdAt']
 	},
 	mounted() {
+		this.loading = true
 		this.productService.getProducts().then(data => this.products = data)
-		this.productMappingService.getProdactMapping().then(data => this.productMappings = data)
+		this.productMappingService.getProductMapping().then(data =>{
+			this.productMappings = data
+			this.loading = false
+		})
 	},
 	methods: {
 		editProductMapping(data){
 			// console.log(data)
-			this.productMappingService.postEdit(data)
-			.then(() => {
-				// this.productMappingService.getProductMappings(data).then.then(data3 => this.productMappings = data3)
-				this.$toast.add({severity:'success', summary: 'Successful', detail: 'Edit Success', life: 3000});
-			})
+			// this.productMappingService.postEdit(data)
+			// .then(() => {
+			// 	// this.productMappingService.getProductMappings(data).then.then(data3 => this.productMappings = data3)
+			// 	this.$toast.add({severity:'success', summary: 'Successful', detail: 'Edit Success', life: 3000});
+			// })
+			if(data.nfCode == null){
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: 'Code Nucleus Null', life: 3000});
+			} else {
+				this.productMappingService.postEdit(data)
+				.then(message =>{
+					
+					this.$toast.add({severity:'success', summary: 'Success Message', detail: message, life: 3000});
+				})
+				.catch(err => {
+					this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000});
+				})
+			}
 		},
 		confirmDeleteProductMapping(data)
 		{
-			console.log(data)
+			// console.log(data)
+			this.selectProductMapping = data.data._id
+			// console.log(this.selectProductMapping)
 			this.deleteDialog = true
+		},
+		deleteProductMapping() {
+			this.productMappingService.deleteProductMapping(this.selectProductMapping)
+			.then((message) => {
+				this.$toast.add({severity:'success', summary: 'Success Message', detail: message, life: 3000});
+				this.loading = true
+				this.productMappingService.getProductMapping().then(data => {
+					this.productMapping = data
+					this.loading = false
+				})
+
+			}).
+			catch(err => {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000});
+			})
+			this.deleteDialog = false
 		},
 		onRowExpand() {
 			if(this.expandedRows.length > 1)this.expandedRows.shift()

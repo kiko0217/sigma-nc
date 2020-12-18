@@ -5,93 +5,86 @@
 				<Toast/>
 				<Toolbar class="p-mb-4">
 					<template slot="left">
-						<Button label="New" icon="pi pi-plus" class="p-button-success p-mr-2" @click="openNew" />
-						<Button label="Delete" icon="pi pi-trash" class="p-button-danger" @click="confirmDeleteSelected" :disabled="!selectedRegions || !selectedRegions.length" />
+						<Button label="New" icon="pi pi-plus" :disabled="loading" class="p-button-success p-mr-2" @click="openNew" />
+						<!-- <Button label="Delete" icon="pi pi-trash" class="p-button-danger" @click="confirmDeleteSelected" :disabled="!selectedRegions || !selectedRegions.length" /> -->
 					</template>
 
 					<template slot="right">
-						<FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" />
-						<Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
+						<!-- <FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" /> -->
+						<Button label="Export" icon="pi pi-upload" :disabled="loading" class="p-button-help" @click="exportCSV($event)"  />
 					</template>
 				</Toolbar>
 
-				<DataTable ref="dt" :value="selesCovers" :selection.sync="selectedRegions" dataKey="Outlet" :paginator="true" :rows="10" :filters="filters"
+				<DataTable ref="dt" :value="salesCovers" :selection.sync="salectedSalesCover" :loading="loading" dataKey="Outlet" :paginator="true" :rows="10" :filters="filters"
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
 					<template #header>
 						<div class="table-header">
-							<h5 class="p-m-0">Manage Seles Cover</h5>
+							<!-- <h5 class="p-m-0">Manage Seles Cover</h5> -->
 							<span class="p-input-icon-left">
                                 <i class="pi pi-search" />
                                 <InputText v-model="filters['global']" placeholder="Search..." />
                             </span>
 						</div>
 					</template>
-
-					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-					<Column field="Detailer" header="Detailer" sortable></Column>
-					<Column field="Region" header="Region" sortable></Column>
-					<Column field="Area" header="Area" sortable></Column>
-					<Column field="Distributor" header="Distributor" sortable></Column>
-					<Column field="Outlet" header="Outlet" sortable></Column>
-					<Column field="Customer" header="Customer" sortable></Column>
-					<Column field="TargetCall" header="Target Call" sortable></Column>
-					<Column field="Createby" header="Create by" sortable></Column>
-					<Column field="Createdate" header="Create Date" sortable></Column>
-					<Column field="Updateby" header="Update by" sortable></Column>
-					<Column field="Updatedate" header="Update Date" sortable></Column>
-					<Column>
-						<template #body="slotProps">
-							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editRegion(slotProps.data)" />
-							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteRegion(slotProps.data)" />
-						</template>
-					</Column>
+					<Column field="code" header="Code" headerStyle="width: 150px" sortable></Column>
+					<Column field="detailer.name" header="Detailer" headerStyle="width: 150px" sortable></Column>
+					<Column field="area.name" header="Area" headerStyle="width: 150px" sortable></Column>
+					<Column field="outlet.name" header="Outlet" headerStyle="width: 150px" sortable></Column>
+					<Column field="customer.name" header="Customer" headerStyle="width: 150px" sortable></Column>
 				</DataTable>
-
-				<Dialog :visible.sync="regionDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
+				<Dialog :visible.sync="createDialog" :style="{width: '900px'}" header="Create Sales Cover" :modal="true" class="p-fluid">
 					<!-- ini bisa diisi dengan peta nantinya -->
-					<div class="p-field">
-						<label for="Area">Area</label>
-						<InputText id="Area" v-model.trim="region.Area" required="true" autofocus :class="{'p-invalid': submitted && !region.Area}" />
-						<small class="p-invalid" v-if="submitted && !region.Area">Area is required.</small>
-					</div>
-					<div class="p-field">
-						<label for="Distributor">Region Name</label>
-						<InputText id="Distributor" v-model.trim="region.Distributor" required="true" autofocus :class="{'p-invalid': submitted && !region.Distributor}" />
-						<small class="p-invalid" v-if="submitted && !region.Distributor">Region Name is required.</small>
-					</div>
-					<div class="p-field">
-						<label for="Outlet">Outlet</label>
-						<InputText id="Outlet" v-model.trim="region.Outlet" required="true" autofocus :class="{'p-invalid': submitted && !region.Outlet}" />
-						<small class="p-invalid" v-if="submitted && !region.Outlet">Outlet Name is required.</small>
+					<div class="p-fluid p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<!-- <span class="p-float-label"> -->
+							<label for="code">Code</label>
+							<InputText id="code" v-model.trim="codeNew" required="true" autofocus :class="{'p-invalid': noteCode}" />
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<!-- <span class="p-float-label"> -->
+							<label for="detailer">Detailer</label>
+							<Dropdown inputId="detailer" v-model="detailerNew" :options="detailers" :filter="true" optionValue="code" optionLabel="name" placeholder="Select Detailer" scrollHeight="100px">
+							</Dropdown>
+							<!-- </span> -->
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<!-- <span class="p-float-label"> -->
+							<label for="area">Area</label>
+							<Dropdown inputId="area" v-model="areaNew" :options="areas" :filter="true" optionValue="code" optionLabel="name" placeholder="Select Detailer" scrollHeight="100px">
+							</Dropdown>
+							<!-- </span> -->
+						</div>
+						<div class="p-field p-col-12 p-md-6">
+							<!-- <span class="p-float-label"> -->
+							<label for="outlet">Outlet</label>
+							<Dropdown inputId="outlet" v-model="outletNew" :options="outlets" :filter="true" optionValue="code" optionLabel="code" placeholder="Select Detailer" scrollHeight="100px">
+								<!-- <template #option="slotProps">
+									<span>{{slotProps.option.code}}</span>
+								</template> -->
+							</Dropdown>
+							<!-- </span> -->
+						</div>
+						<div class="p-field p-col-12 p-md-6">
+							<!-- <span class="p-float-label"> -->
+							<label for="outlet">Customer</label>
+							<Dropdown inputId="customers" v-model="customerNew" :options="customers" :filter="true" optionValue="code" optionLabel="code" placeholder="Select Customer" scrollHeight="100px">
+							</Dropdown>
+							<!-- </span> -->
+						</div>
+						<div class="p-field p-col-12 p-md-12">
+							<span class="p-float-label">
+								<Textarea id="textarea" v-model="descriptionNew" rows="3" />
+								<label for="textarea">Description</label>
+							</span>
+						</div>
 					</div>
 					<template #footer>
 						<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog"/>
-						<Button label="Save" icon="pi pi-check" class="p-button-text" @click="saveRegion" />
+						<Button label="Save" icon="pi pi-check" class="p-button-text" @click="saveSalesCover"/>
 					</template>
 				</Dialog>
 
-				<Dialog :visible.sync="deleteRegionDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
-					<div class="confirmation-content">
-						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-						<span v-if="region">Are you sure you want to delete <b>{{region.Distributor}}</b>?</span>
-					</div>
-					<template #footer>
-						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteRegionDialog = false"/>
-						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteRegion" />
-					</template>
-				</Dialog>
-
-				<Dialog :visible.sync="deleteRegionsDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
-					<div class="confirmation-content">
-						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-						<span v-if="region">Are you sure you want to delete the selected regions?</span>
-					</div>
-					<template #footer>
-						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteRegionsDialog = false"/>
-						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteSelectedRegions" />
-					</template>
-				</Dialog>
 			</div>
 		</div>
 	</div>
@@ -99,111 +92,140 @@
 </template>
 
 <script>
-import SelesCoverService from '../service/SelesCoverService';
+import SalesCoverService from '../service/SalesCoverService'
+import DetailerService from '../service/DetailerService';
+// import RegionService from '../service/RegionService';
+import AreaService from '../service/AreaService';
+import OutletService from '../service/OutletService';
+import CustomerService from '../service/Customer1Service';
 
 export default {
 	data() {
 		return {
-			selesCovers: null,
-			regionDialog: false,
-			deleteRegionDialog: false,
-			deleteRegionsDialog: false,
-			region: {},
-			selectedRegions: null,
+			codeNew: null,
+			noteCode: true,
+			customerNew: null,
+			customers: null,
+			outlets: null,
+			areas: null,
+			descriptionNew: null,
+			// regions: null,
+			detailers: null,
+			loading: false,
+			salectedSalesCover: null,
+			salesCovers: null,
+			createDialog: false,
+			detailerNew: null,
+			areaNew: null,
+			outletNew: null,
 			filters: {},
-            submitted: false,
-            createNew: false
 		}
 	},
-	selesCoverService: null,
+	customerService: null,
+	outletService: null,
+	areaService: null,
+	// regionService: null,
+	detailerSErvice: null,
+	salesCoverService: null,
 	created() {
-		this.selesCoverService = new SelesCoverService();
+		this.customerService = new CustomerService();
+		this.outletService = new OutletService();
+		this.areaService = new AreaService();
+		// this.regionService = new RegionService();
+		this.detailerService = new DetailerService();
+		this.salesCoverService = new SalesCoverService();
+
 	},
 	mounted() {
-		this.selesCoverService.getSelesCovers().then(data => this.selesCovers = data);
+		this.loading = true
+		this.customerService.getCustomers()
+		.then(data => this.customers = data);
+		this.outletService.getOutlets()
+		.then(data => {
+            this.outlets = data;
+            // this.loading = false;
+        });
+		this.areaService.getAreas()
+		.then(data => this.areas = data);
+		// this.regionService.getRegions()
+		// .then(data => this.regions = data);
+		this.detailerService.getDetailers()
+		.then(data => {
+			this.detailers = data
+		})
+		this.salesCoverService.getSalesCovers().then(data =>{
+			this.salesCovers = data
+			this.loading = false
+		});
+		
 	},
 	methods: {
-		formatCurrency(value) {
-			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
-		},
 		openNew() {
-			this.region = {};
-			this.submitted = false;
-            this.regionDialog = true;
-            this.createNew = true;
+			this.descriptionNew = null
+			this.customerNew = null
+			this.detailerNew = null
+			this.areaNew = null
+			this.outletNew = null
+			// console.log('test')
+			this.createNew = {};
+			// this.submitted = false;
+            this.createDialog = true;
+			this.createNew = true;
+			this.noteCode = false
 		},
 		hideDialog() {
-			this.regionDialog = false;
-			this.submitted = false;
+			this.createDialog = false
 		},
-		saveRegion() {
-            if(this.createNew){
-                this.createRegion();
-                return;
-            }
-			this.submitted = true;
-
-			if (this.region.Distributor.trim() && this.region.Area.trim() && this.region.Outlet.trim()) {
-                this.$set(this.regions, this.findIndexByArea(this.region.Area), this.region);
-                this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Updated', life: 3000});
-                this.regionDialog = false;
-                this.region = {};
+		saveSalesCover() {
+			
+			if (this.codeNew == null) {
+				this.noteCode = true
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: 'Code Null', life: 3000});
+				return;
 			}
-        },
-        createRegion() {
-            this.submitted = true;
-            if (this.region.Distributor.trim() && this.region.Area.trim() && this.region.Outlet.trim()) {
-                this.regions.push(this.region);
-                this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Created', life: 3000});
-                this.regionDialog = false;
-                this.region = {};
-                this.createNew = false;
-            }
-        },
-		editRegion(region) {
-			this.region = {...region};
-			this.regionDialog = true;
-		},
-		confirmDeleteRegion(region) {
-			this.region = region;
-			this.deleteRegionDialog = true;
-		},
-		deleteRegion() {
-			this.regions = this.regions.filter(val => val.Area !== this.region.Area);
-			this.deleteRegionDialog = false;
-			this.region = {};
-			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Deleted', life: 3000});
-		},
-		findIndexByArea(Area) {
-			let index = -1;
-			for (let i = 0; i < this.regions.length; i++) {
-				if (this.regions[i].Area === Area) {
-					index = i;
-					break;
-				}
+			if (this.detailerNew == null) {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: 'Detailer Null', life: 3000});
+				return;
 			}
-
-			return index;
-		},
-		createId() {
-			let id = '';
-			var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-			for ( var i = 0; i < 5; i++ ) {
-				id += chars.charAt(Math.floor(Math.random() * chars.length));
+			if (this.areaNew == null) {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: 'Area Null', life: 3000});
+				return;
 			}
-			return id;
-		},
-		exportCSV() {
-			this.$refs.dt.exportCSV();
-		},
-		confirmDeleteSelected() {
-			this.deleteRegionsDialog = true;
-		},
-		deleteSelectedRegions() {
-			this.regions = this.regions.filter(val => !this.selectedRegions.includes(val));
-			this.deleteRegionsDialog = false;
-			this.selectedRegions = null;
-			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Regions Deleted', life: 3000});
+			if (this.outletNew == null) {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: 'Outlet Null', life: 3000});
+				return;
+			}
+			if (this.customerNew == null) {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: 'Customer Null', life: 3000});
+				return;
+			}
+			if (typeof this.salesCovers.find(element => element.code == this.codeNew) !== 'undefined'){
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: 'Code exist', life: 3000});
+				this.noteCode = true
+				return;
+			}
+			this.loading = true
+			this.salesCoverService
+			.createSalesCover({
+				code: this.codeNew,
+				areaNew:this.areaNew,
+				detailerNew: this.detailerNew,
+				outletNew: this.outletNew,
+				customerNew: this.customerNew,
+				description: this.descriptionNew
+			})
+			.then(message => {
+				this.$toast.add({severity:'success', summary: 'Success Message', detail: message, life: 3000});
+				this.salesCoverService.getSalesCovers().then(data =>{
+					this.salesCovers = data
+					this.loading = false
+				})
+			})
+			.catch(err => {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000});
+				this.loading = false
+			})
+			this.createDialog = false
 		}
 	}
 }

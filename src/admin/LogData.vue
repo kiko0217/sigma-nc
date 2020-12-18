@@ -18,11 +18,11 @@
 							<template slot="left">{{slotProps.data.subject}}</template>
 							<template slot="right">
 								<!-- <FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" /> -->
-								<Button label="Mapping" icon="pi pi-upload" class="p-button-help" @click="mapping"  />
+								<!-- <Button label="Mapping" icon="pi pi-upload" class="p-button-help" @click="mapping"  /> -->
 							</template>
 						</Toolbar>
 						<DataTable :value="slotProps.data.attachments" :selection.sync="selectedTemp" selectionMode="single" dataKey="name">
-							<Column headerStyle="width:120px" >
+							<Column headerStyle="width:120px">
 								<template #body="slotProps">
 									<Button icon="pi pi-arrow-down" class="p-button-rounded p-button-success p-mr-2" @click="downloadFile(slotProps.data)" />
 								</template>
@@ -130,16 +130,20 @@ export default {
 			this.unmappingDialog = true
 		},
 		onRowExpand() {
-			if(this.expandedRows.length > 1)this.expandedRows.shift()
-			console.log(this.expandedRows)
+			if(this.expandedRows.length > 2	){
+				this.expandedRows[1] = this.expandedRows[2]
+				this.expandedRows.pop()
+			}
+			// console.log(this.expandedRows)
 		},
 		onRowCollapse() {
-
+			// this.expandedRows
+			// console.log(this.expandedRows)
 		},
 		downloadFile(data) {
 			// console.log(this.expandedRows)
 			// console.log(data)
-			this.productMappingService.downloadFile(data.name, this.expandedRows[0].subject)
+			this.productMappingService.downloadFile(data.name, this.expandedRows[1].subject)
 			
 		},
 		formatCurrency(value) {
@@ -201,7 +205,6 @@ export default {
 					break;
 				}
 			}
-
 			return index;
 		},
 		createId() {

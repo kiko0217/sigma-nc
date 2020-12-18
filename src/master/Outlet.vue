@@ -15,7 +15,7 @@
 					</template>
 				</Toolbar>
 
-				<DataTable ref="dt" :value="outlets" :scrollable="true" scrollHeight="500px" :loading="loading" :selection.sync="selectedRegions" dataKey="CodeOutlet" :paginator="true" :rows="10" :filters="filters"
+				<DataTable ref="dt" :value="outlets" :scrollable="true" scrollHeight="500px" :loading="loading" dataKey="_id" :paginator="true" :rows="10" :filters="filters"
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
 					<template #header>
@@ -34,14 +34,13 @@
 							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteRegion(slotProps.data)" />
 						</template>
 					</Column>
-					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-					<Column field="Region" header="Region" headerStyle="width: 100px" sortable></Column>
-					<Column field="Area" header="Area" headerStyle="width: 100px" sortable></Column>
+					<Column field="code" header="Code" headerStyle="width: 100px" sortable></Column>
+					<Column field="name" header="Name Outlet" headerStyle="width: 300px" sortable></Column>
+					<!-- <Column field="Area" header="Area" headerStyle="width: 100px" sortable></Column>
 					<Column field="Detailer" header="Detailer" headerStyle="width: 100px" sortable></Column>
 					<Column field="Type" header="Type" headerStyle="width: 100px" sortable></Column>
 					<Column field="Catagory" header="Catagory" headerStyle="width: 100px" sortable></Column>
 					<Column field="CodeOutlet" header="Code Outlet" headerStyle="width: 100px" sortable></Column>
-					<Column field="NameOutlet" header="Name Outlet" headerStyle="width: 300px" sortable></Column>
 					<Column field="ShortName" header="Short Name" headerStyle="width: 100px" sortable></Column>
 					<Column field="Status" header="Status" headerStyle="width: 100px" sortable></Column>
 					<Column field="Address" header="Address" headerStyle="width: 300px" sortable></Column>
@@ -56,7 +55,7 @@
 					<Column field="Createby" header="Create by" headerStyle="width: 100px" sortable></Column>
 					<Column field="Createdate" header="Create Date" headerStyle="width: 100px" sortable></Column>
 					<Column field="Updateby" header="Update by" headerStyle="width: 100px" sortable></Column>
-					<Column field="Updatedate" header="Update Date" headerStyle="width: 100px" sortable></Column>
+					<Column field="Updatedate" header="Update Date" headerStyle="width: 100px" sortable></Column> -->
 				</DataTable>
 
 				<Dialog :visible.sync="regionDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
@@ -134,6 +133,7 @@ export default {
 	mounted() {
         this.loading = true,
 		this.outletService.getOutlets().then(data => {
+			console.log(data)
             this.outlets = data;
             this.loading = false;    
         });

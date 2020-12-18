@@ -15,7 +15,7 @@
 					</template>
 				</Toolbar>
 
-				<DataTable ref="dt" :value="customers" :scrollable="true" scrollHeight="500px" :selection.sync="selectedRegions" dataKey="CodeCust" :paginator="true" :rows="10" :filters="filters"
+				<DataTable ref="dt" :value="customers" :scrollable="true" scrollHeight="500px" :selection.sync="selectedRegions" editMode="cell" dataKey="CodeCust" :paginator="true" :rows="10" :filters="filters"
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
 					<template #header>
@@ -35,27 +35,44 @@
 						</template>
 					</Column>
 					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-					<Column field="Outlet" header="Outlet" headerStyle="width: 100px" sortable></Column>
-					<Column field="Type" header="Type" headerStyle="width: 100px" sortable></Column>
-					<Column field="Category" header="Category" headerStyle="width: 100px" sortable></Column>
-					<Column field="Class" header="Class" headerStyle="width: 100px" sortable></Column>
-					<Column field="CodeCust" header="CodeCust" headerStyle="width: 100px" sortable></Column>
-					<Column field="NameCustomer" header="Customer Name" headerStyle="width: 200px" sortable></Column>
-					<Column field="ShortName" header="Shor Name" headerStyle="width: 100px" sortable></Column>
+					<!-- <Column field="Outlet" header="Outlet" headerStyle="width: 100px" sortable></Column> -->
+					<Column field="type" header="Type" headerStyle="width: 100px" sortable></Column>
+					<Column field="category" header="Category" headerStyle="width: 100px" sortable></Column>
+					<Column field="class" header="Class" headerStyle="width: 100px" sortable></Column>
+					<Column field="code" header="Code Cust" headerStyle="width: 100px" sortable></Column>
+					<Column field="name" header="Customer Name" headerStyle="width: 200px" sortable></Column>
+					<Column field="short" header="Shor Name" headerStyle="width: 100px" sortable></Column>
+					<Column field="outletCode" header="Code Outlet" headerStyle="width: 200px" sortable>
+						<template #editor="slotProps">
+							<Dropdown v-model="slotProps.data['outletCode']" :options="outlets" :filter="true" optionLabel="code" optionValue="code" placeholder="Select Outlet" scrollHeight="100px">
+								<template #option="slotProps">
+									<span>{{slotProps.option.name}}</span>
+								</template>
+							</Dropdown>
+						</template>
+					</Column>
 					<Column field="KSO" header="KSO" headerStyle="width: 100px" sortable></Column>
-					<Column field="Status" header="Status" headerStyle="width: 100px" sortable></Column>
-					<Column field="Sex" header="Sex" headerStyle="width: 100px" sortable></Column>
-					<Column field="Balance" header="Balance" headerStyle="width: 100px" sortable></Column>
-					<Column field="Address" header="Address" headerStyle="width: 300px" sortable></Column>
-					<Column field="ZipCode" header="Zip Code" headerStyle="width: 100px" sortable></Column>
-					<Column field="City" header="City" headerStyle="width: 100px" sortable></Column>
-					<Column field="Propinsi" header="Propinsi" headerStyle="width: 100px" sortable></Column>
-					<Column field="Phone" header="Phone" headerStyle="width: 100px" sortable></Column>
-					<Column field="Email" header="Email" headerStyle="width: 100px" sortable></Column>
-					<Column field="Createby" header="Create by" headerStyle="width: 100px" sortable></Column>
-					<Column field="Createdate" header="Create Date" headerStyle="width: 100px" sortable></Column>
-					<Column field="Updateby" header="Update by" headerStyle="width: 100px" sortable></Column>
-					<Column field="Updatedate" header="Update Date" headerStyle="width: 100px" sortable></Column>
+					<Column field="status" header="Status" headerStyle="width: 100px" sortable></Column>
+					<Column field="sex" header="Sex" headerStyle="width: 100px" sortable></Column>
+					<Column field="balance" header="Balance" headerStyle="width: 100px" sortable></Column>
+					<Column field="targetCall" header="Target Call" headerStyle="width: 100px" sortable></Column>
+					<Column field="address" header="Address" headerStyle="width: 300px" sortable></Column>
+					<Column field="codePos" header="Kode POS" headerStyle="width: 100px" sortable></Column>
+					<Column field="city" header="City" headerStyle="width: 100px" sortable></Column>
+					<Column field="propinsi" header="Propinsi" headerStyle="width: 100px" sortable></Column>
+					<Column field="phone" header="Phone" headerStyle="width: 100px" sortable></Column>
+					<Column field="email" header="Email" headerStyle="width: 100px" sortable></Column>
+					<Column field="createdAt" header="Create Date" sortable headerStyle="width: 150px">
+						<template #body="slotProps">
+							<span>{{formatDate(slotProps.data.createdAt)}}</span>
+						</template>
+					</Column>
+					<Column field="updatedAt" header="Update Date" sortable headerStyle="width: 150px">
+						<template #body="slotProps">
+							<span>{{formatDate(slotProps.data.updatedAt)}}</span>
+						</template>
+					</Column>
+					<Column field="updatedBy" header="Update by" sortable headerStyle="width: 150px"></Column>
 				</DataTable>
 
 				<Dialog :visible.sync="regionDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
@@ -110,10 +127,11 @@
 
 <script>
 import CustomerService from '../service/Customer1Service';
-
+import OutletService from '../service/OutletService'
 export default {
 	data() {
 		return {
+			outles: null,
 			customers: null,
 			regionDialog: false,
 			deleteRegionDialog: false,
@@ -126,13 +144,32 @@ export default {
 		}
 	},
 	customerService: null,
+	outletService: null,
 	created() {
+		this.outletService= new OutletService()
 		this.customerService = new CustomerService();
 	},
 	mounted() {
+		this.outletService.getOutlets().then(data => this.outlets = data)
 		this.customerService.getCustomers().then(data => this.customers = data);
 	},
 	methods: {
+		formatDate(dat) {
+			let date = new Date(dat)
+			// console.log(date)
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+
+            if (month < 10) {
+                month = '0' + month;
+            }
+
+            if (day < 10) {
+                day = '0' + day;
+            }
+
+            return day + '-' + month + '-' + date.getFullYear();
+        },
 		formatCurrency(value) {
 			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
 		},

@@ -104,11 +104,11 @@ export default {
                             icon: 'pi pi-fw pi-heart',
                             to: { name: 'pemeliharaanHarga' }
                         },
-                        {
-                            label:'Skema Discount',
-                            icon: 'pi pi-fw pi-heart',
-                            to: { name: 'skemaDiscount' }
-                        },
+                        // {
+                        //     label:'Skema Discount',
+                        //     icon: 'pi pi-fw pi-heart',
+                        //     to: { name: 'skemaDiscount' }
+                        // },
                     ]
                 },
                 {label: 'Transaksi', icon: 'pi pi-fw pi-clone',
@@ -124,10 +124,16 @@ export default {
                             to: { name: "revisiTargetSeles" }
                         },
                         {
-                            label: 'Target Call',
+                            label: 'Sales Displacement (PR)',
                             icon: 'pi pi-fw pi-map-marker', 
-                            to: { name: "targetCall" }
+                            to: { name: "salesDisplacement" }
                         },
+                        // {
+                        //     label: 'Target Call',
+                        //     icon: 'pi pi-fw pi-map-marker', 
+                        //     to: { name: "targetCall" }
+                        // },
+                        
                         {
                             label:'Breakdown Sales',
                             icon: 'pi pi-fw pi-refresh',
@@ -139,15 +145,30 @@ export default {
                             to: { name: "salesVisit" }
                         },
                         {
+                            label: 'Journey Plan',
+                            icon: 'pi pi-fw pi-map-marker', 
+                            to: { name: "journeyPlan" }
+                        },
+                        {
+                            label: 'Donasi',
+                            icon: 'pi pi-fw pi-map-marker', 
+                            to: { name: "donasi" }
+                        },
+                        {
+                            label: 'Realisasi Expense',
+                            icon: 'pi pi-fw pi-map-marker', 
+                            to: { name: "realisasiExpense" }
+                        },
+                        {
                             label:'Expense/CA',
                             icon: 'pi pi-fw pi-sort-alpha-down',
                             to: { name: 'expense' }
                         },
-                        {
-                            label:'Selling In',
-                            icon: 'pi pi-fw pi-eject',
-                            to: { name: 'sellingIn' }
-                        },
+                        // {
+                        //     label:'Selling In',
+                        //     icon: 'pi pi-fw pi-eject',
+                        //     to: { name: 'sellingIn' }
+                        // },
                         {
                             label:'Kerjasama Operasi',
                             icon: 'pi pi-fw pi-shopping-cart',
@@ -168,6 +189,11 @@ export default {
                 {label: 'Laporan', icon: 'pi pi-fw pi-clone',
 					items: [
                         {
+                            label:'Sales Distributor',
+                            icon: 'pi pi-fw pi-sort-alpha-down',
+                            to: { name: 'salesbyDistributor' }
+                        },
+                        {
                             label: 'Detail Sales Info',
                             icon: 'pi pi-fw pi-map-marker', 
                             to: { name: "detailSales" }
@@ -181,11 +207,6 @@ export default {
                             label:'Achievement by Area',
                             icon: 'pi pi-fw pi-shopping-cart',
                             to: { name: 'achievementbyArea' }
-                        },
-                        {
-                            label:'Sales by Distributor',
-                            icon: 'pi pi-fw pi-sort-alpha-down',
-                            to: { name: 'salesbyDistributor' }
                         },
                         {
                             label:'Target',
