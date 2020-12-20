@@ -5,17 +5,17 @@
 				<Toast/>
 				<Toolbar class="p-mb-4">
 					<template slot="left">
-						<Button label="New" icon="pi pi-plus" class="p-button-success p-mr-2" @click="openNew" />
+						<Button label="New" icon="pi pi-plus" :disabled="loading" class="p-button-success p-mr-2" @click="openNew" />
 						<Button label="Delete" icon="pi pi-trash" class="p-button-danger" @click="confirmDeleteSelected" :disabled="!selectedRegions || !selectedRegions.length" />
 					</template>
 
 					<template slot="right">
-						<FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" />
-						<Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
+						<!-- <FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" /> -->
+						<Button label="Export" icon="pi pi-upload" :disabled="loading" class="p-button-help" @click="exportCSV($event)"  />
 					</template>
 				</Toolbar>
 
-				<DataTable ref="dt" :value="distributors" :scrollable="true" frozenWidth="670px" scrollHeight="800px" :selection.sync="selectedRegions" dataKey="Code" :paginator="true" :rows="10" :filters="filters"
+				<DataTable ref="dt" :value="distributors" :loading="loading" :scrollable="true" scrollHeight="800px" :selection.sync="selectedRegions" dataKey="_id" :paginator="true" :rows="10" :filters="filters"
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
 					<template #header>
@@ -28,68 +28,120 @@
 						</div>
 					</template>
 
-					<Column headerStyle="width: 120px " :frozen="true" >
+					<Column headerStyle="width: 120px " >
 						<template #body="slotProps">
-							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editRegion(slotProps.data)" />
-							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteRegion(slotProps.data)" />
+							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editDistributor(slotProps.data)" />
+							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteDistributor(slotProps.data)" />
 						</template>
 					</Column>
-					<Column selectionMode="multiple" headerStyle="width: 3rem" :frozen="true"></Column>
-					<Column field="nfCode" header="Code" :frozen="true" headerStyle="width: 100px" sortable></Column>
-					<Column field="distName" header="Distributor Name" :frozen="true" headerStyle="width: 150px" sortable></Column>
-					<Column field="address" header="Address" headerStyle="width: 300px" :frozen="true" sortable></Column>
-					<Column field="short" header="Initial" headerStyle="width: 100px" sortable></Column>
-					<Column field="contPerson" header="Contact Person" headerStyle="width: 200px" sortable></Column>
-					<Column field="status" header="Status" headerStyle="width: 100px" sortable></Column>
-					<Column field="type" header="Type" headerStyle="width: 100px" sortable></Column>
-					<Column field="RegionCode" header="Region Code" headerStyle="width: 200px" sortable></Column>
-					<Column field="Createby" header="Create by" headerStyle="width: 200px" sortable></Column>
-					<Column field="Createdate" header="Create Date" headerStyle="width: 100px" sortable></Column>
-					<Column field="Updateby" header="Update by" headerStyle="width: 100px" sortable></Column>
-					<Column field="Updatedate" header="Update Date" headerStyle="width: 100px" sortable></Column>
+					<Column v-for="(col, index) of columnDistributor" :field="col.field" :header="col.header" :key="index" :headerStyle="headerStyle(col.field)"></Column>
 				</DataTable>
 
-				<Dialog :visible.sync="regionDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
+				<Dialog :visible.sync="distributorDialog" :style="{width: '900px'}" header="Region Details" :modal="true" class="p-fluid">
 					<!-- ini bisa diisi dengan peta nantinya -->
-					<div class="p-field">
-						<label for="Code">Code</label>
-						<InputText id="Code" v-model.trim="region.Code" required="true" autofocus :class="{'p-invalid': submitted && !region.Code}" />
-						<small class="p-invalid" v-if="submitted && !region.Code">Code is required.</small>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Code">Code</label>
+							<InputText id="Code" v-model.trim="distributor.nfCode" required="true" autofocus :class="{'p-invalid': submitted && !distributor.nfCode}" />
+							<small class="p-invalid" v-if="submitted && !distributor.nfCode">Code is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Code">Nama Distributor</label>
+							<InputText id="Code" v-model.trim="distributor.name" required="true" autofocus :class="{'p-invalid': submitted && !distributor.name}" />
+							<small class="p-invalid" v-if="submitted && !distributor.name">name is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Initial">Initial</label>
+							<InputText id="Initial" v-model.trim="distributor.short" required="true" autofocus :class="{'p-invalid': submitted && !distributor.short}" />
+							<small class="p-invalid" v-if="submitted && !distributor.short">Short Name is required.</small>
+						</div>
 					</div>
-					<div class="p-field">
-						<label for="Address">Address</label>
-						<InputText id="Address" v-model.trim="region.Address" required="true" autofocus :class="{'p-invalid': submitted && !region.Address}" />
-						<small class="p-invalid" v-if="submitted && !region.Address">Address is required.</small>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<label for="contactPerson">Contact Person</label>
+							<InputText id="contactPerson" v-model.trim="distributor.contPerson" required="true" autofocus :class="{'p-invalid': submitted && !distributor.contPerson}" />
+							<small class="p-invalid" v-if="submitted && !distributor.contPerson">Contact Person is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="status">Status</label>
+							<InputText id="status" v-model.trim="distributor.status" required="true" autofocus :class="{'p-invalid': submitted && !distributor.status}" />
+							<small class="p-invalid" v-if="submitted && !distributor.status">Contact Person is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<!-- <span class="p-float-label"> -->
+							<label for="type">Type</label>
+							<Dropdown inputId="type" v-model.trim="distributor.type" :options="[{name:'Distributor'}]" :filter="true" optionValue="name" optionLabel="name" placeholder="Select Detailer" scrollHeight="100px">
+							</Dropdown>
+							<small class="p-invalid" v-if="submitted && !distributor.type">Type is required.</small>
+							<!-- </span> -->
+						</div>
 					</div>
-					<div class="p-field">
-						<label for="Initial">Initial</label>
-						<InputText id="Initial" v-model.trim="region.Initial" required="true" autofocus :class="{'p-invalid': submitted && !region.Initial}" />
-						<small class="p-invalid" v-if="submitted && !region.Initial">Initial Name is required.</small>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<label for="shipForm">Ship Form</label>
+							<InputText id="shipForm" v-model.trim="distributor.shipForm" required="true" autofocus :class="{'p-invalid': submitted && !distributor.shipForm}" />
+							<small class="p-invalid" v-if="submitted && !distributor.shipForm">Ship Form is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="hp">Hp</label>
+							<InputText id="hp" v-model.trim="distributor.hp" required="true" autofocus :class="{'p-invalid': submitted && !distributor.hp}" />
+							<small class="p-invalid" v-if="submitted && !distributor.hp">Hp is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="email">Email</label>
+							<InputText id="email" v-model.trim="distributor.email" required="true" autofocus :class="{'p-invalid': submitted && !distributor.email}" />
+							<small class="p-invalid" v-if="submitted && !distributor.email">Email is required.</small>
+						</div>
+					</div>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Initial">Kota</label>
+							<InputText id="Initial" v-model.trim="distributor.kota" required="true" autofocus :class="{'p-invalid': submitted && !distributor.kota}" />
+							<small class="p-invalid" v-if="submitted && !distributor.kota">Kota is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Initial">Propinsi</label>
+							<InputText id="Initial" v-model.trim="distributor.propinsi" required="true" autofocus :class="{'p-invalid': submitted && !distributor.telepon}" />
+							<small class="p-invalid" v-if="submitted && !distributor.propinsi">Propinsi is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Initial">Telepon</label>
+							<InputText id="Initial" v-model.trim="distributor.telepon" required="true" autofocus :class="{'p-invalid': submitted && !distributor.telepon}" />
+							<small class="p-invalid" v-if="submitted && !distributor.telepon">Telepon is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-12">
+							<label for="Address">Address</label>
+							<Textarea id="Address" v-model.trim="distributor.address" required="true" autofocus :class="{'p-invalid': submitted && !distributor.address}" rows="3" />
+							<small class="p-invalid" v-if="submitted && !distributor.address">Address is required.</small>
+						</div>
+					</div>
+					<div class="p-field p-grid">
+
 					</div>
 					<template #footer>
 						<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog"/>
-						<Button label="Save" icon="pi pi-check" class="p-button-text" @click="saveRegion" />
+						<Button label="Save" icon="pi pi-check" class="p-button-text" @click="saveDistributor" />
 					</template>
 				</Dialog>
 
-				<Dialog :visible.sync="deleteRegionDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
+				<Dialog :visible.sync="deleteDistributorDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
 					<div class="confirmation-content">
 						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-						<span v-if="region">Are you sure you want to delete <b>{{region.Address}}</b>?</span>
+						<span v-if="distributor">Are you sure you want to delete <b>{{distributor.name}}</b>?</span>
 					</div>
 					<template #footer>
-						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteRegionDialog = false"/>
-						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteRegion" />
+						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteDistributorDialog = false"/>
+						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteDistributor" />
 					</template>
 				</Dialog>
 
-				<Dialog :visible.sync="deleteRegionsDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
+				<Dialog :visible.sync="deleteDistributorsDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
 					<div class="confirmation-content">
 						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-						<span v-if="region">Are you sure you want to delete the selected regions?</span>
+						<span v-if="distributor">Are you sure you want to delete the selected distributors?</span>
 					</div>
 					<template #footer>
-						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteRegionsDialog = false"/>
+						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteDistributorsDialog = false"/>
 						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteSelectedRegions" />
 					</template>
 				</Dialog>
@@ -105,11 +157,13 @@ import DistributorService from '../service/DistributorService';
 export default {
 	data() {
 		return {
+			columnDistributor: [],
+			loading: false,
 			distributors: null,
-			regionDialog: false,
-			deleteRegionDialog: false,
-			deleteRegionsDialog: false,
-			region: {},
+			distributorDialog: false,
+			deleteDistributorDialog: false,
+			deleteDistributorsDialog: false,
+			distributor: {},
 			selectedRegions: null,
 			filters: {},
             submitted: false,
@@ -118,67 +172,148 @@ export default {
 	},
 	distributorService: null,
 	created() {
+		this.columnDistributor = [
+			{
+				field : 'nfCode',
+				header : 'Code'
+			},
+			{
+				field : 'distName',
+				header : 'Distributor Name'
+			},
+			{
+				field : 'address',
+				header : 'Address'
+			},
+			{
+				field : 'short',
+				header : 'Initial'
+			},
+			{
+				field : 'contPerson',
+				header : 'Contact Person'
+			},
+			{
+				field : 'status',
+				header : 'Status'
+			},
+			{
+				field : 'type',
+				header : 'Type'
+			},
+		]
 		this.distributorService = new DistributorService();
 	},
 	mounted() {
-		this.distributorService.getDistributors().then(data => this.distributors = data);
+		this.loading = true
+		this.distributorService.getDistributors().then(data => {
+			this.loading = false
+			this.distributors = data
+		});
 	},
 	methods: {
+		headerStyle(field) {
+			if(field === 'address'){
+				return "width: 300px"
+			} else {
+				return "width: 150px"
+			}
+		},
 		formatCurrency(value) {
 			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
 		},
 		openNew() {
-			this.region = {};
+			this.distributor = {};
 			this.submitted = false;
-            this.regionDialog = true;
+            this.distributorDialog = true;
             this.createNew = true;
 		},
 		hideDialog() {
-			this.regionDialog = false;
+			this.distributorDialog = false;
 			this.submitted = false;
 		},
-		saveRegion() {
+		saveDistributor() {
             if(this.createNew){
-                this.createRegion();
+                this.createDistributor();
                 return;
             }
 			this.submitted = true;
 
-			if (this.region.Address.trim() && this.region.Code.trim() && this.region.Initial.trim()) {
-                this.$set(this.regions, this.findIndexByCode(this.region.Code), this.region);
-                this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Updated', life: 3000});
-                this.regionDialog = false;
-                this.region = {};
+			if (this.distributor.email.trim() &&
+				this.distributor.hp.trim() && this.distributor.shipForm.trim() &&
+				this.distributor.type.trim() && this.distributor.status.trim() &&
+				this.distributor.contPerson.trim() && this.distributor.address.trim() && 
+				this.distributor.nfCode.trim() && this.distributor.short.trim()) {
+                this.distributorService.editDistributor(this.distributor)
+				.then(msg => {
+					this.loading = true
+					this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+					this.distributorService.getDistributors().then(data => {
+						this.loading = false
+						this.distributors = data
+					});
+				})
+				.catch(err => {
+					this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+				})
+                this.distributorDialog = false;
+                this.distributor = {};
 			}
         },
-        createRegion() {
-            this.submitted = true;
-            if (this.region.Address.trim() && this.region.Code.trim() && this.region.Initial.trim()) {
-                this.regions.push(this.region);
-                this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Created', life: 3000});
-                this.regionDialog = false;
-                this.region = {};
+        createDistributor() {
+			this.submitted = true;
+			// console.log(this.distributor.address.trim())
+			if (this.distributor.email.trim() &&
+				this.distributor.hp.trim() && this.distributor.shipForm.trim() &&
+				this.distributor.type.trim() && this.distributor.status.trim() &&
+				this.distributor.contPerson.trim() && this.distributor.address.trim() && 
+				this.distributor.nfCode.trim() && this.distributor.short.trim()) {
+                this.distributorService.createDistributor(this.distributor)
+				.then(msg => {
+					this.loading = true
+					this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+					this.distributorService.getDistributors().then(data => {
+						this.loading = false
+						this.distributors = data
+					});
+				})
+				.catch(err => {
+					this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+				})
+                this.distributorDialog = false;
+                this.distributor = {};
                 this.createNew = false;
             }
         },
-		editRegion(region) {
-			this.region = {...region};
-			this.regionDialog = true;
+		editDistributor(distributor) {
+			this.distributor = {...distributor};
+			this.distributorDialog = true;
 		},
-		confirmDeleteRegion(region) {
-			this.region = region;
-			this.deleteRegionDialog = true;
+		confirmDeleteDistributor(distributor) {
+			this.distributor = distributor;
+			this.deleteDistributorDialog = true;
 		},
-		deleteRegion() {
-			this.regions = this.regions.filter(val => val.Code !== this.region.Code);
-			this.deleteRegionDialog = false;
-			this.region = {};
+		deleteDistributor() {
+			this.distributorService.deleteDistributor(this.distributor)
+			.then(msg => {
+				this.loading = true
+				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+				this.distributorService.getDistributors().then(data => {
+					this.loading = false
+					this.distributors = data
+				});
+			})
+			.catch(err => {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+			})
+			this.deleteDistributorDialog = false;
+			this.distributor = {};
 			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Deleted', life: 3000});
 		},
 		findIndexByCode(Code) {
 			let index = -1;
-			for (let i = 0; i < this.regions.length; i++) {
-				if (this.regions[i].Code === Code) {
+			for (let i = 0; i < this.distributors.length; i++) {
+				if (this.distributors[i].Code === Code) {
 					index = i;
 					break;
 				}
@@ -198,11 +333,11 @@ export default {
 			this.$refs.dt.exportCSV();
 		},
 		confirmDeleteSelected() {
-			this.deleteRegionsDialog = true;
+			this.deleteDistributorsDialog = true;
 		},
 		deleteSelectedRegions() {
-			this.regions = this.regions.filter(val => !this.selectedRegions.includes(val));
-			this.deleteRegionsDialog = false;
+			this.distributors = this.distributors.filter(val => !this.selectedRegions.includes(val));
+			this.deleteDistributorsDialog = false;
 			this.selectedRegions = null;
 			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Regions Deleted', life: 3000});
 		}

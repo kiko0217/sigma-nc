@@ -5,17 +5,17 @@
 				<Toast/>
 				<Toolbar class="p-mb-4">
 					<template slot="left">
-						<Button label="New" icon="pi pi-plus" class="p-button-success p-mr-2" @click="openNew" />
+						<Button label="New" :disabled="loading"  icon="pi pi-plus" class="p-button-success p-mr-2" @click="openNew" />
 						<Button label="Delete" icon="pi pi-trash" class="p-button-danger" @click="confirmDeleteSelected" :disabled="!selectedRegions || !selectedRegions.length" />
 					</template>
 
 					<template slot="right">
-						<FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" />
-						<Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
+						<!-- <FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" /> -->
+						<Button label="Export" :disabled="loading"  icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
 					</template>
 				</Toolbar>
 
-				<DataTable ref="dt" :value="regions" :selection.sync="selectedRegions" dataKey="_id" :paginator="true" :rows="10" :filters="filters"
+				<DataTable ref="dt" :value="regions" :selection.sync="selectedRegions" :loading="loading" dataKey="_id" :paginator="true" :rows="10" :filters="filters"
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
 					<template #header>
@@ -69,7 +69,7 @@
 				<Dialog :visible.sync="deleteRegionDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
 					<div class="confirmation-content">
 						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-						<span v-if="region">Are you sure you want to delete <b>{{region.RegionName}}</b>?</span>
+						<span v-if="region">Are you sure you want to delete <b>{{region.name}}</b>?</span>
 					</div>
 					<template #footer>
 						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteRegionDialog = false"/>
@@ -99,6 +99,7 @@ import RegionService from '../service/RegionService';
 export default {
 	data() {
 		return {
+			loading: false,
 			columnRegion:[],
 			regions: null,
 			regionDialog: false,
@@ -134,7 +135,12 @@ export default {
 		this.regionService = new RegionService();
 	},
 	mounted() {
-		this.regionService.getRegions().then(data => this.regions = data);
+		this.loading = true
+		this.regionService.getRegions()
+		.then(data => {
+			this.regions = data
+			this.loading = false
+		});
 	},
 	methods: {
 		formatDate(dat) {
@@ -172,22 +178,51 @@ export default {
                 return;
             }
 			this.submitted = true;
-
-			// if (this.region.RegionName.trim() && this.region.CodeRegion.trim() && this.region.Initial.trim()) {
-            //     this.$set(this.regions, this.findIndexByCode(this.region._id), this.region);
-            //     this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Updated', life: 3000});
-            //     this.regionDialog = false;
-            //     this.region = {};
-			// }
-        },
-        createRegion() {
-            this.submitted = true;
-            if (this.region.RegionName.trim() && this.region.CodeRegion.trim() && this.region.Initial.trim()) {
-                this.regions.push(this.region);
-                this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Created', life: 3000});
+			// console.log(this.region)
+			if (this.region.codeDept.trim() && this.region.name.trim() && this.region.code.trim() && this.region.short.trim()) {
+				this.regionService.editRegion(this.region)
+				.then(msg => {
+					this.loading = true
+					this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+					this.region = {};
+					this.regionDialog = false;
+					this.regionService.getRegions()
+					.then(data => {
+						this.regions = data
+						this.loading = false
+					});
+				})
+				.catch(err => {
+					this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+				})
                 this.regionDialog = false;
                 this.region = {};
-                this.createNew = false;
+			}
+        },
+        createRegion() {
+			this.submitted = true;
+			
+            if (this.region.codeDept.trim() && this.region.name.trim() && this.region.code.trim() && this.region.short.trim()) {
+                this.regionService.createRegion(this.region)
+				.then(msg => {
+					this.loading = true
+					this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+					this.region = {};
+					this.regionDialog = false;
+					this.createNew = false;
+					this.regionService.getRegions()
+					.then(data => {
+						this.regions = data
+						this.loading = false
+					});
+				})
+				.catch(err => {
+					this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+					this.regionDialog = false;
+					this.region = {};
+					this.createNew = false;
+				})
+                
             }
         },
 		editRegion(region) {
@@ -199,10 +234,27 @@ export default {
 			this.deleteRegionDialog = true;
 		},
 		deleteRegion() {
-			this.regions = this.regions.filter(val => val.CodeRegion !== this.region.CodeRegion);
-			this.deleteRegionDialog = false;
-			this.region = {};
-			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Deleted', life: 3000});
+			this.regionService.deleteRegion(this.region)
+			.then(msg => {
+				this.loading = true
+				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+				this.region = {};
+				this.deleteRegionDialog = false;
+				this.regionService.getRegions()
+				.then(data => {
+					this.regions = data
+					this.loading = false
+				});
+			})
+			.catch(err => {
+				this.deleteRegionDialog = false;
+				this.region = {};
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+			})
+			// this.regions = this.regions.filter(val => val.CodeRegion !== this.region.CodeRegion);
+			// this.deleteRegionDialog = false;
+			// this.region = {};
+			// this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Deleted', life: 3000});
 		},
 		findIndexByCode(code) {
 			let index = -1;

@@ -5,17 +5,17 @@
 				<Toast/>
 				<Toolbar class="p-mb-4">
 					<template slot="left">
-						<Button label="New" icon="pi pi-plus" class="p-button-success p-mr-2" @click="openNew" />
+						<Button label="New" icon="pi pi-plus" :disabled="loading" class="p-button-success p-mr-2" @click="openNew" />
 						<Button label="Delete" icon="pi pi-trash" class="p-button-danger" @click="confirmDeleteSelected" :disabled="!selectedRegions || !selectedRegions.length" />
 					</template>
 
 					<template slot="right">
-						<FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" />
-						<Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
+						<!-- <FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" /> -->
+						<Button label="Export" icon="pi pi-upload" :disabled="loading" class="p-button-help" @click="exportCSV($event)"  />
 					</template>
 				</Toolbar>
 
-				<DataTable ref="dt" :value="areas" :selection.sync="selectedRegions" dataKey="Initial" :paginator="true" :rows="10" :filters="filters"
+				<DataTable ref="dt" :value="areas" :selection.sync="selectedRegions" :loading="loading" dataKey="_id" :paginator="true" :rows="10" :filters="filters"
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
 					<template #header>
@@ -29,71 +29,73 @@
 					</template>
 
 					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-					<Column field="codeDept" header="Dept Code" sortable></Column>
-					<Column field="region.code" header="Region Code" sortable></Column>
-					<Column field="code" header="Code" sortable></Column>
-					<Column field="name" header="Area Name" sortable></Column>
-					<Column field="short" header="Initial" sortable></Column>
-					<Column field="createdAt" header="Create Date" sortable>
+					<Column headerStyle="width: 150px">
 						<template #body="slotProps">
-							<span>{{formatDate(slotProps.data.createdAt)}}</span>
+							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editArea(slotProps.data)" />
+							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteArea(slotProps.data)" />
 						</template>
 					</Column>
-					<Column field="updatedAt" header="Update Date" sortable>
-						<template #body="slotProps">
-							<span>{{formatDate(slotProps.data.updatedAt)}}</span>
-						</template>
-					</Column>
-					<Column field="updatedBy" header="Update by" sortable></Column>
-					<Column>
-						<template #body="slotProps">
-							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editRegion(slotProps.data)" />
-							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteRegion(slotProps.data)" />
-						</template>
-					</Column>
+					<Column v-for="(col, index) of columnArea" :field="col.field" :header="col.header" :key="index" headerStyle="width: 150px"></Column>
 				</DataTable>
 
 				<Dialog :visible.sync="areaDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
 					<!-- ini bisa diisi dengan peta nantinya -->
 					<div class="p-field">
 						<label for="Code">Code</label>
-						<InputText id="Code" v-model.trim="region.Code" required="true" autofocus :class="{'p-invalid': submitted && !region.Code}" />
-						<small class="p-invalid" v-if="submitted && !region.Code">Code is required.</small>
+						<InputText id="Code" v-model.trim="area.code" required="true" autofocus :class="{'p-invalid': submitted && !area.code}" />
+						<small class="p-invalid" v-if="submitted && !area.code">Code is required.</small>
 					</div>
-					<div class="p-field">
-						<label for="AreaName">Area Name</label>
-						<InputText id="AreaName" v-model.trim="region.AreaName" required="true" autofocus :class="{'p-invalid': submitted && !region.AreaName}" />
-						<small class="p-invalid" v-if="submitted && !region.AreaName">Region Name is required.</small>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-6">
+							<label for="AreaName">Code Dept</label>
+							<InputText id="AreaName" v-model.trim="area.codeDept" required="true" autofocus :class="{'p-invalid': submitted && !area.codeDept}" />
+							<small class="p-invalid" v-if="submitted && !area.codeDept">Code Dept is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-6">
+							<label for="AreaName">Area Name</label>
+							<InputText id="AreaName" v-model.trim="area.name" required="true" autofocus :class="{'p-invalid': submitted && !area.name}" />
+							<small class="p-invalid" v-if="submitted && !area.name">Area Name is required.</small>
+						</div>
 					</div>
-					<div class="p-field">
-						<label for="Initial">Initial</label>
-						<InputText id="Initial" v-model.trim="region.Initial" required="true" autofocus :class="{'p-invalid': submitted && !region.Initial}" />
-						<small class="p-invalid" v-if="submitted && !region.Initial">Initial Name is required.</small>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-6">
+							<!-- <span class="p-float-label"> -->
+							<label for="region">Region</label>
+							<Dropdown inputId="region" v-model.trim="area.region" :options="regions" :filter="true" optionValue="_id" optionLabel="short" placeholder="Select Region" scrollHeight="100px">
+							</Dropdown>
+							<small class="p-invalid" v-if="submitted && !area.region">Region is required.</small>
+							<!-- </span> -->
+						</div>
+						<div class="p-field p-col-12 p-md-6">
+							<label for="Initial">Initial</label>
+							<InputText id="Initial" v-model.trim="area.short" required="true" autofocus :class="{'p-invalid': submitted && !area.short}" />
+							<small class="p-invalid" v-if="submitted && !area.short">Initial Name is required.</small>
+						</div>
 					</div>
 					<template #footer>
 						<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog"/>
-						<Button label="Save" icon="pi pi-check" class="p-button-text" @click="saveRegion" />
+						<Button label="Save" icon="pi pi-check" class="p-button-text" @click="saveArea" />
 					</template>
 				</Dialog>
 
-				<Dialog :visible.sync="deleteRegionDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
+				<Dialog :visible.sync="deleteAreaDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
 					<div class="confirmation-content">
 						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-						<span v-if="region">Are you sure you want to delete <b>{{region.AreaName}}</b>?</span>
+						<span v-if="area">Are you sure you want to delete <b>{{area.name}}</b>?</span>
 					</div>
 					<template #footer>
-						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteRegionDialog = false"/>
-						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteRegion" />
+						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteAreaDialog = false"/>
+						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteArea" />
 					</template>
 				</Dialog>
 
-				<Dialog :visible.sync="deleteRegionsDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
+				<Dialog :visible.sync="deleteAreasDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
 					<div class="confirmation-content">
 						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-						<span v-if="region">Are you sure you want to delete the selected regions?</span>
+						<span v-if="area">Are you sure you want to delete the selected areas?</span>
 					</div>
 					<template #footer>
-						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteRegionsDialog = false"/>
+						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteAreasDialog = false"/>
 						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteSelectedRegions" />
 					</template>
 				</Dialog>
@@ -105,15 +107,19 @@
 
 <script>
 import AreaService from '../service/AreaService';
+import RegionService from '../service/RegionService';
 
 export default {
 	data() {
 		return {
+			columnArea:[],
+			loading: false,
 			areas: null,
 			areaDialog: false,
-			deleteRegionDialog: false,
-			deleteRegionsDialog: false,
-			region: {},
+			regions: null,
+			deleteAreaDialog: false,
+			deleteAreasDialog: false,
+			area: {},
 			selectedRegions: null,
 			filters: {},
             submitted: false,
@@ -121,11 +127,46 @@ export default {
 		}
 	},
 	areaService: null,
+	regionService: null,
 	created() {
+		this.columnArea = [
+			{
+				field : 'codeDept',
+				header : 'Code Dept'
+			},
+			{
+				field : 'nameRegion',
+				header : 'Region'
+			},
+			{
+				field : 'code',
+				header : 'Code Area'
+			},
+			{
+				field : 'name',
+				header : 'Area'
+			},
+			{
+				field : 'short',
+				header : 'Initial'
+			},
+		]
 		this.areaService = new AreaService();
+		this.regionService = new RegionService();
 	},
 	mounted() {
-		this.areaService.getAreas().then(data => this.areas = data);
+		this.loading = true
+		this.areaService.getAreas().then(data => {
+			this.areas = data
+			this.areas = [...new Set(this.areas.map(({region, ...rest})=>({nameRegion:region.name, region:region._id, ...rest})))]
+			// console.log(this.areas)
+		});
+		this.regionService.getRegions()
+		.then(data => {
+			this.regions = data
+			// console.log([...new Set(this.regions.map(({_id:test, ...rest})=> ({test, ...rest})))])
+			this.loading = false
+		});
 	},
 	methods: {
 		formatDate(dat) {
@@ -148,7 +189,7 @@ export default {
 			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
 		},
 		openNew() {
-			this.region = {};
+			this.area = {};
 			this.submitted = false;
             this.areaDialog = true;
             this.createNew = true;
@@ -157,48 +198,97 @@ export default {
 			this.areaDialog = false;
 			this.submitted = false;
 		},
-		saveRegion() {
+		saveArea() {
             if(this.createNew){
-                this.createRegion();
+                this.createArea();
                 return;
             }
 			this.submitted = true;
 
-			if (this.region.AreaName.trim() && this.region.Code.trim() && this.region.Initial.trim()) {
-                this.$set(this.regions, this.findIndexByCode(this.region.Code), this.region);
-                this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Updated', life: 3000});
+			if (this.area.codeDept && 
+				this.area.name &&
+				this.area.code &&
+				this.area.region &&
+				this.area.short)
+			{
+                this.areaService.editArea(this.area)
+				.then(msg => {
+					this.loading = true
+					this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+					this.areaService.getAreas().then(data => {
+						this.loading = false
+						this.areas = data
+						this.areas = [...new Set(this.areas.map(({region, ...rest})=>({nameRegion:region.name, region:region._id, ...rest})))]
+						// console.log(this.areas)
+					});
+				})
+				.catch(err => {
+					this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+				})
                 this.areaDialog = false;
-                this.region = {};
+                this.area = {};
 			}
         },
-        createRegion() {
+        createArea() {
             this.submitted = true;
-            if (this.region.AreaName.trim() && this.region.Code.trim() && this.region.Initial.trim()) {
-                this.regions.push(this.region);
-                this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Created', life: 3000});
+			if (this.area.codeDept && 
+				this.area.name &&
+				this.area.code &&
+				this.area.region && 
+				this.area.short) 
+			{
+				this.areaService.createArea(this.area)
+				.then(msg => {
+					this.loading = true
+					this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+					this.areaService.getAreas().then(data => {
+						this.loading = false
+						this.areas = data
+						this.areas = [...new Set(this.areas.map(({region, ...rest})=>({nameRegion:region.name, region:region._id, ...rest})))]
+						// console.log(this.areas)
+					});
+				})
+				.catch(err => {
+					this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+				})
+				// console.log(this.area)
                 this.areaDialog = false;
-                this.region = {};
+                this.area = {};
                 this.createNew = false;
             }
         },
-		editRegion(region) {
-			this.region = {...region};
+		editArea(area) {
+			this.area = {...area};
 			this.areaDialog = true;
 		},
-		confirmDeleteRegion(region) {
-			this.region = region;
-			this.deleteRegionDialog = true;
+		confirmDeleteArea(area) {
+			this.area = area;
+			this.deleteAreaDialog = true;
 		},
-		deleteRegion() {
-			this.regions = this.regions.filter(val => val.Code !== this.region.Code);
-			this.deleteRegionDialog = false;
-			this.region = {};
-			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Deleted', life: 3000});
+		deleteArea() {
+			this.areaService.deleteArea(this.area)
+			.then(msg => {
+				this.loading = true
+				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+				this.areaService.getAreas().then(data => {
+					this.loading = false
+					this.areas = data
+					this.areas = [...new Set(this.areas.map(({region, ...rest})=>({nameRegion:region.name, region:region._id, ...rest})))]
+					// console.log(this.areas)
+				});
+			})
+			.catch(err => {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+			})
+			// this.areas = this.areas.filter(val => val.Code !== this.area.Code);
+			this.deleteAreaDialog = false;
+			this.area = {};
+			
 		},
 		findIndexByCode(Code) {
 			let index = -1;
-			for (let i = 0; i < this.regions.length; i++) {
-				if (this.regions[i].Code === Code) {
+			for (let i = 0; i < this.areas.length; i++) {
+				if (this.areas[i].Code === Code) {
 					index = i;
 					break;
 				}
@@ -218,11 +308,11 @@ export default {
 			this.$refs.dt.exportCSV();
 		},
 		confirmDeleteSelected() {
-			this.deleteRegionsDialog = true;
+			this.deleteAreasDialog = true;
 		},
 		deleteSelectedRegions() {
-			this.regions = this.regions.filter(val => !this.selectedRegions.includes(val));
-			this.deleteRegionsDialog = false;
+			this.areas = this.areas.filter(val => !this.selectedRegions.includes(val));
+			this.deleteAreasDialog = false;
 			this.selectedRegions = null;
 			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Regions Deleted', life: 3000});
 		}

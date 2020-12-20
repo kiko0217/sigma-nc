@@ -126,6 +126,11 @@ export default new Router({
 			component: () => import('./transaksi/Donasi.vue')
 		},
 		{
+			name: 'realisasiExpense',
+			path: '/transaksi/realisasi-expense',
+			component: () => import('./transaksi/RealisasiExpense.vue')
+		},
+		{
 			name: 'targetCall',
 			path: '/transaksi/target-call',
 			component: () => import('./transaksi/TargetCall.vue')

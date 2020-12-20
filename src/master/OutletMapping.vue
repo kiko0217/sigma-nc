@@ -29,7 +29,7 @@
 					<Column v-for="(col, index) of culomnOutletMapping" :field="col.field" :header="col.header" :key="index" headerStyle="width: 150px"></Column>
 					<Column field="nfCode" header="Code Outlet Nucleus" headerStyle="width: 150px" :sortable="true">
 						<template #editor="slotProps">
-							<Dropdown v-model="slotProps.data['nfCode']" :options="outlets" :filter="true" optionLabel="name" optionValue="code" placeholder="Select Outlet" scrollHeight="100px">
+							<Dropdown v-model="slotProps.data['nfCode']" :options="outlets" :filter="true" optionLabel="name" dataKey="_id" optionValue="code" placeholder="Select Outlet" scrollHeight="100px">
 								<template #option="slotProps">
 									<span>{{slotProps.option.name}}</span>
 								</template>
