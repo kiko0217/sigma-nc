@@ -33,18 +33,26 @@
 							<InputText v-model="slotProps.data['nfCode']" />
 						</template> -->
 						<template #editor="slotProps">
-							<Dropdown v-model="slotProps.data['nfCode']" :options="products" optionLabel="short" :filter="true" optionValue="code" placeholder="Select Product" scrollHeight="100px">
+							<Dropdown v-model="slotProps.data['nfCode']" 
+								:options="products"
+								optionLabel="short"
+								:filter="true"
+								optionValue="code"
+								placeholder="Select Product"
+								scrollHeight="100px"
+								dataKey="_id"
+							>
 								<!-- <template #option="slotProps">
 									<span :class="'product-badge'">{{slotProps.option.code}}</span>
 								</template> -->
 							</Dropdown>
 						</template>
 					</Column>
-					<Column field="createdAt" header="Created" headerStyle="width: 150px">
+					<!-- <Column field="createdAt" header="Created" headerStyle="width: 150px">
 						<template #body="slotProps">
 							<span>{{formatDate(slotProps.data.createdAt)}}</span>
 						</template>
-					</Column>
+					</Column> -->
 				</DataTable>
 				<Dialog :visible.sync="deleteDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
 					<div class="confirmation-content">

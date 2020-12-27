@@ -15,12 +15,21 @@
 					</template>
 				</Toolbar>
 
-				<DataTable ref="dt" :value="areas" :selection.sync="selectedRegions" :loading="loading" dataKey="_id" :paginator="true" :rows="10" :filters="filters"
-                            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
-                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
+				<DataTable ref="dt"
+					:value="areas"
+					:selection.sync="selectedRegions"
+					:loading="loading"
+					dataKey="_id"
+					:paginator="true"
+					:rows="10"
+					:filters="filters"
+					paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+					:rowsPerPageOptions="[5,10,25]"
+					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Areas"
+				>
 					<template #header>
 						<div class="table-header">
-							<h5 class="p-m-0">Manage Area</h5>
+							<!-- <h5 class="p-m-0">Manage Area</h5> -->
 							<span class="p-input-icon-left">
                                 <i class="pi pi-search" />
                                 <InputText v-model="filters['global']" placeholder="Search..." />
@@ -38,34 +47,58 @@
 					<Column v-for="(col, index) of columnArea" :field="col.field" :header="col.header" :key="index" headerStyle="width: 150px"></Column>
 				</DataTable>
 
-				<Dialog :visible.sync="areaDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
+				<Dialog :visible.sync="areaDialog" 
+					:style="{width: '450px'}" 
+					header="Area Details" 
+					:modal="true" 
+					class="p-fluid"
+				>
 					<!-- ini bisa diisi dengan peta nantinya -->
-					<div class="p-field">
-						<label for="Code">Code</label>
-						<InputText id="Code" v-model.trim="area.code" required="true" autofocus :class="{'p-invalid': submitted && !area.code}" />
-						<small class="p-invalid" v-if="submitted && !area.code">Code is required.</small>
-					</div>
 					<div class="p-field p-grid">
 						<div class="p-field p-col-12 p-md-6">
-							<label for="AreaName">Code Dept</label>
-							<InputText id="AreaName" v-model.trim="area.codeDept" required="true" autofocus :class="{'p-invalid': submitted && !area.codeDept}" />
+							<label for="Code">Code</label>
+							<InputText id="Code" v-model.trim="area.code" required="true" autofocus :class="{'p-invalid': submitted && !area.code}" />
+							<small class="p-invalid" v-if="submitted && !area.code">Code is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-6">
+							<label for="CodeDept">Code Dept</label>
+							<Dropdown inputId="CodeDept" 
+								v-model.trim="area.codeDept" 
+								:options="depts" :filter="true" 
+								optionValue="gh_funccode" 
+								optionLabel="gh_funccode"
+								placeholder="Select Dept" 
+								scrollHeight="100px"
+								dataKey="_id"
+							>
+							</Dropdown>
 							<small class="p-invalid" v-if="submitted && !area.codeDept">Code Dept is required.</small>
 						</div>
+					</div>
+					<div class="p-field p-grid">
 						<div class="p-field p-col-12 p-md-6">
 							<label for="AreaName">Area Name</label>
 							<InputText id="AreaName" v-model.trim="area.name" required="true" autofocus :class="{'p-invalid': submitted && !area.name}" />
 							<small class="p-invalid" v-if="submitted && !area.name">Area Name is required.</small>
 						</div>
-					</div>
-					<div class="p-field p-grid">
 						<div class="p-field p-col-12 p-md-6">
 							<!-- <span class="p-float-label"> -->
 							<label for="region">Region</label>
-							<Dropdown inputId="region" v-model.trim="area.region" :options="regions" :filter="true" optionValue="_id" optionLabel="short" placeholder="Select Region" scrollHeight="100px">
+							<Dropdown inputId="region" 
+								v-model.trim="area.region"
+								:options="regions"
+								:filter="true"
+								optionValue="_id"
+								optionLabel="name"
+								placeholder="Select Region"
+								scrollHeight="100px"
+							>
 							</Dropdown>
 							<small class="p-invalid" v-if="submitted && !area.region">Region is required.</small>
 							<!-- </span> -->
 						</div>
+					</div>
+					<div class="p-field p-grid">
 						<div class="p-field p-col-12 p-md-6">
 							<label for="Initial">Initial</label>
 							<InputText id="Initial" v-model.trim="area.short" required="true" autofocus :class="{'p-invalid': submitted && !area.short}" />
@@ -106,12 +139,14 @@
 </template>
 
 <script>
-import AreaService from '../service/AreaService';
-import RegionService from '../service/RegionService';
+import AreaService from '../service/AreaService'
+import RegionService from '../service/RegionService'
+import SysFunctService from '../service/SysFunctService'
 
 export default {
 	data() {
 		return {
+			depts: null,
 			columnArea:[],
 			loading: false,
 			areas: null,
@@ -128,6 +163,7 @@ export default {
 	},
 	areaService: null,
 	regionService: null,
+	sysFunctService: null,
 	created() {
 		this.columnArea = [
 			{
@@ -151,22 +187,29 @@ export default {
 				header : 'Initial'
 			},
 		]
-		this.areaService = new AreaService();
-		this.regionService = new RegionService();
+		this.areaService = new AreaService()
+		this.regionService = new RegionService()
+		this.sysFunctService = new SysFunctService()
 	},
 	mounted() {
 		this.loading = true
+		this.regionService.getRegionMinis()
+		.then(data => {
+			this.regions = data
+			// console.log([...new Set(this.regions.map(({_id:test, ...rest})=> ({test, ...rest})))])
+			
+		});
+		this.sysFunctService.getDepts()
+		.then(data => {
+			this.depts = data
+		})
 		this.areaService.getAreas().then(data => {
 			this.areas = data
 			this.areas = [...new Set(this.areas.map(({region, ...rest})=>({nameRegion:region.name, region:region._id, ...rest})))]
 			// console.log(this.areas)
-		});
-		this.regionService.getRegions()
-		.then(data => {
-			this.regions = data
-			// console.log([...new Set(this.regions.map(({_id:test, ...rest})=> ({test, ...rest})))])
 			this.loading = false
 		});
+		
 	},
 	methods: {
 		formatDate(dat) {
@@ -198,64 +241,60 @@ export default {
 			this.areaDialog = false;
 			this.submitted = false;
 		},
+		edit() {
+			this.areaService.editArea(this.area)
+			.then(msg => {
+				this.loading = true
+				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+				this.areaService.getAreas().then(data => {
+					this.loading = false
+					this.areas = data
+					this.areas = [...new Set(this.areas.map(({region, ...rest})=>({nameRegion:region.name, region:region._id, ...rest})))]
+				});
+			})
+			.catch(err => {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+			})
+		},
 		saveArea() {
-            if(this.createNew){
-                this.createArea();
-                return;
-            }
 			this.submitted = true;
-
 			if (this.area.codeDept && 
 				this.area.name &&
 				this.area.code &&
 				this.area.region &&
 				this.area.short)
 			{
-                this.areaService.editArea(this.area)
-				.then(msg => {
-					this.loading = true
-					this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
-					this.areaService.getAreas().then(data => {
-						this.loading = false
-						this.areas = data
-						this.areas = [...new Set(this.areas.map(({region, ...rest})=>({nameRegion:region.name, region:region._id, ...rest})))]
-						// console.log(this.areas)
-					});
-				})
-				.catch(err => {
-					this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
-				})
+				if(this.createNew){
+					this.createArea();
+					return;
+				}
+				// this.submitted = true;
+                this.edit()
                 this.areaDialog = false;
                 this.area = {};
 			}
-        },
+		},
+		create() {
+			this.areaService.createArea(this.area)
+			.then(msg => {
+				this.loading = true
+				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+				this.areaService.getAreas().then(data => {
+					this.loading = false
+					this.areas = data
+					this.areas = [...new Set(this.areas.map(({region, ...rest})=>({nameRegion:region.name, region:region._id, ...rest})))]
+					// console.log(this.areas)
+				});
+			})
+			.catch(err => {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+			})
+		},
         createArea() {
-            this.submitted = true;
-			if (this.area.codeDept && 
-				this.area.name &&
-				this.area.code &&
-				this.area.region && 
-				this.area.short) 
-			{
-				this.areaService.createArea(this.area)
-				.then(msg => {
-					this.loading = true
-					this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
-					this.areaService.getAreas().then(data => {
-						this.loading = false
-						this.areas = data
-						this.areas = [...new Set(this.areas.map(({region, ...rest})=>({nameRegion:region.name, region:region._id, ...rest})))]
-						// console.log(this.areas)
-					});
-				})
-				.catch(err => {
-					this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
-				})
-				// console.log(this.area)
-                this.areaDialog = false;
-                this.area = {};
-                this.createNew = false;
-            }
+			this.create()
+			this.areaDialog = false;
+			this.area = {};
+			this.createNew = false;
         },
 		editArea(area) {
 			this.area = {...area};

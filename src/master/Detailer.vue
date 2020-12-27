@@ -40,25 +40,24 @@
 					:filters="filters"
 					paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" 
 					:rowsPerPageOptions="[5,10,25]"
-					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions"
+					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Detailers"
 				>
 					<template #header>
 						<div class="table-header">
-							<h5 class="p-m-0">Manage Detailer</h5>
+							<!-- <h5 class="p-m-0">Manage Detailer</h5> -->
 							<span class="p-input-icon-left">
                                 <i class="pi pi-search" />
                                 <InputText v-model="filters['global']" placeholder="Search..." />
                             </span>
 						</div>
 					</template>
-
+					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
 					<Column headerStyle="width: 120px">
 						<template #body="slotProps">
 							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editDetailer(slotProps.data)" />
 							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteDetailer(slotProps.data)" />
 						</template>
 					</Column>
-					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
 					<Column v-for="(col, index) of columnDetailer" :field="col.field" :header="col.header" :key="index" :headerStyle="headerStyle(col.field)">
 						<template v-if="col.field=='joinDate'" #body="slotProps">
 							<span>{{formatDate(slotProps.data.joinDate)}}</span>
@@ -69,7 +68,7 @@
 				<Dialog 
 					:visible.sync="detailerDialog"
 					:style="{width: '900px'}" 
-					header="Region Details" 
+					header="Detailer Details" 
 					:modal="true" 
 					class="p-fluid"
 				>
@@ -94,12 +93,16 @@
 					<div class="p-field p-grid">
 						<div class="p-field p-col-12 p-md-4">
 							<label for="Level">Level</label>
-							<InputText
-								id="Level" 
-								v-model.trim="detailer.level"
-								required="true"
-								autofocus :class="{'p-invalid': submitted && !detailer.level}" 
-							/>
+							<Dropdown inputId="Level" 
+								v-model.trim="detailer.level" 
+								:options="detailerLevels" :filter="true" 
+								optionValue="gh_funccode" 
+								optionLabel="gh_funcdescription"
+								placeholder="Select Level" 
+								scrollHeight="100px"
+								dataKey="_id"
+							>
+							</Dropdown>
 							<small
 								class="p-invalid"
 								v-if="submitted && !detailer.level"
@@ -140,8 +143,7 @@
 						</div>
 						<div class="p-field p-col-12 p-md-4">
 							<label for="JoinDate">Join Date</label>
-							 <Calendar
-							 	id="JoinDate"
+							<Calendar id="JoinDate"
 								v-model.trim="detailer.joinDate"
 								:manualInput="false"
 								required="true"
@@ -150,7 +152,7 @@
 								placeholder="Select Join Date"
 								dateFormat="yy-mm-dd"
 							></Calendar>
-							<small class="p-invalid" v-if="submitted && !detailer.joinDate">Status is required.</small>
+							<small class="p-invalid" v-if="submitted && !detailer.joinDate">Join Date is required.</small>
 						</div>
 						<div class="p-field p-col-12 p-md-4">
 							<label for="Phone">Phone</label>
@@ -160,7 +162,7 @@
 								required="true"
 								autofocus :class="{'p-invalid': submitted && !detailer.phone}"
 							/>
-							<small class="p-invalid" v-if="submitted && !detailer.status">Status is required.</small>
+							<small class="p-invalid" v-if="submitted && !detailer.status">Phone is required.</small>
 						</div>
 					</div>
 					<div class="p-field p-grid">
@@ -229,11 +231,13 @@
 </template>
 
 <script>
-import DetailerService from '../service/DetailerService';
+import DetailerService from '../service/DetailerService'
+import SysFunctService from '../service/SysFunctService'
 
 export default {
 	data() {
 		return {
+			detailerLevels: null,
 			columnDetailer:[],
             loading: false,
 			detailers: null,
@@ -248,6 +252,7 @@ export default {
 		}
 	},
 	detailerService: null,
+	sysFunctService: null,
 	created() {
 		this.columnDetailer = [
 			{
@@ -303,10 +308,15 @@ export default {
 				header : 'Balance'
 			},
 		]
-		this.detailerService = new DetailerService();
+		this.sysFunctService = new SysFunctService()
+		this.detailerService = new DetailerService()
 	},
 	mounted() {
-        this.loading = true;
+		this.loading = true;
+		this.sysFunctService.getDetailerLevel()
+		.then(data => {
+			this.detailerLevels = data
+		})
 		this.detailerService.getDetailers().then(data => {
             this.detailers = data
             this.loading = false;
@@ -408,6 +418,7 @@ export default {
 			})
 		},
 		saveDetailer() {
+			this.submitted = true;
 			if (this.detailer.code && 
 				this.detailer.name &&
 				this.detailer.short &&
@@ -425,14 +436,13 @@ export default {
 					this.createDetailer();
 					return;
 				}
-				this.submitted = true;
 				this.edit()
                 this.detailerDialog = false;
                 this.detailer = {};
 			}
         },
         createDetailer() {
-            this.submitted = true;
+            // this.submitted = true;
 			this.create()
 			this.detailerDialog = false;
 			this.detailer = {};

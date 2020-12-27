@@ -89,7 +89,7 @@ export default {
 	},
 	mounted() {
 		this.loading = true
-		this.outletService.getOutlets().then(data => this.outlets = data)
+		this.outletService.getOutletMinis().then(data => this.outlets = data)
         this.outletMappingService.getOutletMapping().then(data => {
 			this.outletMapping = data
 			this.loading = false

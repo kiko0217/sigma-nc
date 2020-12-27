@@ -20,7 +20,7 @@
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
 					<template #header>
 						<div class="table-header">
-							<h5 class="p-m-0">Manage Regions</h5>
+							<!-- <h5 class="p-m-0">Manage Regions</h5> -->
 							<span class="p-input-icon-left">
                                 <i class="pi pi-search" />
                                 <InputText v-model="filters['global']" placeholder="Search..." />
@@ -38,11 +38,25 @@
 					<Column v-for="(col, index) of columnRegion" :field="col.field" :header="col.header" :key="index" headerStyle="width: 150px"></Column>
 				</DataTable>
 
-				<Dialog :visible.sync="regionDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
+				<Dialog 
+					:visible.sync="regionDialog" 
+					:style="{width: '450px'}" 
+					header="Region Details" 
+					:modal="true" 
+					class="p-fluid"
+				>
 					<!-- ini bisa diisi dengan peta nantinya -->
 					<div class="p-field">
 						<label for="codeDept">Code Dept</label>
-						<InputText id="codeDept" v-model.trim="region.codeDept" required="true" autofocus :class="{'p-invalid': submitted && !region.codeDept}" />
+						<Dropdown inputId="CodeDept" 
+							v-model.trim="region.codeDept" 
+							:options="depts" :filter="true" 
+							optionValue="gh_funccode" optionLabel="gh_funccode"
+							placeholder="Select Dept" 
+							scrollHeight="100px"
+							dataKey="_id"
+						>
+						</Dropdown>
 						<small class="p-invalid" v-if="submitted && !region.codeDept">Code Region is required.</small>
 					</div>
 					<div class="p-field">
@@ -94,11 +108,13 @@
 </template>
 
 <script>
-import RegionService from '../service/RegionService';
+import RegionService from '../service/RegionService'
+import SysFunctService from '../service/SysFunctService'
 
 export default {
 	data() {
 		return {
+			depts: null,
 			loading: false,
 			columnRegion:[],
 			regions: null,
@@ -112,6 +128,7 @@ export default {
             createNew: false
 		}
 	},
+	sysFunctService: null,
 	regionService: null,
 	created() {
 		this.columnRegion = [
@@ -132,10 +149,15 @@ export default {
 				header : 'Initial'
 			},
 		]
-		this.regionService = new RegionService();
+		this.regionService = new RegionService()
+		this.sysFunctService = new SysFunctService()
 	},
 	mounted() {
 		this.loading = true
+		this.sysFunctService.getDepts()
+		.then(data => {
+			this.depts = data
+		})
 		this.regionService.getRegions()
 		.then(data => {
 			this.regions = data
@@ -179,7 +201,11 @@ export default {
             }
 			this.submitted = true;
 			// console.log(this.region)
-			if (this.region.codeDept.trim() && this.region.name.trim() && this.region.code.trim() && this.region.short.trim()) {
+			if (this.region.codeDept && 
+				this.region.name && 
+				this.region.code && 
+				this.region.short) 
+			{
 				this.regionService.editRegion(this.region)
 				.then(msg => {
 					this.loading = true

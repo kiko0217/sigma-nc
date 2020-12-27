@@ -5,8 +5,8 @@
 				<Toast/>
 				<Toolbar class="p-mb-4">
 					<template slot="left">
-						<Button label="New" icon="pi pi-plus" class="p-button-success p-mr-2" @click="openNew" />
-						<Button label="Delete" icon="pi pi-trash" class="p-button-danger" @click="confirmDeleteSelected" :disabled="!selectedRegions || !selectedRegions.length" />
+						<Button label="New" icon="pi pi-plus" :disabled="loading" class="p-button-success p-mr-2" @click="openNew" />
+						<Button label="Delete" icon="pi pi-trash" class="p-button-danger" @click="confirmDeleteSelected" :disabled="!selecteds || !selecteds.length" />
 					</template>
 
 					<template slot="right">
@@ -15,102 +15,217 @@
 					</template>
 				</Toolbar>
 
-				<DataTable ref="dt" :value="products" :scrollable="true" scrollHeight="500px" :selection.sync="selectedRegions" dataKey="Code" :paginator="true" :rows="10" :filters="filters"
-                            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
-                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
+				<DataTable ref="dt" 
+					:value="products"
+					:scrollable="true"
+					scrollHeight="500px"
+					:selection.sync="selecteds"
+					dataKey="_id"
+					:paginator="true"
+					:rows="10"
+					:filters="filters"
+					:loading="loading"
+					paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" 
+					:rowsPerPageOptions="[5,10,25]"
+					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Products"
+				>
 					<template #header>
 						<div class="table-header">
-							<h5 class="p-m-0">Manage Product</h5>
+							<!-- <h5 class="p-m-0">Manage Product</h5> -->
 							<span class="p-input-icon-left">
                                 <i class="pi pi-search" />
                                 <InputText v-model="filters['global']" placeholder="Search..." />
                             </span>
 						</div>
 					</template>
-
+					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
 					<Column headerStyle="width:120px" >
 						<template #body="slotProps">
-							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editRegion(slotProps.data)" />
-							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteRegion(slotProps.data)" />
+							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editProduct(slotProps.data)" />
+							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteProduct(slotProps.data)" />
 						</template>
 					</Column>
-					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-					<Column field="code" header="Code" headerStyle="width: 100px" sortable></Column>
-					<Column field="barcode" header="Barcode" headerStyle="width: 150px" sortable></Column>
-					<Column field="name" header="Name" headerStyle="width: 200px" sortable></Column>
-					<Column field="short" header="Short" headerStyle="width: 200px" ortable></Column>
-					<Column field="type" header="Type" headerStyle="width: 100px" sortable></Column>
-					<Column field="ppn" header="PPN" headerStyle="width: 100px" sortable></Column>
-					<Column field="disc" header="Disc" headerStyle="width: 100px" sortable></Column>
-					<Column field="UoM" header="Unit of Measure" headerStyle="width: 200px" sortable></Column>
-					<Column field="conversion" header="Conversion" headerStyle="width: 150px" sortable></Column>
-					<Column field="weight" header="Weight" headerStyle="width: 100px" sortable></Column>
-					<Column field="volume" header="Volume" headerStyle="width: 120px" sortable></Column>
-					<Column field="price" header="Price" headerStyle="width: 150px" sortable>
-						<template #body="slotProps">
-							<span>{{formatCurrency(slotProps.data.price)}}</span>
+					<Column v-for="(col, index) of columnProduct" 
+						:field="col.field" 
+						:header="col.header"
+						:key="index"
+						headerStyle="width: 150px"
+					>
+						<template v-if="(col.field=='price') || (col.field=='HNA')" #body="slotProps">
+							<span>{{formatCurrency(slotProps.data[col.field])}}</span>
 						</template>
 					</Column>
-					<Column field="HNA" header="HNA" headerStyle="width: 150px" sortable>
-						<template #body="slotProps">
-							<span>{{formatCurrency(slotProps.data.HNA)}}</span>
-						</template>
-					</Column>
-					<Column field="status" header="Status" headerStyle="width: 100px" sortable></Column>
-					<Column field="createdAt" header="Create Date" headerStyle="width: 150px" sortable>
-						<template #body="slotProps">
-							<span>{{formatDate(slotProps.data.createdAt)}}</span>
-						</template>
-					</Column>
-					<Column field="updatedAt" header="Update Date" headerStyle="width: 150px" sortable>
-						<template #body="slotProps">
-							<span>{{formatDate(slotProps.data.updatedAt)}}</span>
-						</template>
-					</Column>
-					<Column field="updateBy" header="Update by" headerStyle="width: 150px" sortable></Column>
 				</DataTable>
 
-				<Dialog :visible.sync="regionDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
+				<Dialog :visible.sync="productDialog" 
+					:style="{width: '900px'}"
+					header="Product Details"
+					:modal="true" 
+					class="p-fluid"
+				>
 					<!-- ini bisa diisi dengan peta nantinya -->
-					<div class="p-field">
-						<label for="Code">Code</label>
-						<InputText id="Code" v-model.trim="region.Code" required="true" autofocus :class="{'p-invalid': submitted && !region.Code}" />
-						<small class="p-invalid" v-if="submitted && !region.Code">Code is required.</small>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Code">Code</label>
+							<InputText id="Code" 
+								v-model.trim="product.code" 
+								required="true" 
+								autofocus
+								:class="{'p-invalid': submitted && !product.code}" />
+							<small class="p-invalid" v-if="submitted && !product.code">Code is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Barcode">Barcode</label>
+							<InputText id="Barcode" 
+								v-model.trim="product.barcode"
+								required="true"
+								autofocus
+								:class="{'p-invalid': submitted && !product.barcode}"
+							/>
+							<small class="p-invalid" v-if="submitted && !product.barcode">Barcode is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Name">Name</label>
+							<InputText id="Name"
+								v-model.trim="product.name"
+								required="true"
+								autofocus
+								:class="{'p-invalid': submitted && !product.name}"
+							/>
+							<small class="p-invalid" v-if="submitted && !product.name">Name is required.</small>
+						</div>
 					</div>
-					<div class="p-field">
-						<label for="Name">Name</label>
-						<InputText id="Name" v-model.trim="region.Name" required="true" autofocus :class="{'p-invalid': submitted && !region.Name}" />
-						<small class="p-invalid" v-if="submitted && !region.Name">Name is required.</small>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Short">Short</label>
+							<InputText id="Short"
+								v-model.trim="product.short"
+								required="true"
+								autofocus
+								:class="{'p-invalid': submitted && !product.short}"
+							/>
+							<small class="p-invalid" v-if="submitted && !product.short">Short Name is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Type">Type</label>
+							<InputText id="Type" 
+								v-model.trim="product.type" 
+								required="true" 
+								autofocus
+								:class="{'p-invalid': submitted && !product.type}" />
+							<small class="p-invalid" v-if="submitted && !product.type">Type is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="PPN">PPN</label>
+							<InputNumber id="PPN"
+								v-model.trim="product.ppn"
+								:min="0"
+								:max="100"
+								suffix=" %"
+							/>
+							<small class="p-invalid" v-if="submitted && !product.ppn">PPN is required.</small>
+						</div>
 					</div>
-					<div class="p-field">
-						<label for="Type">Type</label>
-						<InputText id="Type" v-model.trim="region.Type" required="true" autofocus :class="{'p-invalid': submitted && !region.Type}" />
-						<small class="p-invalid" v-if="submitted && !region.Type">Type Name is required.</small>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Disc">Disc</label>
+							<InputNumber id="Disc"
+								v-model.trim="product.disc"
+								:min="0"
+								:max="100"
+								suffix=" %"
+							/>
+							<small class="p-invalid" v-if="submitted && !product.disc">Disc is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Unit of Measure">Unit of Measure</label>
+							<InputText id="Unit of Measure" 
+								v-model.trim="product.UoM" 
+								required="true" 
+								autofocus
+								:class="{'p-invalid': submitted && !product.UoM}" />
+							<small class="p-invalid" v-if="submitted && !product.UoM">Unit of Measure is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Conversion">Conversion</label>
+							<InputNumber id="Conversion" v-model.trim="product.conversion" />	
+							<small class="p-invalid" v-if="submitted && !product.conversion">Conversion is required.</small>
+						</div>
+					</div>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Weight">Weight</label>
+							<InputNumber id="Weight"
+								v-model.trim="product.weight"
+								suffix=" gram"
+							/>
+							<small class="p-invalid" v-if="submitted && !product.weight">Weight is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Volume">Volume</label>
+							<InputNumber id="Volume"
+								v-model.trim="product.volume"
+								suffix=" mm3"
+							/>
+							<small class="p-invalid" v-if="submitted && !product.volume">Volume is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Price">Price</label>
+							<InputNumber id="Price"
+								v-model="product.price"
+								mode="currency"
+								currency="IDR"
+								locale="id-ID"
+							/>
+							<small class="p-invalid" v-if="submitted && !product.price">Price is required.</small>
+						</div>
+					</div>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<label for="HNA">HNA</label>
+							<InputNumber id="HNA"
+								v-model="product.HNA"
+								mode="currency"
+								currency="IDR"
+								locale="id-ID"
+							/>
+							<small class="p-invalid" v-if="submitted && !product.HNA">HNA is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Status">Status</label>
+							<InputText id="Status" 
+								v-model.trim="product.status" 
+								required="true" 
+								autofocus
+								:class="{'p-invalid': submitted && !product.status}"
+							/>
+							<small class="p-invalid" v-if="submitted && !product.status">Status is required.</small>
+						</div>
 					</div>
 					<template #footer>
 						<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog"/>
-						<Button label="Save" icon="pi pi-check" class="p-button-text" @click="saveRegion" />
+						<Button label="Save" icon="pi pi-check" class="p-button-text" @click="saveProduct" />
 					</template>
 				</Dialog>
 
-				<Dialog :visible.sync="deleteRegionDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
+				<Dialog :visible.sync="deleteProductDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
 					<div class="confirmation-content">
 						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-						<span v-if="region">Are you sure you want to delete <b>{{region.Name}}</b>?</span>
+						<span v-if="product">Are you sure you want to delete <b>{{product.name}}</b>?</span>
 					</div>
 					<template #footer>
-						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteRegionDialog = false"/>
-						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteRegion" />
+						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteProductDialog = false"/>
+						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteProduct" />
 					</template>
 				</Dialog>
 
-				<Dialog :visible.sync="deleteRegionsDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
+				<Dialog :visible.sync="deleteProductsDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
 					<div class="confirmation-content">
 						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-						<span v-if="region">Are you sure you want to delete the selected regions?</span>
+						<span v-if="product">Are you sure you want to delete the selected products?</span>
 					</div>
 					<template #footer>
-						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteRegionsDialog = false"/>
+						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteProductsDialog = false"/>
 						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteSelectedRegions" />
 					</template>
 				</Dialog>
@@ -126,12 +241,14 @@ import ProductService from '../service/ProductService';
 export default {
 	data() {
 		return {
+			columnProduct: [],
+			loading: false,
 			products: null,
-			regionDialog: false,
-			deleteRegionDialog: false,
-			deleteRegionsDialog: false,
-			region: {},
-			selectedRegions: null,
+			productDialog: false,
+			deleteProductDialog: false,
+			deleteProductsDialog: false,
+			product: {},
+			selecteds: null,
 			filters: {},
             submitted: false,
             createNew: false
@@ -139,10 +256,72 @@ export default {
 	},
 	productService: null,
 	created() {
+		this.columnProduct = [
+			{
+				field : 'code',
+				header : 'Code'
+			},
+			{
+				field : 'barcode',
+				header : 'Barcode'
+			},
+			{
+				field : 'name',
+				header : 'Name'
+			},
+			{
+				field : 'short',
+				header : 'Short'
+			},
+			{
+				field : 'type',
+				header : 'Type'
+			},
+			{
+				field : 'ppn',
+				header : 'PPN'
+			},
+			{
+				field : 'disc',
+				header : 'Disc'
+			},
+			{
+				field : 'UoM',
+				header : 'Unit of Measure'
+			},
+			{
+				field : 'conversion',
+				header : 'Conversion'
+			},
+			{
+				field : 'weight',
+				header : 'Weight'
+			},
+			{
+				field : 'volume',
+				header : 'Volume'
+			},
+			{
+				field : 'price',
+				header : 'Price'
+			},
+			{
+				field : 'HNA',
+				header : 'HNA'
+			},
+			{
+				field : 'status',
+				header : 'Status'
+			},
+		]
 		this.productService = new ProductService();
 	},
 	mounted() {
-		this.productService.getProducts().then(data => this.products = data);
+		this.loading= true
+		this.productService.getProducts().then(data => {
+			this.products = data
+			this.loading = false
+		})
 	},
 	methods: {
 		formatDate(dat) {
@@ -165,57 +344,108 @@ export default {
 			return value.toLocaleString('id-ID', {style: 'currency', currency: 'IDR'});
 		},
 		openNew() {
-			this.region = {};
+			this.product = {};
 			this.submitted = false;
-            this.regionDialog = true;
+            this.productDialog = true;
             this.createNew = true;
 		},
 		hideDialog() {
-			this.regionDialog = false;
+			this.productDialog = false;
 			this.submitted = false;
 		},
-		saveRegion() {
-            if(this.createNew){
-                this.createRegion();
-                return;
-            }
+		saveProduct() {
 			this.submitted = true;
-
-			if (this.region.Name.trim() && this.region.Code.trim() && this.region.Type.trim()) {
-                this.$set(this.regions, this.findIndexByCode(this.region.Code), this.region);
-                this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Updated', life: 3000});
-                this.regionDialog = false;
-                this.region = {};
+			if (this.product.name &&
+				this.product.barcode &&
+				this.product.code &&
+				this.product.short &&
+				this.product.type &&
+				this.product.ppn &&
+				this.product.disc &&
+				this.product.UoM &&
+				this.product.conversion &&
+				this.product.weight &&
+				this.product.volume &&
+				this.product.HNA &&
+				this.product.status) 
+			{
+				if(this.createNew){
+					this.createProduct();
+					return;
+				}
+				this.edit()
+                this.productDialog = false;
+                this.product = {};
 			}
-        },
-        createRegion() {
-            this.submitted = true;
-            if (this.region.Name.trim() && this.region.Code.trim() && this.region.Type.trim()) {
-                this.regions.push(this.region);
-                this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Created', life: 3000});
-                this.regionDialog = false;
-                this.region = {};
-                this.createNew = false;
-            }
-        },
-		editRegion(region) {
-			this.region = {...region};
-			this.regionDialog = true;
 		},
-		confirmDeleteRegion(region) {
-			this.region = region;
-			this.deleteRegionDialog = true;
+		create() {
+			this.productService.createProduct(this.product)
+			.then(msg => {
+				this.loading = true
+				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000})
+				this.productService.getProducts().then(data => {
+					this.products = data
+					this.loading = false
+				})
+			})
+			.catch(err => {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+			})
 		},
-		deleteRegion() {
-			this.regions = this.regions.filter(val => val.Code !== this.region.Code);
-			this.deleteRegionDialog = false;
-			this.region = {};
-			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Deleted', life: 3000});
+        createProduct() {
+            this.create()
+			this.productDialog = false;
+			this.product = {};
+			this.createNew = false;
+		},
+		edit() {
+			this.productService.editProduct(this.product)
+			.then(msg => {
+				this.loading = true
+				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000})
+				this.productService.getProducts().then(data => {
+					this.products = data
+					this.loading = false
+				})
+			})
+			.catch(err => {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+			})
+		},
+		editProduct(product) {
+			this.product = {...product}
+			this.productDialog = true
+			this.submitted = false
+		},
+		confirmDeleteProduct(product) {
+			this.product = product;
+			this.deleteProductDialog = true;
+		},
+		delete() {
+			this.productService.deleteProduct(this.product)
+			.then(msg => {
+				this.loading = true
+				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000})
+				this.productService.getProducts().then(data => {
+					this.products = data
+					this.loading = false
+				})
+			})
+			.catch(err => {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+			})
+		},
+		deleteProduct() {
+			// this.products = this.products.filter(val => val.Code !== this.product.Code);
+			// this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Deleted', life: 3000});
+			this.delete()
+			this.deleteProductDialog = false;
+			this.product = {};
 		},
 		findIndexByCode(Code) {
 			let index = -1;
-			for (let i = 0; i < this.regions.length; i++) {
-				if (this.regions[i].Code === Code) {
+			for (let i = 0; i < this.products.length; i++) {
+				if (this.products[i].Code === Code) {
 					index = i;
 					break;
 				}
@@ -235,12 +465,12 @@ export default {
 			this.$refs.dt.exportCSV();
 		},
 		confirmDeleteSelected() {
-			this.deleteRegionsDialog = true;
+			this.deleteProductsDialog = true;
 		},
 		deleteSelectedRegions() {
-			this.regions = this.regions.filter(val => !this.selectedRegions.includes(val));
-			this.deleteRegionsDialog = false;
-			this.selectedRegions = null;
+			this.products = this.products.filter(val => !this.selecteds.includes(val));
+			this.deleteProductsDialog = false;
+			this.selecteds = null;
 			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Regions Deleted', life: 3000});
 		}
 	}

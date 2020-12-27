@@ -5,22 +5,46 @@
 				<Toast/>
 				<Toolbar class="p-mb-4">
 					<template slot="left">
-						<Button label="New" icon="pi pi-plus" class="p-button-success p-mr-2" @click="openNew" />
-						<Button label="Delete" icon="pi pi-trash" class="p-button-danger" @click="confirmDeleteSelected" :disabled="!selectedRegions || !selectedRegions.length" />
+						<Button label="New" 
+							icon="pi pi-plus" 
+							class="p-button-success p-mr-2" 
+							@click="openNew"
+							:disabled="loading" />
+						<Button label="Delete" 
+							icon="pi pi-trash" 
+							class="p-button-danger" 
+							@click="confirmDeleteSelected" 
+							:disabled="!selectedCustomers || !selectedCustomers.length" />
 					</template>
 
 					<template slot="right">
-						<FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" />
-						<Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
+						<!-- <FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" /> -->
+						<Button label="Export" 
+							icon="pi pi-upload" 
+							class="p-button-help" 
+							@click="exportCSV($event)"
+							:disabled="loading"  />
 					</template>
 				</Toolbar>
 
-				<DataTable ref="dt" :value="customers" :scrollable="true" scrollHeight="500px" :selection.sync="selectedRegions" editMode="cell" dataKey="CodeCust" :paginator="true" :rows="10" :filters="filters"
-                            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
-                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
+				<DataTable ref="dt" 
+					:value="customers"
+					:scrollable="true"
+					scrollHeight="500px"
+					:selection.sync="selectedCustomers"
+					editMode="cell"
+					dataKey="CodeCust"
+					:paginator="true"
+					:rows="10"
+					:loading="loading"
+					:filters="filters"
+					paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" 
+					:rowsPerPageOptions="[5,10,25]"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Customer"
+				>
 					<template #header>
 						<div class="table-header">
-							<h5 class="p-m-0">Manage Customer</h5>
+							<!-- <h5 class="p-m-0">Manage Customer</h5> -->
 							<span class="p-input-icon-left">
                                 <i class="pi pi-search" />
                                 <InputText v-model="filters['global']" placeholder="Search..." />
@@ -28,95 +52,167 @@
 						</div>
 					</template>
 
+					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
 					<Column headerStyle="width: 120px">
 						<template #body="slotProps">
-							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editRegion(slotProps.data)" />
-							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteRegion(slotProps.data)" />
+							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editCustomer(slotProps.data)" />
+							<Button icon="pi pi-trash" class="p-button-rounded p-button-warning" @click="confirmDeleteCustomer(slotProps.data)" />
 						</template>
 					</Column>
-					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-					<!-- <Column field="Outlet" header="Outlet" headerStyle="width: 100px" sortable></Column> -->
-					<Column field="type" header="Type" headerStyle="width: 100px" sortable></Column>
-					<Column field="category" header="Category" headerStyle="width: 100px" sortable></Column>
-					<Column field="class" header="Class" headerStyle="width: 100px" sortable></Column>
-					<Column field="code" header="Code Cust" headerStyle="width: 100px" sortable></Column>
-					<Column field="name" header="Customer Name" headerStyle="width: 200px" sortable></Column>
-					<Column field="short" header="Shor Name" headerStyle="width: 100px" sortable></Column>
-					<Column field="outletCode" header="Code Outlet" headerStyle="width: 200px" sortable>
-						<template #editor="slotProps">
-							<Dropdown v-model="slotProps.data['outletCode']" :options="outlets" :filter="true" optionLabel="code" optionValue="code" placeholder="Select Outlet" scrollHeight="100px">
-								<template #option="slotProps">
-									<span>{{slotProps.option.name}}</span>
-								</template>
-							</Dropdown>
-						</template>
-					</Column>
-					<Column field="KSO" header="KSO" headerStyle="width: 100px" sortable></Column>
-					<Column field="status" header="Status" headerStyle="width: 100px" sortable></Column>
-					<Column field="sex" header="Sex" headerStyle="width: 100px" sortable></Column>
-					<Column field="balance" header="Balance" headerStyle="width: 100px" sortable></Column>
-					<Column field="targetCall" header="Target Call" headerStyle="width: 100px" sortable></Column>
-					<Column field="address" header="Address" headerStyle="width: 300px" sortable></Column>
-					<Column field="codePos" header="Kode POS" headerStyle="width: 100px" sortable></Column>
-					<Column field="city" header="City" headerStyle="width: 100px" sortable></Column>
-					<Column field="propinsi" header="Propinsi" headerStyle="width: 100px" sortable></Column>
-					<Column field="phone" header="Phone" headerStyle="width: 100px" sortable></Column>
-					<Column field="email" header="Email" headerStyle="width: 100px" sortable></Column>
-					<Column field="createdAt" header="Create Date" sortable headerStyle="width: 150px">
-						<template #body="slotProps">
-							<span>{{formatDate(slotProps.data.createdAt)}}</span>
-						</template>
-					</Column>
-					<Column field="updatedAt" header="Update Date" sortable headerStyle="width: 150px">
-						<template #body="slotProps">
-							<span>{{formatDate(slotProps.data.updatedAt)}}</span>
-						</template>
-					</Column>
-					<Column field="updatedBy" header="Update by" sortable headerStyle="width: 150px"></Column>
+					<Column v-for="(col, index) of columnCustomer" :field="col.field" :header="col.header" :key="index" headerStyle="width: 150px"></Column>
 				</DataTable>
 
-				<Dialog :visible.sync="regionDialog" :style="{width: '450px'}" header="Region Details" :modal="true" class="p-fluid">
-					<!-- ini bisa diisi dengan peta nantinya -->
-					<div class="p-field">
-						<label for="CodeCust">Code Cust</label>
-						<InputText id="CodeCust" v-model.trim="region.CodeCust" required="true" autofocus :class="{'p-invalid': submitted && !region.CodeCust}" />
-						<small class="p-invalid" v-if="submitted && !region.CodeCust">Code Cust is required.</small>
+				<Dialog :visible.sync="customerDialog" 
+					:style="{width: '900px'}" 
+					header="Customer Details" 
+					:modal="true" 
+					class="p-fluid"
+				>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Type">Type</label>
+							<Dropdown
+								inputId="Type"
+								v-model.trim="customer.type"
+								:options="customerTypes"
+								:filter="true"
+								optionValue="gh_funccode"
+								optionLabel="gh_funcdescription"
+								placeholder="Select Customer Type"
+								scrollHeight="100px"
+								dataKey="_id"
+							>
+							</Dropdown>
+							<small class="p-invalid" v-if="submitted && !customer.type">Type is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Category">Category</label>
+							<Dropdown
+								inputId="Category"
+								v-model.trim="customer.catagory"
+								:options="customerCategores"
+								:filter="true"
+								optionValue="gh_funccode"
+								optionLabel="gh_funcdescription"
+								placeholder="Select Customer Category"
+								scrollHeight="100px"
+								dataKey="_id"
+							>
+							</Dropdown>
+							<small class="p-invalid" v-if="submitted && !customer.catagory">Category is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Class">Class</label>
+							<InputText id="Class" v-model.trim="customer.class" required="true" autofocus :class="{'p-invalid': submitted && !customer.class}" />
+							<small class="p-invalid" v-if="submitted && !customer.class">Class Name is required.</small>
+						</div>
 					</div>
-					<div class="p-field">
-						<label for="NameCustomer">Customer Name</label>
-						<InputText id="NameCustomer" v-model.trim="region.NameCustomer" required="true" autofocus :class="{'p-invalid': submitted && !region.NameCustomer}" />
-						<small class="p-invalid" v-if="submitted && !region.NameCustomer">Customer Name is required.</small>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Code">Code</label>
+							<InputText id="Code" v-model.trim="customer.code" required="true" autofocus :class="{'p-invalid': submitted && !customer.code}" />
+							<small class="p-invalid" v-if="submitted && !customer.code">Code is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Name">Name</label>
+							<InputText id="Name" v-model.trim="customer.name" required="true" autofocus :class="{'p-invalid': submitted && !customer.name}" />
+							<small class="p-invalid" v-if="submitted && !customer.name">Name is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Short">Short Name</label>
+							<InputText id="Short" v-model.trim="customer.short" required="true" autofocus :class="{'p-invalid': submitted && !customer.short}" />
+							<small class="p-invalid" v-if="submitted && !customer.short">Short Name is required.</small>
+						</div>
 					</div>
-					<div class="p-field">
-						<label for="Status">Status</label>
-						<InputText id="Status" v-model.trim="region.Status" required="true" autofocus :class="{'p-invalid': submitted && !region.Status}" />
-						<small class="p-invalid" v-if="submitted && !region.Status">Status Name is required.</small>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Status">Status</label>
+							<InputText id="Status" v-model.trim="customer.status" required="true" autofocus :class="{'p-invalid': submitted && !customer.status}" />
+							<small class="p-invalid" v-if="submitted && !customer.status">Status is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Sex">Sex</label>
+							<InputText id="Sex" v-model.trim="customer.sex" required="true" autofocus :class="{'p-invalid': submitted && !customer.sex}" />
+							<small class="p-invalid" v-if="submitted && !customer.sex">Sex is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="KSO">KSO</label>
+							<InputText id="KSO" v-model.trim="customer.KSO" required="true" autofocus :class="{'p-invalid': submitted && !customer.KSO}" />
+							<small class="p-invalid" v-if="submitted && !customer.KSO">KSO is required.</small>
+						</div>
+					</div>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Email">Email</label>
+							<InputText id="Email" v-model.trim="customer.email" required="true" autofocus :class="{'p-invalid': submitted && !customer.email}" />
+							<small class="p-invalid" v-if="submitted && !customer.email">Email is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Target Call">Target Call</label>
+							<InputNumber 
+								id="Target Call"
+								mode="decimal" 
+								v-model.trim="customer.targetCall"
+								required="true"
+								autofocus :class="{'p-invalid': submitted && !customer.targetCall}"
+							/>
+							<small class="p-invalid" v-if="submitted && !customer.targetCall">Target Call is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Phone">Phone</label>
+							<InputText id="Phone" v-model.trim="customer.phone" required="true" autofocus :class="{'p-invalid': submitted && !customer.phone}" />
+							<small class="p-invalid" v-if="submitted && !customer.phone">Phone is required.</small>
+						</div>
+					</div>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-12">
+							<label for="Address">Address</label>
+							<Textarea id="Address" v-model.trim="customer.address" required="true" autofocus :class="{'p-invalid': submitted && !customer.address}" rows="3" />
+							<small class="p-invalid" v-if="submitted && !customer.address">Address is required.</small>
+						</div>
+					</div>
+					<div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<label for="City">City</label>
+							<InputText id="City" v-model.trim="customer.city" required="true" autofocus :class="{'p-invalid': submitted && !customer.city}" />
+							<small class="p-invalid" v-if="submitted && !customer.city">City is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Propinsi">Propinsi</label>
+							<InputText id="Propinsi" v-model.trim="customer.propinsi" required="true" autofocus :class="{'p-invalid': submitted && !customer.propinsi}" />
+							<small class="p-invalid" v-if="submitted && !customer.propinsi">Propinsi is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="Code Pos">Code Pos</label>
+							<InputText id="Code Pos" v-model.trim="customer.codePos" required="true" autofocus :class="{'p-invalid': submitted && !customer.codePos}" />
+							<small class="p-invalid" v-if="submitted && !customer.codePos">Code Pos is required.</small>
+						</div>
 					</div>
 					<template #footer>
 						<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog"/>
-						<Button label="Save" icon="pi pi-check" class="p-button-text" @click="saveRegion" />
+						<Button label="Save" icon="pi pi-check" class="p-button-text" @click="saveCustomer" />
 					</template>
 				</Dialog>
 
-				<Dialog :visible.sync="deleteRegionDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
+				<Dialog :visible.sync="deleteCustomerDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
 					<div class="confirmation-content">
 						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-						<span v-if="region">Are you sure you want to delete <b>{{region.NameCustomer}}</b>?</span>
+						<span v-if="customer">Are you sure you want to delete <b>{{customer.name}}</b>?</span>
 					</div>
 					<template #footer>
-						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteRegionDialog = false"/>
-						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteRegion" />
+						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteCustomerDialog = false"/>
+						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteCustomer" />
 					</template>
 				</Dialog>
 
-				<Dialog :visible.sync="deleteRegionsDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
+				<Dialog :visible.sync="deleteCustomersDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
 					<div class="confirmation-content">
 						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-						<span v-if="region">Are you sure you want to delete the selected regions?</span>
+						<span v-if="customer">Are you sure you want to delete the selected customers?</span>
 					</div>
 					<template #footer>
-						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteRegionsDialog = false"/>
-						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteSelectedRegions" />
+						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteCustomersDialog = false"/>
+						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteSelectedCustomers" />
 					</template>
 				</Dialog>
 			</div>
@@ -128,16 +224,21 @@
 <script>
 import CustomerService from '../service/Customer1Service';
 import OutletService from '../service/OutletService'
+import SysFunctService from '../service/SysFunctService'
 export default {
 	data() {
 		return {
+			customerCategores: null,
+			customerTypes: null,
+			loading: false, 
+			columnCustomer: [],
 			outles: null,
 			customers: null,
-			regionDialog: false,
-			deleteRegionDialog: false,
-			deleteRegionsDialog: false,
-			region: {},
-			selectedRegions: null,
+			customerDialog: false,
+			deleteCustomerDialog: false,
+			deleteCustomersDialog: false,
+			customer: {},
+			selectedCustomers: null,
 			filters: {},
             submitted: false,
             createNew: false
@@ -145,13 +246,93 @@ export default {
 	},
 	customerService: null,
 	outletService: null,
+	sysFunctService: null,
 	created() {
+		this.columnCustomer = [
+			{
+				field : 'type',
+				header : 'Type'
+			},
+			{
+				field : 'catagory',
+				header : 'Category'
+			},
+			{
+				field : 'class',
+				header : 'Class'
+			},
+			{
+				field : 'code',
+				header : 'Customer Code'
+			},
+			{
+				field : 'name',
+				header : 'Customer Name'
+			},
+			{
+				field : 'short',
+				header : 'Short Name'
+			},
+			{
+				field : 'KSO',
+				header : 'KSO'
+			},
+			{
+				field : 'status',
+				header : 'Status'
+			},
+			{
+				field : 'sex',
+				header : 'Sex'
+			},
+			{
+				field : 'address',
+				header : 'Address'
+			},
+			{
+				field : 'city',
+				header : 'City'
+			},
+			{
+				field : 'propinsi',
+				header : 'Propinsi'
+			},
+			{
+				field : 'codePos',
+				header : 'Code Pos'
+			},
+			{
+				field : 'email',
+				header : 'Email'
+			},
+			{
+				field : 'phone',
+				header : 'Phone'
+			},
+			{
+				field : 'targetCall',
+				header : 'Target Call'
+			}
+		]
 		this.outletService= new OutletService()
-		this.customerService = new CustomerService();
+		this.customerService = new CustomerService()
+		this.sysFunctService = new SysFunctService()
 	},
 	mounted() {
+		this.loading = true
+		this.sysFunctService.getCustomerType()
+		.then(data => {
+			this.customerTypes = data
+		})
+		this.sysFunctService.getCustomerCategory()
+		.then(data => {
+			this.customerCategores = data
+		})
 		this.outletService.getOutlets().then(data => this.outlets = data)
-		this.customerService.getCustomers().then(data => this.customers = data);
+		this.customerService.getCustomers().then(data => {
+			this.loading = false
+			this.customers = data
+		});
 	},
 	methods: {
 		formatDate(dat) {
@@ -174,57 +355,112 @@ export default {
 			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
 		},
 		openNew() {
-			this.region = {};
+			this.customer = {};
 			this.submitted = false;
-            this.regionDialog = true;
+            this.customerDialog = true;
             this.createNew = true;
 		},
 		hideDialog() {
-			this.regionDialog = false;
+			this.customerDialog = false;
 			this.submitted = false;
 		},
-		saveRegion() {
-            if(this.createNew){
-                this.createRegion();
-                return;
-            }
+		edit() {
+			this.customerService.editCustomer(this.customer)
+			.then(msg => {
+				this.loading = true
+				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+				this.customerService.getCustomers().then(data => {
+					this.loading = false
+					this.customers = data
+				});
+			})
+			.catch(err => {
+				console.log(err)
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+			})
+		},
+		saveCustomer() {
 			this.submitted = true;
-
-			if (this.region.NameCustomer.trim() && this.region.CodeCust.trim() && this.region.Status.trim()) {
-                this.$set(this.regions, this.findIndexByCodeCust(this.region.CodeCust), this.region);
-                this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Updated', life: 3000});
-                this.regionDialog = false;
-                this.region = {};
+			if (this.customer.type &&
+				this.customer.catagory &&
+				this.customer.class &&
+				this.customer.code &&
+				this.customer.name &&
+				this.customer.short &&
+				this.customer.status &&
+				this.customer.sex &&
+				this.customer.KSO &&
+				this.customer.email &&
+				this.customer.targetCall &&
+				this.customer.phone &&
+				this.customer.address &&
+				this.customer.city &&
+				this.customer.propinsi &&
+				this.customer.codePos)
+			{
+				if(this.createNew){
+					this.createCustomer();
+					return;
+				}
+                this.edit()
+                this.customerDialog = false;
+                this.customer = {};
 			}
-        },
-        createRegion() {
-            this.submitted = true;
-            if (this.region.NameCustomer.trim() && this.region.CodeCust.trim() && this.region.Status.trim()) {
-                this.regions.push(this.region);
-                this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Created', life: 3000});
-                this.regionDialog = false;
-                this.region = {};
-                this.createNew = false;
-            }
-        },
-		editRegion(region) {
-			this.region = {...region};
-			this.regionDialog = true;
 		},
-		confirmDeleteRegion(region) {
-			this.region = region;
-			this.deleteRegionDialog = true;
+		create() {
+			// console.log('test')
+			this.customerService.createCustomer(this.customer)
+			.then(msg => {
+				this.loading = true
+				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+				this.customerService.getCustomers().then(data => {
+					this.loading = false
+					this.customers = data
+				});
+			})
+			.catch(err => {
+				console.log(err)
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+			})
 		},
-		deleteRegion() {
-			this.regions = this.regions.filter(val => val.CodeCust !== this.region.CodeCust);
-			this.deleteRegionDialog = false;
-			this.region = {};
-			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Deleted', life: 3000});
+        createCustomer() {
+            this.create()
+			this.customerDialog = false;
+			this.customer = {};
+			this.createNew = false;
+        },
+		editCustomer(customer) {
+			this.customer = {...customer};
+			this.customerDialog = true;
+		},
+		confirmDeleteCustomer(customer) {
+			this.customer = customer;
+			this.deleteCustomerDialog = true;
+		},
+		delete() {
+			this.customerService.deleteCustomer(this.customer)
+			.then(msg => {
+				this.loading = true
+				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+				this.customerService.getCustomers().then(data => {
+					this.loading = false
+					this.customers = data
+				});
+			})
+			.catch(err => {
+				console.log(err)
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+			})
+		},
+		deleteCustomer() {
+			this.delete()
+			this.deleteCustomerDialog = false;
+			this.customer = {};
 		},
 		findIndexByCodeCust(CodeCust) {
 			let index = -1;
-			for (let i = 0; i < this.regions.length; i++) {
-				if (this.regions[i].CodeCust === CodeCust) {
+			for (let i = 0; i < this.customers.length; i++) {
+				if (this.customers[i].CodeCust === CodeCust) {
 					index = i;
 					break;
 				}
@@ -244,12 +480,12 @@ export default {
 			this.$refs.dt.exportCSV();
 		},
 		confirmDeleteSelected() {
-			this.deleteRegionsDialog = true;
+			this.deleteCustomersDialog = true;
 		},
-		deleteSelectedRegions() {
-			this.regions = this.regions.filter(val => !this.selectedRegions.includes(val));
-			this.deleteRegionsDialog = false;
-			this.selectedRegions = null;
+		deleteSelectedCustomers() {
+			this.customers = this.customers.filter(val => !this.selectedCustomers.includes(val));
+			this.deleteCustomersDialog = false;
+			this.selectedCustomers = null;
 			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Regions Deleted', life: 3000});
 		}
 	}

@@ -15,19 +15,30 @@
 					</template>
 				</Toolbar>
 
-				<DataTable ref="dt" :value="distributors" :loading="loading" :scrollable="true" scrollHeight="800px" :selection.sync="selectedRegions" dataKey="_id" :paginator="true" :rows="10" :filters="filters"
-                            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
-                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
+				<DataTable ref="dt" 
+					:value="distributors" 
+					:loading="loading" 
+					:scrollable="true" 
+					scrollHeight="800px" 
+					:selection.sync="selectedRegions" 
+					dataKey="_id" 
+					:paginator="true" 
+					:rows="10" 
+					:filters="filters"
+					paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" 
+					:rowsPerPageOptions="[5,10,25]"
+					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Distributors"
+				>
 					<template #header>
 						<div class="table-header">
-							<h5 class="p-m-0">Manage Distributor</h5>
+							<!-- <h5 class="p-m-0">Manage Distributor</h5> -->
 							<span class="p-input-icon-left">
                                 <i class="pi pi-search" />
                                 <InputText v-model="filters['global']" placeholder="Search..." />
                             </span>
 						</div>
 					</template>
-
+					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
 					<Column headerStyle="width: 120px " >
 						<template #body="slotProps">
 							<Button icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" @click="editDistributor(slotProps.data)" />
@@ -37,7 +48,12 @@
 					<Column v-for="(col, index) of columnDistributor" :field="col.field" :header="col.header" :key="index" :headerStyle="headerStyle(col.field)"></Column>
 				</DataTable>
 
-				<Dialog :visible.sync="distributorDialog" :style="{width: '900px'}" header="Region Details" :modal="true" class="p-fluid">
+				<Dialog :visible.sync="distributorDialog"
+					:style="{width: '900px'}"
+					header="Distributor Details" 
+					:modal="true" 
+					class="p-fluid"
+				>
 					<!-- ini bisa diisi dengan peta nantinya -->
 					<div class="p-field p-grid">
 						<div class="p-field p-col-12 p-md-4">
@@ -232,58 +248,62 @@ export default {
 			this.distributorDialog = false;
 			this.submitted = false;
 		},
+		edit() {
+			this.distributorService.editDistributor(this.distributor)
+			.then(msg => {
+				this.loading = true
+				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+				this.distributorService.getDistributors().then(data => {
+					this.loading = false
+					this.distributors = data
+				});
+			})
+			.catch(err => {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+			})
+		},
 		saveDistributor() {
-            if(this.createNew){
-                this.createDistributor();
-                return;
-            }
 			this.submitted = true;
-
-			if (this.distributor.email.trim() &&
-				this.distributor.hp.trim() && this.distributor.shipForm.trim() &&
-				this.distributor.type.trim() && this.distributor.status.trim() &&
-				this.distributor.contPerson.trim() && this.distributor.address.trim() && 
-				this.distributor.nfCode.trim() && this.distributor.short.trim()) {
-                this.distributorService.editDistributor(this.distributor)
-				.then(msg => {
-					this.loading = true
-					this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
-					this.distributorService.getDistributors().then(data => {
-						this.loading = false
-						this.distributors = data
-					});
-				})
-				.catch(err => {
-					this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
-				})
+			if (this.distributor.email &&
+				this.distributor.hp && 
+				this.distributor.shipForm &&
+				this.distributor.type && 
+				this.distributor.status &&
+				this.distributor.contPerson && 
+				this.distributor.address && 
+				this.distributor.nfCode && 
+				this.distributor.short)
+			{
+				if(this.createNew){
+					this.createDistributor();
+					return;
+				}
+				this.edit()
                 this.distributorDialog = false;
                 this.distributor = {};
 			}
-        },
+		},
+		create() {
+			this.distributorService.createDistributor(this.distributor)
+			.then(msg => {
+				this.loading = true
+				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+				this.distributorService.getDistributors().then(data => {
+					this.loading = false
+					this.distributors = data
+				});
+			})
+			.catch(err => {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+			})
+		},
         createDistributor() {
-			this.submitted = true;
+			// this.submitted = true;
 			// console.log(this.distributor.address.trim())
-			if (this.distributor.email.trim() &&
-				this.distributor.hp.trim() && this.distributor.shipForm.trim() &&
-				this.distributor.type.trim() && this.distributor.status.trim() &&
-				this.distributor.contPerson.trim() && this.distributor.address.trim() && 
-				this.distributor.nfCode.trim() && this.distributor.short.trim()) {
-                this.distributorService.createDistributor(this.distributor)
-				.then(msg => {
-					this.loading = true
-					this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
-					this.distributorService.getDistributors().then(data => {
-						this.loading = false
-						this.distributors = data
-					});
-				})
-				.catch(err => {
-					this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
-				})
-                this.distributorDialog = false;
-                this.distributor = {};
-                this.createNew = false;
-            }
+			this.create()
+			this.distributorDialog = false;
+			this.distributor = {};
+			this.createNew = false;
         },
 		editDistributor(distributor) {
 			this.distributor = {...distributor};

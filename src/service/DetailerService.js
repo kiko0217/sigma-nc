@@ -5,6 +5,9 @@ export default class DetailerService {
     getDetailers() {
         return axios.get('http://34.66.31.229:3000/api/detailer/').then(res => res.data.response);
     }
+    getDetailerMinis() {
+        return axios.get('http://34.66.31.229:3000/api/detailer/mini').then(res => res.data.response);
+    }
     createDetailer(data) {
         return new Promise((resolve, reject) => {
             axios.post('http://34.66.31.229:3000/api/detailer/create', data)
