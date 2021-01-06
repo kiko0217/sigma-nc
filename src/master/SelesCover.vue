@@ -67,6 +67,7 @@
 								autofocus 
 								:class="{'p-invalid': noteCode}"
 								@change="changeCode"
+								:disabled="!createNew"
 							/>
 							<small class="p-invalid" v-if="submitted && !salesCover.code">Code is required.</small>
 							<small class="p-invalid" v-if="submitted && noteCode"> Code Exist</small>
@@ -394,6 +395,7 @@ export default {
 			})
 		},
 		editSalesCover(salesCover) {
+			this.createNew = false;
 			this.salesCover = {...salesCover},
 			this.createDialog = true
 			this.noteCode = false

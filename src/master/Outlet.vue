@@ -26,7 +26,7 @@
 					:filters="filters"
 					paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" 
 					:rowsPerPageOptions="[5,10,25]"
-					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions"
+					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Outlets"
 				>
 					<template #header>
 						<div class="table-header">
@@ -66,7 +66,13 @@
 					<div class="p-field p-grid">
 						<div class="p-field p-col-12 p-md-3">
 							<label for="Code">Code</label>
-							<InputText id="Code" v-model.trim="outlet.code" required="true" autofocus :class="{'p-invalid': submitted && !outlet.code}" />
+							<InputText 
+								v-model.trim="outlet.code" 
+								required="true"
+								autofocus 
+								:class="{'p-invalid': submitted && !outlet.code}" 
+								:disabled="!createNew"
+							/>
 							<small class="p-invalid" v-if="submitted && !outlet.code">Code is required.</small>
 						</div>
 						<div class="p-field p-col-12 p-md-3">
@@ -441,6 +447,7 @@ export default {
 			this.createNew = false;
         },
 		editOutlet(outlet) {
+			this.createNew = false;
 			this.outlet = {...outlet};
 			this.outletDialog = true;
 		},

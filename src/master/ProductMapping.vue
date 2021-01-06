@@ -10,9 +10,21 @@
 					</template>
 
 				</Toolbar>
-				<DataTable ref="mapping" :value="productMappings" :scrollable="true" :loading="loading" :paginator="true" :rows="10" scrollHeight="500px" dataKey="_id" editMode="cell" class="editable-cells-table" :filters="filters"
-					paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
-					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} product mapping">
+				<DataTable ref="mapping"
+					:value="productMappings"
+					:scrollable="true"
+					:loading="loading"
+					:paginator="true"
+					:rows="10"
+					scrollHeight="500px"
+					dataKey="_id"
+					editMode="cell"
+					class="editable-cells-table"
+					:filters="filters"
+					paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" 
+					:rowsPerPageOptions="[5,10,25]"
+					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} product mapping"
+				>
 					<template #header>
 						<div class="table-header">
 							<span class="p-input-icon-left">

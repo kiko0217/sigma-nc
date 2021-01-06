@@ -9,8 +9,14 @@
 						<Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
 					</template>
 				</Toolbar>
-				<DataTable :value="dataTemp" :scrollable="true" :expandedRows.sync="expandedRows" scrollHeight="500px" dataKey="_id"
-				@row-expand="onRowExpand" @row-collapse="onRowCollapse">
+				<DataTable :value="dataTemp" 
+					:scrollable="true"
+					:expandedRows.sync="expandedRows"
+					scrollHeight="500px" 
+					dataKey="_id"
+					@row-expand="onRowExpand" 
+					@row-collapse="onRowCollapse"
+				>
 					<Column :expander="true" headerStyle="width: 3rem" />
 					<Column v-for="col of culomnTemp" :field="col" :header="col" :key="col" headerStyle="width: 150px"></Column>
 					<template #expansion="slotProps">

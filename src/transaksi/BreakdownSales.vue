@@ -5,22 +5,30 @@
                 <Toast/>
                 <Toolbar class="p-mb-4">
 					<template slot="left">
-                        <div class="p-field p-col-12 p-md-6">
-                            <span class="p-float-label">
-                                <Calendar id="monthpicker" v-model="dateBreakDown" selectionMode="range" :manualInput="false" />
-                                <label for="monthpicker">Generate Data</label>
-                            </span>
-                        </div>
-                        <div class="p-field p-col-12 p-md-6">
-                            <Button label="Generate" :disabled="(dateBreakDown==null) || dateBreakDown==''" icon="pi pi-play" class="p-button-success p-mr-2" @click="generateData"/>
-                        </div>
+                        <!--  -->
+                        <Button label="New" 
+                            icon="pi pi-plus" 
+                            :disabled="loading"
+                            class="p-button-success p-mr-2" 
+                            @click="openNew" 
+                        />
                     </template>
 					<template slot="right">
 					</template>
 				</Toolbar>
-                <DataTable v-if="breakDowns" ref="dt" :expandedRows.sync="expandedRows" :value="breakDowns" dataKey="l" :paginator="true" :rows="10" :filters="filters"
-                            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
-                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions">
+                <DataTable
+                    ref="dt" 
+                    :expandedRows.sync="expandedRows" 
+                    :value="saveBreakdowns"
+                    dataKey="_id" 
+                    :paginator="true" 
+                    :rows="10" 
+                    :filters="filters"
+                    :loading="loading"
+                    paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" 
+                    :rowsPerPageOptions="[5,10,25]"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions"
+                >
 					<template #header>
 						<div class="table-header">
 							<!-- <h5 class="p-m-0">Manage Seles Cover</h5> -->
@@ -31,14 +39,136 @@
 						</div>
 					</template>
                     <Column :expander="true" headerStyle="width: 3rem" />
-                    <Column field="outlet.name" header="Outlet" headerStyle="width: 150px"></Column>
+                    <Column field="name" header="Outlet" headerStyle="width: 150px"></Column>
                     <Column v-for="(col, index) of products" :field="col.short" :header="col.short" :key="index" headerStyle="width: 150px"></Column>
                     <template #expansion="slotProps">
                         <DataTable :value="slotProps.data.customers" dataKey="_id">
 							<Column field="name" header="Customer" headerStyle="width: 150px"></Column>
+                            <Column v-for="(col, index) of products" :field="col.short" :header="col.short" :key="index" headerStyle="width: 150px"></Column>
 						</DataTable>
                     </template>
 				</DataTable>
+                <Dialog :visible.sync="breakDownDialog" 
+					:style="{width: '900px'}" 
+					header="Break Down" 
+					:modal="true" 
+					class="p-fluid"
+				>
+                    <template #header>
+                        <div class="p-field p-grid">
+                            <div class="p-field p-col-12 p-md-6">
+                                <span class="p-float-label">
+                                    <Calendar id="monthpicker" 
+                                        v-model="dateBreakDown" 
+                                        :manualInput="false"
+                                        view="month"
+                                        dateFormat="mm/yy" 
+                                        :yearNavigator="true" 
+                                        yearRange="2020:2040"
+                                    />
+                                    <label for="monthpicker">Generate Data</label>
+                                </span>
+                            </div>
+                            <div class="p-field p-col-12 p-md-6">
+                                <Button label="Generate" :disabled="(dateBreakDown==null) || dateBreakDown==''" icon="pi pi-play" class="p-button-success p-mr-2" @click="generateData"/>
+                            </div>
+                        </div>
+                    </template>
+                    <div class="p-field p-grid">
+						<div class="p-field p-col-12 p-md-3">
+							<label for="breakdown">Break Down</label>
+							<Dropdown inputId="breakdown"
+								v-model.trim="breakdown"
+								:options="breakDowns"
+								placeholder="Select Break Down"
+								dataKey="_id"
+                                optionLabel="name"
+                                :filter="true"
+                                @change="changeBreakdown($event)"
+							>
+							</Dropdown>
+							<!-- <small class="p-invalid" v-if="submitted && !detailer.code">Code is required.</small> -->
+						</div>
+						<div class="p-field p-col-12 p-md-3">
+							<label for="date">Priode</label>
+							<InputText id="date"
+                                v-model.trim="breakdown.date"
+                                required="true" 
+                                autofocus 
+                                :class="{'p-invalid': submitted && !breakdown.date}" 
+                                :disabled="true"
+                            />
+							<!-- <small class="p-invalid" v-if="submitted && !detailer.name">Detailer Name is required.</small> -->
+						</div>
+						<div class="p-field p-col-12 p-md-3">
+							<label for="Name">Outlet Name</label>
+							<InputText id="Name"
+                                v-model.trim="breakdown.name"
+                                required="true" 
+                                autofocus 
+                                :class="{'p-invalid': submitted && !breakdown.name}" 
+                                :disabled="true"
+                            />
+							<!-- <small class="p-invalid" v-if="submitted && !detailer.name">Detailer Name is required.</small> -->
+						</div>
+						<div class="p-field p-col-12 p-md-3">
+							<label for="code">Code</label>
+							<InputText id="code"
+                                v-model.trim="breakdown.code"
+                                required="true" 
+                                autofocus 
+                                :class="{'p-invalid': submitted && !breakdown.code}"
+                                :disabled="true"
+                            />
+							<!-- <small class="p-invalid" v-if="submitted && !detailer.short">Short Name is required.</small> -->
+						</div>
+					</div>
+                    <div class="p-field p-grid" v-if="breakdown.products != null">
+                        <div class="p-field p-col-12 p-md-3"
+                            v-for="(col, index) of products"
+                            :key="index"
+                        >
+                            <div v-if="breakdown.products[col.short] != null">
+                                <label :for="index">{{col.short}}</label>
+                                <InputNumber  :id="index" 
+                                    v-model.trim="breakdown.products[col.short]"
+                                    required="true" 
+                                    autofocus 
+                                    :disabled="true"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="breakdown.customers">
+                        <div v-for="(col, index) of breakdown.customers"
+                            :key="index"
+                        >
+                            <h5>{{col.name}}</h5>
+                            <div class="p-field p-grid" v-if="breakdown.products != null">
+                                <div class="p-field p-col-12 p-md-3"
+                                    v-for="(col2, i) of products"
+                                    :key="i"
+                                >
+                                    <div v-if="breakdown.products[col2.short] != null">
+                                        <label :for="index">{{col2.short}}</label>
+                                        <InputNumber :id="index"
+                                            v-model.trim="breakdown.customers[index][col2.short]"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <template #footer>
+						<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog"/>
+						<Button label="Save" 
+							icon="pi pi-check"
+							class="p-button-text"
+							@click="saveBreakDown"
+							:disabled="!createNew"
+						/>
+					</template>
+                </Dialog>
             </div>
         </div>
     </div>
@@ -47,44 +177,168 @@
 
 <script>
 import BreakDownService from '../service/BreakDownService'
+import SaveBreakDownService from '../service/SaveBreakDownSarvice'
 import ProductService from '../service/ProductService'
+import OutletService from '../service/OutletService'
 export default {
     data() {
         return {
+            saveBreakdowns: null,
+            breakdown: {},
             expandedRows: [],
             products: null,
             filters:{},
             breakDowns: null,
             dateBreakDown: null,
+            submitted: false,
+            createNew: false,
+            breakDownDialog: false,
+            loading: false,
         }
     },
     productService: null,
     breakdownService : null,
-    created() {
+    outletService: null,
+    saveBreakdownService: null,
+    created() {``
         this.productService = new ProductService()
         this.breakdownService = new BreakDownService()
+        this.outletService = new OutletService()
+        this.saveBreakdownService = new SaveBreakDownService()
         // let today = new Date()
         // let month = today.getMonth()
     },
     mounted() {
+        this.loading = true
         this.productService.getProducts()
         .then(data => {
             this.products = data
         })
+        this.saveBreakdownService.getSaveBreakdown()
+        .then(data => {
+            this.saveBreakdowns = data
+            // console.log(this.saveBreakdowns)
+            for (let l in data) {
+                for (let i in data[l].products) {
+                    for (let key in this.saveBreakdowns[l].products[i]) {
+                        this.saveBreakdowns[l][key] = this.saveBreakdowns[l].products[i][key]
+                    }
+                }
+            }
+            // console.log(this.saveBreakdowns)
+            this.loading = false
+        })
 
     },
     methods: {
+        hideDialog() {
+			this.breakDownDialog = false
+			this.submitted = false
+		},
         generateData() {
-            console.log(this.products)
-            this.breakdownService.postBreakDownTanggal(this.dateBreakDown)
+            let tempDate= []
+            tempDate.push(new Date(this.dateBreakDown))
+            tempDate.push(new Date(new Date(this.dateBreakDown).setMonth(this.dateBreakDown.getMonth()+1)))
+            // console.log(new Date(this.dateBreakDown.setMonth(this.dateBreakDown.getMonth()+1)))
+            // tempDate.push(new Date(this.dateBreakDown.setMonth(this.dateBreakDown.getMonth()+2)))
+            // console.log(tempDate)
+            this.outletService.outletBreakdown(tempDate)
             .then(data => {
                 this.breakDowns = data
-                console.log(data)
+                for (let l in this.breakDowns) {
+                    this.breakDowns[l].date = new Date(this.dateBreakDown)
+                    this.breakDowns[l].trxs = []
+                    this.breakDowns[l].products = {}
+                    this.breakDowns[l].outletMaps.forEach(element => {
+                        this.breakDowns[l].trxs = this.breakDowns[l].trxs.concat([...new Set(element.trxs.map(({
+                            productMap, 
+                            ...rp
+                        })=>({
+                            product: productMap.product._id,
+                            productName: productMap.product.name,
+                            productCode: productMap.product.code,
+                            productShort: productMap.product.short,
+                            
+                            ...rp
+                        })))])
+                    });
+                    this.products.forEach(elm => {
+                        let tempData = [...new Set(this.breakDowns[l].trxs.filter(x => x.product === elm._id))]
+                        if (tempData.length !== 0) {
+                            let qty = 0
+                            tempData.forEach(el => {
+                                qty+=el.qty
+                            })
+                            // this.breakDowns[l][elm.short] = qty
+                            this.breakDowns[l].products[elm.short] = qty
+                        }
+                    })
+                    delete this.breakDowns[l].outletMaps
+                }
+                // console.log(this.breakDowns)
+                this.$toast.add({severity:'success', summary: 'Successful', detail: 'Success Generate', life: 3000});
             })
             .catch(err => {
+                console.log(err)
                 this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000});
+            })  
+            // // console.log(this.dateBreakDown)
+        },
+        openNew() {
+			this.breakdown = {}
+			this.submitted = false
+            this.breakDownDialog = true
+            this.createNew = true
+		},
+        changeBreakdown(event) {
+            console.log(event.value)
+            // console.log(this.breakdown)
+            for (let key in this.breakdown.products) {
+                // console.log(this.breakdown.products[key])
+                const len = this.breakdown.customers.length
+                const qty = this.breakdown.products[key]/len
+                let total = this.breakdown.products[key]
+                for (let i = 0 ; i < len-1 ; i++ ) {
+                    // console.log(this.breakdown.customers[i])
+                    this.breakdown.customers[i][key] = qty
+                    total -= qty
+                }
+                this.breakdown.customers[len-1][key] = total
+            }
+        },
+        saveBreakDown() {
+            delete this.breakdown._id
+            this.createBreakdown();
+            // console.log(this.breakdown)
+            
+        },
+        create() {
+            this.saveBreakdownService.createSaveBreakdown(this.breakdown)
+            .then(msg => {
+                this.loading = true
+                this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+                this.saveBreakdownService.getSaveBreakdown()
+                .then(data => {
+                    this.saveBreakdowns = data
+                    for (let l in data) {
+                        for (let i in data[l].products) {
+                            for (let key in this.saveBreakdowns[l].products[i]) {
+                                this.saveBreakdowns[l][key] = this.saveBreakdowns[l].products[i][key]
+                            }
+                        }
+                    }
+                    this.loading = false
+                })
             })
-            // console.log(this.dateBreakDown)
+            .catch(err => {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+			})
+        },
+        createBreakdown() {
+            this.create()
+            this.breakdown = {}
+            this.createNew = false;
+            this.breakDownDialog = false
         }
     }
 

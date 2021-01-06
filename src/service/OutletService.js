@@ -29,4 +29,11 @@ export default class OutletService {
             .catch(err => reject(err))
         })
     }
+    outletBreakdown(data) {
+        return new Promise((resolve, reject) => {
+            axios.post('http://34.66.31.229:3000/api/outlet/breakdown', data)
+            .then(res => resolve(res.data.response ))
+            .catch(err => reject(err))
+        })
+    }
 }

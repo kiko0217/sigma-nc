@@ -35,7 +35,7 @@
 					:filters="filters"
 					paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
 					:rowsPerPageOptions="[5,10,25]"
-					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Regions"
+					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Pemeliharaan Harga"
 				>
 					<template #header>
 						<div class="table-header">
@@ -353,6 +353,7 @@ export default {
 			this.createNew = false
         },
 		editPemeliharaanHarga(pemeliharaanHarga) {
+			this.createNew = false
 			this.pemeliharaanHarga = {...pemeliharaanHarga};
 			this.pemeliharaanHargaDialog = true;
 		},

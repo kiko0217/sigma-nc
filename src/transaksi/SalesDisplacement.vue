@@ -22,14 +22,32 @@
                     <div class="p-field p-col-12 p-md-6">
                         <!-- <span class="p-float-label"> -->
                         <label for="outletFrom">Outlet</label>
-                        <Dropdown inputId="outletFrom" v-model="outletFrom" :options="outlets" :filter="true" optionValue="code" optionLabel="name" placeholder="Select Outlet" scrollHeight="100px">
+                        <Dropdown inputId="outletFrom" 
+                            v-model.trim="outletFrom"
+                            :options="outlets"
+                            :filter="true"
+                            optionValue="code"
+                            optionLabel="name"
+                            placeholder="Select Outlet"
+                            scrollHeight="100px"
+                            dataKey="_id"
+                        >
                         </Dropdown>
                         <!-- </span> -->
                     </div>
                     <div class="p-field p-col-12 p-md-6">
                         <!-- <span class="p-float-label"> -->
                         <label for="distributorFrom">Distributor</label>
-                        <Dropdown inputId="distributorFrom" v-model="distributorFrom" :options="distributors" :filter="true" optionValue="code" optionLabel="name" placeholder="Select Distributor" scrollHeight="100px">
+                        <Dropdown inputId="distributorFrom" 
+                            v-model.trim="distributorFrom"
+                            :options="distributors"
+                            :filter="true"
+                            optionValue="code" 
+                            optionLabel="name"
+                            placeholder="Select Distributor"
+                            crollHeight="100px"
+                            dataKey="_id"
+                        >
                         </Dropdown>
                         <!-- </span> -->
                     </div>
@@ -42,7 +60,16 @@
                     <div class="p-field p-col-12 p-md-6">
                         <!-- <span class="p-float-label"> -->
                         <label for="productFrom">Product</label>
-                        <Dropdown inputId="productFrom" v-model="productFrom" :options="products" :filter="true" optionValue="code" optionLabel="name" placeholder="Select Distributor" scrollHeight="100px">
+                        <Dropdown inputId="productFrom" 
+                            v-model="productFrom"
+                            :options="products"
+                            :filter="true"
+                            optionValue="code"
+                            optionLabel="name"
+                            placeholder="Select Distributor"
+                            scrollHeight="100px"
+                            dataKey="_id"
+                        >
                         </Dropdown>
                         <!-- </span> -->
                     </div>
@@ -70,21 +97,46 @@
                     <div class="p-field p-col-12 p-md-6">
                         <!-- <span class="p-float-label"> -->
                         <label for="detailerTo">Detailer</label>
-                        <Dropdown inputId="detailerTo" :options="detailers" :filter="true" optionValue="code" optionLabel="name" placeholder="Select Detailer" scrollHeight="100px">
+                        <Dropdown inputId="detailerTo" 
+                            :options="detailers"
+                            :filter="true"
+                            optionValue="code"
+                            optionLabel="name"
+                            placeholder="Select Detailer"
+                            scrollHeight="100px"
+                            dataKey="_id"
+                        >
                         </Dropdown>
                         <!-- </span> -->
                     </div>
                     <div class="p-field p-col-12 p-md-6">
                         <!-- <span class="p-float-label"> -->
                         <label for="outletTo">Outlet</label>
-                        <Dropdown inputId="outletTo" :options="outlets" :filter="true" optionValue="code" optionLabel="name" placeholder="Select Outlet" scrollHeight="100px">
+                        <Dropdown inputId="outletTo" 
+                            :options="outlets" 
+                            :filter="true"
+                            optionValue="code"
+                            optionLabel="name"
+                            placeholder="Select Outlet"
+                            scrollHeight="100px"
+                            dataKey="_id"
+                        >
                         </Dropdown>
                         <!-- </span> -->
                     </div>
                     <div class="p-field p-col-12 p-md-6">
                         <!-- <span class="p-float-label"> -->
                         <label for="distributorTo">Distributor</label>
-                        <Dropdown inputId="distributorTo" :options="distributors" :filter="true" optionValue="code" optionLabel="name" placeholder="Select Distributor" scrollHeight="100px">
+                        <Dropdown inputId="distributorTo"
+                            v-model.trim="distributorTo"
+                            :options="distributors" 
+                            :filter="true"
+                            optionValue="code"
+                            optionLabel="name" 
+                            placeholder="Select Distributor" 
+                            scrollHeight="100px"
+                            dataKey="_id"
+                        >
                         </Dropdown>
                         <!-- </span> -->
                     </div>
@@ -123,6 +175,7 @@ export default {
             detailerFrom: null,
             distributors: null,
             distributorFrom: null,
+            distributorTo: null,
             priodeNew: null,
         }
     },

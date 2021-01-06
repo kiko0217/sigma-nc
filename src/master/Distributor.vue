@@ -58,12 +58,18 @@
 					<div class="p-field p-grid">
 						<div class="p-field p-col-12 p-md-4">
 							<label for="Code">Code</label>
-							<InputText id="Code" v-model.trim="distributor.nfCode" required="true" autofocus :class="{'p-invalid': submitted && !distributor.nfCode}" />
+							<InputText id="Code" 
+								v-model.trim="distributor.nfCode"
+								required="true"
+								autofocus
+								:class="{'p-invalid': submitted && !distributor.nfCode}"
+								:disabled="!createNew"
+							/>
 							<small class="p-invalid" v-if="submitted && !distributor.nfCode">Code is required.</small>
 						</div>
 						<div class="p-field p-col-12 p-md-4">
-							<label for="Code">Nama Distributor</label>
-							<InputText id="Code" v-model.trim="distributor.name" required="true" autofocus :class="{'p-invalid': submitted && !distributor.name}" />
+							<label for="Namw">Nama Distributor</label>
+							<InputText id="Namw" v-model.trim="distributor.name" required="true" autofocus :class="{'p-invalid': submitted && !distributor.name}" />
 							<small class="p-invalid" v-if="submitted && !distributor.name">name is required.</small>
 						</div>
 						<div class="p-field p-col-12 p-md-4">
@@ -306,6 +312,7 @@ export default {
 			this.createNew = false;
         },
 		editDistributor(distributor) {
+			this.createNew = false;
 			this.distributor = {...distributor};
 			this.distributorDialog = true;
 		},

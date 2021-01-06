@@ -61,7 +61,12 @@
 					</div>
 					<div class="p-field">
 						<label for="codeRegion">Code Region</label>
-						<InputText id="codeRegion" v-model.trim="region.code" required="true" autofocus :class="{'p-invalid': submitted && !region.code}" />
+						<InputText id="codeRegion" 
+							v-model.trim="region.code" 
+							required="true" autofocus 
+							:class="{'p-invalid': submitted && !region.code}"
+							:disabled="!createNew"
+						/>
 						<small class="p-invalid" v-if="submitted && !region.code">Code Region is required.</small>
 					</div>
 					<div class="p-field">
@@ -252,6 +257,7 @@ export default {
             }
         },
 		editRegion(region) {
+			this.createNew = false;
 			this.region = {...region};
 			this.regionDialog = true;
 		},

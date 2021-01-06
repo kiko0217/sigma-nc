@@ -71,7 +71,9 @@
 								v-model.trim="product.code" 
 								required="true" 
 								autofocus
-								:class="{'p-invalid': submitted && !product.code}" />
+								:class="{'p-invalid': submitted && !product.code}" 
+								:disabled="!createNew"
+							/>
 							<small class="p-invalid" v-if="submitted && !product.code">Code is required.</small>
 						</div>
 						<div class="p-field p-col-12 p-md-4">
@@ -176,6 +178,7 @@
 								mode="currency"
 								currency="IDR"
 								locale="id-ID"
+								:disabled="!createNew"
 							/>
 							<small class="p-invalid" v-if="submitted && !product.price">Price is required.</small>
 						</div>
@@ -188,6 +191,7 @@
 								mode="currency"
 								currency="IDR"
 								locale="id-ID"
+								:disabled="!createNew"
 							/>
 							<small class="p-invalid" v-if="submitted && !product.HNA">HNA is required.</small>
 						</div>
@@ -413,6 +417,7 @@ export default {
 			})
 		},
 		editProduct(product) {
+			this.createNew= false
 			this.product = {...product}
 			this.productDialog = true
 			this.submitted = false

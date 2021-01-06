@@ -57,7 +57,12 @@
 					<div class="p-field p-grid">
 						<div class="p-field p-col-12 p-md-6">
 							<label for="Code">Code</label>
-							<InputText id="Code" v-model.trim="area.code" required="true" autofocus :class="{'p-invalid': submitted && !area.code}" />
+							<InputText id="Code" 
+								v-model.trim="area.code" 
+								required="true" 
+								autofocus :class="{'p-invalid': submitted && !area.code}" 
+								:disabled="!createNew"
+							/>
 							<small class="p-invalid" v-if="submitted && !area.code">Code is required.</small>
 						</div>
 						<div class="p-field p-col-12 p-md-6">
@@ -297,6 +302,7 @@ export default {
 			this.createNew = false;
         },
 		editArea(area) {
+			this.createNew = false;
 			this.area = {...area};
 			this.areaDialog = true;
 		},

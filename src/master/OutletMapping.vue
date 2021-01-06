@@ -9,9 +9,20 @@
 						<Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
 					</template>
 				</Toolbar>
-                <DataTable ref="mapping" :value="outletMapping" :scrollable="true" :loading="loading" scrollHeight="500px" :paginator="true" dataKey="_id"  :rows="10" editMode="cell" :filters="filters"
-					paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
-					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} outlet mapping">
+                <DataTable ref="dt" 
+					:value="outletMapping"
+					:scrollable="true"
+					:loading="loading"
+					scrollHeight="500px"
+					:paginator="true"
+					dataKey="_id" 
+					:rows="10" 
+					editMode="cell"
+					:filters="filters"
+					paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" 
+					:rowsPerPageOptions="[5,10,25]"
+					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} outlet mappings"
+				>
                     <template #header>
 						<div class="table-header">
 							<span class="p-input-icon-left">
@@ -155,7 +166,10 @@ export default {
                 day = '0' + day;
             }
             return day + '-' + month + '-' + date.getFullYear();
-        }
+		},
+		exportCSV() {
+			this.$refs.dt.exportCSV();
+		},
 	}
 }
 </script>

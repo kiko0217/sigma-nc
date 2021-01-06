@@ -76,7 +76,13 @@
 					<div class="p-field p-grid">
 						<div class="p-field p-col-12 p-md-4">
 							<label for="Code">Code</label>
-							<InputText id="Code" v-model.trim="detailer.code" required="true" autofocus :class="{'p-invalid': submitted && !detailer.code}" />
+							<InputText id="Code" 
+								v-model.trim="detailer.code"
+								required="true"
+								autofocus 
+								:class="{'p-invalid': submitted && !detailer.code}" 
+								:disabled="!createNew"
+							/>
 							<small class="p-invalid" v-if="submitted && !detailer.code">Code is required.</small>
 						</div>
 						<div class="p-field p-col-12 p-md-4">
@@ -449,6 +455,7 @@ export default {
 			this.createNew = false;
         },
 		editDetailer(detailer) {
+			this.createNew = false;
 			this.detailer = {...detailer};
 			this.detailerDialog = true;
 		},
