@@ -208,26 +208,47 @@ export default {
                             icon: 'pi pi-fw pi-shopping-cart',
                             to: { name: 'achievementbyArea' }
                         },
-                        {
-                            label:'Target',
-                            icon: 'pi pi-fw pi-eject',
-                            to: { name: 'laporanTarget' }
-                        },
+                        // {
+                        //     label:'Target',
+                        //     icon: 'pi pi-fw pi-eject',
+                        //     to: { name: 'laporanTarget' }
+                        // },
                         {
                             label:'Evaluasi Customer',
                             icon: 'pi pi-fw pi-users',
                             to: { name: 'evaluasiCustomer' }
                         },
                         {
-                            label:'Laporan Donasi',
-                            icon: 'pi pi-fw pi-thumbs-up',
-                            to: { name: 'laporanDonasi' }
+                            label:'Monitoring Outlet',
+                            icon: 'pi pi-fw pi-users',
+                            to: { name: 'monitoringOutlet' }
+                        },
+                        {
+                            label:'Monitoring Product',
+                            icon: 'pi pi-fw pi-users',
+                            to: { name: 'evaluasiCustomer' }
+                        },
+                        {
+                            label:'Balance KSP',
+                            icon: 'pi pi-fw pi-users',
+                            to: { name: 'balanceKSP' }
                         },
                         {
                             label:'Laporan Incentive',
-                            icon: 'pi pi-fw pi-thumbs-up',
-                            to: { name: 'laporanIncentive' }
+                            icon: 'pi pi-fw pi-users',
+                            to: { name: 'balanceKSP' }
                         },
+                        // {
+                        //     label:'Laporan Donasi',
+                        //     icon: 'pi pi-fw pi-thumbs-up',
+                        //     to: { name: 'laporanDonasi' }
+                        // },
+                        // {
+                        //     label:'Laporan Incentive',
+                        //     icon: 'pi pi-fw pi-thumbs-up',
+                        //     to: { name: 'laporanIncentive' }
+                        // },
+
                         {
                             label:'Key Loyalty Management',
                             icon: 'pi pi-fw pi-thumbs-up',

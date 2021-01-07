@@ -200,6 +200,26 @@ export default new Router({
 			component: () => import('./laporan/EvaluasiCustomer.vue')
 		},
 		{
+			name: 'monitoringOutlet',
+			path: '/laporan/monitoring-outlet',
+			component: () => import('./laporan/MonitoringOutlet.vue')
+		},
+		{
+			name: 'monitoringProduct',
+			path: '/laporan/monitoring-product',
+			component: () => import('./laporan/MonitoringProduct.vue')
+		},
+		{
+			name: 'balanceKSP',
+			path: '/laporan/balance-ksp',
+			component: () => import('./laporan/BalanceKSP.vue')
+		},
+		{
+			name: 'laporanIncentive',
+			path: '/laporan/laporan-incentive',
+			component: () => import('./laporan/LaporanIncentive.vue')
+		},
+		{
 			name: 'laporanDonasi',
 			path: '/laporan/laporan-donasi',
 			component: () => import('./laporan/LaporanDonasi.vue')

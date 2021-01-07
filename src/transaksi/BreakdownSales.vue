@@ -6,7 +6,7 @@
                 <Toolbar class="p-mb-4">
 					<template slot="left">
                         <!--  -->
-                        <Button label="New" 
+                        <Button label="Breakdown" 
                             icon="pi pi-plus" 
                             :disabled="loading"
                             class="p-button-success p-mr-2" 
@@ -39,7 +39,17 @@
 						</div>
 					</template>
                     <Column :expander="true" headerStyle="width: 3rem" />
-                    <Column field="name" header="Outlet" headerStyle="width: 150px"></Column>
+                    <!-- <Column field="name" header="Outlet" headerStyle="width: 150px"></Column> -->
+                    <Column v-for="(col, index) of columnSaveBreakdown"
+						:field="col.field" 
+						:header="col.header"
+						:key="index"
+						headerStyle="width: 150px"
+					>
+                        <template v-if="col.field=='date'" #body="slotProps">
+							<span>{{formatDate(slotProps.data[col.field])}}</span>
+						</template>
+                    </Column>
                     <Column v-for="(col, index) of products" :field="col.short" :header="col.short" :key="index" headerStyle="width: 150px"></Column>
                     <template #expansion="slotProps">
                         <DataTable :value="slotProps.data.customers" dataKey="_id">
@@ -77,7 +87,7 @@
                     <div class="p-field p-grid">
 						<div class="p-field p-col-12 p-md-3">
 							<label for="breakdown">Break Down</label>
-							<Dropdown inputId="breakdown"
+							<!-- <Dropdown inputId="breakdown"
 								v-model.trim="breakdown"
 								:options="breakDowns"
 								placeholder="Select Break Down"
@@ -86,7 +96,7 @@
                                 :filter="true"
                                 @change="changeBreakdown($event)"
 							>
-							</Dropdown>
+							</Dropdown> -->
 							<!-- <small class="p-invalid" v-if="submitted && !detailer.code">Code is required.</small> -->
 						</div>
 						<div class="p-field p-col-12 p-md-3">
@@ -183,6 +193,7 @@ import OutletService from '../service/OutletService'
 export default {
     data() {
         return {
+            columnSaveBreakdown: [],
             saveBreakdowns: null,
             breakdown: {},
             expandedRows: [],
@@ -200,7 +211,17 @@ export default {
     breakdownService : null,
     outletService: null,
     saveBreakdownService: null,
-    created() {``
+    created() {
+        this.columnSaveBreakdown = [
+			{
+				field : 'name',
+				header : 'Outlet'
+			},
+			{
+				field : 'date',
+				header : 'Bulan'
+            },
+        ]
         this.productService = new ProductService()
         this.breakdownService = new BreakDownService()
         this.outletService = new OutletService()
@@ -219,10 +240,8 @@ export default {
             this.saveBreakdowns = data
             // console.log(this.saveBreakdowns)
             for (let l in data) {
-                for (let i in data[l].products) {
-                    for (let key in this.saveBreakdowns[l].products[i]) {
-                        this.saveBreakdowns[l][key] = this.saveBreakdowns[l].products[i][key]
-                    }
+                for (let key in this.saveBreakdowns[l].products) {
+                    this.saveBreakdowns[l][key] = this.saveBreakdowns[l].products[key]
                 }
             }
             // console.log(this.saveBreakdowns)
@@ -231,6 +250,22 @@ export default {
 
     },
     methods: {
+        formatDate(dat) {
+			let date = new Date(dat)
+			// console.log(date)
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+
+            if (month < 10) {
+                month = '0' + month;
+            }
+
+            if (day < 10) {
+                day = '0' + day;
+            }
+
+            return month + '-' + date.getFullYear();
+        },
         hideDialog() {
 			this.breakDownDialog = false
 			this.submitted = false
@@ -319,12 +354,10 @@ export default {
                 this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
                 this.saveBreakdownService.getSaveBreakdown()
                 .then(data => {
-                    this.saveBreakdowns = data
+                    this.saveBreakdowns = data  
                     for (let l in data) {
-                        for (let i in data[l].products) {
-                            for (let key in this.saveBreakdowns[l].products[i]) {
-                                this.saveBreakdowns[l][key] = this.saveBreakdowns[l].products[i][key]
-                            }
+                        for (let key in this.saveBreakdowns[l].products) {
+                            this.saveBreakdowns[l][key] = this.saveBreakdowns[l].products[key]
                         }
                     }
                     this.loading = false
