@@ -33,7 +33,7 @@
 					scrollHeight="500px"
 					:selection.sync="selectedCustomers"
 					editMode="cell"
-					dataKey="CodeCust"
+					dataKey="_id"
 					:paginator="true"
 					:rows="10"
 					:loading="loading"
@@ -100,6 +100,56 @@
 							>
 							</Dropdown>
 							<small class="p-invalid" v-if="submitted && !customer.catagory">Category is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="detailer">Detailer</label>
+							<Dropdown inputId="detailer" 
+								v-model.trim="customer.detailer"
+								:options="detailers"
+								:filter="true"
+								optionValue="_id"
+								optionLabel="name"
+								placeholder="Select Detailer"
+								scrollHeight="100px"
+								dataKey="_id"
+								:disabled="!createNew"
+							>
+							</Dropdown>
+							<small class="p-invalid" v-if="submitted && !customer.detailer">Detailer is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<!-- <span class="p-float-label"> -->
+							<label for="area">Area Outlet</label>
+							<Dropdown inputId="area" 
+								v-model.trim="customer.area" 
+								:options="areas"
+								:filter="true"
+								optionValue="_id" 
+								optionLabel="name"
+								placeholder="Select Area"
+								scrollHeight="100px"
+								dataKey="_id"
+								:disabled="!createNew"
+							>
+							</Dropdown>
+							<small class="p-invalid" v-if="submitted && !customer.area">Area is required.</small>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<!-- <span class="p-float-label"> -->
+							<label for="outlet">Outlet</label>
+							<Dropdown inputId="outlet" 
+								v-model.trim="customer.outlet"
+								:options="outlets"
+								:filter="true"
+								optionValue="_id"
+								optionLabel="name"
+								placeholder="Select Outlet"
+								scrollHeight="100px"
+								dataKey="_id"
+								:disabled="!createNew"
+							>
+							</Dropdown>
+							<small class="p-invalid" v-if="submitted && !customer.outlet">Outlet is required.</small>
 						</div>
 						<div class="p-field p-col-12 p-md-4">
 							<label for="Class">Class</label>
@@ -228,17 +278,22 @@
 </template>
 
 <script>
+import DetailerService from '../service/DetailerService'
 import CustomerService from '../service/Customer1Service';
 import OutletService from '../service/OutletService'
 import SysFunctService from '../service/SysFunctService'
+import AreaService from '../service/AreaService'
+
 export default {
 	data() {
 		return {
+			detailers: null,
+			areas: null,
 			customerCategores: null,
 			customerTypes: null,
 			loading: false, 
 			columnCustomer: [],
-			outles: null,
+			outlets: null,
 			customers: null,
 			customerDialog: false,
 			deleteCustomerDialog: false,
@@ -250,7 +305,9 @@ export default {
             createNew: false
 		}
 	},
+	detailerService: null,
 	customerService: null,
+	areaService: null,
 	outletService: null,
 	sysFunctService: null,
 	created() {
@@ -323,6 +380,8 @@ export default {
 		this.outletService= new OutletService()
 		this.customerService = new CustomerService()
 		this.sysFunctService = new SysFunctService()
+		this.detailerService = new DetailerService()
+		this.areaService = new AreaService();
 	},
 	mounted() {
 		this.loading = true
@@ -338,7 +397,36 @@ export default {
 		this.customerService.getCustomers().then(data => {
 			this.loading = false
 			this.customers = data
+			console.log(this.customers)
+			this.customers = [...new Set(this.customers.map(({
+				// outlets,
+				// detailers,
+				salesCovers,
+				// area,
+				...resp
+			})=>{
+				// console.log(salesCovers)
+				return ({
+					// detailer: detailers[0],
+					detailer: (salesCovers.length !== 0) ? salesCovers[salesCovers.length -1].detailer : null,
+					// outlet: outlets[outlets.length - 1],
+					outlet: (salesCovers.length !== 0) ? salesCovers[salesCovers.length -1].outlet : null,
+					area: (salesCovers.length !== 0) ? salesCovers[salesCovers.length -1].area :  null,
+					...resp
+				})
+			}))]
+			delete this.customers.outlets
+			delete this.customers.detailers
+			delete this.customers.salesCovers
+			console.log(this.customers)
+
 		});
+		this.detailerService.getDetailerMinis()
+		.then(data => {
+			this.detailers = data
+		})
+		this.areaService.getAreaMinis()
+		.then(data => this.areas = data);
 	},
 	methods: {
 		formatDate(dat) {
@@ -378,6 +466,24 @@ export default {
 				this.customerService.getCustomers().then(data => {
 					this.loading = false
 					this.customers = data
+					this.customers = [...new Set(this.customers.map(({
+						// outlets,
+						// detailers,
+						salesCovers,
+						// area,
+						...resp
+					})=>({
+						// detailer: detailers[0],
+						detailer: (salesCovers.length !== 0) ? salesCovers[salesCovers.length -1].detailer : null,
+						// outlet: outlets[outlets.length - 1],
+						outlet: (salesCovers.length !== 0) ? salesCovers[salesCovers.length -1].outlet : null,
+						area: (salesCovers.length !== 0) ? salesCovers[salesCovers.length -1].area :  null,
+						...resp
+					})))]
+					delete this.customers.outlets
+					delete this.customers.detailers
+					delete this.customers.salesCovers
+					
 				});
 			})
 			.catch(err => {
@@ -422,6 +528,23 @@ export default {
 				this.customerService.getCustomers().then(data => {
 					this.loading = false
 					this.customers = data
+					this.customers = [...new Set(this.customers.map(({
+						// outlets,
+						// detailers,
+						salesCovers,
+						// area,
+						...resp
+					})=>({
+						// detailer: detailers[0],
+						detailer: (salesCovers.length !== 0) ? salesCovers[salesCovers.length -1].detailer : null,
+						// outlet: outlets[outlets.length - 1],
+						outlet: (salesCovers.length !== 0) ? salesCovers[salesCovers.length -1].outlet : null,
+						area: (salesCovers.length !== 0) ? salesCovers[salesCovers.length -1].area :  null,
+						...resp
+					})))]
+					delete this.customers.outlets
+					delete this.customers.detailers
+					delete this.customers.salesCovers
 				});
 			})
 			.catch(err => {
@@ -452,7 +575,24 @@ export default {
 				this.customerService.getCustomers().then(data => {
 					this.loading = false
 					this.customers = data
+					this.customers = [...new Set(this.customers.map(({
+						// outlets,
+						// detailers,
+						salesCovers,
+						// area,
+						...resp
+					})=>({
+						// detailer: detailers[0],
+						detailer: (salesCovers.length !== 0) ? salesCovers[salesCovers.length -1].detailer : null,
+						// outlet: outlets[outlets.length - 1],
+						outlet: (salesCovers.length !== 0) ? salesCovers[salesCovers.length -1].outlet : null,
+						area: (salesCovers.length !== 0) ? salesCovers[salesCovers.length -1].area :  null,
+						...resp
+					})))]
 				});
+				delete this.customers.outlets
+				delete this.customers.detailers
+				delete this.customers.salesCovers
 			})
 			.catch(err => {
 				console.log(err)

@@ -19,6 +19,8 @@
                 <DataTable
                     ref="dt" 
                     :expandedRows.sync="expandedRows" 
+                    :scrollable="true"
+					scrollHeight="500px"
                     :value="saveBreakdowns"
                     dataKey="_id" 
                     :paginator="true" 
@@ -50,11 +52,11 @@
 							<span>{{formatDate(slotProps.data[col.field])}}</span>
 						</template>
                     </Column>
-                    <Column v-for="(col, index) of products" :field="col.short" :header="col.short" :key="index" headerStyle="width: 150px"></Column>
+                    <Column v-for="(col2) of products" :field="col2.short" :header="col2.short" :key="col2._id" headerStyle="width: 150px"></Column>
                     <template #expansion="slotProps">
-                        <DataTable :value="slotProps.data.customers" dataKey="_id">
+                        <DataTable :value="slotProps.data.customers" :scrollable="true" scrollHeight="200px" dataKey="_id">
 							<Column field="name" header="Customer" headerStyle="width: 150px"></Column>
-                            <Column v-for="(col, index) of products" :field="col.short" :header="col.short" :key="index" headerStyle="width: 150px"></Column>
+                            <Column v-for="(col3, index3) of products" :field="col3.short" :header="col3.short" :key="index3" headerStyle="width: 150px"></Column>
 						</DataTable>
                     </template>
 				</DataTable>
@@ -87,17 +89,32 @@
                     <div class="p-field p-grid">
 						<div class="p-field p-col-12 p-md-3">
 							<label for="breakdown">Break Down</label>
-							<!-- <Dropdown inputId="breakdown"
+							<Dropdown inputId="breakdown"
 								v-model.trim="breakdown"
 								:options="breakDowns"
 								placeholder="Select Break Down"
-								dataKey="_id"
+								dataKey="code"
                                 optionLabel="name"
                                 :filter="true"
-                                @change="changeBreakdown($event)"
+                                @change="changeBreakdown()"
 							>
-							</Dropdown> -->
-							<!-- <small class="p-invalid" v-if="submitted && !detailer.code">Code is required.</small> -->
+							</Dropdown>
+							<small class="p-invalid" v-if="submitted && !breakdown.code">Break Down is required.</small>
+						</div>
+                        <div class="p-field p-col-12 p-md-3">
+                            <label for="date">Detailer</label>
+                            <Dropdown inputId="detailer" 
+								v-model.trim="breakdown.detailer" 
+								:options="detailers"
+								:filter="true"
+								optionValue="_id" 
+								optionLabel="name"
+								placeholder="Select Detailer"
+								scrollHeight="100px"
+								dataKey="_id"
+							>
+							</Dropdown>
+                            <small class="p-invalid" v-if="submitted && !breakdown.detailer">Detailer is required.</small>
 						</div>
 						<div class="p-field p-col-12 p-md-3">
 							<label for="date">Priode</label>
@@ -142,8 +159,7 @@
                                 <label :for="index">{{col.short}}</label>
                                 <InputNumber  :id="index" 
                                     v-model.trim="breakdown.products[col.short]"
-                                    required="true" 
-                                    autofocus 
+                                    required="true"
                                     :disabled="true"
                                 />
                             </div>
@@ -161,8 +177,25 @@
                                 >
                                     <div v-if="breakdown.products[col2.short] != null">
                                         <label :for="index">{{col2.short}}</label>
-                                        <InputNumber :id="index"
-                                            v-model.trim="breakdown.customers[index][col2.short]"
+                                        <!-- <Dropdown v-model="breakdown.customers[index].products[i]" 
+                                            :options="products"
+                                            optionLabel="short"
+                                            :filter="true"
+                                            placeholder="Select Product"
+                                            scrollHeight="100px"
+                                            dataKey="_id"
+                                            :disabled="true"
+                                        >
+                                        </Dropdown> -->
+                                        <!-- <InputNumber :id="index"
+                                            v-model.trim="breakdown.customers[index].products[i].qty"
+                                            showButtons
+                                            required="true"
+                                            @input="changeQty($event, index, i)"
+                                        /> -->
+                                        <input type="number" :id="index"
+                                            v-model="breakdown.customers[index].products[i].qty"
+                                            @input="changeQty(col2.short, index, i)"
                                         />
                                     </div>
                                 </div>
@@ -190,9 +223,11 @@ import BreakDownService from '../service/BreakDownService'
 import SaveBreakDownService from '../service/SaveBreakDownSarvice'
 import ProductService from '../service/ProductService'
 import OutletService from '../service/OutletService'
+import DetailerService from '../service/DetailerService'
 export default {
     data() {
         return {
+            detailers: null,
             columnSaveBreakdown: [],
             saveBreakdowns: null,
             breakdown: {},
@@ -205,8 +240,10 @@ export default {
             createNew: false,
             breakDownDialog: false,
             loading: false,
+            qtyProductCustomer:[],
         }
     },
+    detailerService: null,
     productService: null,
     breakdownService : null,
     outletService: null,
@@ -226,14 +263,32 @@ export default {
         this.breakdownService = new BreakDownService()
         this.outletService = new OutletService()
         this.saveBreakdownService = new SaveBreakDownService()
+        this.detailerService = new DetailerService()
         // let today = new Date()
         // let month = today.getMonth()
+    },
+    // computed: {
+    //     change
+    // },
+    watch: {
+        breakdown:{ 
+            handler: function(newValue, oldValue) {
+                // this.getWeather();
+                console.log(newValue)
+                console.log(oldValue)
+            },
+            deep: true,
+        }
     },
     mounted() {
         this.loading = true
         this.productService.getProducts()
         .then(data => {
             this.products = data
+        })
+        this.detailerService.getDetailers()
+        .then(data => {
+            this.detailers = data
         })
         this.saveBreakdownService.getSaveBreakdown()
         .then(data => {
@@ -325,30 +380,72 @@ export default {
             this.breakDownDialog = true
             this.createNew = true
 		},
-        changeBreakdown(event) {
-            console.log(event.value)
+        changeBreakdown() {
+            // console.log(event.value)
             // console.log(this.breakdown)
+            this.qtyProductCustomer= []
+            let index = 0;
             for (let key in this.breakdown.products) {
                 // console.log(this.breakdown.products[key])
                 const len = this.breakdown.customers.length
-                const qty = this.breakdown.products[key]/len
+                if(len == 0) return;
+                const qty_temp = this.breakdown.products[key]/len
+                let qty = 0
+                if ((qty_temp > 0) && (qty_temp < 1)) {
+                    qty = 1
+                } else {
+                    qty = Math.round(this.breakdown.products[key]/len)
+                }
+                
+                // console.log(this.findIndexByCode(key, 'short', this.products))
                 let total = this.breakdown.products[key]
                 for (let i = 0 ; i < len-1 ; i++ ) {
+                    this.qtyProductCustomer[i] = []
+                    // this.breakdown.customers[i] = {}
                     // console.log(this.breakdown.customers[i])
-                    this.breakdown.customers[i][key] = qty
-                    total -= qty
+                    this.breakdown.customers[i].products = []
+                    this.breakdown.customers[i].products[index] = this.products[this.findIndexByCode(key, 'short', this.products)]
+                    if (total !== 0){
+                        if (total > qty ) {
+                            this.breakdown.customers[i][key] = qty
+                            this.breakdown.customers[i].products[index].qty = qty
+                            this.qtyProductCustomer[i][index] = qty
+                            total -= qty
+                        } else {
+                            this.breakdown.customers[i][key] = total
+                            this.breakdown.customers[i].products[index].qty = total
+                            this.qtyProductCustomer[i][index] = total
+                            total -= total
+                        }
+                    } else {
+                        this.breakdown.customers[i].products[index].qty = 0
+                        this.breakdown.customers[i][key] = 0
+                        this.qtyProductCustomer[i][index] = 0
+                    }
                 }
-                this.breakdown.customers[len-1][key] = total
+                this.qtyProductCustomer[len-1] = []
+                // this.breakdown.customers[len-1] = {}
+                this.breakdown.customers[len-1].products = []
+                this.breakdown.customers[len-1].products[index] = this.products[this.findIndexByCode(key, 'short', this.products)]
+                this.breakdown.customers[len-1].products[index].qty = total
+                this.breakdown.customers[len-1][key]= total
+                this.qtyProductCustomer[len-1][index] = total
+                index+=1
             }
+            // console.log(this.breakdown)
+
         },
         saveBreakDown() {
-            delete this.breakdown._id
+            
             this.createBreakdown();
             // console.log(this.breakdown)
-            
         },
         create() {
-            this.saveBreakdownService.createSaveBreakdown(this.breakdown)
+            let data = this.breakdown
+            data.outlet = this.breakdown._id
+            delete data._id
+
+            this.saveBreakdownService.createSaveBreakdown(data)
             .then(msg => {
                 this.loading = true
                 this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
@@ -368,10 +465,35 @@ export default {
 			})
         },
         createBreakdown() {
-            this.create()
-            this.breakdown = {}
-            this.createNew = false;
-            this.breakDownDialog = false
+            this.submitted = true;
+            if(this.breakdown.code && this.breakdown.detailer) {
+                this.create()
+                this.breakdown = {}
+                // this.breakdown = {}
+                this.createNew = false;
+                this.breakDownDialog = false
+            }
+            
+        },
+        findIndexByCode(id, key, data) {
+			let index = -1;
+			for (let i = 0; i < data.length; i++) {
+				if (data[i][key] === id) {
+					index = i;
+					break;
+				}
+			}
+			return index;
+        },
+        changeQty(short,i, index){
+            // console.log(i)
+            // console.log(index)
+            // this.breakdown.customers[i].products[index].qty = event.value
+            console.log(this.breakdown.customers[i].products[index].qty)
+            // console.log(event )
+            this.breakdown.customers[i][short] = this.breakdown.customers[i].products[index].qty
+            // this.breakdown.customers[i].products[index].qty = event
+            // console.log(this.breakdown.customers[i].products[index].qty)
         }
     }
 

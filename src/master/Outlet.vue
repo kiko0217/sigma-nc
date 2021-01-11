@@ -91,7 +91,7 @@
 								v-model.trim="outlet.type" 
 								:options="outletTypes" 
 								:filter="true" 
-								optionValue="gh_funccode" 
+								optionValue="_id" 
 								optionLabel="gh_funcdescription"
 								placeholder="Select Outlet Type" 
 								scrollHeight="100px"
