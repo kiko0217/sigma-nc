@@ -21,7 +21,7 @@ export default new Router({
 			name: 'auth',
 			path: '/auth',
 			component: () => import('./auth/Auth.vue'),
-			redirect: {name: 'register'},
+			redirect: {name: 'login'},
 			children: [
 				{
 					name: 'register',
@@ -31,13 +31,16 @@ export default new Router({
 				{
 					name: 'login',
 					path: 'login',
-					component: () => import('./auth/Register.vue')
+					component: () => import('./auth/Login.vue')
 				},
 			]
 		},
 		{
 			path: '/',
 			component: () => import('./AppMain.vue'),
+			meta: {
+				requiresAuth: true,
+			},
 			children: [
 				{
 					path: '/',
@@ -245,11 +248,6 @@ export default new Router({
 					name: 'laporanDonasi',
 					path: '/laporan/laporan-donasi',
 					component: () => import('./laporan/LaporanDonasi.vue')
-				},
-				{
-					name: 'laporanIncentive',
-					path: '/laporan/incentive-calc',
-					component: () => import('./laporan/Incentive.vue')
 				},
 				{
 					name: 'keyLoyaltyManagement)',

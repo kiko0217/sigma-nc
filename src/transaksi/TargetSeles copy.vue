@@ -64,14 +64,14 @@
 				</DataTable>
 
 				<Dialog :visible.sync="targetSalesNewDialog" 
-					:style="{width: '1000px'}" 
+					:style="{width: '900px'}" 
 					header="Target Sales" 
 					:modal="true" 
 					class="p-fluid"
 				>
 					<!-- ini bisa diisi dengan peta nantinya -->
                     <div class="p-fluid p-grid">
-						<div class="p-field p-col-12 p-md-3">
+						<div class="p-field p-col-12 p-md-4">
 							<label for="Code">Code</label>
 							<InputText id="Code" 
 								v-model.trim="targetSale.code"
@@ -82,11 +82,11 @@
 							/>
 							<small class="p-invalid" v-if="submitted && !targetSale.code">Code is required.</small>
 						</div>
-                        <div class="p-field p-col-12 p-md-3">
+                        <div class="p-field p-col-12 p-md-4">
                             <!-- <span class="p-float-label"> -->
                             <label for="detailer">Detailer</label>
                             <Dropdown inputId="detailer" 
-								v-model.trim="targetSaleData.detailer"
+								v-model.trim="targetSale.detailer"
 								:options="detailers"
 								:filter="true"
 								optionValue="_id"
@@ -99,10 +99,25 @@
 							<small class="p-invalid" v-if="submitted && !targetSale.detailer">Detailer is required.</small>
                             <!-- </span> -->
                         </div>
-                        <div class="p-field p-col-12 p-md-3">
+                        <div class="p-field p-col-12 p-md-4">
+                            <label for="Product">Product</label>
+                            <Dropdown inputId="Product" 
+								v-model.trim="targetSale.product"
+								:options="products"
+								:filter="true"
+								optionValue="_id"
+								optionLabel="name"
+								placeholder="Select Product"
+								scrollHeight="100px"
+								:disabled="!createNew"
+							>
+                            </Dropdown>
+							<small class="p-invalid" v-if="submitted && !targetSale.product">Product is required.</small>
+                        </div>
+                        <div class="p-field p-col-12 p-md-4">
                             <label for="Tahun">Tahun</label>
                             <Dropdown inputId="Tahun"
-								v-model.trim="targetSaleData.tahun"
+								v-model.trim="targetSale.tahun"
 								:options="tahuns"
 								placeholder="Select Tahun"
 								:disabled="!createNew"
@@ -110,128 +125,133 @@
 							</Dropdown>
 							<small class="p-invalid" v-if="submitted && !targetSale.tahun">Tahun is required.</small>
                         </div>
-                        <div class="p-field p-col-12 p-md-3">
-                            <label for="Type">Type</label>
-                            <Dropdown inputId="Type"
-								v-model.trim="targetSaleData.type"
-								:options="typeTarget"
-								optionLabel="type"
-								:disabled="!createNew"
-								dataKey="type"
-
-							>
-							</Dropdown>
-							<small class="p-invalid" v-if="submitted && !targetSale.tahun">Tahun is required.</small>
+                        <div class="p-field p-col-12 p-md-4">
+                            <label for="Target Per Tahun">Target Per Tahun</label>
+                            <InputNumber id="Target Per Tahun"
+								v-model.trim="targetSale.targetPerTahun"
+								suffix=" Qty"
+							/>
+							<small class="p-invalid" v-if="submitted && !targetSale.targetPerTahun">Target Per Tahun is required.</small>
                         </div>
-					</div>
-					<div class="p-fluid p-grid">
-						<DataTable :value="targetSale"
-							editMode="cell"
-							:scrollable="true"
-							scrollHeight="500px"
-							dataKey="product._id"
-						>
-							<Column field="product.short" 
-								header="Product"
-								headerStyle="width: 150px"
-							>
-							</Column>
-							<Column field="targetTahun" 
-								header="Target per Tahun"
-								headerStyle="width: 150px"
-							>
-								<template #editor="slotProps" v-if="targetSaleData.type">
-									<InputNumber v-if="targetSaleData.type.mode === 'Qty'" 
-										v-model="slotProps.data['targetTahun']"
-										:suffix="targetSaleData.type.suffix"
-										:mode="targetSaleData.type.mode"
-									/>
-									<InputNumber v-else
-										v-model="slotProps.data['targetTahun']"
-										currency ="IDR"
-										locale="id-ID"
-										:mode="targetSaleData.type.mode"
-									/>
-								</template>
-								<template #body="slotProps" v-if="targetSaleData.type">
-									<InputNumber v-if="targetSaleData.type.mode === 'Qty'" 
-										v-model="slotProps.data['targetTahun']"
-										suffix=" Qty"
-									/>
-									<InputNumber v-else
-										v-model="slotProps.data['targetTahun']"
-										currency ="IDR"
-										locale="id-ID"
-										:mode="targetSaleData.type.mode"
-									/>
-								</template>
-							</Column>
-							<Column field="targetBulan" 
-								header="Target per Bulan"
-								headerStyle="width: 150px"
-							>
-								<template #editor="slotProps" v-if="targetSaleData.type">
-									<InputNumber v-if="targetSaleData.type.mode === 'Qty'" 
-										v-model="slotProps.data['targetBulan']"
-										:suffix="targetSaleData.type.suffix"
-										:mode="targetSaleData.type.mode"
-									/>
-									<InputNumber v-else
-										v-model="slotProps.data['targetBulan']"
-										currency ="IDR"
-										locale="id-ID"
-										:mode="targetSaleData.type.mode"
-									/>
-								</template>
-								<template #body="slotProps" v-if="targetSaleData.type">
-									<InputNumber v-if="targetSaleData.type.mode === 'Qty'" 
-										v-model="slotProps.data['targetBulan']"
-										:suffix="targetSaleData.type.suffix"
-										:mode="targetSaleData.type.mode"
-									/>
-									<InputNumber v-else
-										v-model="slotProps.data['targetBulan']"
-										currency ="IDR"
-										locale="id-ID"
-										:mode="targetSaleData.type.mode"
-									/>
-								</template>
-							</Column>
-							<Column v-for="(col, index) of columnBulan"
-								:field="col.field" 
-								:header="col.header"
-								:key="index"
-								headerStyle="width: 150px"
-							>
-								<template #editor="slotProps" v-if="targetSaleData.type">
-									<InputNumber v-if="targetSaleData.type.mode === 'Qty'" 
-										v-model="slotProps.data[col.field]" 
-										:suffix="targetSaleData.type.suffix"
-										:mode="targetSaleData.type.mode"
-									/>
-									<InputNumber v-else
-										v-model="slotProps.data[col.field]" 
-										currency ="IDR"
-										locale="id-ID"
-										:mode="targetSaleData.type.mode"
-									/>
-								</template>
-								<template #body="slotProps" v-if="targetSaleData.type">
-									<InputNumber v-if="targetSaleData.type.mode === 'Qty'" 
-										v-model="slotProps.data[col.field]" 
-										:suffix="targetSaleData.type.suffix"
-										:mode="targetSaleData.type.mode"
-									/>
-									<InputNumber v-else
-										v-model="slotProps.data[col.field]" 
-										currency ="IDR"
-										locale="id-ID"
-										:mode="targetSaleData.type.mode"
-									/>
-								</template>
-							</Column>
-						</DataTable>
-					</div>
+						<div class="p-field p-col-12 p-md-4">
+                            <label for="Januari">Januari</label>
+                            <InputNumber id="Januari"
+								v-model.trim="targetSale.january"
+								suffix=" Qty"
+								:disabled="!createNew"
+							/>
+							<small class="p-invalid" v-if="submitted && !targetSale.january">Target Januari is required.</small>
+                        </div>
+						<div class="p-field p-col-12 p-md-4">
+                            <label for="Febuari">Febuari</label>
+                            <InputNumber id="Febuari"
+								v-model.trim="targetSale.febuary"
+								suffix=" Qty"
+								:disabled="!createNew"
+							/>
+							<small class="p-invalid" v-if="submitted && !targetSale.febuary">Target Febuari is required.</small>
+                        </div>
+						<div class="p-field p-col-12 p-md-4">
+                            <label for="Maret">Maret</label>
+                            <InputNumber id="Maret"
+								v-model.trim="targetSale.maret"
+								suffix=" Qty"
+								:disabled="!createNew"
+							/>
+							<small class="p-invalid" v-if="submitted && !targetSale.maret">Target Maret is required.</small>
+                        </div>
+						<div class="p-field p-col-12 p-md-4">
+                            <label for="April">April</label>
+                            <InputNumber id="April"
+								v-model.trim="targetSale.april"
+								suffix=" Qty"
+								:disabled="!createNew"
+							/>
+							<small class="p-invalid" v-if="submitted && !targetSale.april">Target April is required.</small>
+                        </div>
+						<div class="p-field p-col-12 p-md-4">
+                            <label for="Mei">Mei</label>
+                            <InputNumber id="Mei"
+								v-model.trim="targetSale.may"
+								suffix=" Qty"
+								:disabled="!createNew"
+							/>
+							<small class="p-invalid" v-if="submitted && !targetSale.may">Target Mei is required.</small>
+                        </div>
+						<div class="p-field p-col-12 p-md-4">
+                            <label for="Juni">Juni</label>
+                            <InputNumber id="Juni"
+								v-model.trim="targetSale.june"
+								suffix=" Qty"
+								:disabled="!createNew"
+							/>
+							<small class="p-invalid" v-if="submitted && !targetSale.june">Target Juni is required.</small>
+                        </div>
+						<div class="p-field p-col-12 p-md-4">
+                            <label for="Juli">Juli</label>
+                            <InputNumber id="Juli"
+								v-model.trim="targetSale.july"
+								suffix=" Qty"
+								:disabled="!createNew"
+							/>
+							<small class="p-invalid" v-if="submitted && !targetSale.july">Target Juli is required.</small>
+                        </div>
+						<div class="p-field p-col-12 p-md-4">
+                            <label for="Agustus">Agustus</label>
+                            <InputNumber id="Agustus"
+								v-model.trim="targetSale.august"
+								suffix=" Qty"
+								:disabled="!createNew"
+							/>
+							<small class="p-invalid" v-if="submitted && !targetSale.august">Target Agustus is required.</small>
+                        </div>
+						<div class="p-field p-col-12 p-md-4">
+                            <label for="September">September</label>
+                            <InputNumber id="September"
+								v-model.trim="targetSale.september"
+								suffix=" Qty"
+								:disabled="!createNew"
+							/>
+							<small class="p-invalid" v-if="submitted && !targetSale.september">Target September is required.</small>
+                        </div>
+						<div class="p-field p-col-12 p-md-4">
+                            <label for="Oktober">Oktober</label>
+                            <InputNumber id="Oktober"
+								v-model.trim="targetSale.october"
+								suffix=" Qty"
+								:disabled="!createNew"
+							/>
+							<small class="p-invalid" v-if="submitted && !targetSale.october">Target Oktober is required.</small>
+                        </div>
+						<div class="p-field p-col-12 p-md-4">
+                            <label for="November">November</label>
+                            <InputNumber id="November"
+								v-model.trim="targetSale.november"
+								suffix=" Qty"
+								:disabled="!createNew"
+							/>
+							<small class="p-invalid" v-if="submitted && !targetSale.november">Target November is required.</small>
+                        </div>
+						<div class="p-field p-col-12 p-md-4">
+                            <label for="Desember">Desember</label>
+                            <InputNumber id="Desember"
+								v-model.trim="targetSale.december"
+								suffix=" Qty"
+								:disabled="!createNew"
+							/>
+							<small class="p-invalid" v-if="submitted && !targetSale.december">Target Desember is required.</small>
+                        </div>
+						<div class="p-field p-col-12 p-md-12">
+							<span class="p-float-label">
+								<Textarea id="textarea" 
+									v-model="targetSale.description" 
+									rows="3" 
+									:disabled="!createNew"
+								/>
+								<label for="textarea">Keterangan</label>
+							</span>
+						</div>
+                    </div>
 					<template #footer>
 						<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog"/>
 						<Button label="Save" 
@@ -268,7 +288,6 @@ export default {
 		return {
 			loading: false,
 			tahuns: [],
-			typeTarget: [],
 			columnBulan: [],
 			columnTargetSales: [],
             products: null,
@@ -276,8 +295,7 @@ export default {
             detailers: null,
             detailerNew: null,
 			targetSales: null,
-			targetSale: null,
-			targetSaleData: {},
+			targetSale: {},
             targetSalesNewDialog: false,
 			submitted: false,
 			createNew: false,
@@ -288,68 +306,12 @@ export default {
     productService: null,
 	detailerSErvice: null,
 	created() {
-		this.typeTarget = [
-			{
-				type: 'Qty',
-				suffix: ' Qty',
-				mode: 'decimal'
-			},
-			{
-				type: 'Val',
-				mode: 'currency'
-			}
-		]
 		this.tahuns = [...Array(11).keys()].map(x => x+2020)
 		this.columnBulan = [
 			{
 				field: 'january',
 				header: 'January'
-			},
-			{
-				field: 'febuary',
-				header: 'Febuary'
-			},
-			{
-				field: 'maret',
-				header: 'Maret'
-			},
-			{
-				field: 'april',
-				header: 'April'
-			},
-			{
-				field: 'may',
-				header: 'May'
-			},
-			{
-				field: 'june',
-				header: 'June'
-			},
-			{
-				field: 'july',
-				header: 'July'
-			},
-			{
-				field: 'august',
-				header: 'August'
-			},
-			{
-				field: 'september',
-				header: 'September'
-			},
-			{
-				field: 'october',
-				header: 'October'
-			},
-			{
-				field: 'november',
-				header: 'November'
-			},
-			{
-				field: 'december',
-				header: 'December'
-			},
-
+			}
 		]
 		this.columnTargetSales = [
 			{
@@ -376,7 +338,6 @@ export default {
         this.productService = new ProductService();
 		this.detailerService = new DetailerService();
 		this.targetSaleService = new TargetSaleService();
-		this.targetSale = new Array()
 	},
 	mounted() {
 		this.loading = true
@@ -409,13 +370,6 @@ export default {
 			this.targetSalesNewDialog = false
 			this.submitted = false
 		},
-		editTarget(type, value) {
-			if(type === 'Qty'){
-				return value + ' Qty'
-			} else {
-				return formatCurrency(value)
-			}
-		},
 		formatDate(dat) {
 			let date = new Date(dat)
 			// console.log(date)
@@ -433,16 +387,10 @@ export default {
             return day + '-' + month + '-' + date.getFullYear();
         },
 		formatCurrency(value) {
-			return value.toLocaleString('id-ID', {style: 'currency', currency: 'IDR'});
+			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
 		},
 		openNew() {
-			// this.targetSaleData.type = this.typeTarget[0]
-			this.targetSale = new Array()
-			this.products.forEach( elm => {
-				this.targetSale.push({
-					product: elm
-				})
-			})
+			this.targetSale = {}
 			this.submitted = false
 			this.targetSalesNewDialog = true
 			this.createNew = true

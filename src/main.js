@@ -65,6 +65,7 @@ import ToggleButton from 'primevue/togglebutton';
 import Tree from 'primevue/tree';
 import TreeTable from 'primevue/treetable';
 import TriStateCheckbox from 'primevue/tristatecheckbox';
+import axios from 'axios'
 
 import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -153,6 +154,26 @@ Vue.component('TriStateCheckbox', TriStateCheckbox);
 // router.afterEach((to, from) => {
 	
 // })
+router.beforeEach((to, from, next) => {
+	// console.log(to)
+	// console.log(from)
+	// console.log(next)
+	// console.log(token)
+	if(to.matched.some(record => record.meta.requiresAuth)){
+		// console.log('test')
+		const token = localStorage.getItem('token')
+		if(token) {
+			axios.defaults.headers.common.Authorization = token
+			next()
+			
+			return;
+		}
+		next({name: 'auth'})
+	} else {
+		next()
+	}
+})
+
 new Vue({
 	el: '#app',
 	router,

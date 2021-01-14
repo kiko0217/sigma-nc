@@ -1,46 +1,69 @@
 <template>
-    <!-- <div class="vue-tempalte">
-        <form>
-            <h3>Sign In</h3>
-
-            <div class="form-group">
-                <label>Email address</label>
-                <input type="email" class="form-control form-control-lg" />
+    <div>
+        <div class="card p-fluid">
+            <h5>Register</h5>
+            <div class="p-field p-grid">
+                <label for="name" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">Name</label>
+                <div class="p-col-12 p-md-9">
+                    <InputText id="name" type="text" v-model="name"/>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control form-control-lg" />
+            <div class="p-field p-grid">
+                <label for="email" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">Email</label>
+                <div class="p-col-12 p-md-9">
+                    <InputText id="email" type="text" v-model="email"/>
+                </div>
             </div>
-
-            <button type="submit" class="btn btn-dark btn-lg btn-block">Sign In</button>
-
-            <p class="forgot-password text-right mt-2 mb-4">
-                <router-link to="/forgot-password">Forgot password ?</router-link>
-            </p>
-
-            <div class="social-icons">
-                <ul>
-                    <li><a href="#"><i class="fa fa-google"></i></a></li>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                </ul>
+            <div class="p-field p-grid">
+                <label for="phone" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">Phone</label>
+                <div class="p-col-12 p-md-9">
+                    <InputText id="phone" type="text" v-model="phone"/>
+                </div>
             </div>
-
-        </form>
-    </div> -->
-    <div class="stepsdemo-content">
-        <i class="pi pi-fw pi-user" />
-        <p>Personal Component Content via Child Route</p>
+            <div class="p-field p-grid">
+                <label for="password" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">Password</label>
+                <div class="p-col-12 p-md-9">
+                    <Password id="Password" v-model="password" placeholder="Password"/>
+                </div>
+            </div>
+            <div class="p-field p-grid">
+                <Button label="Register" @click="register()"></Button>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {}
+import AuthService from '../service/AuthService'
+export default {
+    data() {
+        return {
+            name: '',
+            email: '',
+            phone: '',
+            password: '',   
+        }
+    },
+    authService: null,
+    created() {
+        this.authService = new AuthService()
+    },
+    methods: {
+        register() {
+            const data = {
+                name: this.name,
+                email: this.email,
+                phone: this.phone,
+                password: this.password,
+
+            }
+            this.authService.register(data).
+            then(msg => {
+                console.log(msg)
+            })
         }
     }
+}
 </script>
 
 <style lang="scss">

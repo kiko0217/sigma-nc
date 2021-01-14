@@ -5,22 +5,18 @@
             <div class="p-grid vertical-container">
                 <div class="p-col p-col-align-start"/>
                 <div class="p-col p-col-align-center">
-                    <Card style="width: 25em">
-                        <template #header>
-                            <img src="assets/layout/images/favicon.ico" alt="" width="20" height="auto">
-                        </template>
-                        <template #title>
-                            Advanced Card
-                        </template>
-                        <template subtitle>
-                            Card subtitle
-                        </template>
+                    <Card style="width: 30em">
+                        <!-- <template #header>
+                            <img src="assets/layout/images/log-nucleus.jpg" alt="" width="20" height="auto">
+                        </template> -->
                         <template #content>
                             <TabMenu :model="items" />
                             <router-view />
                         </template>
                         <template #footer>
-                            
+                            <div class="p-grid p-jc-center">
+                                <img src="assets/layout/images/log-nucleus.jpg" alt="" width="250" height="auto">
+                            </div>
                         </template>
                     </Card>
                 </div>
@@ -37,7 +33,8 @@ export default {
     data() {
         return {
             items: [
-                {label: 'Register', icon: 'pi pi-fw pi-home', to: '/auth/register'},
+                {label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/auth/login'},
+                {label: 'Register', icon: 'pi pi-fw pi-user-edit', to: '/auth/register'},
             ]
             
         }
@@ -73,7 +70,7 @@ export default {
             // width:100vh;
 			// height: 100vw;
 			height: 500px;
-			background: #dee2e6;
+			// background: #dee2e6;
 			border-radius: 4px;
 		}
 
