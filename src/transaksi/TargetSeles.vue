@@ -38,7 +38,8 @@
 					:rowsPerPageOptions="[5,10,25]"
 					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Target Sales"
 				>
-					<Column headerStyle="width: 6em" headerClass="p-text-center" bodyClass="p-text-center">
+					<Column headerStyle="width: 6em" 
+						headerClass="p-text-center" bodyClass="p-text-center">
 						<template #body="slotProps">
 							<Button type="button" 
 								icon="pi pi-trash"
@@ -68,20 +69,10 @@
 					header="Target Sales" 
 					:modal="true" 
 					class="p-fluid"
+					:maximizable="true"
 				>
 					<!-- ini bisa diisi dengan peta nantinya -->
                     <div class="p-fluid p-grid">
-						<div class="p-field p-col-12 p-md-3">
-							<label for="Code">Code</label>
-							<InputText id="Code" 
-								v-model.trim="targetSale.code"
-								required="true"
-								autofocus 
-								:class="{'p-invalid': submitted && !targetSale.code}" 
-								:disabled="!createNew"
-							/>
-							<small class="p-invalid" v-if="submitted && !targetSale.code">Code is required.</small>
-						</div>
                         <div class="p-field p-col-12 p-md-3">
                             <!-- <span class="p-float-label"> -->
                             <label for="detailer">Detailer</label>
@@ -94,9 +85,12 @@
 								placeholder="Select Detailer"
 								scrollHeight="100px"
 								:disabled="!createNew"
+								@change="detailerChange()"
 							>
                             </Dropdown>
-							<small class="p-invalid" v-if="submitted && !targetSale.detailer">Detailer is required.</small>
+							<small class="p-invalid" 
+								v-if="submitted && !targetSale.detailer"
+							>Detailer is required.</small>
                             <!-- </span> -->
                         </div>
                         <div class="p-field p-col-12 p-md-3">
@@ -106,132 +100,131 @@
 								:options="tahuns"
 								placeholder="Select Tahun"
 								:disabled="!createNew"
-							>
-							</Dropdown>
-							<small class="p-invalid" v-if="submitted && !targetSale.tahun">Tahun is required.</small>
-                        </div>
-                        <div class="p-field p-col-12 p-md-3">
-                            <label for="Type">Type</label>
-                            <Dropdown inputId="Type"
-								v-model.trim="targetSaleData.type"
-								:options="typeTarget"
-								optionLabel="type"
-								:disabled="!createNew"
-								dataKey="type"
-
+								@change="tahunChange()"
 							>
 							</Dropdown>
 							<small class="p-invalid" v-if="submitted && !targetSale.tahun">Tahun is required.</small>
                         </div>
 					</div>
-					<div class="p-fluid p-grid">
-						<DataTable :value="targetSale"
-							editMode="cell"
-							:scrollable="true"
-							scrollHeight="500px"
-							dataKey="product._id"
+					<!-- <div class="p-fluid p-grid">
+						
+					</div> -->
+					<DataTable :value="targetSaleQty"
+						editMode="cell"
+						:scrollable="true"
+						scrollHeight="500px"
+						dataKey="product"
+					>
+						<template #header>
+							<div class="table-header">
+								<h5 class="p-m-0">Target Qty</h5>
+							</div>
+						</template>
+						<Column field="product" 
+							header="Product"
+							headerStyle="width: 150px"
 						>
-							<Column field="product.short" 
-								header="Product"
-								headerStyle="width: 150px"
-							>
-							</Column>
-							<Column field="targetTahun" 
-								header="Target per Tahun"
-								headerStyle="width: 150px"
-							>
-								<template #editor="slotProps" v-if="targetSaleData.type">
-									<InputNumber v-if="targetSaleData.type.mode === 'Qty'" 
-										v-model="slotProps.data['targetTahun']"
-										:suffix="targetSaleData.type.suffix"
-										:mode="targetSaleData.type.mode"
-									/>
-									<InputNumber v-else
-										v-model="slotProps.data['targetTahun']"
-										currency ="IDR"
-										locale="id-ID"
-										:mode="targetSaleData.type.mode"
-									/>
-								</template>
-								<template #body="slotProps" v-if="targetSaleData.type">
-									<InputNumber v-if="targetSaleData.type.mode === 'Qty'" 
-										v-model="slotProps.data['targetTahun']"
-										suffix=" Qty"
-									/>
-									<InputNumber v-else
-										v-model="slotProps.data['targetTahun']"
-										currency ="IDR"
-										locale="id-ID"
-										:mode="targetSaleData.type.mode"
-									/>
-								</template>
-							</Column>
-							<Column field="targetBulan" 
-								header="Target per Bulan"
-								headerStyle="width: 150px"
-							>
-								<template #editor="slotProps" v-if="targetSaleData.type">
-									<InputNumber v-if="targetSaleData.type.mode === 'Qty'" 
-										v-model="slotProps.data['targetBulan']"
-										:suffix="targetSaleData.type.suffix"
-										:mode="targetSaleData.type.mode"
-									/>
-									<InputNumber v-else
-										v-model="slotProps.data['targetBulan']"
-										currency ="IDR"
-										locale="id-ID"
-										:mode="targetSaleData.type.mode"
-									/>
-								</template>
-								<template #body="slotProps" v-if="targetSaleData.type">
-									<InputNumber v-if="targetSaleData.type.mode === 'Qty'" 
-										v-model="slotProps.data['targetBulan']"
-										:suffix="targetSaleData.type.suffix"
-										:mode="targetSaleData.type.mode"
-									/>
-									<InputNumber v-else
-										v-model="slotProps.data['targetBulan']"
-										currency ="IDR"
-										locale="id-ID"
-										:mode="targetSaleData.type.mode"
-									/>
-								</template>
-							</Column>
-							<Column v-for="(col, index) of columnBulan"
-								:field="col.field" 
-								:header="col.header"
-								:key="index"
-								headerStyle="width: 150px"
-							>
-								<template #editor="slotProps" v-if="targetSaleData.type">
-									<InputNumber v-if="targetSaleData.type.mode === 'Qty'" 
-										v-model="slotProps.data[col.field]" 
-										:suffix="targetSaleData.type.suffix"
-										:mode="targetSaleData.type.mode"
-									/>
-									<InputNumber v-else
-										v-model="slotProps.data[col.field]" 
-										currency ="IDR"
-										locale="id-ID"
-										:mode="targetSaleData.type.mode"
-									/>
-								</template>
-								<template #body="slotProps" v-if="targetSaleData.type">
-									<InputNumber v-if="targetSaleData.type.mode === 'Qty'" 
-										v-model="slotProps.data[col.field]" 
-										:suffix="targetSaleData.type.suffix"
-										:mode="targetSaleData.type.mode"
-									/>
-									<InputNumber v-else
-										v-model="slotProps.data[col.field]" 
-										currency ="IDR"
-										locale="id-ID"
-										:mode="targetSaleData.type.mode"
-									/>
-								</template>
-							</Column>
-						</DataTable>
-					</div>
+							<template #body="slotProps">
+								{{showTargetProduct(slotProps.data['product'])}}
+							</template>
+							<template #footer>
+								Total
+							</template>
+						</Column>
+						<Column field="targetTahun" 
+							header="Target per Tahun"
+							headerStyle="width: 150px"
+						>
+							<template #editor="slotProps">
+								<InputNumber v-model="slotProps.data['targetTahun']"/>
+							</template>
+							<template #body="slotProps">
+								{{editTarget("Qty",slotProps.data['targetTahun'])}}
+							</template>
+						</Column>
+						<Column field="targetBulan" 
+							header="Target per Bulan"
+							headerStyle="width: 150px"
+						>
+							<template #editor="slotProps">
+								<InputNumber v-model="slotProps.data['targetBulan']"/>
+							</template>
+							<template #body="slotProps">
+								{{editTarget("Qty", slotProps.data['targetBulan'])}}
+							</template>
+						</Column>
+						<Column v-for="(col, index) of columnBulan"
+							:field="col.field" 
+							:header="col.header"
+							:key="index"
+							headerStyle="width: 150px"
+						>
+							<template #editor="slotProps">
+								<InputNumber v-model="slotProps.data[col.field]"/>
+							</template>
+							<template #body="slotProps">
+								{{editTarget("Qty", slotProps.data[col.field])}}
+							</template>
+						</Column>
+					</DataTable>
+					<DataTable :value="targetSaleVal"
+						editMode="cell"
+						:scrollable="true"
+						scrollHeight="500px"
+						dataKey="product"
+					>
+						<template #header>
+							<div class="table-header">
+								<h5 class="p-m-0">Target Val</h5>
+							</div>
+						</template>
+						<Column field="product" 
+							header="Product"
+							headerStyle="width: 150px"
+						>
+							<template #body="slotProps">
+								{{showTargetProduct(slotProps.data['product'])}}
+							</template>
+							<template #footer>
+								Total
+							</template>
+						</Column>
+						<Column field="targetTahun" 
+							header="Target per Tahun"
+							headerStyle="width: 150px"
+						>
+							<template #editor="slotProps">
+								<InputNumber v-model="slotProps.data['targetTahun']"/>
+							</template>
+							<template #body="slotProps">
+								{{editTarget("Val",slotProps.data['targetTahun'])}}
+							</template>
+						</Column>
+						<Column field="targetBulan" 
+							header="Target per Bulan"
+							headerStyle="width: 150px"
+						>
+							<template #editor="slotProps">
+								<InputNumber v-model="slotProps.data['targetBulan']"/>
+							</template>
+							<template #body="slotProps">
+								{{editTarget("Val", slotProps.data['targetBulan'])}}
+							</template>
+						</Column>
+						<Column v-for="(col, index) of columnBulan"
+							:field="col.field" 
+							:header="col.header"
+							:key="index"
+							headerStyle="width: 150px"
+						>
+							<template #editor="slotProps">
+								<InputNumber v-model="slotProps.data[col.field]"/>
+							</template>
+							<template #body="slotProps">
+								{{editTarget("Val", slotProps.data[col.field])}}
+							</template>
+						</Column>
+					</DataTable>
 					<template #footer>
 						<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog"/>
 						<Button label="Save" 
@@ -245,7 +238,7 @@
 				<Dialog :visible.sync="deleteTargetSaleDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
 					<div class="confirmation-content">
 						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-						<span v-if="targetSale">Are you sure you want to delete <b>{{targetSale.code}}</b>?</span>
+						<span v-if="targetSale.detailer">Are you sure you want to delete <b>{{targetSale.detailer.name}}</b>?</span>
 					</div>
 					<template #footer>
 						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteTargetSaleDialog = false"/>
@@ -268,7 +261,8 @@ export default {
 		return {
 			loading: false,
 			tahuns: [],
-			typeTarget: [],
+			targetSaleQty: [],
+			targetSaleVal: [],
 			columnBulan: [],
 			columnTargetSales: [],
             products: null,
@@ -276,7 +270,7 @@ export default {
             detailers: null,
             detailerNew: null,
 			targetSales: null,
-			targetSale: null,
+			targetSale: {},
 			targetSaleData: {},
             targetSalesNewDialog: false,
 			submitted: false,
@@ -376,7 +370,8 @@ export default {
         this.productService = new ProductService();
 		this.detailerService = new DetailerService();
 		this.targetSaleService = new TargetSaleService();
-		this.targetSale = new Array()
+		this.targetSaleQty = new Array()
+		this.targetSaleVal = new Array()
 	},
 	mounted() {
 		this.loading = true
@@ -402,18 +397,36 @@ export default {
 			})))]
 			this.loading = false
 		})
-
 	},
 	methods: {
+		showTargetProduct(idProduct) {
+			return this.products[this.findIndexByCode(idProduct, '_id', this.products)].short
+		},
+		detailerChange() {
+			for (let i in this.products) {
+				this.targetSaleQty[i].detailer = this.targetSaleData.detailer
+				this.targetSaleVal[i].detailer = this.targetSaleData.detailer
+			}
+		},
+		tahunChange() {
+			for (let i in this.products) {
+				this.targetSaleQty[i].tahun = this.targetSaleData.tahun
+				this.targetSaleVal[i].tahun = this.targetSaleData.tahun
+			}
+		},
 		hideDialog() {
 			this.targetSalesNewDialog = false
 			this.submitted = false
 		},
 		editTarget(type, value) {
+			// console.log(type)
+			if(!value) {
+				value = 0
+			}
 			if(type === 'Qty'){
 				return value + ' Qty'
 			} else {
-				return formatCurrency(value)
+				return this.formatCurrency(value)
 			}
 		},
 		formatDate(dat) {
@@ -436,11 +449,15 @@ export default {
 			return value.toLocaleString('id-ID', {style: 'currency', currency: 'IDR'});
 		},
 		openNew() {
-			// this.targetSaleData.type = this.typeTarget[0]
-			this.targetSale = new Array()
+			this.targetSaleData.type = {}
+			this.targetSaleQty = new Array()
+			this.targetSaleVal = new Array()
 			this.products.forEach( elm => {
-				this.targetSale.push({
-					product: elm
+				this.targetSaleQty.push({
+					product: elm._id
+				})
+				this.targetSaleVal.push({
+					product: elm._id
 				})
 			})
 			this.submitted = false
@@ -448,8 +465,9 @@ export default {
 			this.createNew = true
 		},
 		openView(targetSale) {
+			console.log(targetSale)
 			this.createNew = false
-			this.targetSale = {...targetSale};
+			// this.targetSale = {...targetSale};
 			this.targetSalesNewDialog = true;
 		},
 		exportCSV() {
@@ -458,52 +476,40 @@ export default {
 		saveTargetSale() {
 			this.submitted = true;
 			// console.log(this.targetSale)
-			if (this.targetSale.code && 
-				this.targetSale.detailer &&
-				this.targetSale.product &&
-				this.targetSale.tahun &&
-				this.targetSale.targetPerTahun &&
-				this.targetSale.january &&
-				this.targetSale.febuary &&
-				this.targetSale.maret &&
-				this.targetSale.april &&
-				this.targetSale.may &&
-				this.targetSale.june &&
-				this.targetSale.july &&
-				this.targetSale.august &&
-				this.targetSale.september &&
-				this.targetSale.october &&
-				this.targetSale.november &&
-				this.targetSale.december)
-			{
-				if(this.createNew) {
-					this.createTargetSale()
-					return;
-				}
+			// console.log(this.targetSaleData)
+			// console.log(this.targetSaleQty)
+			// console.log(this.targetSaleVal)
+			if (this.targetSaleData.detailer &&
+				this.targetSaleData.tahun) {
+					this.createTargetSale()	
 
-			}
+				}
 		},
 		create() {
-			this.targetSaleService.createTargetSale(this.targetSale)
+			this.targetSaleService.createTargetSale({
+				targetSale: this.targetSaleData,
+				targetSaleQty: this.targetSaleQty,
+				targetSaleVal: this.targetSaleVal
+			})
 			.then(msg => {
 				this.loading = true
 				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
-				this.targetSaleService.getTargetSales()
-				.then(data => {
-					this.targetSales = data
-					this.targetSales = [...new Set(this.targetSales.map(({
-						product,
-						detailer,
-						...rest
-					}) => ({
-						product: product._id,
-						productName: product.name,
-						detailer: detailer._id,
-						detailerName: detailer.name,
-						...rest
-					})))]
-					this.loading = false
-				})
+				// this.targetSaleService.getTargetSales()
+				// .then(data => {
+				// 	this.targetSales = data
+				// 	this.targetSales = [...new Set(this.targetSales.map(({
+				// 		product,
+				// 		detailer,
+				// 		...rest
+				// 	}) => ({
+				// 		product: product._id,
+				// 		productName: product.name,
+				// 		detailer: detailer._id,
+				// 		detailerName: detailer.name,
+				// 		...rest
+				// 	})))]
+				// 	this.loading = false
+				// })
 
 			})
 			.catch(err => {
@@ -552,7 +558,17 @@ export default {
 			this.delete()
 			this.targetSale =  {}
 			this.deleteTargetSaleDialog = false
-		}
+		},
+		findIndexByCode(id, key, data) {
+			let index = -1;
+			for (let i = 0; i < data.length; i++) {
+				if (data[i][key] === id) {
+					index = i;
+					break;
+				}
+			}
+			return index;
+        },
 	}
 }
 </script>
