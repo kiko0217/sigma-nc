@@ -394,7 +394,8 @@ export default {
                 if ((qty_temp > 0) && (qty_temp < 1)) {
                     qty = 1
                 } else {
-                    qty = Math.round(this.breakdown.products[key]/len)
+                    // qty = Math.round(this.breakdown.products[key]/len)
+                    qty = Math.round(qty_temp)
                 }
                 
                 // console.log(this.findIndexByCode(key, 'short', this.products))

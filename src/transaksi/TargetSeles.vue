@@ -61,6 +61,9 @@
 						:key="index"
 						headerStyle="width: 150px"
 					>
+						<template #body="slotProps" v-if="col.field === 'detailer'">
+								{{showDetailer(slotProps.data['detailer'])}}
+							</template>
 					</Column>
 				</DataTable>
 
@@ -105,6 +108,13 @@
 							</Dropdown>
 							<small class="p-invalid" v-if="submitted && !targetSale.tahun">Tahun is required.</small>
                         </div>
+						<div class="p-field p-col-12 p-md-3" v-if="!createNew">
+                            <!-- <span class="p-float-label"> -->
+                            <label for="revisi">Revisi</label>
+							<InputText v-model.trim="targetSaleData.codeRevisi"
+								:disabled="true"
+							/>
+						</div>
 					</div>
 					<!-- <div class="p-fluid p-grid">
 						
@@ -135,8 +145,8 @@
 							header="Target per Tahun"
 							headerStyle="width: 150px"
 						>
-							<template #editor="slotProps">
-								<InputNumber v-model="slotProps.data['targetTahun']"/>
+							<template #editor="slotProps" v-if="createNew">
+								<InputNumber v-model="slotProps.data['targetTahun']" @input="changeTahunQty($event, slotProps.index)"/>
 							</template>
 							<template #body="slotProps">
 								{{editTarget("Qty",slotProps.data['targetTahun'])}}
@@ -146,7 +156,7 @@
 							header="Target per Bulan"
 							headerStyle="width: 150px"
 						>
-							<template #editor="slotProps">
+							<template #editor="slotProps" v-if="createNew">
 								<InputNumber v-model="slotProps.data['targetBulan']"/>
 							</template>
 							<template #body="slotProps">
@@ -159,7 +169,7 @@
 							:key="index"
 							headerStyle="width: 150px"
 						>
-							<template #editor="slotProps">
+							<template #editor="slotProps" v-if="createNew">
 								<InputNumber v-model="slotProps.data[col.field]"/>
 							</template>
 							<template #body="slotProps">
@@ -182,7 +192,7 @@
 							header="Product"
 							headerStyle="width: 150px"
 						>
-							<template #body="slotProps">
+							<template #body="slotProps" >
 								{{showTargetProduct(slotProps.data['product'])}}
 							</template>
 							<template #footer>
@@ -193,8 +203,8 @@
 							header="Target per Tahun"
 							headerStyle="width: 150px"
 						>
-							<template #editor="slotProps">
-								<InputNumber v-model="slotProps.data['targetTahun']"/>
+							<template #editor="slotProps" v-if="createNew">
+								<InputNumber v-model="slotProps.data['targetTahun']" @input="changeTahunVal($event, slotProps.index)"/>
 							</template>
 							<template #body="slotProps">
 								{{editTarget("Val",slotProps.data['targetTahun'])}}
@@ -204,7 +214,7 @@
 							header="Target per Bulan"
 							headerStyle="width: 150px"
 						>
-							<template #editor="slotProps">
+							<template #editor="slotProps" v-if="createNew">
 								<InputNumber v-model="slotProps.data['targetBulan']"/>
 							</template>
 							<template #body="slotProps">
@@ -217,7 +227,7 @@
 							:key="index"
 							headerStyle="width: 150px"
 						>
-							<template #editor="slotProps">
+							<template #editor="slotProps" v-if="createNew">
 								<InputNumber v-model="slotProps.data[col.field]"/>
 							</template>
 							<template #body="slotProps">
@@ -238,7 +248,7 @@
 				<Dialog :visible.sync="deleteTargetSaleDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
 					<div class="confirmation-content">
 						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
-						<span v-if="targetSale.detailer">Are you sure you want to delete <b>{{targetSale.detailer.name}}</b>?</span>
+						<span v-if="targetSale.detailer">Are you sure you want to delete <b>{{showDetailer(targetSale.detailer)}}</b>'s Target?</span>
 					</div>
 					<template #footer>
 						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteTargetSaleDialog = false"/>
@@ -280,7 +290,7 @@ export default {
 	},
 	targetSaleService: null,
     productService: null,
-	detailerSErvice: null,
+	detailerService: null,
 	created() {
 		this.typeTarget = [
 			{
@@ -347,24 +357,16 @@ export default {
 		]
 		this.columnTargetSales = [
 			{
-				field : 'code',
-				header : 'Code'
-			},
-			{
 				field : 'tahun',
 				header : 'Tahun'
 			},
 			{
-				field : 'detailerName',
+				field : 'detailer',
 				header : 'Detailer'
 			},
 			{
-				field : 'productName',
-				header : 'Product'
-			},
-			{
-				field : 'targetPerTahun',
-				header : 'Target Per Tahun (Qty)'
+				field : 'codeRevisi',
+				header : 'Revisi'
 			},
 		]
         this.productService = new ProductService();
@@ -378,27 +380,109 @@ export default {
         this.productService.getProducts()
         .then(data => this.products = data)
         this.detailerService.getDetailers()
-		.then(data => {
-			this.detailers = data
+		.then(dat => {
+			this.detailers = dat
 		})
 		this.targetSaleService.getTargetSales()
-		.then(data => {
-			this.targetSales = data
-			this.targetSales = [...new Set(this.targetSales.map(({
-				product,
-				detailer,
-				...rest
-			}) => ({
-				product: product._id,
-				productName: product.name,
-				detailer: detailer._id,
-				detailerName: detailer.name,
-				...rest
-			})))]
+		.then(dt => {
+			this.targetSales = dt
+			// this.targetSales = [...new Set(this.targetSales.map(({
+			// 	product,
+			// 	detailer,
+			// 	...rest
+			// }) => ({
+			// 	product: product._id,
+			// 	productName: product.name,
+			// 	detailer: detailer._id,
+			// 	detailerName: detailer.name,
+			// 	...rest
+			// })))]
+			// console.log(this.targetSales)
 			this.loading = false
 		})
 	},
 	methods: {
+		changeTahunVal(val, index){
+			// let lenProducts = this.products.length
+			let targetTahun = val
+			let valPerBulan = val/12
+			if ((valPerBulan > 0) && (valPerBulan < 1)) {
+                    valPerBulan = 1
+			} else {
+				// qty = Math.round(this.breakdown.products[key]/len)
+				valPerBulan = Math.round(valPerBulan)
+			}
+			// console.log(valPerBulan)
+			// console.log(val)
+			this.targetSaleVal[index].targetBulan = valPerBulan
+			for (let bulan in this.columnBulan) {
+				// console.log(bulan)
+				if (targetTahun > 0) {
+					if (bulan == 11) {
+						// console.log('bulan terakhir')
+						this.targetSaleVal[index][this.columnBulan[bulan].field] = targetTahun
+						targetTahun = 0
+					} else {
+						if( targetTahun > valPerBulan) {
+							this.targetSaleVal[index][this.columnBulan[bulan].field] = valPerBulan
+							targetTahun -= valPerBulan
+						} else {
+							console.log('target bulan :' +targetTahun)
+							
+							this.targetSaleVal[index][this.columnBulan[bulan].field] = targetTahun
+							targetTahun = 0
+						}
+					}
+					
+				} else {
+					this.targetSaleVal[index][this.columnBulan[bulan].field] = 0
+				}
+				// console.log(targetTahun)
+				// console.log('bulan '+ bulan + ' :' + this.targetSaleVal[index][this.columnBulan[bulan].field])
+			}
+		},
+		changeTahunQty(qty, index){
+			// let lenProducts = this.products.length
+			let targetTahun = qty
+			let qtyPerBulan = qty/12
+			if ((qtyPerBulan > 0) && (qtyPerBulan < 1)) {
+                    qtyPerBulan = 1
+			} else {
+				// qty = Math.round(this.breakdown.products[key]/len)
+				qtyPerBulan = Math.round(qtyPerBulan)
+			}
+			// console.log(qtyPerBulan)
+			// console.log(qty)
+			this.targetSaleQty[index].targetBulan = qtyPerBulan
+			for (let bulan in this.columnBulan) {
+				// console.log(bulan)
+				if (targetTahun > 0) {
+					if (bulan == 11) {
+						// console.log('bulan terakhir')
+						this.targetSaleQty[index][this.columnBulan[bulan].field] = targetTahun
+						targetTahun = 0
+					} else {
+						if( targetTahun > qtyPerBulan) {
+							this.targetSaleQty[index][this.columnBulan[bulan].field] = qtyPerBulan
+							targetTahun -= qtyPerBulan
+						} else {
+							console.log('target bulan :' +targetTahun)
+							
+							this.targetSaleQty[index][this.columnBulan[bulan].field] = targetTahun
+							targetTahun = 0
+						}
+					}
+					
+				} else {
+					this.targetSaleQty[index][this.columnBulan[bulan].field] = 0
+				}
+				// console.log(targetTahun)
+				// console.log('bulan '+ bulan + ' :' + this.targetSaleVal[index][this.columnBulan[bulan].field])
+			}
+		},
+		showDetailer (idDetailer) {
+			return this.detailers[this.findIndexByCode(idDetailer, '_id', this.detailers)].name
+		},
 		showTargetProduct(idProduct) {
 			return this.products[this.findIndexByCode(idProduct, '_id', this.products)].short
 		},
@@ -449,7 +533,7 @@ export default {
 			return value.toLocaleString('id-ID', {style: 'currency', currency: 'IDR'});
 		},
 		openNew() {
-			this.targetSaleData.type = {}
+			this.targetSaleData = {}
 			this.targetSaleQty = new Array()
 			this.targetSaleVal = new Array()
 			this.products.forEach( elm => {
@@ -465,7 +549,15 @@ export default {
 			this.createNew = true
 		},
 		openView(targetSale) {
-			console.log(targetSale)
+			// console.log(targetSale)
+			this.targetSaleData = {
+				detailer : targetSale.detailer,
+				tahun: targetSale.tahun,
+				codeRevisi: targetSale.codeRevisi
+			},
+			this.targetSaleQty = targetSale.targetSaleQtys
+			// console.log(this.targetSaleQty)
+			this.targetSaleVal = targetSale.targetSaleVals
 			this.createNew = false
 			// this.targetSale = {...targetSale};
 			this.targetSalesNewDialog = true;
@@ -494,36 +586,28 @@ export default {
 			.then(msg => {
 				this.loading = true
 				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
-				// this.targetSaleService.getTargetSales()
-				// .then(data => {
-				// 	this.targetSales = data
-				// 	this.targetSales = [...new Set(this.targetSales.map(({
-				// 		product,
-				// 		detailer,
-				// 		...rest
-				// 	}) => ({
-				// 		product: product._id,
-				// 		productName: product.name,
-				// 		detailer: detailer._id,
-				// 		detailerName: detailer.name,
-				// 		...rest
-				// 	})))]
-				// 	this.loading = false
-				// })
+				this.targetSalesNewDialog = false
+				this.targetSaleService.getTargetSales()
+				.then(data => {
+					this.targetSales = data
+					this.loading = false
+				})
 
 			})
 			.catch(err => {
 				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+				this.targetSalesNewDialog = false
 			})
 
 		},
 		createTargetSale() {
-			this.create()
-			this.targetSalesNewDialog = false
-			this.targetSale = {}
 			this.createNew = false
+			this.create()
+			this.targetSale = {}
+			this.submitted = false
 		},
 		delete() {
+			console.log(this.targetSale)
 			this.targetSaleService.deleteTargetSale(this.targetSale)
 			.then(msg => {
 				this.loading = true
@@ -531,17 +615,6 @@ export default {
 				this.targetSaleService.getTargetSales()
 				.then(data => {
 					this.targetSales = data
-					this.targetSales = [...new Set(this.targetSales.map(({
-						product,
-						detailer,
-						...rest
-					}) => ({
-						product: product._id,
-						productName: product.name,
-						detailer: detailer._id,
-						detailerName: detailer.name,
-						...rest
-					})))]
 					this.loading = false
 				})
 

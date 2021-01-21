@@ -5,15 +5,17 @@
 				<Toast/>
 				<Toolbar class="p-mb-4">
 					<template slot="left">
-						<Button label="New" 
+						<!-- <Button label="New" 
 							icon="pi pi-plus"
 							class="p-button-success p-mr-2"
 							:disabled="loading"
 							@click="openNew"
-						/>
+						/> -->
+						<!-- <Button label="Delete" icon="pi pi-trash" class="p-button-danger" @click="confirmDeleteSelected" :disabled="!selectedRegions || !selectedRegions.length" /> -->
 					</template>
 
 					<template slot="right">
+						<!-- <FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block" /> -->
 						<Button label="Export"
 							icon="pi pi-upload"
 							class="p-button-help"
@@ -24,7 +26,7 @@
 				</Toolbar>
 
 				<DataTable ref="dt" 
-					:value="targetSales"
+					:value="revisiTargetSales"
 					scrollHeight="500px"
 					:scrollable="true" 
 					dataKey="_id"
@@ -35,214 +37,222 @@
 					paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
 					:rowsPerPageOptions="[5,10,25]"
 					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Target Sales"
-                    :expandedRows.sync="expandedRows"
 				>
-                    <Column :expander="true" headerStyle="width: 3rem" />
-					<Column v-for="(col, index) of columnTargetSales"
-						:field="col.field"
+					<Column headerStyle="width: 6em" 
+						headerClass="p-text-center" bodyClass="p-text-center">
+						<template #body="slotProps">
+							<!-- <Button type="button" 
+								icon="pi pi-trash"
+								class="p-button-danger"
+								style="margin-right: .5em"
+								@click="confirmDeleteTargetSale(slotProps.data)"
+							></Button> -->
+							<Button type="button" 
+								icon="pi pi-pencil"
+								class="p-button-success"
+								style="margin-right: .5em"
+								@click="openView(slotProps.data)"
+							></Button>
+						</template>
+					</Column>
+					<Column v-for="(col, index) of columnRevisiTargetSales"
+						:field="col.field" 
 						:header="col.header"
 						:key="index"
 						headerStyle="width: 150px"
 					>
+						<template #body="slotProps" v-if="col.field === 'detailer'">
+								{{showDetailer(slotProps.data['detailer'])}}
+							</template>
 					</Column>
-                    <template #expansion="slotProps">
-                        <DataTable :value="slotProps.data.revisiTargetSales" 
-                            dataKey="_id"
-                        >
-                            <Column headerStyle="width: 6em" headerClass="p-text-center" bodyClass="p-text-center">
-                                <template #body="slotProps1">
-                                    <Button type="button" 
-                                        icon="pi pi-search"
-                                        class="p-button-success"
-                                        style="margin-right: .5em"
-                                        @click="openView(slotProps1.data)"
-                                    ></Button>
-                                </template>
-                            </Column>
-                            <Column v-for="(col, index) of columnRevisiTargetSales"
-                                :field="col.field"
-                                :header="col.header"
-                                :key="index"
-                                headerStyle="width: 150px"
-                            >
-                            </Column>
-                        </DataTable>
-                    </template>
 				</DataTable>
 
 				<Dialog :visible.sync="revisiTargetSalesNewDialog" 
-					:style="{width: '900px'}" 
+					:style="{width: '1000px'}" 
 					header="Target Sales" 
 					:modal="true" 
 					class="p-fluid"
+					:maximizable="true"
 				>
 					<!-- ini bisa diisi dengan peta nantinya -->
                     <div class="p-fluid p-grid">
-						<div class="p-field p-col-12 p-md-4">
-							<label for="Code">Code</label>
-							<InputText id="Code" 
-								v-model.trim="revisiTargetSale.code"
-								required="true"
-								autofocus 
-								:class="{'p-invalid': submitted && !revisiTargetSale.code}" 
-								:disabled="!createNew"
-							/>
-							<small class="p-invalid" v-if="submitted && !revisiTargetSale.code">Code is required.</small>
-						</div>
-                        <div class="p-field p-col-12 p-md-4">
+                        <div class="p-field p-col-12 p-md-3">
                             <!-- <span class="p-float-label"> -->
-                            <label for="detailer">Target Sale</label>
+                            <label for="detailer">Detailer</label>
                             <Dropdown inputId="detailer" 
-								v-model.trim="revisiTargetSale.targetSale"
-								:options="targetSales"
+								v-model.trim="revisiTargetSaleData.detailer"
+								:options="detailers"
 								:filter="true"
 								optionValue="_id"
-								optionLabel="code"
-								placeholder="Select Target Sales"
+								optionLabel="name"
+								placeholder="Select Detailer"
 								scrollHeight="100px"
 								:disabled="!createNew"
-                                @change="changeTargetSale($event)"
+								@change="detailerChange()"
 							>
                             </Dropdown>
-							<small class="p-invalid" v-if="submitted && !revisiTargetSale.targetSale">Target Sale is required.</small>
+							<small class="p-invalid" 
+								v-if="submitted && !revisiTargetSale.detailer"
+							>Detailer is required.</small>
                             <!-- </span> -->
                         </div>
-                        <div class="p-field p-col-12 p-md-4">
-                            <label for="Target Per Tahun">Target Per Tahun</label>
-                            <InputNumber id="Target Per Tahun"
-								v-model.trim="revisiTargetSale.targetPerTahun"
-								suffix=" Qty"
-                                :disabled="!createNew"
-							/>
-							<small class="p-invalid" v-if="submitted && !revisiTargetSale.targetPerTahun">Target Per Tahun is required.</small>
-                        </div>
-						<div class="p-field p-col-12 p-md-4">
-                            <label for="Januari">Januari</label>
-                            <InputNumber id="Januari"
-								v-model.trim="revisiTargetSale.january"
-								suffix=" Qty"
+                        <div class="p-field p-col-12 p-md-3">
+                            <label for="Tahun">Tahun</label>
+                            <Dropdown inputId="Tahun"
+								v-model.trim="revisiTargetSaleData.tahun"
+								:options="tahuns"
+								placeholder="Select Tahun"
 								:disabled="!createNew"
-							/>
-							<small class="p-invalid" v-if="submitted && !revisiTargetSale.january">Target Januari is required.</small>
+								@change="tahunChange()"
+							>
+							</Dropdown>
+							<small class="p-invalid" v-if="submitted && !revisiTargetSale.tahun">Tahun is required.</small>
                         </div>
-						<div class="p-field p-col-12 p-md-4">
-                            <label for="Febuari">Febuari</label>
-                            <InputNumber id="Febuari"
-								v-model.trim="revisiTargetSale.febuary"
-								suffix=" Qty"
-								:disabled="!createNew"
+						<div class="p-field p-col-12 p-md-3" v-if="!createNew">
+                            <!-- <span class="p-float-label"> -->
+                            <label for="revisi">Revisi</label>
+							<InputText v-model.trim="revisiTargetSaleData.code"
+								:disabled="true"
 							/>
-							<small class="p-invalid" v-if="submitted && !revisiTargetSale.febuary">Target Febuari is required.</small>
-                        </div>
-						<div class="p-field p-col-12 p-md-4">
-                            <label for="Maret">Maret</label>
-                            <InputNumber id="Maret"
-								v-model.trim="revisiTargetSale.maret"
-								suffix=" Qty"
-								:disabled="!createNew"
-							/>
-							<small class="p-invalid" v-if="submitted && !revisiTargetSale.maret">Target Maret is required.</small>
-                        </div>
-						<div class="p-field p-col-12 p-md-4">
-                            <label for="April">April</label>
-                            <InputNumber id="April"
-								v-model.trim="revisiTargetSale.april"
-								suffix=" Qty"
-								:disabled="!createNew"
-							/>
-							<small class="p-invalid" v-if="submitted && !revisiTargetSale.april">Target April is required.</small>
-                        </div>
-						<div class="p-field p-col-12 p-md-4">
-                            <label for="Mei">Mei</label>
-                            <InputNumber id="Mei"
-								v-model.trim="revisiTargetSale.may"
-								suffix=" Qty"
-								:disabled="!createNew"
-							/>
-							<small class="p-invalid" v-if="submitted && !revisiTargetSale.may">Target Mei is required.</small>
-                        </div>
-						<div class="p-field p-col-12 p-md-4">
-                            <label for="Juni">Juni</label>
-                            <InputNumber id="Juni"
-								v-model.trim="revisiTargetSale.june"
-								suffix=" Qty"
-								:disabled="!createNew"
-							/>
-							<small class="p-invalid" v-if="submitted && !revisiTargetSale.june">Target Juni is required.</small>
-                        </div>
-						<div class="p-field p-col-12 p-md-4">
-                            <label for="Juli">Juli</label>
-                            <InputNumber id="Juli"
-								v-model.trim="revisiTargetSale.july"
-								suffix=" Qty"
-								:disabled="!createNew"
-							/>
-							<small class="p-invalid" v-if="submitted && !revisiTargetSale.july">Target Juli is required.</small>
-                        </div>
-						<div class="p-field p-col-12 p-md-4">
-                            <label for="Agustus">Agustus</label>
-                            <InputNumber id="Agustus"
-								v-model.trim="revisiTargetSale.august"
-								suffix=" Qty"
-								:disabled="!createNew"
-							/>
-							<small class="p-invalid" v-if="submitted && !revisiTargetSale.august">Target Agustus is required.</small>
-                        </div>
-						<div class="p-field p-col-12 p-md-4">
-                            <label for="September">September</label>
-                            <InputNumber id="September"
-								v-model.trim="revisiTargetSale.september"
-								suffix=" Qty"
-								:disabled="!createNew"
-							/>
-							<small class="p-invalid" v-if="submitted && !revisiTargetSale.september">Target September is required.</small>
-                        </div>
-						<div class="p-field p-col-12 p-md-4">
-                            <label for="Oktober">Oktober</label>
-                            <InputNumber id="Oktober"
-								v-model.trim="revisiTargetSale.october"
-								suffix=" Qty"
-								:disabled="!createNew"
-							/>
-							<small class="p-invalid" v-if="submitted && !revisiTargetSale.october">Target Oktober is required.</small>
-                        </div>
-						<div class="p-field p-col-12 p-md-4">
-                            <label for="November">November</label>
-                            <InputNumber id="November"
-								v-model.trim="revisiTargetSale.november"
-								suffix=" Qty"
-								:disabled="!createNew"
-							/>
-							<small class="p-invalid" v-if="submitted && !revisiTargetSale.november">Target November is required.</small>
-                        </div>
-						<div class="p-field p-col-12 p-md-4">
-                            <label for="Desember">Desember</label>
-                            <InputNumber id="Desember"
-								v-model.trim="revisiTargetSale.december"
-								suffix=" Qty"
-								:disabled="!createNew"
-							/>
-							<small class="p-invalid" v-if="submitted && !revisiTargetSale.december">Target Desember is required.</small>
-                        </div>
-						<div class="p-field p-col-12 p-md-12">
-							<span class="p-float-label">
-								<Textarea id="textarea" 
-									v-model="revisiTargetSale.description" 
-									rows="3" 
-									:disabled="!createNew"
-								/>
-								<label for="textarea">Keterangan</label>
-							</span>
 						</div>
-                    </div>
+					</div>
+					<!-- <div class="p-fluid p-grid">
+						
+					</div> -->
+					<DataTable :value="revisiTargetSaleQty"
+						editMode="cell"
+						:scrollable="true"
+						scrollHeight="500px"
+						dataKey="product"
+					>
+						<template #header>
+							<div class="table-header">
+								<h5 class="p-m-0">Target Qty</h5>
+							</div>
+						</template>
+						<Column field="product" 
+							header="Product"
+							headerStyle="width: 150px"
+						>
+							<template #body="slotProps">
+								{{showTargetProduct(slotProps.data['product'])}}
+							</template>
+							<template #footer>
+								Total
+							</template>
+						</Column>
+						<Column field="targetTahun" 
+							header="Target per Tahun"
+							headerStyle="width: 150px"
+						>
+							<template #editor="slotProps" v-if="!createNew">
+								<InputNumber v-model="slotProps.data['targetTahun']" @input="changeTahunQty($event, slotProps.index)"/>
+							</template>
+							<template #body="slotProps">
+								{{editTarget("Qty",slotProps.data['targetTahun'])}}
+							</template>
+						</Column>
+						<Column field="targetBulan" 
+							header="Target per Bulan"
+							headerStyle="width: 150px"
+						>
+							<template #editor="slotProps" v-if="!createNew">
+								<InputNumber v-model="slotProps.data['targetBulan']"/>
+							</template>
+							<template #body="slotProps">
+								{{editTarget("Qty", slotProps.data['targetBulan'])}}
+							</template>
+						</Column>
+						<Column v-for="(col, index) of columnBulan"
+							:field="col.field" 
+							:header="col.header"
+							:key="index"
+							headerStyle="width: 150px"
+						>
+							<template #editor="slotProps" v-if="!createNew">
+								<InputNumber v-model="slotProps.data[col.field]"/>
+							</template>
+							<template #body="slotProps">
+								{{editTarget("Qty", slotProps.data[col.field])}}
+							</template>
+						</Column>
+					</DataTable>
+					<DataTable :value="revisiTargetSaleVal"
+						editMode="cell"
+						:scrollable="true"
+						scrollHeight="500px"
+						dataKey="product"
+					>
+						<template #header>
+							<div class="table-header">
+								<h5 class="p-m-0">Target Val</h5>
+							</div>
+						</template>
+						<Column field="product" 
+							header="Product"
+							headerStyle="width: 150px"
+						>
+							<template #body="slotProps" >
+								{{showTargetProduct(slotProps.data['product'])}}
+							</template>
+							<template #footer>
+								Total
+							</template>
+						</Column>
+						<Column field="targetTahun" 
+							header="Target per Tahun"
+							headerStyle="width: 150px"
+						>
+							<template #editor="slotProps" v-if="!createNew">
+								<InputNumber v-model="slotProps.data['targetTahun']" @input="changeTahunVal($event, slotProps.index)"/>
+							</template>
+							<template #body="slotProps">
+								{{editTarget("Val",slotProps.data['targetTahun'])}}
+							</template>
+						</Column>
+						<Column field="targetBulan" 
+							header="Target per Bulan"
+							headerStyle="width: 150px"
+						>
+							<template #editor="slotProps" v-if="!createNew">
+								<InputNumber v-model="slotProps.data['targetBulan']"/>
+							</template>
+							<template #body="slotProps">
+								{{editTarget("Val", slotProps.data['targetBulan'])}}
+							</template>
+						</Column>
+						<Column v-for="(col, index) of columnBulan"
+							:field="col.field" 
+							:header="col.header"
+							:key="index"
+							headerStyle="width: 150px"
+						>
+							<template #editor="slotProps" v-if="!createNew">
+								<InputNumber v-model="slotProps.data[col.field]"/>
+							</template>
+							<template #body="slotProps">
+								{{editTarget("Val", slotProps.data[col.field])}}
+							</template>
+						</Column>
+					</DataTable>
 					<template #footer>
 						<Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog"/>
 						<Button label="Save" 
 							icon="pi pi-check"
 							class="p-button-text"
 							@click="saveRevisiTargetSale"
-							:disabled="!createNew"
+							:disabled="createNew"
 						/>
+					</template>
+				</Dialog>
+				<Dialog :visible.sync="deleteRevisiTargetSaleDialog" :style="{width: '450px'}" header="Confirm" :modal="true">
+					<div class="confirmation-content">
+						<i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
+						<span v-if="revisiTargetSale.detailer">Are you sure you want to delete <b>{{showDetailer(revisiTargetSale.detailer)}}</b>'s Target?</span>
+					</div>
+					<template #footer>
+						<Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteRevisiTargetSaleDialog = false"/>
+						<Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteTargetSale" />
 					</template>
 				</Dialog>
 			</div>
@@ -252,95 +262,255 @@
 </template>
 
 <script>
+import DetailerService from '../service/DetailerService'
+import ProductService from '../service/ProductService'
 import RevisiTargetSaleService from '../service/RevisiTargetSaleService'
-import TargetSaleService from '../service/TargetSaleService'
 
 export default {
 	data() {
 		return {
 			loading: false,
-            columnTargetSales: [],
-            columnRevisiTargetSales: [],
+			tahuns: [],
+			revisiTargetSaleQty: [],
+			revisiTargetSaleVal: [],
+			columnBulan: [],
+			columnRevisiTargetSales: [],
+            products: null,
             filters: {},
-			targetSales: null,
+            detailers: null,
+			revisiTargetSales: null,
 			revisiTargetSale: {},
+			revisiTargetSaleData: {},
             revisiTargetSalesNewDialog: false,
 			submitted: false,
 			createNew: false,
-            deleteTargetSaleDialog: false,
-            expandedRows: null,
+			deleteRevisiTargetSaleDialog: false,
 		}
 	},
-	targetSaleService: null,
 	revisiTargetSaleService: null,
+	productService: null,
+	detailerService: null,
 	created() {
-		this.columnTargetSales = [
+		this.typeTarget = [
 			{
-				field : 'code',
-				header : 'Code'
+				type: 'Qty',
+				suffix: ' Qty',
+				mode: 'decimal'
 			},
+			{
+				type: 'Val',
+				mode: 'currency'
+			}
+		]
+		this.tahuns = [...Array(11).keys()].map(x => x+2020)
+		this.columnBulan = [
+			{
+				field: 'january',
+				header: 'January'
+			},
+			{
+				field: 'febuary',
+				header: 'Febuary'
+			},
+			{
+				field: 'maret',
+				header: 'Maret'
+			},
+			{
+				field: 'april',
+				header: 'April'
+			},
+			{
+				field: 'may',
+				header: 'May'
+			},
+			{
+				field: 'june',
+				header: 'June'
+			},
+			{
+				field: 'july',
+				header: 'July'
+			},
+			{
+				field: 'august',
+				header: 'August'
+			},
+			{
+				field: 'september',
+				header: 'September'
+			},
+			{
+				field: 'october',
+				header: 'October'
+			},
+			{
+				field: 'november',
+				header: 'November'
+			},
+			{
+				field: 'december',
+				header: 'December'
+			},
+
+		]
+		this.columnRevisiTargetSales = [
 			{
 				field : 'tahun',
 				header : 'Tahun'
 			},
 			{
-				field : 'detailerName',
+				field : 'detailer',
 				header : 'Detailer'
 			},
 			{
-				field : 'productName',
-				header : 'Product'
-			},
-			{
-				field : 'targetPerTahun',
-				header : 'Target Per Tahun (Qty)'
-			},
-			{
-				field : 'codeRevisi',
+				field : 'code',
 				header : 'Revisi'
 			},
 		]
-		this.columnRevisiTargetSales = [
-            {
-                field : 'tahun',
-				header : 'Tahun'
-			},
-			{
-                field : 'targetPerTahun',
-				header : 'Target Per Tahun (Qty)'
-			},
-            {
-                field : 'code',
-                header : 'Code Revisi'
-            },
-		]
-		this.targetSaleService = new TargetSaleService();
+        this.productService = new ProductService();
+		this.detailerService = new DetailerService();
 		this.revisiTargetSaleService = new RevisiTargetSaleService();
+		this.revisiTargetSaleQty = new Array()
+		this.revisiTargetSaleVal = new Array()
 	},
 	mounted() {
 		this.loading = true
-		this.targetSaleService.getTargetSalesWithRevisi()
+        this.productService.getProducts()
+        .then(data => this.products = data)
+        this.detailerService.getDetailers()
 		.then(data => {
-			this.targetSales = data
-			this.targetSales = [...new Set(this.targetSales.map(({
-				product,
-				detailer,
-				...rest
-			}) => ({
-				product: product._id,
-				productName: product.name,
-				detailer: detailer._id,
-				detailerName: detailer.name,
-				...rest
-			})))]
+			this.detailers = data
+		})
+		this.revisiTargetSaleService.getRevisiTargetSales()
+		.then(dt => {
+			this.revisiTargetSales = dt
+			// this.revisiTargetSales = [...new Set(this.revisiTargetSales.map(({
+			// 	product,
+			// 	detailer,
+			// 	...rest
+			// }) => ({
+			// 	product: product._id,
+			// 	productName: product.name,
+			// 	detailer: detailer._id,
+			// 	detailerName: detailer.name,
+			// 	...rest
+			// })))]
+			// console.log(this.revisiTargetSales)
 			this.loading = false
 		})
 	},
 	methods: {
+		changeTahunVal(val, index){
+			// let lenProducts = this.products.length
+			let targetTahun = val
+			let valPerBulan = val/12
+			if ((valPerBulan > 0) && (valPerBulan < 1)) {
+                    valPerBulan = 1
+			} else {
+				// qty = Math.round(this.breakdown.products[key]/len)
+				valPerBulan = Math.round(valPerBulan)
+			}
+			// console.log(valPerBulan)
+			// console.log(val)
+			this.revisiTargetSaleVal[index].targetBulan = valPerBulan
+			for (let bulan in this.columnBulan) {
+				// console.log(bulan)
+				if (targetTahun > 0) {
+					if (bulan == 11) {
+						// console.log('bulan terakhir')
+						this.revisiTargetSaleVal[index][this.columnBulan[bulan].field] = targetTahun
+						targetTahun = 0
+					} else {
+						if( targetTahun > valPerBulan) {
+							this.revisiTargetSaleVal[index][this.columnBulan[bulan].field] = valPerBulan
+							targetTahun -= valPerBulan
+						} else {
+							console.log('target bulan :' +targetTahun)
+							
+							this.revisiTargetSaleVal[index][this.columnBulan[bulan].field] = targetTahun
+							targetTahun = 0
+						}
+					}
+					
+				} else {
+					this.revisiTargetSaleVal[index][this.columnBulan[bulan].field] = 0
+				}
+				// console.log(targetTahun)
+				// console.log('bulan '+ bulan + ' :' + this.revisiTargetSaleVal[index][this.columnBulan[bulan].field])
+			}
+		},
+		changeTahunQty(qty, index){
+			// let lenProducts = this.products.length
+			let targetTahun = qty
+			let qtyPerBulan = qty/12
+			if ((qtyPerBulan > 0) && (qtyPerBulan < 1)) {
+                    qtyPerBulan = 1
+			} else {
+				// qty = Math.round(this.breakdown.products[key]/len)
+				qtyPerBulan = Math.round(qtyPerBulan)
+			}
+			// console.log(qtyPerBulan)
+			// console.log(qty)
+			this.revisiTargetSaleQty[index].targetBulan = qtyPerBulan
+			for (let bulan in this.columnBulan) {
+				// console.log(bulan)
+				if (targetTahun > 0) {
+					if (bulan == 11) {
+						// console.log('bulan terakhir')
+						this.revisiTargetSaleQty[index][this.columnBulan[bulan].field] = targetTahun
+						targetTahun = 0
+					} else {
+						if( targetTahun > qtyPerBulan) {
+							this.revisiTargetSaleQty[index][this.columnBulan[bulan].field] = qtyPerBulan
+							targetTahun -= qtyPerBulan
+						} else {
+							console.log('target bulan :' +targetTahun)
+							
+							this.revisiTargetSaleQty[index][this.columnBulan[bulan].field] = targetTahun
+							targetTahun = 0
+						}
+					}
+					
+				} else {
+					this.revisiTargetSaleQty[index][this.columnBulan[bulan].field] = 0
+				}
+				// console.log(targetTahun)
+				// console.log('bulan '+ bulan + ' :' + this.revisiTargetSaleVal[index][this.columnBulan[bulan].field])
+			}
+		},
+		showDetailer (idDetailer) {
+			return this.detailers[this.findIndexByCode(idDetailer, '_id', this.detailers)].name
+		},
+		showTargetProduct(idProduct) {
+			return this.products[this.findIndexByCode(idProduct, '_id', this.products)].short
+		},
+		detailerChange() {
+			for (let i in this.products) {
+				this.revisiTargetSaleQty[i].detailer = this.revisiTargetSaleData.detailer
+				this.revisiTargetSaleVal[i].detailer = this.revisiTargetSaleData.detailer
+			}
+		},
+		tahunChange() {
+			for (let i in this.products) {
+				this.revisiTargetSaleQty[i].tahun = this.revisiTargetSaleData.tahun
+				this.revisiTargetSaleVal[i].tahun = this.revisiTargetSaleData.tahun
+			}
+		},
 		hideDialog() {
-            this.revisiTargetSalesNewDialog = false
-            this.revisiTargetSale = {}
+			this.revisiTargetSalesNewDialog = false
 			this.submitted = false
+		},
+		editTarget(type, value) {
+			// console.log(type)
+			if(!value) {
+				value = 0
+			}
+			if(type === 'Qty'){
+				return value + ' Qty'
+			} else {
+				return this.formatCurrency(value)
+			}
 		},
 		formatDate(dat) {
 			let date = new Date(dat)
@@ -359,18 +529,37 @@ export default {
             return day + '-' + month + '-' + date.getFullYear();
         },
 		formatCurrency(value) {
-			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+			return value.toLocaleString('id-ID', {style: 'currency', currency: 'IDR'});
 		},
 		openNew() {
-            // console.log('test')
-			this.revisiTargetSale = {}
+			this.revisiTargetSaleData = {}
+			this.revisiTargetSaleQty = new Array()
+			this.revisiTargetSaleVal = new Array()
+			this.products.forEach( elm => {
+				this.revisiTargetSaleQty.push({
+					product: elm._id
+				})
+				this.revisiTargetSaleVal.push({
+					product: elm._id
+				})
+			})
 			this.submitted = false
 			this.revisiTargetSalesNewDialog = true
 			this.createNew = true
 		},
 		openView(revisiTargetSale) {
+			// console.log(revisiTargetSale)
+			this.revisiTargetSaleData = {
+				detailer : revisiTargetSale.detailer,
+				tahun: revisiTargetSale.tahun,
+				code: revisiTargetSale.code,
+				targetSale: revisiTargetSale.targetSale
+			},
+			this.revisiTargetSaleQty = revisiTargetSale.revisiTargetSaleQtys
+			// console.log(this.revisiTargetSaleQty)
+			this.revisiTargetSaleVal = revisiTargetSale.revisiTargetSaleVals
 			this.createNew = false
-			this.revisiTargetSale = {...revisiTargetSale};
+			// this.revisiTargetSale = {...revisiTargetSale};
 			this.revisiTargetSalesNewDialog = true;
 		},
 		exportCSV() {
@@ -379,52 +568,53 @@ export default {
 		saveRevisiTargetSale() {
 			this.submitted = true;
 			// console.log(this.revisiTargetSale)
-			if (this.revisiTargetSale.code && 
-				this.revisiTargetSale.targetSale &&
-				this.revisiTargetSale.tahun &&
-				this.revisiTargetSale.targetPerTahun &&
-				this.revisiTargetSale.january &&
-				this.revisiTargetSale.febuary &&
-				this.revisiTargetSale.maret &&
-				this.revisiTargetSale.april &&
-				this.revisiTargetSale.may &&
-				this.revisiTargetSale.june &&
-				this.revisiTargetSale.july &&
-				this.revisiTargetSale.august &&
-				this.revisiTargetSale.september &&
-				this.revisiTargetSale.october &&
-				this.revisiTargetSale.november &&
-				this.revisiTargetSale.december)
-			{
-				if(this.createNew) {
-					this.createRevisiTargetSale()
-					return;
-				}
+			// console.log(this.revisiTargetSaleData)
+			// console.log(this.revisiTargetSaleQty)
+			// console.log(this.revisiTargetSaleVal)
+			if (this.revisiTargetSaleData.detailer &&
+				this.revisiTargetSaleData.tahun) {
+					this.createTargetSale()	
 
-			}
+				}
 		},
 		create() {
-            delete this.revisiTargetSale['_id']
-            // delete this.revisiTargetSale['_id']
-            // console.log(this.revisiTargetSale)
-			this.revisiTargetSaleService.createRevisiTargetSale(this.revisiTargetSale)
+			this.revisiTargetSaleService.createRevisiTargetSale({
+				revisiTargetSale: this.revisiTargetSaleData,
+				revisiTargetSaleQty: this.revisiTargetSaleQty,
+				revisiTargetSaleVal: this.revisiTargetSaleVal
+			})
 			.then(msg => {
 				this.loading = true
 				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
-				this.targetSaleService.getTargetSalesWithRevisi()
+				this.revisiTargetSalesNewDialog = false
+				this.revisiTargetSaleService.getRevisiTargetSales()
 				.then(data => {
-					this.targetSales = data
-					this.targetSales = [...new Set(this.targetSales.map(({
-						product,
-						detailer,
-						...rest
-					}) => ({
-						product: product._id,
-						productName: product.name,
-						detailer: detailer._id,
-						detailerName: detailer.name,
-						...rest
-					})))]
+					this.revisiTargetSales = data
+					this.loading = false
+				})
+
+			})
+			.catch(err => {
+				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
+				this.revisiTargetSalesNewDialog = false
+			})
+
+		},
+		createTargetSale() {
+			this.createNew = false
+			this.create()
+			this.revisiTargetSale = {}
+			this.submitted = false
+		},
+		delete() {
+			console.log(this.revisiTargetSale)
+			this.revisiTargetSaleService.deleteTargetSale(this.revisiTargetSale)
+			.then(msg => {
+				this.loading = true
+				this.$toast.add({severity:'success', summary: 'Successful', detail: msg, life: 3000});
+				this.revisiTargetSaleService.getTargetSales()
+				.then(data => {
+					this.revisiTargetSales = data
 					this.loading = false
 				})
 
@@ -432,20 +622,26 @@ export default {
 			.catch(err => {
 				this.$toast.add({severity:'error', summary: 'Error Message', detail: err, life: 3000})
 			})
-
 		},
-		createRevisiTargetSale() {
-			this.create()
-			this.revisiTargetSalesNewDialog = false
-			this.revisiTargetSale = {}
-			this.createNew = false
+		confirmDeleteTargetSale(revisiTargetSale) {
+			this.revisiTargetSale =  {...revisiTargetSale}
+			this.deleteRevisiTargetSaleDialog = true
+		},
+		deleteTargetSale() {
+			this.delete()
+			this.revisiTargetSale =  {}
+			this.deleteRevisiTargetSaleDialog = false
+		},
+		findIndexByCode(id, key, data) {
+			let index = -1;
+			for (let i = 0; i < data.length; i++) {
+				if (data[i][key] === id) {
+					index = i;
+					break;
+				}
+			}
+			return index;
         },
-        changeTargetSale(event) {
-            // console.log(event.value)
-            const targetSale = this.targetSales.find(data => data._id == event.value)
-            this.revisiTargetSale = targetSale.revisiTargetSales.find(data => data.code == targetSale.codeRevisi )
-            // console.log(this.revisiTargetSale)
-        }
 	}
 }
 </script>
