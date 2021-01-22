@@ -12,24 +12,55 @@
                 <DataTable ref="df" 
                     :value="detailSalesInfos" 
                     :scrollable="true" scrollHeight="500px" 
-                    dataKey="_id" 
+                    dataKey="_id"
                     :paginator="true"
                     :loading="loading"
                     :rows="10" class="editable-cells-table" :filters="filters"
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
 					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Detail Sales Info">
-                    <template #header>
+                    <!-- <template #header>
 						<div class="table-header">
 							<span class="p-input-icon-left">
                                 <i class="pi pi-search" />
                                 <InputText v-model="filters['global']" placeholder="Search..." />
                             </span>
 						</div>
-					</template>
-					<Column v-for="(col, index) of culomnDetailSalesInfo" :field="col.field" :header="col.header" :key="index" headerStyle="width: 150px">
+					</template> -->
+                    <template #empty>
+                        No Detail Sales Info found.
+                    </template>
+                    <template #loading>
+                        Loading Detail Sales Info data. Please wait.
+                    </template>
+					<Column v-for="(col, index) of culomnDetailSalesInfo" 
+                        :field="col.field" 
+                        :header="col.header" 
+                        :key="index" 
+                        headerStyle="width: 200px">
                         <template v-if="col.field=='date'" #body="slotProps">
 							<span>{{formatDate(slotProps.data[col.field])}}</span>
 						</template>
+                        <template #filter v-if="col.field=='city'">
+                            <InputText type="text" 
+                                v-model="filters['city']"
+                                class="p-column-filter"
+                                Style="width: 150px"
+                                placeholder="Search by city"/>
+                        </template>
+                        <template #filter v-else-if="col.field=='outletName'">
+                            <InputText type="text" 
+                                v-model="filters['outletName']" 
+                                class="p-column-filter"
+                                Style="width: 150px"
+                                placeholder="Search by Outlet"/>
+                        </template>
+                        <template #filter v-else-if="col.field=='date'">
+                            <Calendar v-model="filters['date']" 
+                                selectionMode="range"
+                                dateFormat="yy-mm-dd" 
+                                class="p-column-filter" 
+                                placeholder="Priode"/>
+                        </template>
                     </Column>
 					<!-- <Column field="createdAt" header="Created" headerStyle="width: 150px">
 						<template #body="slotProps">
@@ -50,19 +81,19 @@ export default {
             saveBreakdowns: null,
             detailSalesInfos: null,
             culomnDetailSalesInfo:[
-                {field: 'productId', header: 'Product ID'},
-                {field: 'productName', header: 'Product Name'},
-                {field: 'outletId', header: 'Outlet ID'},
+                {field: 'date', header: 'Bulan'},
                 {field: 'city', header: 'City'},
+                {field: 'outletName', header: 'Outlet'},
+                {field: 'productName', header: 'Product Name'},
+                {field: 'productId', header: 'Product ID'},
+                {field: 'outletId', header: 'Outlet ID'},
                 {field: 'dept', header: 'Dept'},
                 {field: 'region', header: 'Region'},
                 {field: 'area', header: 'Area'},
                 {field: 'typeOutlet', header: 'Type Outlet'},
-                {field: 'outletName', header: 'Outlet'},
                 {field: 'detailerName', header: 'Detailer'},
                 {field: 'customerName', header: 'Customer'},
                 {field: 'customerCode', header: 'Customer Code'},
-                {field: 'date', header: 'Bulan'},
                 {field: 'salesQty', header: 'Sales Qty'},
                 {field: 'HNA', header: 'HNA'},
                 {field: 'disc', header: 'Disc'},
