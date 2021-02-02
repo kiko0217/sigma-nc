@@ -4,7 +4,7 @@
 			<!-- <h1>Data dari Email</h1> -->
 			<div class="card">
 				<Toolbar class="p-mb-4">
-					<template slot="left">Data dari Email</template>
+					<template slot="left">Data from Email</template>
 					<template slot="right">
 						<Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
 					</template>
@@ -12,13 +12,23 @@
 				<DataTable :value="dataTemp" 
 					:scrollable="true"
 					:expandedRows.sync="expandedRows"
-					scrollHeight="500px" 
+					scrollHeight="500px"
 					dataKey="_id"
-					@row-expand="onRowExpand" 
-					@row-collapse="onRowCollapse"
+					:loading="loading"
+					:paginator="true"
+					:rows="10"
+					:filters="filters"
+                    paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
+					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} data from email"
 				>
+					<template #empty>
+                        No Data from Email found.
+                    </template>
+                    <template #loading>
+                        Loading Data from Email data. Please wait.
+                    </template>
 					<Column :expander="true" headerStyle="width: 3rem" />
-					<Column v-for="col of culomnTemp" :field="col" :header="col" :key="col" headerStyle="width: 150px"></Column>
+					<Column v-for="(col, index) of culomnTemp" :field="col" :header="col" :key="index" headerStyle="width: 150px"></Column>
 					<template #expansion="slotProps">
 						<Toolbar class="p-mb-4">
 							<template slot="left">{{slotProps.data.subject}}</template>
@@ -27,32 +37,47 @@
 								<!-- <Button label="Mapping" icon="pi pi-upload" class="p-button-help" @click="mapping"  /> -->
 							</template>
 						</Toolbar>
-						<DataTable :value="slotProps.data.attachments" :selection.sync="selectedTemp" selectionMode="single" dataKey="name">
+						<DataTable :value="slotProps.data.attachments" 
+							:selection.sync="selectedTemp" 
+							selectionMode="single" 
+							dataKey="name">
 							<Column headerStyle="width:120px">
 								<template #body="slotProps">
 									<Button icon="pi pi-arrow-down" class="p-button-rounded p-button-success p-mr-2" @click="downloadFile(slotProps.data)" />
 								</template>
 							</Column>
-							<Column v-for="col of culomnAttachment" :field="col" :header="col" :key="col" headerStyle="width: 150px"></Column>
+							<Column v-for="(col, index) of culomnAttachment" :field="col" :header="col" :key="index" headerStyle="width: 150px"></Column>
 						</DataTable>
 					</template>
 				</DataTable>
-
-				<Dialog :visible.sync="unmappingDialog" :style="{width: '900px'}" :modal="true" class="p-fluid">
-					<!-- <h1>Test</h1> -->
-					<Toolbar>
-						<template slot="left">
-							{{expandedRows[0].subject}}
-						</template>
-						<template #right>
-							<Button label="Mapping" @click="pushMapping()" class="p-mr-2" />
-							<Button label="Unmapping" class="p-button-danger" />
-						</template>
-					</Toolbar>
-					<DataTable v-for="(data, index) of dataTempJson.data" :key="index" :value="data" :scrollable="true" scrollHeight="500px" dataKey="index">
-						<Column v-for="col of dataTempJson.headers[index]" :field="col" :header="col" :key="col" headerStyle="width: 175px"></Column>
-					</DataTable>
-				</Dialog>
+			</div>
+		</div>
+		<div class="p-col-12">
+			<!-- <h1>Data dari Email</h1> -->
+			<div class="card">
+				<Toolbar class="p-mb-4">
+					<template slot="left">Log Error</template>
+				</Toolbar>
+				<DataTable :value="logErrors" 
+					:scrollable="true"
+					scrollHeight="500px"
+					dataKey="_id"
+					:loading="loading2"
+					:paginator="true"
+					:rows="10"
+					:filters="filters2"
+                    paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
+					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Error"
+				>
+					<template #empty>
+                        No Error found.
+                    </template>
+                    <template #loading>
+                        Loading... Please wait.
+                    </template>
+					<Column v-for="(col, index) in culomnLogError" :field="col.field" :header="col.header" :key="index" headerStyle="width: 150px">
+					</Column>
+				</DataTable>
 			</div>
 		</div>
 
@@ -61,157 +86,59 @@
 
 <script>
 import ProductMappingService from '../service/ProductMappingService'
+import LogErrorService from '../service/LogErrorService'
 export default {
 	data() {
 		return {
+			loading: false,
+			loading2: false,
 			productUnmapping: null,
-			culomnProductUnmapping: [
-				{field: 'distributor.nfCode', header: 'Distributor'},
-				{field: 'code', header: 'Product Dist Code'},
-				{field: 'name', header: 'Product Dist Name'},
-				// {field: 'nfCode', header: 'Code Prod Nucleus'},
+			logErrors: null,
+			culomnLogError: [
+				{field: 'updatedAt', header: 'Time'},
+				{field: 'file', header: 'Files'},
+				{field: 'line', header: 'Line'},
+				{field: 'error', header: 'error'},
 			],
-			dataTempJson : {
-				headers : [],
-				data : []
-			},
 			selectedTemp : null,
 			expandedRows : [{
 				subject: null,
 			}],
 			dataTemp : null,
-			filePdu : null,
 			culomnTemp: [],
 			culomnAttachment: ['name' , 'type'],
-			productMappings: null,
-			unmappingDialog: false,
-			regionDialog: false,
-			deleteRegionDialog: false,
-			deleteRegionsDialog: false,
-			region: {},
-			selectedRegions: null,
 			filters: {},
-            submitted: false,
-            createNew: false
+			filters2: {},
 		}
 	},
 	productMappingService: null,
+	logErrorService: null,
 	// fs: null,
 	created() {
+		this.logErrorService = new LogErrorService()
 		this.productMappingService = new ProductMappingService();
 		this.culomnTemp = ['from', 'subject', 'status', 'createdAt']
 		// this.fs = new FS();
 	},
 	mounted() {
+		this.loading = true
+		this.loading2 = true
 		this.productMappingService.getDataFromEmail().then(data=> {
 			this.dataTemp = data
-			// for (let k in data[0]) {
-			// 	this.culomnTemp.push(k)
-			// }
-			// console.log(this.culomnTemp)
+			this.loading = false
 		})
-		this.productMappingService.getProductMappings().then(data => this.productMappings = data)
+		this.logErrorService.getLogError().then(dt => {
+			this.logErrors = dt
+			this.loading2 = false
+		})
 	},
 	methods: {
-		editProductMapping(data){
-			// console.log(data)
-			this.productMappingService.postEdit(data).then(() => {
-				this.productMappingService.getProductMappings(data).then.then(data3 => this.productMappings = data3)
-			})
-		},
-		pushMapping(){
-			console.log()
-			this.productMappingService.mapping(this.expandedRows[0]._id).then(data => {
-				console.log(data)
-				this.productMappingService.getUnmapping().then(data => this.productUnmapping = data)
-				this.unmappingDialog = false
-			})
-		},
-		mapping() {
-
-			this.productMappingService.getJsonMapping(this.expandedRows[0]._id).then(data => {
-				this.dataTempJson = data
-				console.log(this.dataTempJson)
-			})
-			this.unmappingDialog = true
-		},
-		onRowExpand() {
-			if(this.expandedRows.length > 2	){
-				this.expandedRows[1] = this.expandedRows[2]
-				this.expandedRows.pop()
-			}
-			// console.log(this.expandedRows)
-		},
-		onRowCollapse() {
-			// this.expandedRows
-			// console.log(this.expandedRows)
-		},
 		downloadFile(data) {
-			// console.log(this.expandedRows)
-			// console.log(data)
 			this.productMappingService.downloadFile(data.name, this.expandedRows[1].subject)
 			
 		},
 		formatCurrency(value) {
 			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
-		},
-		openNew() {
-			this.region = {};
-			this.submitted = false;
-            this.regionDialog = true;
-            this.createNew = true;
-		},
-		hideDialog() {
-			this.regionDialog = false;
-			this.submitted = false;
-		},
-		saveRegion() {
-            if(this.createNew){
-                this.createRegion();
-                return;
-            }
-			this.submitted = true;
-
-			if (this.region.ProductDistName.trim() && this.region.ProductCodeNF.trim() && this.region.Distributor.trim()) {
-                this.$set(this.regions, this.findIndexByProductCodeNF(this.region.ProductCodeNF), this.region);
-                this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Updated', life: 3000});
-                this.regionDialog = false;
-                this.region = {};
-			}
-        },
-        createRegion() {
-            this.submitted = true;
-            if (this.region.ProductDistName.trim() && this.region.ProductCodeNF.trim() && this.region.Distributor.trim()) {
-                this.regions.push(this.region);
-                this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Created', life: 3000});
-                this.regionDialog = false;
-                this.region = {};
-                this.createNew = false;
-            }
-        },
-		editRegion(region) {
-			this.region = {...region};
-			this.regionDialog = true;
-		},
-		confirmDeleteRegion(region) {
-			this.region = region;
-			this.deleteRegionDialog = true;
-		},
-		deleteRegion() {
-			this.regions = this.regions.filter(val => val.ProductCodeNF !== this.region.ProductCodeNF);
-			this.deleteRegionDialog = false;
-			this.region = {};
-			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Region Deleted', life: 3000});
-		},
-		findIndexByProductCodeNF(ProductCodeNF) {
-			let index = -1;
-			for (let i = 0; i < this.regions.length; i++) {
-				if (this.regions[i].ProductCodeNF === ProductCodeNF) {
-					index = i;
-					break;
-				}
-			}
-			return index;
 		},
 		createId() {
 			let id = '';
@@ -223,15 +150,6 @@ export default {
 		},
 		exportCSV() {
 			this.$refs.mapping.exportCSV();
-		},
-		confirmDeleteSelected() {
-			this.deleteRegionsDialog = true;
-		},
-		deleteSelectedRegions() {
-			this.regions = this.regions.filter(val => !this.selectedRegions.includes(val));
-			this.deleteRegionsDialog = false;
-			this.selectedRegions = null;
-			this.$toast.add({severity:'success', summary: 'Successful', detail: 'Regions Deleted', life: 3000});
 		},
 		formatDate(dat) {
 			let date = new Date(dat)

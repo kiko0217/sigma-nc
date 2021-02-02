@@ -340,17 +340,24 @@ export default {
                     this.breakDowns[l].trxs = []
                     this.breakDowns[l].products = {}
                     this.breakDowns[l].outletMaps.forEach(element => {
+                        // console.log(element)
                         this.breakDowns[l].trxs = this.breakDowns[l].trxs.concat([...new Set(element.trxs.map(({
                             productMap, 
                             ...rp
-                        })=>({
-                            product: productMap.product._id,
-                            productName: productMap.product.name,
-                            productCode: productMap.product.code,
-                            productShort: productMap.product.short,
-                            
-                            ...rp
-                        })))])
+                        })=>{
+                            console.log(productMap)
+                            if (productMap != null){
+                                return({
+                                    product: productMap.product._id,
+                                    productName: productMap.product.name,
+                                    productCode: productMap.product.code,
+                                    productShort: productMap.product.short,
+                                    ...rp
+                                })
+                            } else {
+                                return({})
+                            }
+                        }))])
                     });
                     this.products.forEach(elm => {
                         let tempData = [...new Set(this.breakDowns[l].trxs.filter(x => x.product === elm._id))]

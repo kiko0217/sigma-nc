@@ -82,7 +82,7 @@ export default {
 			outlets: null,
             outletMapping: null,
             culomnOutletMapping:[
-                {field: 'distributor.name', header: 'Distributor'},
+                {field: 'distributor.distName', header: 'Distributor'},
                 {field: 'code', header: 'Outlet Dist Code'},
                 {field: 'name', header: 'Outlet Dist Name'},
             ],

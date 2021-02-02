@@ -225,7 +225,9 @@ export default {
 		})
 		this.areaService.getAreas().then(data => {
 			this.areas = data
-			this.areas = [...new Set(this.areas.map(({region, ...rest})=>({nameRegion:region.name, region:region._id, ...rest})))]
+			this.areas = [...new Set(this.areas.map(({region, ...rest})=>{
+				return (region!=null) ? ({nameRegion:region.name, region:region._id, ...rest}) : ({nameRegion:null, region:null, ...rest})
+			}))]
 			// console.log(this.areas)
 			this.loading = false
 		});

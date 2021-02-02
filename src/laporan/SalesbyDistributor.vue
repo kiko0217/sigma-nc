@@ -9,9 +9,25 @@
                         <Button label="Export" icon="pi pi-upload" class="p-button-help" @click="exportCSV($event)"  />
                     </template>
                 </Toolbar>
-                <DataTable ref="detailSalesInfo" :value="detailSalesInfo" :scrollable="true" scrollHeight="500px" dataKey="_id" editMode="cell" :paginator="true" :rows="10" class="editable-cells-table" :filters="filters"
+                <DataTable ref="detailSalesInfo"
+					:value="detailSalesInfo" 
+					:scrollable="true" 
+					scrollHeight="500px" 
+					dataKey="_id" 
+					editMode="cell" 
+					:paginator="true" 
+					:loading="loading"
+					:rows="10"
+					class="editable-cells-table" 
+					:filters="filters"
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
 					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} outlet mapping">
+					<template #empty>
+                        No Sales Distributor found.
+                    </template>
+                    <template #loading>
+                        Loading Sales Distributor data. Please wait.
+                    </template>
                     <template #header>
 						<div class="table-header">
 							<span class="p-input-icon-left">
@@ -40,10 +56,11 @@ import DetailSalesInfoService from '../service/DetailSalesInfoService'
 export default {
 	data() {
 		return {
-            detailSalesInfo: null,
+			detailSalesInfo: null,
+			loading: false,
             culomnOutletMapping:[
                 {field: 'distributor.nfCode', header: 'Dis ID'},
-                {field: 'distributor.name', header: 'Distributor'},
+                {field: 'distributor.distName', header: 'Distributor'},
                 {field: 'productMap.name', header: 'Product'},
                 {field: 'outletMap.name', header: 'Outlet'},
                 {field: 'noFacture', header: 'Faktur No'},
@@ -60,7 +77,11 @@ export default {
 
 	},
 	mounted() {
-        this.detailSalesInfoService.getDetailSalesInfo().then(data => this.detailSalesInfo = data)
+		this.loading = true
+        this.detailSalesInfoService.getDetailSalesInfo().then(data => {
+			this.detailSalesInfo = data
+			this.loading = false
+		})
 	},
 	methods: {
 		formatDate(dat) {

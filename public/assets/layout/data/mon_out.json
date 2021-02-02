@@ -1,0 +1,642 @@
+{
+    "response": [
+        {
+            "Outlet": "APT.YUTEE",
+            "january": "3960000",
+            "febuary": "3060000",
+            "maret": "5400000",
+            "april": "4680000",
+            "may": "5400000",
+            "june": "10800000",
+            "july": "8280000",
+            "august": "10800000",
+            "september": "0",
+            "october": "57060000"
+        },
+        {
+            "Outlet": "APT.AGUNG",
+            "january": "17460000",
+            "febuary": "9900000",
+            "maret": "10920000",
+            "april": "12600000",
+            "may": "7200000",
+            "june": "8100000",
+            "july": "11340000",
+            "august": "10980000",
+            "september": "0",
+            "october": "98400000"
+        },
+        {
+            "Outlet": "RS.ST.ANTONIUS",
+            "january": "9000000",
+            "febuary": "26640000",
+            "maret": "7200000",
+            "april": "10800000",
+            "may": "16200000",
+            "june": "11700000",
+            "july": "17100000",
+            "august": "0",
+            "september": "114840000"
+        },
+        {
+            "Outlet": "APT.AGUNG(SKW)",
+            "january": "0",
+            "febuary": "900000",
+            "maret": "0",
+            "april": "540000",
+            "may": "180000",
+            "june": "0",
+            "july": "1800000"
+        },
+        {
+            "Outlet": "APT.KHARITAS",
+            "january": "10800000",
+            "febuary": "5400000",
+            "maret": "10980000",
+            "april": "3600000",
+            "may": "1800000",
+            "june": "7200000",
+            "july": "1800000",
+            "august": "7200000"
+        },
+        {
+            "Outlet": "APT.MITRA SEHAT(SBS)",
+            "january": "0"
+        },
+        {
+            "Outlet": "RS.MITRA MEDIKA",
+            "january": "26280000",
+            "febuary": "26100000",
+            "maret": "3600000",
+            "april": "19440000",
+            "may": "15300000",
+            "june": "28800000",
+            "july": "26100000",
+            "august": "16200000",
+            "september": "0",
+            "october": "188100000"
+        },
+        {
+            "Outlet": "IFRS KHARITAS BHAKTI",
+            "january": "7200000",
+            "febuary": "12600000",
+            "maret": "0",
+            "april": "3600000",
+            "may": "11700000",
+            "june": "9000000",
+            "july": "0",
+            "august": "5400000",
+            "september": "0",
+            "october": "62100000"
+        },
+        {
+            "Outlet": "APT.SINGKAWANG(SKW)",
+            "january": "0",
+            "febuary": "180000",
+            "maret": "0",
+            "april": "360000",
+            "may": "0",
+            "june": "540000"
+        },
+        {
+            "Outlet": "RS ANUGERAH BUNDA KHATULISTIWA",
+            "january": "35100000",
+            "febuary": "41940000",
+            "maret": "12420000",
+            "april": "7740000",
+            "may": "16200000",
+            "june": "7020000",
+            "july": "8100000",
+            "august": "10440000",
+            "september": "18720000",
+            "october": "0",
+            "Nov": "157680000"
+        },
+        {
+            "Outlet": "APT.PEMUDA",
+            "january": "2700000",
+            "febuary": "4500000",
+            "maret": "2700000",
+            "april": "1800000",
+            "may": "0",
+            "june": "1800000",
+            "july": "3060000",
+            "august": "3600000",
+            "september": "0",
+            "october": "20160000"
+        },
+        {
+            "Outlet": "RSUD PEMANGKAT",
+            "january": "0",
+            "febuary": "18000000",
+            "maret": "0",
+            "april": "3600000",
+            "may": "0",
+            "june": "25200000"
+        },
+        {
+            "Outlet": "APT.MILENIA FARMA(SBS)",
+            "january": "0",
+            "febuary": "540000",
+            "maret": "0",
+            "april": "540000"
+        },
+        {
+            "Outlet": "APT.KITA(STG)",
+            "january": "0"
+        },
+        {
+            "Outlet": "APT.ABADI",
+            "january": "0",
+            "febuary": "180000",
+            "maret": "0",
+            "april": "180000"
+        },
+        {
+            "Outlet": "APT.BERSAMA(PMK)",
+            "january": "900000",
+            "febuary": "0",
+            "maret": "900000",
+            "april": "0",
+            "may": "1800000"
+        },
+        {
+            "Outlet": "APT.MAKMUR/DR.SUMANTO T",
+            "january": "0"
+        },
+        {
+            "Outlet": "ERMUST CLINIC",
+            "january": "540000",
+            "febuary": "0",
+            "maret": "540000",
+            "april": "0",
+            "may": "1440000",
+            "june": "0",
+            "july": "2520000"
+        },
+        {
+            "Outlet": "APT.MELATI",
+            "january": "0",
+            "febuary": "1080000",
+            "maret": "0",
+            "april": "-900000",
+            "may": "0",
+            "june": "180000"
+        },
+        {
+            "Outlet": "RS.KASIH BUNDA JAYA",
+            "january": "0"
+        },
+        {
+            "Outlet": "APT.SEKAR SEHATI(PMK)",
+            "january": "0",
+            "febuary": "900000",
+            "maret": "0",
+            "april": "900000",
+            "may": "0",
+            "june": "1800000"
+        },
+        {
+            "Outlet": "APT.CIPTA",
+            "january": "360000",
+            "febuary": "2880000",
+            "maret": "900000",
+            "april": "1800000",
+            "may": "900000",
+            "june": "0",
+            "july": "900000",
+            "august": "0",
+            "september": "10440000"
+        },
+        {
+            "Outlet": "APT.GAJAHMADA",
+            "january": "9000000",
+            "febuary": "5760000",
+            "maret": "6300000",
+            "april": "3600000",
+            "may": "2700000",
+            "june": "3600000",
+            "july": "9900000",
+            "august": "10800000",
+            "september": "2700000",
+            "october": "0",
+            "Nov": "54360000"
+        },
+        {
+            "Outlet": "RS.CITRA HUSADA",
+            "january": "5400000",
+            "febuary": "12600000",
+            "maret": "0",
+            "april": "3600000",
+            "may": "0",
+            "june": "1800000",
+            "july": "0",
+            "august": "28800000"
+        },
+        {
+            "Outlet": "APT.MAKMUR 2",
+            "january": "0",
+            "febuary": "180000",
+            "maret": "0",
+            "april": "180000",
+            "may": "0",
+            "june": "360000"
+        },
+        {
+            "Outlet": "Dr.Christian/Apt.Evrata",
+            "january": "-1080000",
+            "febuary": "0",
+            "maret": "-1080000"
+        },
+        {
+            "Outlet": "Apt.Sehati",
+            "january": "0",
+            "febuary": "900000",
+            "maret": "0",
+            "april": "900000"
+        },
+        {
+            "Outlet": "RSUD Ade M Djoen",
+            "january": "0",
+            "febuary": "5400000",
+            "maret": "0",
+            "april": "5400000",
+            "may": "0",
+            "june": "10800000"
+        },
+        {
+            "Outlet": "RS.Bhayangkara",
+            "january": "2700000",
+            "febuary": "0",
+            "maret": "2700000",
+            "april": "0",
+            "may": "8100000"
+        },
+        {
+            "Outlet": "Apt.Sintang",
+            "january": "900000",
+            "febuary": "5400000",
+            "maret": "1800000",
+            "april": "2700000",
+            "may": "2880000",
+            "june": "1800000",
+            "july": "900000",
+            "august": "0",
+            "september": "18180000"
+        },
+        {
+            "Outlet": "Apt.Pemangkat",
+            "january": "540000",
+            "febuary": "0",
+            "maret": "540000",
+            "april": "0",
+            "may": "1080000"
+        },
+        {
+            "Outlet": "Apt.Selaras",
+            "january": "360000",
+            "febuary": "0",
+            "maret": "5400000",
+            "april": "0",
+            "may": "5760000"
+        },
+        {
+            "Outlet": "Apt.Arwana",
+            "january": "8100000",
+            "febuary": "12600000",
+            "maret": "5400000",
+            "april": "6300000",
+            "may": "0",
+            "june": "3600000",
+            "july": "900000",
+            "august": "0",
+            "september": "40500000"
+        },
+        {
+            "Outlet": "RS.Vincentius",
+            "january": "0"
+        },
+        {
+            "Outlet": "Apt.Agung(Siantan)",
+            "january": "360000",
+            "febuary": "540000",
+            "maret": "0",
+            "april": "900000"
+        },
+        {
+            "Outlet": "Apt.Sahabat(Sambas)",
+            "january": "0"
+        },
+        {
+            "Outlet": "RSUD Rubini",
+            "january": "27000000",
+            "febuary": "9000000",
+            "maret": "0",
+            "april": "18000000",
+            "may": "27000000",
+            "june": "0",
+            "july": "90000000"
+        },
+        {
+            "Outlet": "Apt.Sungai Durian",
+            "january": "0"
+        },
+        {
+            "Outlet": "Apt.Cahaya",
+            "january": "720000",
+            "febuary": "180000",
+            "maret": "0",
+            "april": "360000",
+            "may": "540000",
+            "june": "0",
+            "july": "720000",
+            "august": "0",
+            "september": "2520000"
+        },
+        {
+            "Outlet": "Apt.Mitra Husada",
+            "january": "0",
+            "febuary": "720000",
+            "maret": "0",
+            "april": "180000",
+            "may": "0",
+            "june": "540000",
+            "july": "0",
+            "august": "1440000"
+        },
+        {
+            "Outlet": "PRO MEDIKA(739042), PT",
+            "january": "0",
+            "febuary": "360000",
+            "maret": "0",
+            "april": "360000"
+        },
+        {
+            "Outlet": "KEISYA, AP",
+            "january": "0",
+            "febuary": "540000",
+            "maret": "0",
+            "april": "540000"
+        },
+        {
+            "Outlet": "MEMPAWAH, AP",
+            "january": "0",
+            "febuary": "180000",
+            "maret": "0",
+            "april": "180000"
+        },
+        {
+            "Outlet": "MAWAR, AP",
+            "january": "3240000",
+            "febuary": "0",
+            "maret": "540000",
+            "april": "660000",
+            "may": "720000",
+            "june": "2340000",
+            "july": "1080000",
+            "august": "1290000",
+            "september": "0",
+            "october": "9870000"
+        },
+        {
+            "Outlet": "MANDIRI II/EVI MULIANTI, AP",
+            "january": "0",
+            "febuary": "1800000",
+            "maret": "1260000",
+            "april": "0",
+            "may": "180000",
+            "june": "540000",
+            "july": "1260000",
+            "august": "1620000",
+            "september": "0",
+            "october": "6840000"
+        },
+        {
+            "Outlet": "UTAMA, AP",
+            "january": "0",
+            "febuary": "900000",
+            "maret": "0",
+            "april": "1800000",
+            "may": "0",
+            "june": "2700000"
+        },
+        {
+            "Outlet": "MIRACLE, AP",
+            "january": "0",
+            "febuary": "540000",
+            "maret": "0",
+            "april": "540000",
+            "may": "0",
+            "june": "1080000"
+        },
+        {
+            "Outlet": "SENTOSA FARMA, AP",
+            "january": "900000",
+            "febuary": "0",
+            "maret": "900000",
+            "april": "720000",
+            "may": "540000",
+            "june": "0",
+            "july": "900000",
+            "august": "0",
+            "september": "3960000"
+        },
+        {
+            "Outlet": "AMELIA, AP",
+            "january": "0",
+            "febuary": "1260000",
+            "maret": "900000",
+            "april": "540000",
+            "may": "0",
+            "june": "720000",
+            "july": "0",
+            "august": "3420000"
+        },
+        {
+            "Outlet": "T I B FARMA (MELAWI), AP",
+            "january": "0"
+        },
+        {
+            "Outlet": "MIMI (MEMPAWAH), AP",
+            "january": "0"
+        },
+        {
+            "Outlet": "SUMBER JAYA (PNH), AP",
+            "january": "3600000",
+            "febuary": "900000",
+            "maret": "0",
+            "april": "4500000"
+        },
+        {
+            "Outlet": "KARUNA, AP",
+            "january": "0"
+        },
+        {
+            "Outlet": "KIDDI FARMA, AP",
+            "january": "4140000",
+            "febuary": "900000",
+            "maret": "540000",
+            "april": "0",
+            "may": "900000",
+            "june": "0",
+            "july": "6480000"
+        },
+        {
+            "Outlet": "AYU FARMA (SEMPARUK), AP",
+            "january": "180000",
+            "febuary": "0",
+            "maret": "180000",
+            "april": "0",
+            "may": "540000"
+        },
+        {
+            "Outlet": "DEDE HERMANSYAH",
+            "january": "900000",
+            "febuary": "1800000",
+            "maret": "0",
+            "april": "180000",
+            "may": "0",
+            "june": "2880000"
+        },
+        {
+            "Outlet": "GRAHA, AP",
+            "january": "900000",
+            "febuary": "0",
+            "maret": "1620000",
+            "april": "900000",
+            "may": "540000",
+            "june": "1260000",
+            "july": "3060000",
+            "august": "0",
+            "september": "1080000",
+            "october": "0",
+            "Nov": "9360000"
+        },
+        {
+            "Outlet": "ANDALAN, AP",
+            "january": "180000",
+            "febuary": "0",
+            "maret": "180000",
+            "april": "0",
+            "may": "180000",
+            "june": "0",
+            "july": "180000",
+            "august": "0",
+            "september": "900000"
+        },
+        {
+            "Outlet": "Apt.Mandiri",
+            "january": "360000",
+            "febuary": "0",
+            "maret": "540000",
+            "april": "0",
+            "may": "360000",
+            "june": "0",
+            "july": "1260000"
+        },
+        {
+            "Outlet": "Apt.Sentosa",
+            "january": "0",
+            "febuary": "360000",
+            "maret": "900000",
+            "april": "0",
+            "may": "1260000"
+        },
+        {
+            "Outlet": "RSIA Bujang Dara",
+            "january": "0",
+            "febuary": "2340000",
+            "maret": "0",
+            "april": "2700000",
+            "may": "0",
+            "june": "3600000",
+            "july": "0",
+            "august": "8640000"
+        },
+        {
+            "Outlet": "Apt.Nico Farma",
+            "january": "0",
+            "febuary": "1800000",
+            "maret": "0",
+            "april": "1800000",
+            "may": "0",
+            "june": "3600000"
+        },
+        {
+            "Outlet": "RST Kartika Husada",
+            "january": "0",
+            "febuary": "11700000",
+            "maret": "0",
+            "april": "3600000",
+            "may": "0",
+            "june": "15300000"
+        },
+        {
+            "Outlet": "Bunga Lisina",
+            "january": "0",
+            "febuary": "900000",
+            "maret": "0",
+            "april": "900000"
+        },
+        {
+            "Outlet": "Apt.Sempalai(Sambas)",
+            "january": "0",
+            "febuary": "360000",
+            "maret": "0",
+            "april": "360000",
+            "may": "0",
+            "june": "720000"
+        },
+        {
+            "Outlet": "Agus Susanto",
+            "january": "0",
+            "febuary": "900000",
+            "maret": "0",
+            "april": "2700000"
+        },
+        {
+            "Outlet": "Apt.Duta Sehat",
+            "january": "0",
+            "febuary": "150000",
+            "maret": "0",
+            "april": "180000",
+            "may": "0",
+            "june": "330000"
+        },
+        {
+            "Outlet": "Apt.Sehat(Tbs)",
+            "june": "180000",
+            "august": "0"
+        },
+        {
+            "Outlet": "Puskesmas Perumnas 2",
+            "june": "7500000",
+            "august": "7500000"
+        },
+        {
+            "Outlet": "Apt.Singkawang I",
+            "july": "180000",
+            "august": "0"
+        },
+        {
+            "Outlet": "Apt.Cipto(PMK)",
+            "august": "180000",
+            "september": "360000"
+        },
+        {
+            "Outlet": "Apt.Therapy",
+            "august": "180000",
+            "september": "0"
+        },
+        {
+            "Outlet": "Apt.Agung(Tanjung Raya)",
+            "august": "1620000",
+            "september": "540000"
+        },
+        {
+            "Outlet": "RSU Bethesda Serukam",
+            "august": "3300000",
+            "september": "0"
+        }
+    ]
+}

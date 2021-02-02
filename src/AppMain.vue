@@ -71,7 +71,7 @@ export default {
                         },
                         {
                             label:'Outlet Mapping',
-                            icon: 'pi pi-fw pi-eject',
+                            icon: 'pi pi-fw pi-sitemap',
                             to: { name: 'outletMapping' }
                         },
                         // {
@@ -86,17 +86,17 @@ export default {
                         },
                         {
                             label:'Sales Cover',
-                            icon: 'pi pi-fw pi-users',
+                            icon: 'pi pi-fw pi-spinner',
                             to: { name: 'selesCover' }
                         },
                         {
                             label:'Product',
-                            icon: 'pi pi-fw pi-thumbs-up',
+                            icon: 'pi pi-fw pi-ban',
                             to: { name: 'product' }
                         },
                         {
                             label:'Product Mapping',
-                            icon: 'pi pi-fw pi-thumbs-up',
+                            icon: 'pi pi-fw pi-share-alt',
                             to: { name: 'productMapping' }
                         },
                         {
@@ -111,16 +111,16 @@ export default {
                         // },
                     ]
                 },
-                {label: 'Transaksi', icon: 'pi pi-fw pi-clone',
+                {label: 'Transaksi', icon: 'pi pi-fw pi-pencil',
 					items: [
                         {
                             label: 'Target Sales',
-                            icon: 'pi pi-fw pi-map-marker', 
+                            icon: 'pi pi-fw pi-check-square', 
                             to: { name: "targetSeles" }
                         },
                         {
                             label: 'Revisi Target Sales',
-                            icon: 'pi pi-fw pi-map-marker', 
+                            icon: 'pi pi-fw pi-sliders-v', 
                             to: { name: "revisiTargetSeles" }
                         },
                         {
@@ -141,27 +141,27 @@ export default {
                         },
                         {
                             label: 'Sales Visit',
-                            icon: 'pi pi-fw pi-map-marker', 
+                            icon: 'pi pi-fw pi-angle-double-right', 
                             to: { name: "salesVisit" }
                         },
                         {
                             label: 'Journey Plan',
-                            icon: 'pi pi-fw pi-map-marker', 
+                            icon: 'pi pi-fw pi-user-edit', 
                             to: { name: "journeyPlan" }
                         },
                         {
                             label: 'Donasi',
-                            icon: 'pi pi-fw pi-map-marker', 
+                            icon: 'pi pi-fw pi-money-bill', 
                             to: { name: "donasi" }
                         },
                         {
                             label: 'Realisasi Expense',
-                            icon: 'pi pi-fw pi-map-marker', 
+                            icon: 'pi pi-fw pi-credit-card', 
                             to: { name: "realisasiExpense" }
                         },
                         {
                             label:'Expense/CA',
-                            icon: 'pi pi-fw pi-sort-alpha-down',
+                            icon: 'pi pi-fw pi-book',
                             to: { name: 'expense' }
                         },
                         // {
@@ -171,7 +171,7 @@ export default {
                         // },
                         {
                             label:'Kerjasama Operasi',
-                            icon: 'pi pi-fw pi-shopping-cart',
+                            icon: 'pi pi-fw pi-link',
                             to: { name: 'kerjasamaOperasi' }
                         },
                         // {
@@ -181,12 +181,12 @@ export default {
                         // },
                         {
                             label:'Discount Submission',
-                            icon: 'pi pi-fw pi-thumbs-up',
+                            icon: 'pi pi-fw pi-ticket',
                             to: { name: 'discountSubmission' }
                         },
                     ]
 				},
-                {label: 'Laporan', icon: 'pi pi-fw pi-clone',
+                {label: 'Laporan', icon: 'pi pi-file-pdf',
 					items: [
                         {
                             label:'Sales Distributor',
@@ -226,7 +226,7 @@ export default {
                         {
                             label:'Monitoring Product',
                             icon: 'pi pi-fw pi-users',
-                            to: { name: 'evaluasiCustomer' }
+                            to: { name: 'monitoringProduct' }
                         },
                         {
                             label:'Balance KSP',
@@ -236,7 +236,7 @@ export default {
                         {
                             label:'Laporan Incentive',
                             icon: 'pi pi-fw pi-users',
-                            to: { name: 'balanceKSP' }
+                            to: { name: 'laporanIncentive' }
                         },
                         // {
                         //     label:'Laporan Donasi',
@@ -276,7 +276,7 @@ export default {
                         },
                     ]
 				},
-                {label: 'Admin', icon: 'pi pi-fw pi-clone',
+                {label: 'Admin', icon: 'pi pi-fw pi-users',
 					items: [
                         {
                             label: 'User',

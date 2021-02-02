@@ -76,7 +76,7 @@
 				>
 					<!-- ini bisa diisi dengan peta nantinya -->
                     <div class="p-fluid p-grid">
-                        <div class="p-field p-col-12 p-md-3">
+                        <div class="p-field p-col-12 p-md-4">
                             <!-- <span class="p-float-label"> -->
                             <label for="detailer">Detailer</label>
                             <Dropdown inputId="detailer" 
@@ -96,7 +96,7 @@
 							>Detailer is required.</small>
                             <!-- </span> -->
                         </div>
-                        <div class="p-field p-col-12 p-md-3">
+                        <div class="p-field p-col-12 p-md-4">
                             <label for="Tahun">Tahun</label>
                             <Dropdown inputId="Tahun"
 								v-model.trim="targetSaleData.tahun"
