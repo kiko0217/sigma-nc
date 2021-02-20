@@ -129,24 +129,24 @@ export default {
                     for (let l in this.saveBreakdowns[j].customers[k].products){
                         this.detailSalesInfos.push({
                             _id: i,
-                            productId: this.saveBreakdowns[j].customers[k].products[l].code,
-                            productName: this.saveBreakdowns[j].customers[k].products[l].name,
+                            productId: this.saveBreakdowns[j].customers[k].products[l] == null ? null : this.saveBreakdowns[j].customers[k].products[l].code,
+                            productName: this.saveBreakdowns[j].customers[k].products[l] == null ? null : this.saveBreakdowns[j].customers[k].products[l].name,
                             outletId: this.saveBreakdowns[j].outlet.code,
                             outletName: this.saveBreakdowns[j].outlet.name,
                             city: this.saveBreakdowns[j].outlet.city,
                             dept: this.saveBreakdowns[j].outlet.area.codeDept,
-                            region: this.saveBreakdowns[j].outlet.area.region.name,
+                            region: this.saveBreakdowns[j].outlet.area.region == null ? null : this.saveBreakdowns[j].outlet.area.region.name,
                             area: this.saveBreakdowns[j].outlet.area.name,
                             typeOutlet: this.saveBreakdowns[j].outlet.type.gh_funcdescription,
                             detailerName: this.saveBreakdowns[j].detailer.name,
                             customerName: this.saveBreakdowns[j].customers[k].name,
                             customerCode: this.saveBreakdowns[j].customers[k].code,
                             date: this.saveBreakdowns[j].date,
-                            salesQty: this.saveBreakdowns[j].customers[k].products[l].qty,
-                            HNA: this.saveBreakdowns[j].customers[k].products[l].HNA,
-                            price: this.saveBreakdowns[j].customers[k].products[l].price,
-                            disc: this.saveBreakdowns[j].customers[k].products[l].disc,
-                            ppn: this.saveBreakdowns[j].customers[k].products[l].ppn,
+                            salesQty: this.saveBreakdowns[j].customers[k].products[l] == null ? null : this.saveBreakdowns[j].customers[k].products[l].qty,
+                            HNA: this.saveBreakdowns[j].customers[k].products[l] == null ? null : this.saveBreakdowns[j].customers[k].products[l].HNA,
+                            price: this.saveBreakdowns[j].customers[k].products[l] == null ? null : this.saveBreakdowns[j].customers[k].products[l].price,
+                            disc: this.saveBreakdowns[j].customers[k].products[l] == null ? null : this.saveBreakdowns[j].customers[k].products[l].disc,
+                            ppn: this.saveBreakdowns[j].customers[k].products[l] == null ? null : this.saveBreakdowns[j].customers[k].products[l].ppn,
                         })
                         // console.log(l)
                         i++

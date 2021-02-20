@@ -3,15 +3,15 @@ import axios from 'axios'
 export default class CustomerService {
 
     getCustomers() {
-        return axios.get('http://34.66.31.229:3000/api/customer').then(res => res.data.response);
+        return axios.get('/api/customer').then(res => res.data.response);
     }
     getCustomerMinis() {
-        return axios.get('http://34.66.31.229:3000/api/customer/mini').then(res => res.data.response);
+        return axios.get('/api/customer/mini').then(res => res.data.response);
     }
     createCustomer(data) {
         // console.log(data)
         return new Promise((resolve, reject) => {
-            axios.post('http://34.66.31.229:3000/api/customer/create', data)
+            axios.post('/api/customer/create', data)
             .then(res => resolve(res.data.message))
             .catch(err => reject(err))
         })
@@ -19,7 +19,7 @@ export default class CustomerService {
     editCustomer(data) {
         // console.log(data)
         return new Promise((resolve, reject) => {
-            axios.post('http://34.66.31.229:3000/api/customer/edit', data)
+            axios.post('/api/customer/edit', data)
             .then(res => resolve(res.data.message))
             .catch(err => reject(err))
         })
@@ -27,7 +27,7 @@ export default class CustomerService {
     deleteCustomer(data) {
         // console.log(data)
         return new Promise((resolve, reject) => {
-            axios.post('http://34.66.31.229:3000/api/customer/destroy', data)
+            axios.post('/api/customer/destroy', data)
             .then(res => resolve(res.data.message))
             .catch(err => reject(err))
         })

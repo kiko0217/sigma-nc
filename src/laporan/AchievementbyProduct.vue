@@ -12,6 +12,7 @@
                             <Dropdown inputId="Tahun"
 								v-model.trim="priode"
 								:options="tahuns"
+								@change="change()"
 							>
 							</Dropdown>
                             <label for="Tahun">Priode</label>
@@ -43,13 +44,16 @@
                             </span>
 						</div>
 					</template>
-					<Column v-for="(col, index) of culomnOutletMapping" :field="col.field" :header="col.header" :key="index" headerStyle="width: 150px">
-                        <template v-if="col.field=='tglFacture'" #body="slotProps">
-							<span>{{formatDate(slotProps.data.tglFacture)}}</span>
+					<Column v-for="(col, index) of culomnAchievementQty" :field="col.field" :header="col.header" :key="index" headerStyle="width: 150px">
+						<template v-if="col.field=='short'" #footer>
+							<span><b>TOTAL</b></span>
+						</template>
+						<template v-else #footer="slotProps">
+							<span><b>{{totalValue(slotProps.column.field)}}</b></span>
 						</template>
                     </Column>
 				</DataTable>
-                <DataTable ref="achievementProducts" :value="achievementProducts2" 
+                <DataTable ref="achievementProducts" :value="achievementProducts" 
                     :scrollable="true" scrollHeight="500px" 
                     dataKey="_id" 
                     editMode="cell" 
@@ -57,7 +61,7 @@
                     :rows="10" 
                     class="editable-cells-table" 
                     :filters="filters"
-					:loading="loading2"
+					:loading="loading"
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" 
                     :rowsPerPageOptions="[5,10,25]"
 					currentPageReportTemplate="Showing {first} to {last} of {totalRecords} outlet mapping">
@@ -70,9 +74,15 @@
                             </span>
 						</div>
 					</template>
-					<Column v-for="(col, index) of culomnOutletMapping" :field="col.field" :header="col.header" :key="index" headerStyle="width: 150px">
-                        <template v-if="col.field=='tglFacture'" #body="slotProps">
-							<span>{{formatDate(slotProps.data.tglFacture)}}</span>
+					<Column v-for="(col, index) of culomnAchievementQty" :field="(col.field == 'short') ? col.field : col.field+'Val'" :header="col.header" :key="index" headerStyle="width: 150px">
+                        <template v-if="col.field!='short'" #body="slotProps">
+							<span>{{formatCurrency(slotProps.data[slotProps.column.field])}}</span>
+						</template>
+						<template v-if="col.field=='short'" #footer>
+							<span><b>TOTAL</b></span>
+						</template>
+						<template v-else #footer="slotProps">
+							<span><b>{{formatCurrency(totalValue(slotProps.column.field))}}</b></span>
 						</template>
                     </Column>
 				</DataTable>
@@ -82,15 +92,14 @@
 </template>
 <script>
 import AchievementProductService from '../service/AchievementProductService'
+import ProductService from '../service/ProductService'
 export default {
 	data() {
 		return {
 			loading: false,
-			loading2: false,
             tahuns: [],
             priode: 2020,
             achievementProducts: null,
-            achievementProducts2: null,
             columnBulan: [],
             culomnOutletMapping:[],
             filters: {},
@@ -98,62 +107,64 @@ export default {
 		}
 	},
 	achievementProductService: null,
+	productService: null,
 	// fs: null,
 	created() {	
         this.tahuns = [...Array(11).keys()].map(x => x+2020)
         this.achievementProductService = new AchievementProductService()
+        this.productService = new ProductService()
         this.columnBulan = [
 			{
-				field: 'january',
+				field: 'January',
 				header: 'January'
 			},
 			{
-				field: 'febuary',
+				field: 'Febuary',
 				header: 'Febuary'
 			},
 			{
-				field: 'maret',
-				header: 'Maret'
+				field: 'March',
+				header: 'March'
 			},
 			{
-				field: 'april',
+				field: 'April',
 				header: 'April'
 			},
 			{
-				field: 'may',
+				field: 'May',
 				header: 'May'
 			},
 			{
-				field: 'june',
+				field: 'June',
 				header: 'June'
 			},
 			{
-				field: 'july',
+				field: 'July',
 				header: 'July'
 			},
 			{
-				field: 'august',
+				field: 'August',
 				header: 'August'
 			},
 			{
-				field: 'september',
+				field: 'September',
 				header: 'September'
 			},
 			{
-				field: 'october',
+				field: 'October',
 				header: 'October'
 			},
 			{
-				field: 'november',
+				field: 'November',
 				header: 'November'
 			},
 			{
-				field: 'december',
+				field: 'December',
 				header: 'December'
 			},
         ]
-        this.culomnOutletMapping = [
-            {field: 'product', header: 'Product'},
+        this.culomnAchievementQty = [
+            {field: 'short', header: 'Product'},
             ...this.columnBulan,
             {field: 'total', header: 'Total'},
         ]
@@ -161,17 +172,30 @@ export default {
 	},
 	mounted() {
 		this.loading = true
-		this.loading2 = true
-        this.achievementProductService.getAchievementProduct().then(data => {
-			this.achievementProducts2 = data
+		// console.log('test1')
+        this.productService.getProductAchievement({
+			year: this.priode
+		}).then(data => {
+			this.achievementProducts = data
 			this.loading = false
-		})
-        this.achievementProductService.getAchievementProductVal().then(dt => {
-			this.achievementProducts = dt
-			this.loading2 = false
+		}).catch(err=> {
+			console.log(err)
 		})
 	},
 	methods: {
+		totalValue(field) {
+			let total = 0
+			if(this.achievementProducts == null) return 0
+			this.achievementProducts.forEach(element => {
+				total += (element[field] == null) ? 0 : element[field]
+			});
+				// total += (data[field] == null) ? 0 : data[field]
+			return total
+		},
+		formatCurrency(value) {
+			if(typeof value == 'undefined') value = 0
+			return value.toLocaleString('id-ID', {style: 'currency', currency: 'IDR'});
+		},
 		formatDate(dat) {
 			let date = new Date(dat)
 			// console.log(date)
