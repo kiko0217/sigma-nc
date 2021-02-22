@@ -29,4 +29,11 @@ export default class AreaService {
             .catch(err => reject(err))
         })
     }
+    getAreaAchievement(data) {
+        return new Promise((resolve, reject) => {
+            axios.get('/api/area/achievement',{params: data})
+            .then(res => resolve(res.data.response))
+            .catch(err => reject(err))
+        })
+    }
 }

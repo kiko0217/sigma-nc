@@ -12,6 +12,7 @@
                             <Dropdown inputId="Tahun"
 								v-model.trim="priode"
 								:options="tahuns"
+								:disabled="loading"
 								@change="change()"
 							>
 							</Dropdown>
@@ -20,7 +21,8 @@
                         <Button label="Export" 
                             icon="pi pi-upload" 
                             class="p-button-help p-mt-4"
-                            @click="exportCSV($event)"  />
+                            @click="exportCSV($event)"  
+							:disabled="loading"/>
                     </template>
                 </Toolbar>
                 <DataTable ref="achievementProducts" :value="achievementProducts" 
@@ -180,9 +182,23 @@ export default {
 			this.loading = false
 		}).catch(err=> {
 			console.log(err)
+			this.loading = false
 		})
 	},
 	methods: {
+		change() {
+			this.loading = true
+		// console.log('test1')
+			this.productService.getProductAchievement({
+				year: this.priode
+			}).then(data => {
+				this.achievementProducts = data
+				this.loading = false
+			}).catch(err=> {
+				console.log(err)
+				this.loading = false
+			})
+		},
 		totalValue(field) {
 			let total = 0
 			if(this.achievementProducts == null) return 0

@@ -9,15 +9,14 @@
                     </template>
                     <template slot="right">
                         <span class="p-float-label p-mr-2 p-mt-4">
-                            <Calendar id="monthpicker" 
-                                v-model="priode" 
-                                :manualInput="false"
-                                view="month"
-                                dateFormat="mm/yy" 
-                                :yearNavigator="true" 
-                                yearRange="2020:2040"
-                            />
-                            <label for="monthpicker">Priode</label>
+                            <Dropdown inputId="Tahun"
+								v-model.trim="priode"
+								:options="tahuns"
+								:disabled="loading"
+								@change="change()"
+							>
+							</Dropdown>
+                            <label for="Tahun">Priode</label>
                         </span>
                         <Button label="Export" 
                             icon="pi pi-upload" 
@@ -56,46 +55,75 @@
     </div>
 </template>
 <script>
-import AchievementAreaService from '../service/AchievementAreaService'
+import AreaService from '../service/AreaService'
+import ProductService from '../service/ProductService'
 export default {
 	data() {
 		return {
-            priode: null,
+            tahuns: [],
+            priode: 2020,
+            products: null,
             loading: false,
             achievementArea: null,
-            culomnOutletMapping:[
-                {field: 'NO', header: 'No'},
-                {field: 'NAME', header: 'Name'},
-                {field: 'REGION', header: 'Region'},
-                {field: 'AREA', header: 'Area'},
-                {field: 'Value Target', header: 'Value Target'},
-                {field: 'ONOIWA', header: 'Onoiwa'},
-                {field: 'ONOIWA PLUS', header: 'Onoiwa Plus'},
-                {field: 'ONOIWA MX', header: 'Onoiwa Mx'},
-                {field: 'ONOGATE', header: 'Onogate'},
-                {field: 'ONOAKE', header: 'Onoake'},
-                {field: 'RAFA KHOMSAH', header: 'Rafa Khomsah'},
-                {field: 'Qty Sales', header: 'Qty Sales'},
-                {field: 'Value Sales', header: 'Value Sales'},
-                {field: 'Achievement', header: 'Achievement'},
-            ],
+            culomnOutletMapping:[],
             filters: {},
 		}
 	},
-	achievementAreaService: null,
+	areaService: null,
+    productService: null,
 	// fs: null,
 	created() {	
-        this.achievementAreaService = new AchievementAreaService()
-
+        this.tahuns = [...Array(11).keys()].map(x => x+2020)
+        this.areaService = new AreaService()
+        this.productService = new ProductService()
+        this.productService.getProductMinis()
+        .then(dt=> {
+            // console.log(dt)
+            this.products=dt
+            this.culomnOutletMapping = [
+                {field: 'region', header: 'Region'},
+                {field: 'area', header: 'Area'},
+            ]
+            this.products.forEach(element => {
+                this.culomnOutletMapping.push({
+                    field: element.short,
+                    header: element.short
+                })
+            })
+            this.culomnOutletMapping.push({
+                field: 'total',
+                header: 'total'
+            })
+        })
+        
+        // 
+        // console.log(this.culomnOutletMapping)
 	},
 	mounted() {
         this.loading = true
-        this.achievementAreaService.getAchievementArea().then(data => {
+        this.areaService.getAreaAchievement({year: this.priode})
+        .then(data => {
             this.achievementArea = data
             this.loading = false
         })
+        .catch(err=> {
+			console.log(err)
+             this.loading = false
+		})
 	},
 	methods: {
+        change() {
+            this.loading = true
+            this.areaService.getAreaAchievement({year: this.priode})
+            .then(data => {
+                this.achievementArea = data
+                this.loading = false
+            })
+            .catch(err=> {
+                console.log(err)
+                this.loading = false
+            })
+        },
 		formatDate(dat) {
 			let date = new Date(dat)
 			// console.log(date)
